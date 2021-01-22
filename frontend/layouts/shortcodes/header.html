@@ -1,0 +1,9 @@
+<header>
+  <h1>{{ $.Page.Title }}</h1>
+  {{ with $.Page.RenderString ($.Page.Param "subtitle") }}
+  <p class="subtitle">{{ . }}</p>
+  {{ end }}
+  {{ with .Inner }}
+  {{ $.Page.RenderString . }}
+  {{ end }}
+</header>

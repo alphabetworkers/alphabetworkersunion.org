@@ -1,0 +1,87 @@
+@use '../constants' as *;
+
+.imageheavy-content {
+  padding: 0 0 32px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1 {
+    color: $brand;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 500;
+    padding-top: 4em;
+    padding-bottom: 1em;
+    background: linear-gradient(to bottom left, $white 0% 49%, white 51% 100%);
+
+    &:first-child {
+      background: unset;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    padding-right: 40%;
+    text-align: left;
+
+    // Must use padding instead of margin so that background has no gaps
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 32px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $brand;
+
+    &:nth-of-type(even) {
+      background: linear-gradient(
+        to bottom right,
+        white 0% 49%,
+        $white 51% 100%
+      ) !important;
+
+      &,
+      & + p,
+      & + p + p,
+      & + p + p + p,
+      & + p + p + p + p {
+        text-align: right;
+        padding-left: 40%;
+        padding-right: 32px;
+        background: $white;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+  }
+}

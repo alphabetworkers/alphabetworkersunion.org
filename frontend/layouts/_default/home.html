@@ -1,0 +1,22 @@
+{{ define "main" }}
+
+<div class="home-content">
+  {{ .Content }}
+</div>
+
+<section class="home-main-links">
+  <a href="{{ ref . (dict "path" "people/our-union" "lang" "en") }}" class="box">
+    <i class="fas fa-users"></i>
+    <span>Who we are</span>
+  </a>
+  <a href="{{ ref . (dict "path" "power/why.en.md" "lang" "en") }}" class="box">
+    <i class="fas fa-handshake"></i>
+    <span>Why we organized</span>
+  </a>
+  <a href="{{ ref . (dict "path" "power/reclaim" "lang" "en") }}" class="box">
+    <i class="fas fa-fist-raised"></i>
+    <span>Reclaim your power!</span>
+  </a>
+</section>
+{{ partial "join-banner.html" . }}
+{{ end }}

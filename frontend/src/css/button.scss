@@ -1,0 +1,70 @@
+@use 'constants' as *;
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  margin: 0;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #000;
+  transition: 200ms background-color ease-in-out;
+  cursor: pointer;
+  font-family: 'Latina Essential';
+}
+
+.button {
+  color: black;
+
+  &:hover,
+  &:focus {
+    background-color: #eee;
+  }
+}
+
+.button.dark-context {
+  background-color: #fff;
+  color: $brand;
+
+  &:hover {
+    background-color: #ddd;
+  }
+}
+
+.button.light-context {
+  background: $brand;
+  color: white;
+
+  &:hover {
+    background-color: $brand-dark;
+  }
+}
+
+.button.primary,
+.button.secondary {
+  font-weight: 500;
+}
+
+.button.text-only,
+.button.icon-only {
+  background-color: transparent;
+}
+
+.button.icon {
+  padding: 0.5em;
+  border-radius: 100px;
+}
+
+.button.dark-context.secondary {
+  border: solid 1px white;
+  background: $brand;
+  color: white;
+
+  &:hover {
+    background-color: $brand-dark;
+  }
+}
+
+.button.large {
+  font-size: 3em;
+}

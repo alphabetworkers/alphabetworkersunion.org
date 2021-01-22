@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{ template "_internal/opengraph.html" . }}
+    {{ template "_internal/twitter_cards.html" . }}
+    <title>{{ block "title" . }}
+      {{ .Site.Title }}
+    {{ end }}</title>
+    <link rel="stylesheet" href="{{ (resources.Get "main.css" | resources.Fingerprint).Permalink }}">
+    {{- with .Site.GetPage "/press/releases" -}}
+      {{ $page_title := .Page.Title }}
+      {{ $site_title := .Site.Title }}
+      {{- with .OutputFormats.Get "RSS" -}}
+        <link rel="{{ .Rel }}" type="{{ .MediaType }}" href="{{ .Permalink }}" title="{{ $site_title | title }} {{ $page_title | title }}">
+      {{- end -}}
+    {{- end }}
+    <script async src="{{ (resources.Get "main.js" | resources.Fingerprint).Permalink }}"></script>
+    <link rel="icon" type="image/png" href="/favicon.ico">
+  </head>
+  <body>
+    <nav>
+      <a href="{{ ref . "/" }}">{{ (resources.Get "img/logo-header.svg").Content | safeHTML }}</a>
+      <span class="spacer"></span>
+      <div class="menu-bar" tabindex="0">
+        {{ range .Site.Sections }}
+          <div class="menu" tabindex="0">
+            <span class="menu-open button">{{ .LinkTitle }}</span>
+            {{ if gt (len .RegularPages) 0 }}
+              <div class="menu-items">
+                <div class="menu-items-list">
+                  {{ range .RegularPages }}
+                    <a href="{{ .Permalink }}" class="menu-item button">{{ .LinkTitle }}</a>
+                  {{ end }}
+                </div>
+              </div>
+            {{ end }}
+          </div>
+        {{ end }}
+        <awu-join-form><span class="button primary light-context">Join us</span></awu-join-form>
+      </div>
+    </nav>
+    <content>
+    {{ block "main" . }}
+    {{ end }}
+    </content>
+    <footer>
+      {{ (resources.Get "img/logo-no-title.svg").Content | safeHTML }}
+      <h2>AWU</h2>
+      {{ with .Site.GetPage "/privacy-policy" }}
+        <span class="separator"></span>
+        <a href="{{ .Permalink }}" class="button dark-context text-only">{{ .LinkTitle }}</a>
+      {{ end }}
+      {{ with .Site.Params.contact_url }}
+        <a href="{{ . }}" class="button dark-context text-only">Contact us</a>
+      {{ end }}
+      <span class="spacer"></span>
+      <a href="https://facebook.com/{{.Site.Params.Facebook}}" class="button dark-context icon icon-only"><i class="fab fa-facebook"></i></a>
+      <a href="https://twitter.com/{{.Site.Params.Twitter}}" class="button dark-context icon icon-only"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com/{{.Site.Params.Instagram}}" class="button dark-context icon icon-only"><i class="fab fa-instagram"></i></a>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+  <div class="shortcode-profiles">
+  {{ range (shuffle $.Site.Data.meet_the_union.quotes)  }}
+    <figure> 
+      {{ if (index . "Selfie") }}
+      <img src="{{ (resources.Get (printf "img/%s" (index . "Selfie")) | resources.Fingerprint).Permalink }}">
+      {{ else }}
+        <img src="{{ (resources.Get "img/logo-no-title.svg").Permalink }}">
+      {{ end  }}
+      {{ with index . "Full Name" }}
+        <div class="name">{{ . }}</div>
+      {{ end }}
+      {{ with index . "Job Title" }}
+        <div class="role">{{ . }}</div>
+      {{ end }}
+      {{ if and (index . "Prompt") (index . "Quote") }}
+        <div class="question">{{ index . "Prompt" }}</div>
+        <div class="answer">{{ index . "Quote" }}</div>
+      {{ end }}
+    </figure>
+  {{ end }}
+  </div>

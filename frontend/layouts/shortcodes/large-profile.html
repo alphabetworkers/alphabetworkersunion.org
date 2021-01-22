@@ -1,0 +1,23 @@
+<div class="shortcode-large-profile">
+  <figure>
+    {{ if (.Get "photo") }}
+      {{ with .Get "photo" }}
+      <img src="{{ . }}" />
+      {{ end }}
+    {{ else }}
+      <img width="400" style="height: 532px" src="{{ (resources.Get "img/logo-no-title.svg").Permalink }}">
+    {{ end }}
+    {{ with .Get "name" }}
+    <div class="name">{{ . }}</div>
+    {{ end }}
+    {{ with .Get "role" }}
+    <div class="role">{{ . }}</div>
+    {{ end }}
+    {{ with .Get "email" }}
+    <a class="email" href="mailto:{{ . }}">{{ . }}</a>
+    {{ end }}
+    {{ with .Get "bio" }}
+    <div class="bio">{{ . }}</div>
+    {{ end }}
+  </figure>
+</div>

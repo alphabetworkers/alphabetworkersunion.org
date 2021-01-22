@@ -1,0 +1,217 @@
+@use 'constants' as *;
+
+nav {
+  height: 68px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 1em;
+  font-weight: 400;
+
+  #logo-header-text-wide {
+    display: inline;
+  }
+  #logo-header-text-compact {
+    display: none;
+  }
+
+  .menu-bar {
+    display: flex;
+    flex-direction: row;
+
+    awu-join-form {
+      padding-left: 1em;
+    }
+  }
+
+  > .button {
+    margin: 0 0.5em;
+  }
+
+  > .button.primary {
+    padding: 0.5em 2em;
+    font-size: 1.1em;
+  }
+
+  .menu {
+    position: relative;
+
+    .menu-items {
+      z-index: 1000;
+      visibility: hidden;
+      position: absolute;
+      bottom: 0em;
+      overflow: visible;
+      height: 0;
+      right: 0;
+    }
+
+    .menu-items-list {
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    &:hover .menu-items {
+      visibility: visible;
+    }
+
+    .menu-item {
+      border-radius: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  nav #logo-header-text-wide {
+    display: none;
+  }
+  nav #logo-header-text-compact {
+    display: inline;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  nav {
+    padding-right: 0;
+  }
+
+  nav .menu-bar {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 4em;
+    z-index: 1000;
+    flex-direction: column;
+    background: white;
+    outline: none;
+
+    > * {
+      display: none;
+    }
+
+    &:before {
+      display: block;
+      padding: 0.5em;
+      border-radius: 3px;
+      align-self: flex-end;
+      margin-top: -3em;
+      margin-right: 1em;
+      margin-bottom: 1em;
+      cursor: pointer;
+      pointer-events: all;
+      transform: scale(1.5);
+
+      // Equivalent: <i class="fas fa-bars"></i>
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      content: '\f0c9';
+    }
+
+    &:focus,
+    // focus-within keeps the menu open even when the focus moves to an <a>
+    &:focus-within {
+      > * {
+        display: unset;
+      }
+
+      &:before {
+        pointer-events: none;
+        cursor: pointer;
+
+        // Equivalent: <i class="fas fa-times"></i>
+        content: '\f00d';
+      }
+    }
+
+    .menu-items {
+      position: unset;
+      height: unset;
+      visibility: unset;
+    }
+
+    .menu-open {
+      display: block;
+      font-size: 1.5em;
+      padding: 0.5em 0.6em;
+      background: inherit !important;
+    }
+
+    .menu-items-list {
+      width: unset;
+      box-shadow: none;
+    }
+  }
+}
+
+content {
+  flex: 1;
+}
+
+footer {
+  min-height: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 1em;
+  font-weight: 400;
+  background-color: $white;
+
+  & > svg {
+    height: 36px;
+    width: auto;
+  }
+
+  h2 {
+    font-weight: 500;
+    margin-left: 6px;
+    margin-right: 8px;
+  }
+
+  .separator {
+    border-left: solid 2px rgba(0, 0, 0, 0.2);
+    display: block;
+    height: 1em;
+    margin-left: 8px;
+    margin-right: 2px;
+  }
+
+  a {
+    color: $brand;
+    text-decoration: none;
+  }
+
+  a.icon {
+    margin: 0 8px;
+  }
+
+  i {
+    font-size: 1.6em;
+  }
+}
+
+a {
+  color: $brand;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  & > a {
+    opacity: 0;
+    transition: opacity 200ms ease;
+    font-size: 0.8em;
+  }
+
+  &:hover > a {
+    opacity: 1;
+  }
+}

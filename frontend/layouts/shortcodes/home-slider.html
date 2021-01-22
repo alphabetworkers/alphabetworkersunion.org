@@ -1,0 +1,11 @@
+<div class="invitation">
+  <home-slider id="banner">
+    {{ range $.Site.Data.home.banner.data.we_are }}
+      <div slot="we-are">{{ . }}</div>
+    {{ end }}
+    {{ range $.Site.Data.home.banner.data.who }}
+      <div slot="who">{{ . }}</div>
+    {{ end }}
+  </home-slider>
+  <awu-join-form><span class="button light-context primary home-join">Join us!</span></awu-join-form>
+</div>

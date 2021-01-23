@@ -7,8 +7,4 @@ layout: textheavy
 
 {{< header />}}
 
-## Stronger together
-
-Thank you for deciding to join our union. Click the following button to open the form.
-
-{{< join-form "Join us!" "large" "padded" >}}
+{{< signup >}}

@@ -4,6 +4,7 @@
   "description": "This is the source for the Alphabet Union website.  It uses [Hugo][1] to generate static HTML pages.  To run or build the site, you must [install Hugo][2].",
   "private": true,
   "dependencies": {
+    "@stripe/stripe-js": "^1.11.0",
     "lit-element": "^2.4.0",
     "lit-html": "^1.3.0",
     "smoothscroll-polyfill": "^0.4.4"

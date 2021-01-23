@@ -14,6 +14,7 @@ disableKinds = ["taxonomy", "term"]
   images = ["img/static/og-banner.png"]
   title = "Alphabet Workers Union"
   member_count = 800
+  stripe_key = 'pk_test_51I9k6TE1rwuQcCei5yDImwRkr5S6qIzakaDope6nrnEQcTn9CjqmosnWnlwDbRUYMudlYNS0OVsNqpgjbs3MwQbp00FO2VIwzx'
 languageCode = "en-us"
 [author]
   name = "Alphabet Workers Union"

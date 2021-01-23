@@ -16,6 +16,7 @@
         <link rel="{{ .Rel }}" type="{{ .MediaType }}" href="{{ .Permalink }}" title="{{ $site_title | title }} {{ $page_title | title }}">
       {{- end -}}
     {{- end }}
+    <script>window.STRIPE_KEY = "{{- .Site.Params.stripe_key -}}";</script>
     <script async src="{{ (resources.Get "main.js" | resources.Fingerprint).Permalink }}"></script>
     <link rel="icon" type="image/png" href="/favicon.ico">
   </head>

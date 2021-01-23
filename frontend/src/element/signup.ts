@@ -180,6 +180,13 @@ export class Signup extends LitElement {
         ? this.bankAccountToken()
         : this.cardToken());
       // TODO do something with token
+
+      const result = await fetch('http://localhost:8787/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `stripe-payment-token=${token.id}`,
+      });
+      console.log(await result.text());
       console.log(token);
     } catch (e) {
       const error = e as StripeError;

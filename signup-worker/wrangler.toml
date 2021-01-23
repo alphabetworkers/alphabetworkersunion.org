@@ -1,7 +1,7 @@
 name = "signup-worker"
 type = "webpack"
-account_id = "394d48aba686b2466fe12e540c5d9466"
+account_id = "d9aabaa6477e498b1d0121bc0f5aa5ef"
 workers_dev = true
 route = ""
-zone_id = "ebdbcc9f178b7b36f9768e6ec55972d6"
+zone_id = "2831d4f6d1639d181a7e091cf8afa907"
 webpack_config = "webpack.config.js"

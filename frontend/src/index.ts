@@ -5,6 +5,7 @@
 import './css/baseof.scss';
 import './element/home-slider';
 import './element/join-form';
+import './element/signup';
 
 import './img/logo.svg';
 import './img/logo-no-title.svg';

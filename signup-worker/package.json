@@ -16,7 +16,9 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^2.0.0",
     "@types/chai": "^4.2.11",
+    "@types/form-urlencoded": "^2.0.1",
     "@types/mocha": "^7.0.2",
+    "@types/service-worker-mock": "^2.0.1",
     "chai": "^4.2.0",
     "mocha": "^8.2.1",
     "prettier": "^2.0.5",
@@ -26,5 +28,9 @@
     "typescript": "^3.9.5",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "form-urlencoded": "^4.2.1",
+    "stripe": "^8.132.0"
   }
 }

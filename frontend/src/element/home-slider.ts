@@ -119,7 +119,7 @@ export class HomeSlider extends LitElement {
     // the scroll deltas properly.
     await new Promise((r) => setTimeout(r, 0));
     this.resetLayout();
-    window.addEventListener('resize', (e) => this.resetLayout());
+    window.addEventListener('resize', () => this.resetLayout());
   }
 
   /**
@@ -156,7 +156,7 @@ export class HomeSlider extends LitElement {
    * manual scroll interaction (mouse wheel or touch swipe).
    */
   @eventOptions({ passive: true })
-  recomputeButtonsEnabled() {
+  recomputeButtonsEnabled(): void {
     const weAreContainer = this.getScrollMetrics(this.weAre).container;
     const whoContainer = this.getScrollMetrics(this.who).container;
     switch (this.orientation) {

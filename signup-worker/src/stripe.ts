@@ -1,73 +1,20 @@
-import formurlencoded from 'form-urlencoded';
-import Stripe from 'stripe';
-
-const STRIPE_API = 'https://api.stripe.com/v1/';
-
 /**
- * Because stripe-node does not work without the Node runtime, we must
- * re-implement API calls directly to the Stripe RESTful API.  This project
- * still depends on stripe-node for its type declarations.
+ * Stripe-node depends on a Node runtime, so we must use its REST API directly.
+ *  https://stripe.com/docs/api
  */
-export class StripeClient {
-  private readonly headers: {[key: string]: string};
-
-  /**
-   * Instantiate a client instance.  No overhead in destroying or creating, it
-   * only stores an API key.
-   */
-  constructor(key: string) {
-    this.headers = Object.freeze({
-      'Authorization': `Basic ${btoa(key + ':')}`,
+export function stripeClient(key: string) {
+  const basicAuth = `Basic ${btoa(STRIPE_KEY + ':')}`;
+  return (resource, params: {[key: string]: string}) => fetch(`https://api.stripe.com/v1/${encodeURIComponent(resource)}`, {
+    method: 'POST',
+    headers: {
+      'Authorization': basicAuth,
       'Content-Type': 'application/x-www-form-urlencoded',
-    });
-  }
-
-  /**
-   * Sends a call to create a customer object.
-   *
-   * @link https://stripe.com/docs/api/customers/create?lang=node
-   */
-  createCustomer(params: Stripe.CustomerCreateParams) {
-    return fetch(`${STRIPE_API}customers`, {
-      method: 'POST',
-      headers: this.headers,
-      body: formurlencoded(params),
-    }).then(throwError<Stripe.Customer>());
-  }
-
-  /**
-   * Sends a call to create a Subscription object.
-   *
-   * @link https://stripe.com/docs/api/subscriptions?lang=node
-   */
-  createSubscription(params: Stripe.SubscriptionCreateParams) {
-    return fetch(`${STRIPE_API}subscriptions`, {
-      method: 'POST',
-      headers: this.headers,
-      body: formurlencoded(params),
-    }).then(throwError<Stripe.Subscription>());
-  }
-
-  updateSubscription(id: string, params: Stripe.SubscriptionUpdateParams): Promise<Stripe.Subscription> {
-    return fetch(`${STRIPE_API}subscriptions/${encodeURIComponent(id)}`, {
-      method: 'POST',
-      headers: this.headers,
-      body: formurlencoded(params),
-    }).then(throwError<Stripe.Subscription>());
-  }
-}
-
-function throwError<T>(): (response: Response) => Promise<T> {
-  return async (response: Response) => {
-    if (response.ok) {
-      return response.json() as Promise<T>;
-    } else {
-      return Promise.reject((await response.json()).error);
-    }
-  };
+    },
+    body: new URLSearchParams(params).toString(),
+  });
 }
 
 /**
- * Create a new re-usable instance.
+ * Function to make requests to Stripe.
  */
-export const stripeClient = new StripeClient(STRIPE_KEY);
+export const stripeRequest = stripeClient(STRIPE_KEY);

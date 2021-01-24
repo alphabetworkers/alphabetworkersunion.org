@@ -26,16 +26,6 @@ Click any of the following links to register.
 
 _Times are listed in both Pacific Time (PT) and Eastern Time (ET)._
 
-### Sunday, January 17th, 2021
-
-- [10 am PT / 1 pm ET](https://zoom.us/meeting/register/tJwpd-qsqTgoGtERHLJ26lIcm2vbyTyYqKGA)
-- [1 pm PT / 4 pm ET](https://zoom.us/meeting/register/tJIocOGuqTooG9Ca-6oO82kOOosnEM_Rynm4)
-
-### Saturday, January 23rd, 2021
-
-- [10 am PT / 1 pm ET](https://zoom.us/meeting/register/tJIrcuutpj0qHd1Ex1KCrEmyt6RvpRXdES2k)
-- [1 pm PT / 4 pm ET](https://zoom.us/meeting/register/tJUof-2uqjovGNfGsWNm1Elrr1PkxpXjnYqc)
-
 ### Sunday, January 31st, 2021
 
 - [10 am PT / 1 pm ET](https://zoom.us/meeting/register/tJUrf--opz8uHNNHCV2rdSk-4J3qlCGAuOzQ)

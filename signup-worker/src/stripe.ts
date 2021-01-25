@@ -47,6 +47,14 @@ export class StripeClient {
       body: formurlencoded(params),
     });
   }
+
+  updateSubscription(id: string, params: Stripe.SubscriptionUpdateParams) {
+    return fetch(`${STRIPE_API}subscriptions/${encodeURIComponent(id)}`, {
+      method: 'POST',
+      headers: this.headers,
+      body: formurlencoded(params),
+    });
+  }
 }
 
 /**

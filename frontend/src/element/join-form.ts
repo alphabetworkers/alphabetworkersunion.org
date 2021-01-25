@@ -1,4 +1,11 @@
-import { customElement, LitElement, html, css } from 'lit-element';
+import {
+  customElement,
+  LitElement,
+  html,
+  css,
+  CSSResult,
+  TemplateResult,
+} from 'lit-element';
 import { query } from 'lit-element/lib/decorators.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 
@@ -16,7 +23,7 @@ export class JoinForm extends LitElement {
 
     window.addEventListener(
       'message',
-      (event) => {
+      () => {
         // Iframe emits a message when it the dialog closes
         this.isOpen = false;
         this.requestUpdate();
@@ -25,7 +32,7 @@ export class JoinForm extends LitElement {
     );
   }
 
-  static get styles() {
+  static get styles(): CSSResult {
     return css`
       button {
         padding: 0;
@@ -52,7 +59,8 @@ export class JoinForm extends LitElement {
       }
     `;
   }
-  render() {
+
+  render(): TemplateResult {
     return html` <button @click="${this.triggerOpen}"><slot>Join</slot></button
       ><br />
       <iframe

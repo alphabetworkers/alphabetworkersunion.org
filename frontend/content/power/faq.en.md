@@ -80,7 +80,7 @@ Dues are our money: we all vote on the budget, which we write. We are trying to 
 
 ### Exactly how much of dues goes towards CWA and CWA Local 1400?
 
-We pay a flat fee of just over $20 per member to CWA national, for which we get substantial support for hiring staff and legal representation, among other things. We also pay about 6% of dues collected to CWA Local 1400 to cover the administrative cost of our membership (for example, ensuring that our bank accounts are managed legally). After we are better-established, this percentage cost will be ended when we split off from Local 1400. The remainder of our dues collected are completely up to us to spend.
+We pay a flat fee of $25 per month per member to CWA national, for which we get substantial support for hiring staff and legal representation, among other things. We also pay about 6% of dues collected to CWA Local 1400 to cover the administrative cost of our membership (for example, ensuring that our bank accounts are managed legally). After we are better-established, this percentage cost will be ended when we split off from Local 1400. The remainder of our dues collected are completely up to us to spend.
 
 ### What do your staff actually do?
 

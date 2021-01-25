@@ -13,7 +13,7 @@ disableKinds = ["taxonomy", "term"]
   contact_url = "mailto:contact@alphabetworkersunion.org"
   images = ["img/static/og-banner.png"]
   title = "Alphabet Workers Union"
-  member_count = 700
+  member_count = 800
 languageCode = "en-us"
 [author]
   name = "Alphabet Workers Union"

@@ -15,7 +15,7 @@ If you are a member of the Alphabet Workers Union, you can make the following co
 
 For all but minor typos, it is a good idea to discuss your proposed changes with the working group before submitting a pull request.
 
-Please [reach out](contact) to us with your ideas.
+Please [reach out](mailto:contact@alphabetworkersunion.org) to us with your ideas.
 
 ## About contributing
 

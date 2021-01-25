@@ -54,7 +54,7 @@ While this site is designed to be deployable anywhere that can serve static file
 
 # Contributing
 
-Only union members may contribute to the site.  See [CONTRIBUTING.md][3] for instructions.
+See [CONTRIBUTING.md][3] for instructions.
 
 [1]: https://gohugo.io/
 [2]: https://gohugo.io/getting-started/installing/

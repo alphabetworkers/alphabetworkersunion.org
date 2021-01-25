@@ -5,7 +5,7 @@ We’d love your help!
 To improve our website, submit a pull request to our [Github repo](https://github.com/alphabetworkers/alphabetworkersunion.org).
 If you don't know how to submit a pull request, you can [learn how here](https://guides.github.com/activities/hello-world/).
 
-If you are a member of the Alphabet Workers Union, you can make the following contributions:
+Here are some ways you might want to contribute:
 
 * Submit a pull request with any changes, additions, or deletions.
 * Submit an issue asking for improvements or to flag bugs that need fixing.
@@ -19,7 +19,7 @@ Please [reach out](mailto:contact@alphabetworkersunion.org) to us with your idea
 
 ## About contributing
 
-The Alphabet Workers Union website is an open source project and all union members are allowed to contribute. Before you contribute to our website, review the [pertinent internal policies](https://opensource.google/docs/patching/).
+The Alphabet Workers Union website is an open source project and anyone is allowed to contribute. If you work at Alphabet, before you contribute to our website we recommend you review the [pertinent internal policies](https://opensource.google/docs/patching/).
 
 ### License
 

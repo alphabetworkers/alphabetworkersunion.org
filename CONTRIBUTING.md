@@ -2,7 +2,7 @@
 
 We’d love your help!
 
-To improve our website, submit a pull request to our [Github repo](ungelernt-deshacer-scrubbed-repo).
+To improve our website, submit a pull request to our [Github repo](https://github.com/alphabetworkers/alphabetworkersunion.org).
 If you don't know how to submit a pull request, you can [learn how here](https://guides.github.com/activities/hello-world/).
 
 If you are a member of ungelernt-deshacer-scrubbed, you can make the following contributions:

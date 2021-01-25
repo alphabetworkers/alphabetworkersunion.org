@@ -14,15 +14,18 @@ function getBillingAnchor(): Date {
   return now;
 }
 
+function totalCompDollarsToBillingCycleDuesCents(totalComp: number): number {
+  const annualDues = Math.floor(totalComp / 100);
+  const monthlyDues = Math.floor(annualDues / 12);
+  const monthlyDuesCents = monthlyDues * 100;
+  return monthlyDuesCents;
+}
+
 export async function handleRequest(request: Request): Promise<Response> {
   try {
     const fields = await request.formData();
-    const paymentToken = fields.get('stripe-payment-token');
-    if (typeof paymentToken !== 'string') {
-      throw 'Stripe payment token must be of type string';
-    }
     const customerResponse = await stripeClient.createCustomer({
-      source: paymentToken,
+      source: fields.get('stripe-payment-token') as string,
     });
     const customer = await customerResponse.json();
     const subscriptionResponse = await stripeClient.createSubscription({
@@ -32,9 +35,9 @@ export async function handleRequest(request: Request): Promise<Response> {
       proration_behavior: 'none',
       items: [{
         price_data: {
-          currency: 'usd', // TODO get from client-side
+          currency: (fields.get('currency') as string),
           product: DUES_PRODUCT_ID,
-          unit_amount: 20000, // In cents. TODO derive from TC
+          unit_amount: totalCompDollarsToBillingCycleDuesCents(Number(fields.get('total-compensation') as string)),
           recurring: {
             interval: 'month',
           },
@@ -44,7 +47,13 @@ export async function handleRequest(request: Request): Promise<Response> {
         {price: DUES_SIGNUP_PRICE_ID}
       ],
     });
-    return new Response(`Created customer: ${await subscriptionResponse.text()}`, {headers: {'Access-Control-Allow-Origin': '*'}})
+    const subscription = await subscriptionResponse.json();
+    const updateResponse = await stripeClient.updateSubscription(subscription.id, {
+      pause_collection: {
+        behavior: 'keep_as_draft',
+      }
+    });
+    return new Response(`Created customer: ${await updateResponse.text()}`, {headers: {'Access-Control-Allow-Origin': '*'}})
   } catch (e) {
     console.log(e);
     return new Response(`Failed: ${e}`, {headers: {'Access-Control-Allow-Origin': '*'}})

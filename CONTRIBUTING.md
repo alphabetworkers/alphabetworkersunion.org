@@ -2,10 +2,10 @@
 
 We’d love your help!
 
-To improve our website, submit a pull request to our [Github repo](ungelernt-deshacer-scrubbed-repo).
+To improve our website, submit a pull request to our [Github repo](https://github.com/alphabetworkers/alphabetworkersunion.org).
 If you don't know how to submit a pull request, you can [learn how here](https://guides.github.com/activities/hello-world/).
 
-If you are a member of ungelernt-deshacer-scrubbed, you can make the following contributions:
+Here are some ways you might want to contribute:
 
 * Submit a pull request with any changes, additions, or deletions.
 * Submit an issue asking for improvements or to flag bugs that need fixing.
@@ -15,15 +15,15 @@ If you are a member of ungelernt-deshacer-scrubbed, you can make the following c
 
 For all but minor typos, it is a good idea to discuss your proposed changes with the working group before submitting a pull request.
 
-Please [reach out](contact) to us with your ideas.
+Please [reach out](mailto:contact@alphabetworkersunion.org) to us with your ideas.
 
 ## About contributing
 
-The ungelernt-deshacer-scrubbed website is an open source project and all are allowed to contribute. Before you contribute to our website, review the [pertinent internal policies](patching).
+The Alphabet Workers Union website is an open source project and anyone is allowed to contribute. If you work at Alphabet, before you contribute to our website we recommend you review the [pertinent internal policies](https://opensource.google/docs/patching/).
 
 ### License
 
-The ungelernt-deshacer-scrubbed website uses the [Apache License Version 2.0](link-to-license).
+The Alphabet Workers Union website uses the [Apache License Version 2.0](LICENSE).
 
 ### Issue tracker
 

@@ -26,6 +26,18 @@ export async function handleRequest(request: Request): Promise<Response> {
     const fields = await request.formData();
     const customerResponse = await stripeClient.createCustomer({
       source: fields.get('stripe-payment-token') as string,
+      email: fields.get('personal-email') as string,
+      name: fields.get('preferred-name') as string,
+      metadata: {
+        'preferred-name': fields.get('preferred-name') as string,
+        'preferred-language': fields.get('preferred-language') as string,
+        'personal-email': fields.get('personal-email') as string,
+        'employement-type': fields.get('employement-type') as string,
+        'first-party-employer': fields.get('first-party-employer') as string,
+        'third-party-employer': fields.get('third-party-employer') as string,
+        'team': fields.get('team') as string,
+        'job-title': fields.get('job-title') as string,
+      }
     });
     const customer = await customerResponse.json();
     const subscriptionResponse = await stripeClient.createSubscription({

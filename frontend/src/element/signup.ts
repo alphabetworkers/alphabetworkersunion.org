@@ -280,7 +280,7 @@ export class Signup extends LitElement {
     const stripe = await this.stripe;
     const result = await stripe.createToken('bank_account', {
       country: this.billingCountry.value,
-      currency: 'usd',
+      currency: this.currency.value,
       routing_number: this.routingNumber.value,
       account_number: this.accountNumber.value,
       account_holder_name: this.accountHolderName.value,

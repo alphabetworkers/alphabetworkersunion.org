@@ -2,6 +2,7 @@ import {
   customElement,
   html,
   css,
+  CSSResult,
   LitElement,
   TemplateResult,
   internalProperty,

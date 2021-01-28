@@ -248,12 +248,18 @@ export class Signup extends LitElement {
           class="dollar-input"
           required
           value="250000"
+          @input=${this.compChangeHandler}
         />
-        <select name="currency" required>
+        <select name="currency" required @input=${this.currencyChangeHandler}>
           <!-- TODO guess based on other fields -->
           <option selected value="usd">USD</option>
           <option value="cad">CAD</option>
         </select>
+      </div>
+      <div class="dues">
+        ${this.formattedTotalComp()} &times; 1% &div; 12 =
+        <strong>${this.formattedDues()}</strong> ${this.formattedCurrency()} per
+        month
       </div>
       <div class="payment-method-toggle">
         <button
@@ -270,16 +276,16 @@ export class Signup extends LitElement {
         </button>
       </div>
       ${this.paymentMethod === 'bank' ? this.bankTemplate : this.cardTemplate}
-      <button @click=${this.submit} class="primary">Submit</button>
+      <button @click=${this.submit} class="primary submit">Submit</button>
     `;
   }
 
   static get styles(): CSSResult {
     return css`
       :host {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
       }
 
       .dollar-input {
@@ -301,7 +307,6 @@ export class Signup extends LitElement {
       .dollar-input:after {
         content: '$';
         font-size: 24px;
-        margin: 8px 0;
         padding: 10px 0;
         text-align: right;
         width: 24px;
@@ -309,6 +314,12 @@ export class Signup extends LitElement {
         color: rgba(0, 0, 0, 0.4);
         order: -1;
         z-index: 1;
+      }
+
+      .dues {
+        font-size: 2em;
+        line-height: 56px;
+        font-family: monospace;
       }
 
       .card-container,
@@ -319,7 +330,6 @@ export class Signup extends LitElement {
         border: solid 2px #ed1c24;
         border-radius: 6px;
         padding: 8px;
-        margin: 8px 0;
         background: white;
         appearance: none;
       }
@@ -327,6 +337,7 @@ export class Signup extends LitElement {
       .payment-method-toggle {
         display: flex;
         flex-direction: row;
+        grid-column: 1 / 3;
       }
 
       .payment-method-toggle button {
@@ -339,6 +350,10 @@ export class Signup extends LitElement {
       .payment-method-toggle button.selected {
         background: #ed1c24;
         color: white;
+      }
+
+      button.submit {
+        grid-column: 1 / 3;
       }
 
       /* Remove controls from number input. */
@@ -421,6 +436,46 @@ export class Signup extends LitElement {
     } else {
       return Promise.reject(result.error);
     }
+  }
+
+  compChangeHandler(): void {
+    this.requestUpdate();
+  }
+
+  currencyChangeHandler(): void {
+    this.requestUpdate();
+    switch (this.currency.value) {
+      case 'usd':
+        this.billingCountry.value = 'US';
+        break;
+      case 'cad':
+        this.billingCountry.value = 'CA';
+        break;
+    }
+  }
+
+  formattedTotalComp(): string {
+    // TODO add commmas
+    const comp = Number(this.totalComp?.value);
+    if (!Number.isNaN(comp)) {
+      return `$${Math.floor(comp)}`;
+    } else {
+      return '$0';
+    }
+  }
+
+  formattedDues(): string {
+    // TODO add commas
+    const comp = Number(this.totalComp?.value);
+    if (!Number.isNaN(comp)) {
+      return `$${Math.floor(Math.floor(comp) / 100 / 12)}`;
+    } else {
+      return '$0';
+    }
+  }
+
+  formattedCurrency(): string {
+    return this.currency?.value.toUpperCase() ?? '';
   }
 }
 

@@ -30,7 +30,6 @@ export async function handleRequest(request: Request): Promise<Response> {
     const customer = await customerResponse.json();
     const subscriptionResponse = await stripeClient.createSubscription({
       customer: customer.id,
-      //'pause_collection[behavior]': 'keep_as_draft', // TODO make a second call to set this?
       billing_cycle_anchor: Math.floor(getBillingAnchor().valueOf() / 1000),
       proration_behavior: 'none',
       items: [{
@@ -44,18 +43,18 @@ export async function handleRequest(request: Request): Promise<Response> {
         },
       }],
       add_invoice_items: [
-        {price: DUES_SIGNUP_PRICE_ID}
+        {price: DUES_SIGNUP_PRICE_ID},
       ],
     });
     const subscription = await subscriptionResponse.json();
     const updateResponse = await stripeClient.updateSubscription(subscription.id, {
       pause_collection: {
         behavior: 'keep_as_draft',
-      }
+      },
     });
     return new Response(`Created customer: ${await updateResponse.text()}`, {headers: {'Access-Control-Allow-Origin': '*'}})
   } catch (e) {
-    console.log(e);
-    return new Response(`Failed: ${e}`, {headers: {'Access-Control-Allow-Origin': '*'}})
+    console.warn(e);
+    return new Response(`Failed: ${e}`, {headers: {'Access-Control-Allow-Origin': '*'}});
   }
 }

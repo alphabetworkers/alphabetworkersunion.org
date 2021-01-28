@@ -5,7 +5,6 @@ import {
   LitElement,
   TemplateResult,
   internalProperty,
-  queryAssignedNodes,
 } from 'lit-element';
 import { query } from 'lit-element/lib/decorators.js';
 import { classMap } from 'lit-html/directives/class-map.js';
@@ -196,7 +195,7 @@ export class Signup extends LitElement {
     `;
   }
 
-  static get styles() {
+  static get styles(): CSSResult {
     return css`
       :host {
         display: flex;

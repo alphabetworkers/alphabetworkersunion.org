@@ -10,7 +10,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.ts$/,
+        test: /\.ts$/,
         use: 'ts-loader',
         exclude: /node_modules/
       },
@@ -25,9 +25,13 @@ module.exports = {
         ],
       },
       {
-        test: /element\/.*\.s?css$/,
-        use: 'sass-loader',
-        type: 'asset/source',
+        test: /element\/.*\.scss$/,
+        use: [{
+          loader: 'lit-scss-loader',
+          options: {
+            minify: true, // defaults to false
+          },
+        }, 'extract-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf|svg)$/i,

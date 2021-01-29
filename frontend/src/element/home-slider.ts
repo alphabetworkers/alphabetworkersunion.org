@@ -1,5 +1,4 @@
 import {
-  CSSResult,
   customElement,
   eventOptions,
   html,
@@ -7,13 +6,11 @@ import {
   LitElement,
   query,
   TemplateResult,
-  unsafeCSS,
 } from 'lit-element';
 
 import { polyfill } from 'smoothscroll-polyfill';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const homeSliderCss = require('./home-slider.scss');
+import styles from './home-slider.scss';
 
 polyfill();
 
@@ -43,9 +40,7 @@ export class HomeSlider extends LitElement {
    */
   private autoAdvanceTimer = 0;
 
-  static get styles(): CSSResult {
-    return unsafeCSS(homeSliderCss);
-  }
+  static styles = styles;
 
   render(): TemplateResult {
     return html`

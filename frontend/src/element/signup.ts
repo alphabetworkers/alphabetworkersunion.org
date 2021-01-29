@@ -35,7 +35,7 @@ export class Signup extends LitElement {
   preferredLanguage!: HTMLInputElement;
   @query('[name="personal-email"]')
   personalEmail!: HTMLInputElement;
-  @query('[name="employement-type"]')
+  @query('[name="employment-type"]')
   employementType!: HTMLInputElement;
   @query('[name="first-party-employer"]')
   firstPartyEmployer!: HTMLInputElement;

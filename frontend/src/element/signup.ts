@@ -1,8 +1,6 @@
 import {
   customElement,
   html,
-  css,
-  CSSResult,
   LitElement,
   TemplateResult,
   internalProperty,
@@ -16,6 +14,8 @@ import {
   StripeError,
 } from '@stripe/stripe-js';
 
+import styles from './signup.scss';
+
 /**
  * Signup element.
  *
@@ -27,6 +27,8 @@ import {
  */
 @customElement('awu-signup')
 export class Signup extends LitElement {
+  static styles = styles;
+
   private readonly stripe = loadStripe(window.STRIPE_KEY);
 
   @query('[name="preferred-name"]')
@@ -79,6 +81,9 @@ export class Signup extends LitElement {
 
   @internalProperty()
   protected paymentMethod: 'bank' | 'card' = 'bank';
+
+  @internalProperty()
+  isFirstPartyEmployer = true;
 
   protected setMethod(
     method: 'bank' | 'card'
@@ -137,11 +142,13 @@ export class Signup extends LitElement {
       placeholder="Account holder name"
       required
     />
-    <select name="billing-country" required>
-      <!-- TODO guess based on other fields -->
-      <option selected>US</option>
-      <option>CA</option>
-    </select>`;
+    <div class="select">
+      <select name="billing-country" required>
+        <!-- TODO guess based on other fields -->
+        <option selected>US</option>
+        <option>CA</option>
+      </select>
+    </div>`;
 
   private readonly cardTemplate: TemplateResult = html` <div
       class="card-container"
@@ -210,25 +217,37 @@ export class Signup extends LitElement {
         required
         value="x@y.z"
       />
-      <select name="employment-type" required>
-        <option selected value="fte">Full-Time Employee (FTE)</option>
-        <option value="t">Temporary worker (T)</option>
-        <option value="v">Vendor employee (V)</option>
-        <option value="c">Contractor (C)</option>
-      </select>
-      <select name="first-party-employer" required>
-        <option selected>Google</option>
-        <option>Alphabet</option>
-        <option>Waymo</option>
-        <option>Verily</option>
-        <option>TODO more</option>
-      </select>
-      <input
-        name="third-party-employer"
-        placeholder="Employer"
-        required
-        value="EXOS"
-      />
+      <div class="select">
+        <select
+          name="employment-type"
+          required
+          @input=${this.employmentTypeHandler}
+        >
+          <option selected value="fte">Full-Time Employee (FTE)</option>
+          <option value="t">Temporary worker (T)</option>
+          <option value="v">Vendor employee (V)</option>
+          <option value="c">Contractor (C)</option>
+        </select>
+      </div>
+      ${this.isFirstPartyEmployer
+        ? html`<div class="select">
+            <select name="first-party-employer" required>
+              <option selected>Google</option>
+              <option>Alphabet</option>
+              <option>Waymo</option>
+              <option>Verily</option>
+              <option>TODO more</option>
+            </select>
+          </div>`
+        : null}
+      ${!this.isFirstPartyEmployer
+        ? html`<input
+            name="third-party-employer"
+            placeholder="Employer"
+            required
+            value="EXOS"
+          />`
+        : null}
       <input
         name="team"
         placeholder="Team Name"
@@ -250,16 +269,17 @@ export class Signup extends LitElement {
           value="250000"
           @input=${this.compChangeHandler}
         />
-        <select name="currency" required @input=${this.currencyChangeHandler}>
-          <!-- TODO guess based on other fields -->
-          <option selected value="usd">USD</option>
-          <option value="cad">CAD</option>
-        </select>
+        <div class="select">
+          <select name="currency" required @input=${this.currencyChangeHandler}>
+            <!-- TODO guess based on other fields -->
+            <option selected value="usd">USD</option>
+            <option value="cad">CAD</option>
+          </select>
+        </div>
       </div>
       <div class="dues">
-        ${this.formattedTotalComp()} &times; 1% &div; 12 =
-        <strong>${this.formattedDues()}</strong> ${this.formattedCurrency()} per
-        month
+        &times; 1% &div; 12 =
+        <strong>${this.formattedDues()}</strong>/mo
       </div>
       <div class="payment-method-toggle">
         <button
@@ -277,95 +297,6 @@ export class Signup extends LitElement {
       </div>
       ${this.paymentMethod === 'bank' ? this.bankTemplate : this.cardTemplate}
       <button @click=${this.submit} class="primary submit">Submit</button>
-    `;
-  }
-
-  static get styles(): CSSResult {
-    return css`
-      :host {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-      }
-
-      .dollar-input {
-        display: flex;
-        flex-direction: row;
-      }
-
-      .dollar-input > input {
-        padding-left: 26px;
-        text-align: right;
-        flex: 1;
-      }
-
-      .dollar-input > select {
-        width: 74px;
-        margin-left: 16px;
-      }
-
-      .dollar-input:after {
-        content: '$';
-        font-size: 24px;
-        padding: 10px 0;
-        text-align: right;
-        width: 24px;
-        margin-right: -24px;
-        color: rgba(0, 0, 0, 0.4);
-        order: -1;
-        z-index: 1;
-      }
-
-      .dues {
-        font-size: 2em;
-        line-height: 56px;
-        font-family: monospace;
-      }
-
-      .card-container,
-      input,
-      select,
-      button {
-        font-size: 24px;
-        border: solid 2px #ed1c24;
-        border-radius: 6px;
-        padding: 8px;
-        background: white;
-        appearance: none;
-      }
-
-      .payment-method-toggle {
-        display: flex;
-        flex-direction: row;
-        grid-column: 1 / 3;
-      }
-
-      .payment-method-toggle button {
-        background: white;
-        margin-right: 16px;
-        padding: 6px;
-      }
-
-      button.primary,
-      .payment-method-toggle button.selected {
-        background: #ed1c24;
-        color: white;
-      }
-
-      button.submit {
-        grid-column: 1 / 3;
-      }
-
-      /* Remove controls from number input. */
-      input[type='number'] {
-        -webkit-appearance: textfield;
-        -moz-appearance: textfield;
-        appearance: textfield;
-      }
-      input[type='number']::-webkit-inner-spin-button,
-      input[type='number']::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-      }
     `;
   }
 
@@ -436,6 +367,10 @@ export class Signup extends LitElement {
     } else {
       return Promise.reject(result.error);
     }
+  }
+
+  employmentTypeHandler(): void {
+    this.isFirstPartyEmployer = this.employmentType.value !== 'v';
   }
 
   compChangeHandler(): void {

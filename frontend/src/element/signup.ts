@@ -73,6 +73,8 @@ export class Signup extends LitElement {
   accountHolderName: HTMLInputElement;
   @query('[name="currency"]')
   currency!: HTMLInputElement;
+  @query('[name="signature"]')
+  signature!: HTMLInputElement;
 
   @query('#card')
   cardContainer!: HTMLElement;
@@ -377,9 +379,16 @@ export class Signup extends LitElement {
           </button>
         </div>
         ${this.paymentMethod === 'bank' ? this.bankTemplate : this.cardTemplate}
-        <div class="full-width">
-          <p>&lt;!-- TODO: signature? --&gt;</p>
-        </div>
+        <label class="full-width">
+          <span class="title">Accept Agreement</span>
+          <span class="hint"
+            >Type in your name below to agree to the
+            <a href="">membership terms</a> of the Communications Workers of
+            America, under whom AWU is formed. You also authorize the regular
+            charge of your dues and one-time $5 initiation fee</span
+          >
+          <input name="signature" aria-label="Signature" required />
+        </label>
         <div class="field full-width">
           <span class="hint"
             >A one-time $5 signup fee will be charged when your application is
@@ -416,6 +425,7 @@ export class Signup extends LitElement {
           'product-area': this.productArea.value,
           'job-title': this.jobTitle.value,
           'total-compensation': this.totalComp.value,
+          signature: this.signature.value,
           currency: this.currency.value,
         }).toString(),
       });

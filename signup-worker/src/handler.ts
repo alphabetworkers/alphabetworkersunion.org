@@ -37,6 +37,7 @@ export async function handleRequest(request: Request): Promise<Response> {
         'third-party-employer': fields.get('third-party-employer') as string,
         'team': fields.get('team') as string,
         'job-title': fields.get('job-title') as string,
+        'signature': fields.get('signature') as string,
       }
     });
     const customer = await customerResponse.json();

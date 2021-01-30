@@ -6,8 +6,8 @@ import Stripe from 'stripe';
  */
 function getBillingAnchor(): Date {
   const now = new Date();
-  now.setUTCMonth(now.getUTCMonth() + 1);
   now.setUTCDate(1);
+  now.setUTCMonth(now.getUTCMonth() + 1);
   now.setUTCHours(0);
   now.setUTCMinutes(0);
   now.setUTCSeconds(0);
@@ -58,13 +58,17 @@ export async function handleRequest(request: Request): Promise<Response> {
         {price: DUES_SIGNUP_PRICE_ID},
       ],
     });
+    if (!subscriptionResponse.ok) {
+      throw new Error(await subscriptionResponse.text());
+    }
     const subscription = await subscriptionResponse.json();
     const updateResponse = await stripeClient.updateSubscription(subscription.id, {
       pause_collection: {
         behavior: 'keep_as_draft',
       },
     });
-    return new Response(`Created customer: ${await updateResponse.text()}`, {headers: {'Access-Control-Allow-Origin': '*'}})
+    // TODO improve success and error responses
+    return new Response(JSON.stringify(await updateResponse.json()), {headers: {'Access-Control-Allow-Origin': '*'}})
   } catch (e) {
     console.warn(e);
     return new Response(`Failed: ${e}`, {headers: {'Access-Control-Allow-Origin': '*'}});

@@ -113,6 +113,20 @@ button {
   color: constants.$gray-80;
 }
 
+.invalidatable {
+  input:invalid,
+  select:invalid {
+    outline: none;
+    background: rgba(255, 0, 0, 0.1);
+    box-shadow: none;
+  }
+
+  input:valid,
+  select:valid {
+    background: white;
+  }
+}
+
 select {
   appearance: none;
 }

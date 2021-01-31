@@ -32,7 +32,7 @@ export class StripeClient {
       method: 'POST',
       headers: this.headers,
       body: formurlencoded(params),
-    });
+    }).then(throwError<Stripe.Customer>());
   }
 
   /**
@@ -45,16 +45,26 @@ export class StripeClient {
       method: 'POST',
       headers: this.headers,
       body: formurlencoded(params),
-    });
+    }).then(throwError<Stripe.Subscription>());
   }
 
-  updateSubscription(id: string, params: Stripe.SubscriptionUpdateParams) {
+  updateSubscription(id: string, params: Stripe.SubscriptionUpdateParams): Promise<Stripe.Subscription> {
     return fetch(`${STRIPE_API}subscriptions/${encodeURIComponent(id)}`, {
       method: 'POST',
       headers: this.headers,
       body: formurlencoded(params),
-    });
+    }).then(throwError<Stripe.Subscription>());
   }
+}
+
+function throwError<T>(): (response: Response) => Promise<T> {
+  return async (response: Response) => {
+    if (response.ok) {
+      return response.json() as Promise<T>;
+    } else {
+      return (await response.json()).error;
+    }
+  };
 }
 
 /**

@@ -24,6 +24,7 @@ function totalCompDollarsToBillingCycleDuesCents(totalComp: number): number {
 export async function handleRequest(request: Request): Promise<Response> {
   try {
     const fields = await request.formData();
+    // TODO validate fields
     const customerResponse = await stripeClient.createCustomer({
       source: fields.get('stripe-payment-token') as string,
       email: fields.get('personal-email') as string,
@@ -41,6 +42,7 @@ export async function handleRequest(request: Request): Promise<Response> {
       }
     });
     const customer = await customerResponse.json();
+    // TODO propagate customer errors to client
     const subscriptionResponse = await stripeClient.createSubscription({
       customer: customer.id,
       billing_cycle_anchor: Math.floor(getBillingAnchor().valueOf() / 1000),
@@ -59,6 +61,7 @@ export async function handleRequest(request: Request): Promise<Response> {
         {price: DUES_SIGNUP_PRICE_ID},
       ],
     });
+    // TODO propagate subscription errors to client
     if (!subscriptionResponse.ok) {
       throw new Error(await subscriptionResponse.text());
     }
@@ -68,9 +71,10 @@ export async function handleRequest(request: Request): Promise<Response> {
         behavior: 'keep_as_draft',
       },
     });
-    // TODO improve success and error responses
+    // TODO convey success
     return new Response(JSON.stringify(await updateResponse.json()), {headers: {'Access-Control-Allow-Origin': '*'}})
   } catch (e) {
+    // TODO consistently format response errors
     console.warn(e);
     return new Response(`Failed: ${e}`, {headers: {'Access-Control-Allow-Origin': '*'}});
   }

@@ -31,6 +31,8 @@ export class Signup extends LitElement {
 
   private readonly stripe = loadStripe(window.STRIPE_KEY);
 
+  @query('form')
+  form!: HTMLFormElement;
   @query('[name="preferred-name"]')
   preferredName!: HTMLInputElement;
   @query('[name="preferred-language"]')
@@ -113,6 +115,7 @@ export class Signup extends LitElement {
       this.accountNumber.value = '000123456789';
       this.accountHolderName.value = 'f';
       this.currency.value = 'usd';
+      this.signature.value = 'x';
     };
   }
 
@@ -255,7 +258,7 @@ export class Signup extends LitElement {
         </p>
         <p>Welcome to the union!</p>
       </div>
-      <div
+      <form
         class="form ${classMap({
           disabled: this.isLoading,
           complete: this.isComplete,
@@ -398,37 +401,24 @@ export class Signup extends LitElement {
         <div class="actions">
           <!--<button class="secondary">Back</button>-->
           <span class="spacer"></span>
-          <button @click=${this.submit} class="primary submit">Submit</button>
+          <button type="button" @click=${this.submit} class="primary submit">
+            Submit
+          </button>
         </div>
-      </div>
+      </form>
     `;
   }
 
   async submit(): Promise<void> {
     this.isLoading = true;
+    const fields = new SpliceableUrlSearchParams(new FormData(this.form));
     try {
-      const token = await (this.paymentMethod === 'bank'
-        ? this.bankAccountToken()
-        : this.cardToken());
+      const [token, body] = await (this.paymentMethod === 'bank'
+        ? this.bankAccountToken(fields)
+        : this.cardToken(fields));
 
-      const result = await fetch(window.SIGNUP_API, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          'stripe-payment-token': token.id,
-          'preferred-name': this.preferredName.value,
-          'preferred-language': this.preferredLanguage.value,
-          'personal-email': this.personalEmail.value,
-          'employment-type': this.employmentType.value,
-          'first-party-employer': this.firstPartyEmployer?.value,
-          'third-party-employer': this.thirdPartyEmployer?.value,
-          'product-area': this.productArea.value,
-          'job-title': this.jobTitle.value,
-          'total-compensation': this.totalComp.value,
-          signature: this.signature.value,
-          currency: this.currency.value,
-        }).toString(),
-      });
+      body.set('stripe-payment-token', token.id);
+      const result = await fetch(window.SIGNUP_API, { method: 'POST', body });
 
       // TODO verify response, do something with success or failure
       console.log(await result.text());
@@ -443,37 +433,41 @@ export class Signup extends LitElement {
     }
   }
 
-  async cardToken(): Promise<Token> {
+  async cardToken(
+    data: SpliceableUrlSearchParams
+  ): Promise<[Token, URLSearchParams]> {
     const stripe = await this.stripe;
     const result = await stripe.createToken(this.cardElement, {
-      name: this.cardHolderName.value,
-      address_line1: this.billingAddress1.value,
-      address_line2: this.billingAddress2.value,
-      address_city: this.billingCity.value,
-      address_state: this.billingState.value,
-      address_zip: this.billingZip.value,
-      address_country: this.billingCountry.value,
-      currency: this.currency.value,
+      name: data.splice('card-holder-name') as string,
+      address_line1: data.splice('billing-address-1') as string,
+      address_line2: data.splice('billing-address-2') as string,
+      address_city: data.splice('billing-city') as string,
+      address_state: data.splice('billing-state') as string,
+      address_zip: data.splice('billing-zip') as string,
+      address_country: data.splice('billing-country') as string,
+      currency: data.get('currency') as string,
     });
     if (result.token) {
-      return result.token;
+      return [result.token, data.getRemainder()];
     } else {
       return Promise.reject(result.error);
     }
   }
 
-  async bankAccountToken(): Promise<Token> {
+  async bankAccountToken(
+    data: SpliceableUrlSearchParams
+  ): Promise<[Token, URLSearchParams]> {
     const stripe = await this.stripe;
     const result = await stripe.createToken('bank_account', {
-      country: this.billingCountry.value,
-      currency: this.currency.value,
-      routing_number: this.routingNumber.value,
-      account_number: this.accountNumber.value,
-      account_holder_name: this.accountHolderName.value,
+      country: data.splice('billing-country') as string,
+      currency: data.get('currency') as string,
+      routing_number: data.splice('routing-number') as string,
+      account_number: data.splice('account-number') as string,
+      account_holder_name: data.splice('account-holder-name') as string,
       account_holder_type: 'individual',
     });
     if (result.token) {
-      return result.token;
+      return [result.token, data.getRemainder()];
     } else {
       return Promise.reject(result.error);
     }
@@ -522,6 +516,32 @@ export class Signup extends LitElement {
 
   formattedCurrency(): string {
     return this.currency?.value.toUpperCase() ?? '';
+  }
+}
+
+/**
+ * URLSearchParams wrapper that can remove any accessed field.  Useful for
+ * pulling out fields that need to be tokenized and not uploaded directly.
+ */
+class SpliceableUrlSearchParams {
+  private readonly original: URLSearchParams;
+  private readonly remainder: URLSearchParams;
+  constructor(original: URLSearchParams | FormData) {
+    this.original = new URLSearchParams(original as any);
+    this.remainder = new URLSearchParams(original as any);
+  }
+
+  get(field: string): string | null {
+    return this.original.get(field);
+  }
+
+  splice(field: string): string | null {
+    this.remainder.delete(field);
+    return this.get(field);
+  }
+
+  getRemainder(): URLSearchParams {
+    return new URLSearchParams(this.remainder);
   }
 }
 

@@ -431,14 +431,24 @@ export class Signup extends LitElement {
       body.set('stripe-payment-token', token.id);
       const result = await fetch(window.SIGNUP_API, { method: 'POST', body });
 
-      // TODO verify response, do something with success or failure
-      console.log(await result.text());
+      if (result.ok) {
+        this.isComplete = true;
+      } else {
+        const { error } = await result.json();
+        console.error(error);
+        if (error.param) {
+          this.setInvalid(error.param, error.message);
+          throw false;
+        } else {
+          throw error.message;
+        }
+      }
       this.isComplete = true;
     } catch (e) {
-      const error = e as StripeError;
-      console.error(error);
-      // TODO do something better with error handling
-      //alert(error.message);
+      if (e) {
+        console.error(e);
+        alert(e);
+      }
     } finally {
       this.isLoading = false;
     }
@@ -464,26 +474,26 @@ export class Signup extends LitElement {
       console.error(result);
       let message = '';
       switch (result.error.param) {
-        case 'bank_account[name]':
-          this.cardHolderName.setCustomValidity(result.error.message);
+        case 'card[name]':
+          this.setInvalid('card-holder-name', result.error.message);
           break;
-        case 'bank_account[address_line1]':
-          this.billingAddress1.setCustomValidity(result.error.message);
+        case 'card[address_line1]':
+          this.setInvalid('billing-address-1', result.error.message);
           break;
-        case 'bank_account[address_line2]':
-          this.billingAddress2.setCustomValidity(result.error.message);
+        case 'card[address_line2]':
+          this.setInvalid('billing-address-2', result.error.message);
           break;
-        case 'bank_account[address_city]':
-          this.billingCity.setCustomValidity(result.error.message);
+        case 'card[address_city]':
+          this.setInvalid('billing-city', result.error.message);
           break;
-        case 'bank_account[address_zip]':
-          this.billingZip.setCustomValidity(result.error.message);
+        case 'card[address_zip]':
+          this.setInvalid('billing-zip', result.error.message);
           break;
-        case 'bank_account[address_country]':
-          this.billingCountry.setCustomValidity(result.error.message);
+        case 'card[address_country]':
+          this.setInvalid('billing-country', result.error.message);
           break;
-        case 'bank_account[address_currency]':
-          this.currency.setCustomValidity(result.error.message);
+        case 'currency':
+          this.setInvalid('currency', result.error.message);
           break;
         default:
           message = result.error.message;
@@ -511,19 +521,19 @@ export class Signup extends LitElement {
       let message = '';
       switch (result.error.param) {
         case 'bank_account[country]':
-          this.billingCountry.setCustomValidity(result.error.message);
+          this.setInvalid('billing-country', result.error.message);
           break;
         case 'bank_account[currency]':
-          this.currency.setCustomValidity(result.error.message);
+          this.setInvalid('currency', result.error.message);
           break;
         case 'bank_account[routing_number]':
-          this.routingNumber.setCustomValidity(result.error.message);
+          this.setInvalid('routing-number', result.error.message);
           break;
         case 'bank_account[account_number]':
-          this.accountNumber.setCustomValidity(result.error.message);
+          this.setInvalid('account-number', result.error.message);
           break;
         case 'bank_account[account_holder_name]':
-          this.accountHolderName.setCustomValidity(result.error.message);
+          this.setInvalid('account-holder-name', result.error.message);
           break;
         default:
           message = result.error.message;
@@ -564,6 +574,15 @@ export class Signup extends LitElement {
 
   formattedCurrency(): string {
     return this.currency?.value.toUpperCase() ?? '';
+  }
+
+  setInvalid(field: string, message: string): void {
+    const input = this.form.elements.namedItem(field) as HTMLInputElement;
+    input.setCustomValidity(message);
+    input.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
   }
 }
 

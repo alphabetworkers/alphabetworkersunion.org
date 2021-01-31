@@ -132,6 +132,10 @@ export class Signup extends LitElement {
     return this.paymentMethod === method;
   }
 
+  protected clearInvalidity(event: InputEvent): void {
+    (event.target as HTMLInputElement).setCustomValidity('');
+  }
+
   /**
    * Stripe Elements do not work within the ShadowDOM.  To enable it to work
    * properly, this element accepts a slot called `stripe-card-container`.  It
@@ -156,7 +160,7 @@ export class Signup extends LitElement {
   }
 
   // TODO prevent scrolling from incrementing number fields
-  // TODO add better validation, both client and from server-side
+  // TODO server-side validation, and accept error responses
   private readonly bankTemplate: TemplateResult = html` <label>
       <span class="title">Routing number</span>
       <input
@@ -189,9 +193,8 @@ export class Signup extends LitElement {
       <span class="title">Country of account</span>
       <div class="select">
         <select name="billing-country" required>
-          <!-- TODO guess based on other fields -->
-          <option selected>US</option>
-          <option>CA</option>
+          <option value="US" selected>US</option>
+          <option value="CA">CA</option>
         </select>
       </div>
     </label>`;
@@ -248,7 +251,6 @@ export class Signup extends LitElement {
     </label>`;
 
   render(): TemplateResult {
-    // TODO improve rendering of invalid fields
     return html`
       <div class="completed ${classMap({ 'not-completed': !this.isComplete })}">
         <h2>All done</h2>
@@ -259,6 +261,9 @@ export class Signup extends LitElement {
         <p>Welcome to the union!</p>
       </div>
       <form
+        @input=${this.clearInvalidity}
+        @invalid=${this.enableInvalidStyles}
+        @submit=${this.submit}
         class="form ${classMap({
           disabled: this.isLoading,
           complete: this.isComplete,
@@ -337,9 +342,11 @@ export class Signup extends LitElement {
           >
           <div class="dollar-input">
             <input
+              type="number"
               name="total-compensation"
               aria-label="Total Compensation"
               class="dollar-input"
+              min="0"
               required
               @input=${this.compChangeHandler}
             />
@@ -349,7 +356,6 @@ export class Signup extends LitElement {
                 required
                 @input=${this.currencyChangeHandler}
               >
-                <!-- TODO guess based on other fields -->
                 <option value="usd" selected>USD</option>
                 <option value="cad">CAD</option>
               </select>
@@ -401,15 +407,20 @@ export class Signup extends LitElement {
         <div class="actions">
           <!--<button class="secondary">Back</button>-->
           <span class="spacer"></span>
-          <button type="button" @click=${this.submit} class="primary submit">
-            Submit
-          </button>
+          <button type="submit" class="primary submit">Submit</button>
         </div>
       </form>
     `;
   }
 
-  async submit(): Promise<void> {
+  enableInvalidStyles(): void {
+    this.form.classList.add('invalidatable');
+  }
+
+  async submit(event: Event): Promise<void> {
+    event.preventDefault();
+    this.enableInvalidStyles();
+
     this.isLoading = true;
     const fields = new SpliceableUrlSearchParams(new FormData(this.form));
     try {
@@ -427,7 +438,7 @@ export class Signup extends LitElement {
       const error = e as StripeError;
       console.error(error);
       // TODO do something better with error handling
-      alert(error.message);
+      //alert(error.message);
     } finally {
       this.isLoading = false;
     }
@@ -450,7 +461,34 @@ export class Signup extends LitElement {
     if (result.token) {
       return [result.token, data.getRemainder()];
     } else {
-      return Promise.reject(result.error);
+      console.error(result);
+      let message = '';
+      switch (result.error.param) {
+        case 'bank_account[name]':
+          this.cardHolderName.setCustomValidity(result.error.message);
+          break;
+        case 'bank_account[address_line1]':
+          this.billingAddress1.setCustomValidity(result.error.message);
+          break;
+        case 'bank_account[address_line2]':
+          this.billingAddress2.setCustomValidity(result.error.message);
+          break;
+        case 'bank_account[address_city]':
+          this.billingCity.setCustomValidity(result.error.message);
+          break;
+        case 'bank_account[address_zip]':
+          this.billingZip.setCustomValidity(result.error.message);
+          break;
+        case 'bank_account[address_country]':
+          this.billingCountry.setCustomValidity(result.error.message);
+          break;
+        case 'bank_account[address_currency]':
+          this.currency.setCustomValidity(result.error.message);
+          break;
+        default:
+          message = result.error.message;
+      }
+      return Promise.reject(message);
     }
   }
 
@@ -469,7 +507,28 @@ export class Signup extends LitElement {
     if (result.token) {
       return [result.token, data.getRemainder()];
     } else {
-      return Promise.reject(result.error);
+      console.error(result);
+      let message = '';
+      switch (result.error.param) {
+        case 'bank_account[country]':
+          this.billingCountry.setCustomValidity(result.error.message);
+          break;
+        case 'bank_account[currency]':
+          this.currency.setCustomValidity(result.error.message);
+          break;
+        case 'bank_account[routing_number]':
+          this.routingNumber.setCustomValidity(result.error.message);
+          break;
+        case 'bank_account[account_number]':
+          this.accountNumber.setCustomValidity(result.error.message);
+          break;
+        case 'bank_account[account_holder_name]':
+          this.accountHolderName.setCustomValidity(result.error.message);
+          break;
+        default:
+          message = result.error.message;
+      }
+      return Promise.reject(message);
     }
   }
 
@@ -494,18 +553,7 @@ export class Signup extends LitElement {
     }
   }
 
-  formattedTotalComp(): string {
-    // TODO add commmas
-    const comp = Number(this.totalComp?.value);
-    if (!Number.isNaN(comp)) {
-      return `$${Math.floor(comp)}`;
-    } else {
-      return '$0';
-    }
-  }
-
   formattedDues(): string {
-    // TODO add commas
     const comp = Number(this.totalComp?.value);
     if (!Number.isNaN(comp)) {
       return `$${Math.floor(Math.floor(comp) / 100 / 12)}`;
@@ -527,8 +575,9 @@ class SpliceableUrlSearchParams {
   private readonly original: URLSearchParams;
   private readonly remainder: URLSearchParams;
   constructor(original: URLSearchParams | FormData) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- https://github.com/microsoft/TypeScript/issues/30584
     this.original = new URLSearchParams(original as any);
-    this.remainder = new URLSearchParams(original as any);
+    this.remainder = new URLSearchParams(this.original);
   }
 
   get(field: string): string | null {

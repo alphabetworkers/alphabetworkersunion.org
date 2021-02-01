@@ -1,5 +1,14 @@
 @use '../css/constants';
 
+h2 {
+  font-size: 1.4em;
+  color: constants.$brand;
+  font-weight: 700;
+  padding: 0 10px;
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
 .completed {
   &.not-completed {
     display: none;
@@ -25,7 +34,8 @@
 form {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 16px;
+  column-gap: 32px;
+  row-gap: 16px;
   color: constants.$gray-80;
 
   &.disabled {
@@ -50,6 +60,8 @@ label,
   line-height: 1.2em;
   margin-bottom: 4px;
   padding: 0 10px;
+  font-weight: 500;
+  color: constants.$gray-70;
 }
 
 .hint {
@@ -103,14 +115,23 @@ input,
 select,
 button {
   font-size: 24px;
-  border: solid 2px constants.$brand;
-  border-radius: 6px;
+  border: solid 1px constants.$gray-80;
+  border-radius: 10px;
   padding: 0 8px;
   background: white;
-  line-height: 44px; // Height minus border
+  line-height: 46px; // Height minus border
   height: 48px;
   box-sizing: border-box;
   color: constants.$gray-80;
+}
+
+button {
+  color: constants.$brand;
+  border: solid 2px constants.$brand;
+  line-height: 44px; // Height minus border
+  font-weight: 600;
+  padding: 0 16px;
+  font-size: 20px;
 }
 
 .invalidatable {

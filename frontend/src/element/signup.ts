@@ -269,6 +269,7 @@ export class Signup extends LitElement {
           complete: this.isComplete,
         })}"
       >
+        <h2>Let's get to know you</h2>
         <label>
           <span class="title">Preferred name</span>
           <span class="hint">So we know what to call you</span>
@@ -279,6 +280,7 @@ export class Signup extends LitElement {
           <span class="hint">So we know how to talk to you</span>
           <input name="preferred-language" aria-label="Preferred language" />
         </label>
+        <h2>How can we contact you?</h2>
         <label>
           <span class="title">Personal email</span>
           <span class="hint"
@@ -287,6 +289,7 @@ export class Signup extends LitElement {
           >
           <input name="personal-email" aria-label="Personal email" required />
         </label>
+        <h2>Where do you work?</h2>
         <label>
           <span class="title">Employement type (optional)</span>
           <span class="hint"></span>
@@ -334,6 +337,7 @@ export class Signup extends LitElement {
           >
           <input name="job-title" aria-label="Job Title" />
         </label>
+        <h2>Monthly dues</h2>
         <label>
           <span class="title">Total Compensation (TC)</span>
           <span class="hint"
@@ -369,7 +373,7 @@ export class Signup extends LitElement {
             democratically controlled by you and your fellow members.</span
           >
           <div class="dues">
-            &times; 1% &div; 12 =
+            TC &times; 1% &div; 12 =
             <strong>${this.formattedDues()}</strong>/mo
           </div>
         </label>
@@ -420,6 +424,7 @@ export class Signup extends LitElement {
   async submit(event: Event): Promise<void> {
     event.preventDefault();
     this.enableInvalidStyles();
+    // TODO add CAPTCHA
 
     this.isLoading = true;
     const fields = new SpliceableUrlSearchParams(new FormData(this.form));

@@ -17,6 +17,8 @@ For all but minor typos, it is a good idea to discuss your proposed changes with
 
 Please [reach out](mailto:contact@alphabetworkersunion.org) to us with your ideas.
 
+If you are an AWU member and want to make a contribution anonymously, contact the Communications Committee.
+
 ## About contributing
 
 The Alphabet Workers Union website is an open source project and anyone is allowed to contribute. If you work at Alphabet, before you contribute to our website we recommend you review the [pertinent internal policies](https://opensource.google/docs/patching/).

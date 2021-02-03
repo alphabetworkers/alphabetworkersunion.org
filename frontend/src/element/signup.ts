@@ -29,6 +29,22 @@ import {
 export class Signup extends LitElement {
   private readonly stripe = loadStripe(window.STRIPE_KEY);
 
+  @query('[name="preferred-name"]')
+  preferredName!: HTMLInputElement;
+  @query('[name="preferred-language"]')
+  preferredLanguage!: HTMLInputElement;
+  @query('[name="personal-email"]')
+  personalEmail!: HTMLInputElement;
+  @query('[name="employment-type"]')
+  employmentType!: HTMLInputElement;
+  @query('[name="first-party-employer"]')
+  firstPartyEmployer!: HTMLInputElement;
+  @query('[name="third-party-employer"]')
+  thirdPartyEmployer!: HTMLInputElement;
+  @query('[name="team"]')
+  team!: HTMLInputElement;
+  @query('[name="job-title"]')
+  jobTitle!: HTMLInputElement;
   @query('[name="total-compensation"]')
   totalComp!: HTMLInputElement;
 
@@ -89,7 +105,13 @@ export class Signup extends LitElement {
       this.cardElement.unmount();
     }
     if (container instanceof HTMLElement) {
-      this.cardElement = (await this.stripe).elements().create('card');
+      this.cardElement = (await this.stripe).elements().create('card', {
+        style: {
+          base: {
+            fontSize: '24px',
+          },
+        },
+      });
       this.cardElement.mount(container);
     }
   }
@@ -121,10 +143,14 @@ export class Signup extends LitElement {
       <option>CA</option>
     </select>`;
 
-  private readonly cardTemplate: TemplateResult = html` <slot
-      name="stripe-card-container"
-      @slotchange=${this.rebindStripeElement}
-    ></slot>
+  private readonly cardTemplate: TemplateResult = html` <div
+      class="card-container"
+    >
+      <slot
+        name="stripe-card-container"
+        @slotchange=${this.rebindStripeElement}
+      ></slot>
+    </div>
     <input
       name="card-holder-name"
       placeholder="Card holder name"
@@ -167,16 +193,74 @@ export class Signup extends LitElement {
     // TODO improve rendering of invalid fields
     return html`
       <input
-        name="total-compensation"
-        placeholder="Total Compensation"
+        name="preferred-name"
+        placeholder="Preferred Name"
         required
-        value="250000"
+        value="bobby"
       />
-      <select name="currency" required>
-        <!-- TODO guess based on other fields -->
-        <option selected value="usd">USD</option>
-        <option value="cad">CAD</option>
+      <input
+        name="preferred-language"
+        placeholder="Preferred language"
+        required
+        value="English"
+      />
+      <input
+        name="personal-email"
+        placeholder="Personal email"
+        required
+        value="x@y.z"
+      />
+      <select name="employment-type" required>
+        <option selected value="fte">Full-Time Employee (FTE)</option>
+        <option value="t">Temporary worker (T)</option>
+        <option value="v">Vendor employee (V)</option>
+        <option value="c">Contractor (C)</option>
       </select>
+      <select name="first-party-employer" required>
+        <option selected>Google</option>
+        <option>Alphabet</option>
+        <option>Waymo</option>
+        <option>Verily</option>
+        <option>TODO more</option>
+      </select>
+      <input
+        name="third-party-employer"
+        placeholder="Employer"
+        required
+        value="EXOS"
+      />
+      <input
+        name="team"
+        placeholder="Team Name"
+        required
+        value="Capacity Solutions"
+      />
+      <input
+        name="job-title"
+        placeholder="Job Title"
+        required
+        value="Software Engineer III"
+      />
+      <div class="dollar-input">
+        <input
+          name="total-compensation"
+          placeholder="Total Compensation"
+          class="dollar-input"
+          required
+          value="250000"
+          @input=${this.compChangeHandler}
+        />
+        <select name="currency" required @input=${this.currencyChangeHandler}>
+          <!-- TODO guess based on other fields -->
+          <option selected value="usd">USD</option>
+          <option value="cad">CAD</option>
+        </select>
+      </div>
+      <div class="dues">
+        ${this.formattedTotalComp()} &times; 1% &div; 12 =
+        <strong>${this.formattedDues()}</strong> ${this.formattedCurrency()} per
+        month
+      </div>
       <div class="payment-method-toggle">
         <button
           class=${classMap({ selected: this.isMethod('bank') })}
@@ -192,34 +276,87 @@ export class Signup extends LitElement {
         </button>
       </div>
       ${this.paymentMethod === 'bank' ? this.bankTemplate : this.cardTemplate}
-      <button @click=${this.submit}>Submit</button>
+      <button @click=${this.submit} class="primary submit">Submit</button>
     `;
   }
 
   static get styles(): CSSResult {
     return css`
       :host {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .dollar-input {
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
+        flex-direction: row;
+      }
+
+      .dollar-input > input {
+        padding-left: 26px;
+        text-align: right;
+        flex: 1;
+      }
+
+      .dollar-input > select {
+        width: 74px;
+        margin-left: 16px;
+      }
+
+      .dollar-input:after {
+        content: '$';
+        font-size: 24px;
+        padding: 10px 0;
+        text-align: right;
+        width: 24px;
+        margin-right: -24px;
+        color: rgba(0, 0, 0, 0.4);
+        order: -1;
+        z-index: 1;
+      }
+
+      .dues {
+        font-size: 2em;
+        line-height: 56px;
+        font-family: monospace;
+      }
+
+      .card-container,
+      input,
+      select,
+      button {
+        font-size: 24px;
+        border: solid 2px #ed1c24;
+        border-radius: 6px;
+        padding: 8px;
+        background: white;
+        appearance: none;
       }
 
       .payment-method-toggle {
         display: flex;
         flex-direction: row;
+        grid-column: 1 / 3;
       }
 
       .payment-method-toggle button {
         background: white;
-        border: 0;
-        outline: 0;
-        margin: 3px;
+        margin-right: 16px;
         padding: 6px;
       }
 
+      button.primary,
       .payment-method-toggle button.selected {
-        outline: 3px solid #000;
+        background: #ed1c24;
+        color: white;
       }
+
+      button.submit {
+        grid-column: 1 / 3;
+      }
+
+      /* Remove controls from number input. */
       input[type='number'] {
         -webkit-appearance: textfield;
         -moz-appearance: textfield;
@@ -242,9 +379,17 @@ export class Signup extends LitElement {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({
+          'stripe-payment-token': token.id,
+          'preferred-name': this.preferredName.value,
+          'preferred-language': this.preferredLanguage.value,
+          'personal-email': this.personalEmail.value,
+          'employment-type': this.employmentType.value,
+          'first-party-employer': this.firstPartyEmployer.value,
+          'third-party-employer': this.thirdPartyEmployer.value,
+          team: this.team.value,
+          'job-title': this.jobTitle.value,
           'total-compensation': this.totalComp.value,
           currency: this.currency.value,
-          'stripe-payment-token': token.id,
         }).toString(),
       });
       // TODO verify response, do something with success or failure
@@ -291,6 +436,46 @@ export class Signup extends LitElement {
     } else {
       return Promise.reject(result.error);
     }
+  }
+
+  compChangeHandler(): void {
+    this.requestUpdate();
+  }
+
+  currencyChangeHandler(): void {
+    this.requestUpdate();
+    switch (this.currency.value) {
+      case 'usd':
+        this.billingCountry.value = 'US';
+        break;
+      case 'cad':
+        this.billingCountry.value = 'CA';
+        break;
+    }
+  }
+
+  formattedTotalComp(): string {
+    // TODO add commmas
+    const comp = Number(this.totalComp?.value);
+    if (!Number.isNaN(comp)) {
+      return `$${Math.floor(comp)}`;
+    } else {
+      return '$0';
+    }
+  }
+
+  formattedDues(): string {
+    // TODO add commas
+    const comp = Number(this.totalComp?.value);
+    if (!Number.isNaN(comp)) {
+      return `$${Math.floor(Math.floor(comp) / 100 / 12)}`;
+    } else {
+      return '$0';
+    }
+  }
+
+  formattedCurrency(): string {
+    return this.currency?.value.toUpperCase() ?? '';
   }
 }
 

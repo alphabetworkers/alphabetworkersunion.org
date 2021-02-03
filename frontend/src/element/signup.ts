@@ -36,7 +36,7 @@ export class Signup extends LitElement {
   @query('[name="personal-email"]')
   personalEmail!: HTMLInputElement;
   @query('[name="employment-type"]')
-  employementType!: HTMLInputElement;
+  employmentType!: HTMLInputElement;
   @query('[name="first-party-employer"]')
   firstPartyEmployer!: HTMLInputElement;
   @query('[name="third-party-employer"]')
@@ -210,7 +210,7 @@ export class Signup extends LitElement {
         required
         value="x@y.z"
       />
-      <select name="employement-type" required>
+      <select name="employment-type" required>
         <option selected value="fte">Full-Time Employee (FTE)</option>
         <option value="t">Temporary worker (T)</option>
         <option value="v">Vendor employee (V)</option>
@@ -383,7 +383,7 @@ export class Signup extends LitElement {
           'preferred-name': this.preferredName.value,
           'preferred-language': this.preferredLanguage.value,
           'personal-email': this.personalEmail.value,
-          'employement-type': this.employementType.value,
+          'employment-type': this.employmentType.value,
           'first-party-employer': this.firstPartyEmployer.value,
           'third-party-employer': this.thirdPartyEmployer.value,
           team: this.team.value,

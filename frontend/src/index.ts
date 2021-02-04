@@ -25,5 +25,6 @@ require.context('./img/selfies', false, /\.(jpe?g|png)$/i);
 import './docs/mission/articles/Alphabet_Workers_Union_Articles.pdf';
 
 import './docs/press/press-kit/Press-Kit.zip';
+import './docs/press/press-kit/2021-02-04-Modis-Google-ULP-Charge.pdf';
 
 import './favicon.ico';

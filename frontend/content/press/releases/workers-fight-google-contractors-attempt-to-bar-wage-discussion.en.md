@@ -1,7 +1,7 @@
 ---
 title: 'Workers Fight Google Contractor’s Attempt to Bar Discussion of Wages'
 linktitle: 'Workers Fight Google Contractor’s Attempt to Bar Discussion of Wages'
-publishdate: 2021-01-02T21:00:00-05:00
+publishdate: 2021-02-04T06:00:00-05:00
 date: 2021-02-04T06:00:00-05:00
 layout: textheavy
 ---

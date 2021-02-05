@@ -10,7 +10,7 @@ layout: textheavy
 
 **FOR IMMEDIATE RELEASE**
 
-February 4, 2021 at 3pm ET
+_February 4, 2021 at 3pm ET_
 
 _Press contact: press@alphabetworkersunion.org_
 

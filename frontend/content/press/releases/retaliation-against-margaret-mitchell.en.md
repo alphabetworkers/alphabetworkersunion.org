@@ -8,9 +8,11 @@ description:
 
 {{< header />}}
 
-# AWU statement on retaliation against Margaret Mitchell
+**FOR IMMEDIATE RELEASE**
 
-For immediate release
+_January 20, 2021 at 2pm ET_
+
+_Press contact: press@alphabetworkersunion.org_
 
 The Alphabet Workers Union (AWU) is concerned by the suspension of the corporate access of Margaret Mitchell, AWU member and lead of the Ethical AI team. This suspension comes on the heels of [Google’s firing of former co-lead Timnit Gebru](https://www.nytimes.com/2020/12/03/technology/google-researcher-timnit-gebru.html); together these are an attack on the people who are trying to make Google’s technology more ethical.
 

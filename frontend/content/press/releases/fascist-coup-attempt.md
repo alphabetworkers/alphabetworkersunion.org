@@ -8,7 +8,11 @@ description:
 
 {{< header />}}
 
-# AWU statement on fascist coup attempt
+**FOR IMMEDIATE RELEASE**
+
+_January 7, 2021 at 2pm ET_
+
+_Press contact: press@alphabetworkersunion.org_
 
 Yesterday, a mob of fascists, urged on by the sitting president of the United States, stormed the Capitol in Washington, D.C. in an attempt to prevent the certification of the results of the presidential election. Donald Trump then celebrated the insurrectionists in a video posted on social media, including on his YouTube channel, where he told armed fascists, “We love you, you’re very special.”
 

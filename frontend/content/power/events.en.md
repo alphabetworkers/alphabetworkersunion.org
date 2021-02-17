@@ -26,7 +26,7 @@ Click any of the following links to register.
 
 _Times are listed in both Pacific Time (PT) and Eastern Time (ET)._
 
-### Saturday, February 28th, 2021
+### Sunday, February 28th, 2021
 
 - [10 am PT / 1 pm ET](https://zoom.us/meeting/register/tJAtc-GgqzMtH9P5lGEgDWXO1LBec8AOT_5F)
 - [1 pm PT / 4pm ET](https://zoom.us/meeting/register/tJAufuigpzwuHdXjES-ZleB4NPJt0YKB1pDR)

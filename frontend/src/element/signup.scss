@@ -92,16 +92,73 @@ label,
   margin-left: 16px;
 }
 
-.dollar-input:after {
+.input-dollar-symbol {
+  position: relative;
+}
+
+.input-dollar-symbol:after {
+  position: absolute;
   content: '$';
   font-size: 24px;
   padding: 7px 0;
   text-align: right;
-  width: 24px;
-  margin-right: -24px;
+  width: 20px;
+  margin-right: -20px;
   color: rgba(0, 0, 0, 0.4);
-  order: -1;
-  z-index: 1;
+  z-index: 20;
+}
+
+.compensation-calculator-button {
+  margin-right: 16px;
+  font-size: 2.4em;
+  margin: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.compensation-calculator {
+  font-size: 1.6em;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  align-items: baseline;
+  padding: 0;
+  max-height: 0;
+  box-sizing: border-box;
+  visibility: none;
+  transition-property: max-height, padding;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+
+  &.visible {
+    visibility: visible;
+    max-height: 120px;
+    padding-bottom: 16px;
+    padding-top: 16px;
+  }
+
+  & > label {
+    // No idea why, but this fixes a col width issue.
+    width: 0;
+    flex: 1;
+    margin: 0 4px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    .hint {
+      font-size: 0.5em;
+    }
+
+    input {
+      text-align: right;
+    }
+  }
 }
 
 .dues {

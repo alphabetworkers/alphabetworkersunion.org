@@ -98,6 +98,13 @@ export class Signup extends LitElement {
   @internalProperty()
   isComplete = false;
 
+  @internalProperty()
+  private isCompCalculatorOpen = false;
+
+  private hourlyRate = 0;
+  private hoursPerWeek = 40;
+  private weeksPerYear = 52;
+
   constructor() {
     super();
     // TODO debugging tool, remove later
@@ -338,18 +345,27 @@ export class Signup extends LitElement {
           <input name="job-title" aria-label="Job Title" />
         </label>
         <h2>Monthly dues</h2>
-        <label>
-          <span class="title">Total Compensation (TC)</span>
+        <div class="field">
+          <span class="title">Total Annual Compensation (TC)</span>
           <span class="hint"
             >Used to calculate your union dues. We expect members to be honest,
             but this is the honor system: we won't check.</span
           >
           <div class="dollar-input">
+            <button
+              type="button"
+              class="compensation-calculator-button"
+              title="Compensation calculator"
+              aria-label="Compensation calculator"
+              @click=${this.compCalculatorClickHandler}
+            >
+              &#x1F5A9;
+            </button>
+            <span class="input-dollar-symbol"></span>
             <input
               type="number"
               name="total-compensation"
-              aria-label="Total Compensation"
-              class="dollar-input"
+              aria-label="Total Annual Compensation"
               min="0"
               required
               @input=${this.compChangeHandler}
@@ -365,7 +381,35 @@ export class Signup extends LitElement {
               </select>
             </div>
           </div>
-        </label>
+          <div
+            class="compensation-calculator ${classMap({
+              visible: this.isCompCalculatorOpen,
+            })}"
+          >
+            <label>
+              <input type="number" @input=${this.hourlyRateChangeHandler} />
+              <span class="hint">Hourly rate</span>
+            </label>
+            &times;
+            <label>
+              <input
+                type="number"
+                value="40"
+                @input=${this.hoursPerWeekChangeHandler}
+              />
+              <span class="hint">Hours per week</span>
+            </label>
+            &times;
+            <label>
+              <input
+                type="number"
+                value="52"
+                @input=${this.weeksPerYearChangeHandler}
+              />
+              <span class="hint">Weeks per year</span>
+            </label>
+          </div>
+        </div>
         <label>
           <span class="title">Monthly dues</span>
           <span class="hint"
@@ -566,6 +610,31 @@ export class Signup extends LitElement {
         this.billingCountry.value = 'CA';
         break;
     }
+  }
+
+  compCalculatorClickHandler(): void {
+    this.isCompCalculatorOpen = !this.isCompCalculatorOpen;
+  }
+
+  private recalculateTotalComp(): void {
+    this.totalComp.value = String(
+      this.hourlyRate * this.hoursPerWeek * this.weeksPerYear
+    );
+  }
+
+  hourlyRateChangeHandler(event: InputEvent): void {
+    this.hourlyRate = Number((event.target as HTMLInputElement).value);
+    this.recalculateTotalComp();
+  }
+
+  hoursPerWeekChangeHandler(): void {
+    this.hoursPerWeek = Number((event.target as HTMLInputElement).value);
+    this.recalculateTotalComp();
+  }
+
+  weeksPerYearChangeHandler(): void {
+    this.weeksPerYear = Number((event.target as HTMLInputElement).value);
+    this.recalculateTotalComp();
   }
 
   formattedDues(): string {

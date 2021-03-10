@@ -67,7 +67,6 @@ label,
 .hint {
   font-size: 0.8em;
   line-height: 1.4em;
-  flex: 1;
   margin-bottom: 4px;
   padding: 0 10px;
 }
@@ -117,11 +116,11 @@ label,
 }
 
 .compensation-calculator {
-  font-size: 1.6em;
+  font-size: 1.4em;
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  align-items: baseline;
+  align-items: center;
   padding: 0;
   max-height: 0;
   box-sizing: border-box;
@@ -135,6 +134,10 @@ label,
     max-height: 120px;
     padding-bottom: 16px;
     padding-top: 16px;
+  }
+
+  .times {
+    padding-bottom: 1em;
   }
 
   & > label {
@@ -165,13 +168,14 @@ label,
   padding: 0 10px;
   font-size: 1.6em;
   line-height: 48px;
+  flex: 1;
 }
 
 .card-container,
 input,
 select,
 button {
-  font-size: 24px;
+  font-size: 1.6em;
   border: solid 1px constants.$gray-80;
   border-radius: 10px;
   padding: 0 8px;
@@ -207,6 +211,7 @@ button {
 
 select {
   appearance: none;
+  -webkit-appearance: none;
 }
 
 .select {

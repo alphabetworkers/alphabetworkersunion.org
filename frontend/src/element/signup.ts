@@ -298,7 +298,7 @@ export class Signup extends LitElement {
         </label>
         <h2>Where do you work?</h2>
         <label>
-          <span class="title">Employement type (optional)</span>
+          <span class="title">Employment type (optional)</span>
           <span class="hint"></span>
           <div class="select">
             <select name="employment-type" @input=${this.employmentTypeHandler}>
@@ -390,7 +390,7 @@ export class Signup extends LitElement {
               <input type="number" @input=${this.hourlyRateChangeHandler} />
               <span class="hint">Hourly rate</span>
             </label>
-            &times;
+            <span class="times">&times;</span>
             <label>
               <input
                 type="number"
@@ -399,7 +399,7 @@ export class Signup extends LitElement {
               />
               <span class="hint">Hours per week</span>
             </label>
-            &times;
+            <span class="times">&times;</span>
             <label>
               <input
                 type="number"

@@ -4,6 +4,19 @@ import Stripe from 'stripe';
 const REQUIRED_METADATA = [
   'employment-type',
   'signature',
+  'preferred-name',
+  'personal-email',
+  'personal-phone',
+  'mailing-address-1',
+  'mailing-city',
+  'mailing-region',
+  'mailing-postal-code',
+  'mailing-country',
+  'site-code',
+  'org',
+  'product-area',
+  'have-reports',
+  'total-compensation',
 ];
 
 const REQUIRED_FIELDS = REQUIRED_METADATA.concat([
@@ -12,10 +25,14 @@ const REQUIRED_FIELDS = REQUIRED_METADATA.concat([
 ]);
 
 const OPTIONAL_METADATA = [
+  'pronouns',
   'preferred-language',
+  'mailing-address-2',
   'first-party-employer',
   'third-party-employer',
+  'building-code',
   'team',
+  'work-email',
   'job-title',
 ];
 

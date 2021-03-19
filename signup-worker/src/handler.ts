@@ -1,42 +1,7 @@
 import {stripeClient} from './stripe';
 import Stripe from 'stripe';
 
-const REQUIRED_METADATA = [
-  'employment-type',
-  'signature',
-  'preferred-name',
-  'personal-email',
-  'personal-phone',
-  'mailing-address-1',
-  'mailing-city',
-  'mailing-region',
-  'mailing-postal-code',
-  'mailing-country',
-  'site-code',
-  'org',
-  'product-area',
-  'have-reports',
-  'total-compensation',
-];
-
-const REQUIRED_FIELDS = REQUIRED_METADATA.concat([
-  'preferred-name',
-  'personal-email',
-]);
-
-const OPTIONAL_METADATA = [
-  'pronouns',
-  'preferred-language',
-  'mailing-address-2',
-  'first-party-employer',
-  'third-party-employer',
-  'building-code',
-  'team',
-  'work-email',
-  'job-title',
-];
-
-const METADATA = REQUIRED_METADATA.concat(OPTIONAL_METADATA);
+import {REQUIRED_FIELDS, METADATA} from './fields';
 
 /**
  * Generate a Date object for the UTC midnight of the next month.
@@ -80,6 +45,7 @@ export async function handleRequest(request: Request): Promise<Response> {
         }
       });
     } catch (error) {
+      console.warn(error);
       const field = stripeCustomerParamToField(error.param);
       if (field) {
         throw new InvalidParamError(field, error.message);

@@ -369,6 +369,13 @@ export class Signup extends LitElement {
           complete: this.isComplete,
         })}"
       >
+        <p class="full-width">
+          If you have any trouble completing this form, you may instead contact
+          the Membership Committee at
+          <a href="mailto:membership@alphabetworkersunion.org"
+            >membership@alphabetworkersunion.org</a
+          >.
+        </p>
         <h2>Let's get to know you</h2>
         <label class="full-width">
           <span class="title"
@@ -650,8 +657,9 @@ export class Signup extends LitElement {
             >Total Compensation (TC)${optionalLabel('total-compensation')}</span
           >
           <span class="hint"
-            >Annual. Used to calculate your union dues. We expect members to be
-            honest, but this is the honor system: we won't check.</span
+            >Used to calculate your union dues. Select the calculator icon if
+            you don't have an annual salary. We expect members to be honest, but
+            this is the honor system: we won't check.</span
           >
           <div class="dollar-input">
             <button

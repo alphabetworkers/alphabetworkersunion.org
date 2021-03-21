@@ -16,6 +16,60 @@ import {
 
 import styles from './signup.scss';
 
+const ALPHABET_SUBSIDIARIES = [
+  'Google',
+  'X',
+  'Wing',
+  'Waymo',
+  'YouTube TV',
+  'DeepMind',
+  'Calico',
+  'Verily',
+  'Sidewalk Labs',
+  'Firebase',
+  'GV',
+  'Google Fiber',
+  'Google Nest',
+  'Google Canada Corporation',
+  'Vevo',
+  'Jigsaw',
+  'Baarzo',
+  'Waze Mobile Limited',
+  'Alphabet Capital US',
+  'Google Argentina',
+  'Channel Intelligence',
+  'Appurify',
+  'Google Spain',
+  'Google Ireland Holdings',
+  'Neverware',
+  'Actifio',
+  'CapitalG',
+  'Makani',
+  'Zync',
+  'ITA Software',
+  'Stackdriver',
+  'Owlchemy Labs',
+  'Google Environment',
+  'Cask Data',
+  'Anvato',
+  'Jibe Mobile',
+  'Adometry',
+  'Google Netherlands',
+  'BufferBox',
+  'Google Norway',
+  'Keyhole',
+  'Google Mexico',
+  'Google Czech Republic',
+  'DevOps Research and Assessments',
+  'Pulse.io',
+  'Google Italy',
+  'Chronicle',
+  'Google France',
+  'Fly Labs',
+  'Google Austria',
+  'Google New Zealand',
+];
+
 /**
  * Signup element.
  *
@@ -35,20 +89,48 @@ export class Signup extends LitElement {
   form!: HTMLFormElement;
   @query('[name="preferred-name"]')
   preferredName!: HTMLInputElement;
+  @query('[name="pronouns"]')
+  pronouns!: HTMLInputElement;
   @query('[name="preferred-language"]')
   preferredLanguage!: HTMLInputElement;
   @query('[name="personal-email"]')
   personalEmail!: HTMLInputElement;
+  @query('[name="personal-phone"]')
+  personalPhone!: HTMLInputElement;
+  @query('[name="mailing-address-1"]')
+  mailingAddress1!: HTMLInputElement;
+  @query('[name="mailing-address-2"]')
+  mailingAddress2!: HTMLInputElement;
+  @query('[name="mailing-city"]')
+  mailingCity!: HTMLInputElement;
+  @query('[name="mailing-region"]')
+  mailingRegion!: HTMLInputElement;
+  @query('[name="mailing-postal-code"]')
+  mailingPostalCode!: HTMLInputElement;
+  @query('[name="mailing-country"]')
+  mailingCountry!: HTMLInputElement;
+  @query('[name="work-email"]')
+  workEmail!: HTMLInputElement;
   @query('[name="employment-type"]')
   employmentType!: HTMLInputElement;
   @query('[name="first-party-employer"]')
   firstPartyEmployer!: HTMLInputElement;
   @query('[name="third-party-employer"]')
   thirdPartyEmployer!: HTMLInputElement;
+  @query('[name="site-code"]')
+  siteCode!: HTMLInputElement;
+  @query('[name="building-code"]')
+  buildingCode!: HTMLInputElement;
   @query('[name="product-area"]')
   productArea!: HTMLInputElement;
+  @query('[name="org"]')
+  org!: HTMLInputElement;
+  @query('[name="team"]')
+  team!: HTMLInputElement;
   @query('[name="job-title"]')
   jobTitle!: HTMLInputElement;
+  @query('[name="have-reports"]')
+  haveReports!: HTMLInputElement;
   @query('[name="total-compensation"]')
   totalComp!: HTMLInputElement;
 
@@ -61,10 +143,10 @@ export class Signup extends LitElement {
   billingAddress2: HTMLInputElement;
   @query('[name="billing-city"]')
   billingCity: HTMLInputElement;
-  @query('[name="billing-state"]')
-  billingState: HTMLInputElement;
-  @query('[name="billing-zip"]')
-  billingZip: HTMLInputElement;
+  @query('[name="billing-region"]')
+  billingRegion: HTMLInputElement;
+  @query('[name="billing-postal-code"]')
+  billingPostalCode: HTMLInputElement;
   @query('[name="billing-country"]')
   billingCountry: HTMLSelectElement;
   @query('[name="routing-number"]')
@@ -97,6 +179,13 @@ export class Signup extends LitElement {
 
   @internalProperty()
   isComplete = false;
+
+  @internalProperty()
+  private isCompCalculatorOpen = false;
+
+  private hourlyRate = 0;
+  private hoursPerWeek = 40;
+  private weeksPerYear = 52;
 
   constructor() {
     super();
@@ -203,10 +292,11 @@ export class Signup extends LitElement {
       class="field full-width"
     >
       <span class="title">Card details</span>
-      <span class="hint"
-        >We encourage you to use a bank account instead though, so that less is
-        lost to transaction fees</span
-      >
+      <span class="hint">
+        We encourage you to use a bank account instead though, so that less is
+        lost to transaction fees. If you still want to use a card, debit cards
+        allow lower fees than credit cards.
+      </span>
       <div class="card-container">
         <slot
           name="stripe-card-container"
@@ -256,7 +346,7 @@ export class Signup extends LitElement {
         <h2>All done</h2>
         <p>
           The membership committee will review your application, and we'll send
-          your union membership card when it's approved.
+          your union membership card after it's approved.
         </p>
         <p>Welcome to the union!</p>
       </div>
@@ -270,10 +360,15 @@ export class Signup extends LitElement {
         })}"
       >
         <h2>Let's get to know you</h2>
-        <label>
+        <label class="full-width">
           <span class="title">Preferred name</span>
           <span class="hint">So we know what to call you</span>
           <input name="preferred-name" aria-label="Preferred Name" required />
+        </label>
+        <label>
+          <span class="title">Preferred pronouns (optional)</span>
+          <span class="hint">So we know how to address you</span>
+          <input name="preferred-pronouns" aria-label="Preferred pronouns" />
         </label>
         <label>
           <span class="title">Preferred language (optional)</span>
@@ -289,12 +384,59 @@ export class Signup extends LitElement {
           >
           <input name="personal-email" aria-label="Personal email" required />
         </label>
+        <label>
+          <span class="title">Personal phone</span>
+          <span class="hint"
+            >In case we need to contact you with low latency (rare).</span
+          >
+          <input name="personal-phone" aria-label="Personal phone" required />
+        </label>
+        <label>
+          <span class="title">Mailing address</span>
+          <span class="hint">CWA Local 1400 sends paper ballots by USPS.</span>
+          <input
+            name="mailing-address-1"
+            aria-label="Mailing address"
+            required
+          />
+        </label>
+        <label>
+          <span class="title">Address line 2 (optional)</span>
+          <span class="hint">Apt, unit, etc.</span>
+          <input name="mailing-address-2" aria-label="Mailing address" />
+        </label>
+        <label>
+          <span class="title">City</span>
+          <span class="hint"></span>
+          <input name="mailing-city" aria-label="City" required />
+        </label>
+        <label>
+          <span class="title">Region</span>
+          <span class="hint"></span>
+          <input name="mailing-region" aria-label="Region" required />
+        </label>
+        <label>
+          <span class="title">Postal code</span>
+          <span class="hint"></span>
+          <input name="mailing-postal-code" aria-label="Postal code" required />
+        </label>
+        <label>
+          <span class="title">Country</span>
+          <span class="hint"></span>
+          <input name="mailing-country" aria-label="Country" required />
+        </label>
         <h2>Where do you work?</h2>
         <label>
-          <span class="title">Employement type (optional)</span>
-          <span class="hint"></span>
+          <span class="title">Employement type</span>
+          <span class="hint"
+            >So we know what kind of workers are in our union.</span
+          >
           <div class="select">
-            <select name="employment-type" @input=${this.employmentTypeHandler}>
+            <select
+              name="employment-type"
+              @input=${this.employmentTypeHandler}
+              required
+            >
               <option value="fte" selected>Full-Time Employee (FTE)</option>
               <option value="t">Temporary worker (T)</option>
               <option value="v">Vendor employee (V)</option>
@@ -306,50 +448,117 @@ export class Signup extends LitElement {
           ? html` <label>
               <span class="title"
                 >Alphabet
-                ${this.employmentType?.value === 'c' ? 'client' : 'employer'}
-                (optional)</span
+                ${this.employmentType?.value === 'c'
+                  ? 'client'
+                  : 'employer'}</span
               >
               <span class="hint"></span>
               <div class="select">
-                <select name="first-party-employer">
-                  <option selected>Google</option>
-                  <option>Alphabet</option>
-                  <option>Waymo</option>
-                  <option>Verily</option>
-                  <option>TODO more</option>
+                <select name="first-party-employer" required>
+                  ${ALPHABET_SUBSIDIARIES.map(
+                    (name, i) =>
+                      html`<option ?selected=${i === 0}>${name}</option>`
+                  )}
                 </select>
               </div>
             </label>`
           : html` <label>
-              <span class="title">Vendor employer (optional)</span>
+              <span class="title">Vendor employer</span>
               <span class="hint"></span>
-              <input name="third-party-employer" aria-label="Employer" />
+              <input
+                name="third-party-employer"
+                aria-label="Employer"
+                required
+              />
             </label>`}
         <label>
-          <span class="title">Product area (PA) (optional)</span>
-          <span class="hint">Lets us connect you with your coworkers</span>
-          <input name="product-area" aria-label="Product Area" />
-        </label>
-        <label>
-          <span class="title">Job title (optional)</span>
+          <span class="title">Job title</span>
           <span class="hint"
             >We want to know what kinds of workers are in our union</span
           >
-          <input name="job-title" aria-label="Job Title" />
+          <input name="job-title" aria-label="Job Title" required />
+        </label>
+        <label>
+          <span class="title">Team name (optional)</span>
+          <span class="hint">Lets us connect you with your coworkers</span>
+          <input name="team" aria-label="Team name" />
+        </label>
+        <label>
+          <span class="title">Organization</span>
+          <span class="hint"
+            >The larger team/department/organization of which your team is a
+            part.</span
+          >
+          <input name="org" aria-label="Organization" required />
+        </label>
+        <label>
+          <span class="title">Product area (PA)</span>
+          <span class="hint">Lets us connect you with your coworkers</span>
+          <input name="product-area" aria-label="Product Area" required />
+        </label>
+        <label>
+          <span class="title">Site code</span>
+          <span class="hint"
+            >So we can connect you with your local workplace units. Site code is
+            a country code followed by a location code (e.g. "US-MTV").</span
+          >
+          <input name="side-code" aria-label="Site code" required />
+        </label>
+        <label>
+          <span class="title">Building code (optional)</span>
+          <span class="hint"
+            >So we can connect you with your local coworkers.</span
+          >
+          <input name="building-code" aria-label="Building code" />
+        </label>
+        <label>
+          <span class="title">Do you have reports?</span>
+          <span class="hint"
+            >Individuals with (non-intern/student researcher) reports face a
+            different risk profile when joining a union. If you do, we will
+            reach out to you with more info.</span
+          >
+          <div class="select">
+            <select
+              name="have-reports"
+              aria-label="Do you have reports?"
+              required
+            >
+              <option value="n" selected>No</option>
+              <option value="y">Yes</option>
+            </select>
+          </div>
+        </label>
+        <label>
+          <span class="title">Work email (optional)</span>
+          <span class="hint"
+            >Used to verify your employment in most cases. We will never contact
+            this address.</span
+          >
+          <input name="work-email" aria-label="Work email" />
         </label>
         <h2>Monthly dues</h2>
-        <label>
+        <div class="field">
           <span class="title">Total Compensation (TC)</span>
           <span class="hint"
-            >Used to calculate your union dues. We expect members to be honest,
-            but this is the honor system: we won't check.</span
+            >Annual. Used to calculate your union dues. We expect members to be
+            honest, but this is the honor system: we won't check.</span
           >
           <div class="dollar-input">
+            <button
+              type="button"
+              class="compensation-calculator-button"
+              title="Compensation calculator"
+              aria-label="Compensation calculator"
+              @click=${this.compCalculatorClickHandler}
+            >
+              &#x1F5A9;
+            </button>
+            <span class="input-dollar-symbol"></span>
             <input
               type="number"
               name="total-compensation"
-              aria-label="Total Compensation"
-              class="dollar-input"
+              aria-label="Total Annual Compensation"
               min="0"
               required
               @input=${this.compChangeHandler}
@@ -365,7 +574,35 @@ export class Signup extends LitElement {
               </select>
             </div>
           </div>
-        </label>
+          <div
+            class="compensation-calculator ${classMap({
+              visible: this.isCompCalculatorOpen,
+            })}"
+          >
+            <label>
+              <input type="number" @input=${this.hourlyRateChangeHandler} />
+              <span class="hint">Hourly rate</span>
+            </label>
+            &times;
+            <label>
+              <input
+                type="number"
+                value="40"
+                @input=${this.hoursPerWeekChangeHandler}
+              />
+              <span class="hint">Hours per week</span>
+            </label>
+            &times;
+            <label>
+              <input
+                type="number"
+                value="52"
+                @input=${this.weeksPerYearChangeHandler}
+              />
+              <span class="hint">Weeks per year</span>
+            </label>
+          </div>
+        </div>
         <label>
           <span class="title">Monthly dues</span>
           <span class="hint"
@@ -404,7 +641,7 @@ export class Signup extends LitElement {
         </label>
         <div class="field full-width">
           <span class="hint"
-            >A one-time $5 signup fee will be charged when your application is
+            >A one-time $5 signup fee will be charged after your application is
             approved, and dues will be charged on the 5th of each month.</span
           >
         </div>
@@ -566,6 +803,32 @@ export class Signup extends LitElement {
         this.billingCountry.value = 'CA';
         break;
     }
+  }
+
+  compCalculatorClickHandler(): void {
+    this.isCompCalculatorOpen = !this.isCompCalculatorOpen;
+  }
+
+  private recalculateTotalComp(): void {
+    this.totalComp.value = String(
+      this.hourlyRate * this.hoursPerWeek * this.weeksPerYear
+    );
+    this.requestUpdate();
+  }
+
+  hourlyRateChangeHandler(event: InputEvent): void {
+    this.hourlyRate = Number((event.target as HTMLInputElement).value);
+    this.recalculateTotalComp();
+  }
+
+  hoursPerWeekChangeHandler(): void {
+    this.hoursPerWeek = Number((event.target as HTMLInputElement).value);
+    this.recalculateTotalComp();
+  }
+
+  weeksPerYearChangeHandler(): void {
+    this.weeksPerYear = Number((event.target as HTMLInputElement).value);
+    this.recalculateTotalComp();
   }
 
   formattedDues(): string {

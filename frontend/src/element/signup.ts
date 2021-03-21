@@ -935,12 +935,12 @@ export class Signup extends LitElement {
     this.recalculateTotalComp();
   }
 
-  hoursPerWeekChangeHandler(): void {
+  hoursPerWeekChangeHandler(event: InputEvent): void {
     this.hoursPerWeek = Number((event.target as HTMLInputElement).value);
     this.recalculateTotalComp();
   }
 
-  weeksPerYearChangeHandler(): void {
+  weeksPerYearChangeHandler(event: InputEvent): void {
     this.weeksPerYear = Number((event.target as HTMLInputElement).value);
     this.recalculateTotalComp();
   }

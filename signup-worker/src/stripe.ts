@@ -62,7 +62,7 @@ function throwError<T>(): (response: Response) => Promise<T> {
     if (response.ok) {
       return response.json() as Promise<T>;
     } else {
-      return (await response.json()).error;
+      return Promise.reject((await response.json()).error);
     }
   };
 }

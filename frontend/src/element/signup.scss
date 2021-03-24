@@ -67,10 +67,6 @@ label,
 .hint {
   font-size: 0.8em;
   line-height: 1.4em;
-<<<<<<< HEAD
-=======
-  flex: 1;
->>>>>>> b68038d1c7e21e78f98d69c4f5df717b9a4bde18
   margin-bottom: 4px;
   padding: 0 10px;
 }
@@ -120,19 +116,11 @@ label,
 }
 
 .compensation-calculator {
-<<<<<<< HEAD
   font-size: 1.4em;
   display: flex;
   flex-direction: row;
   overflow: hidden;
   align-items: center;
-=======
-  font-size: 1.6em;
-  display: flex;
-  flex-direction: row;
-  overflow: hidden;
-  align-items: baseline;
->>>>>>> b68038d1c7e21e78f98d69c4f5df717b9a4bde18
   padding: 0;
   max-height: 0;
   box-sizing: border-box;
@@ -148,13 +136,10 @@ label,
     padding-top: 16px;
   }
 
-<<<<<<< HEAD
   .times {
     padding-bottom: 1em;
   }
 
-=======
->>>>>>> b68038d1c7e21e78f98d69c4f5df717b9a4bde18
   & > label {
     // No idea why, but this fixes a col width issue.
     width: 0;
@@ -183,21 +168,14 @@ label,
   padding: 0 10px;
   font-size: 1.6em;
   line-height: 48px;
-<<<<<<< HEAD
   flex: 1;
-=======
->>>>>>> b68038d1c7e21e78f98d69c4f5df717b9a4bde18
 }
 
 .card-container,
 input,
 select,
 button {
-<<<<<<< HEAD
   font-size: 1.6em;
-=======
-  font-size: 24px;
->>>>>>> b68038d1c7e21e78f98d69c4f5df717b9a4bde18
   border: solid 1px constants.$gray-80;
   border-radius: 10px;
   padding: 0 8px;
@@ -233,10 +211,7 @@ button {
 
 select {
   appearance: none;
-<<<<<<< HEAD
   -webkit-appearance: none;
-=======
->>>>>>> b68038d1c7e21e78f98d69c4f5df717b9a4bde18
 }
 
 .select {

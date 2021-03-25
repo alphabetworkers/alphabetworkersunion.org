@@ -35,7 +35,7 @@ Alphabet workers built these systems and we know how to make them better—the c
 One thing we will not be, however, is silent. 
 
 
-# Contextual Sources
+## Contextual Sources
 1. [YouTube, the Great Radicalizer](https://www.nytimes.com/2018/03/10/opinion/sunday/youtube-politics-radical.html) from Zeynep Tufekci in the New York Times
 2. [Alternative Influence](https://datasociety.net/library/alternative-influence/) from Rebecca Lewis in Data & Society
 3. [Black creators sue YouTube, alleging racial discrimination](https://www.washingtonpost.com/technology/2020/06/18/black-creators-sue-youtube-alleged-race-discrimination/) from The Washington Post

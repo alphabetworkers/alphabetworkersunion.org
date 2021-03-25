@@ -47,6 +47,6 @@ One thing we will not be, however, is silent.
 9. [The Christchurch Shooter and YouTube’s Radicalization Trap](https://www.wired.com/story/christchurch-shooter-youtube-radicalization-extremism/) from WIRED
 10. [YouTube faces complaints of lax approach on overseas election misinformation](https://www.reuters.com/article/us-youtube-myanmar-misinformation/youtube-faces-complaints-of-lax-approach-on-overseas-election-misinformation-idUSKBN28S0QE) from Reuters
 11. [Auditing radicalization pathways on YouTube](https://dl.acm.org/doi/abs/10.1145/3351095.3372879)
-12. [How QAnon and other dark forces are radicalizing Americans as the COVID-19 pandemic rages and election looms](https://www.usatoday.com/in-depth/tech/2020/08/31/qanon-conspiracy-theories-trump-election-covid-19-pandemic-extremist-groups/5662374002/) From USA Today
+12. [How QAnon and other dark forces are radicalizing Americans as the COVID-19 pandemic rages and election looms](https://www.usatoday.com/in-depth/tech/2020/08/31/qanon-conspiracy-theories-trump-election-covid-19-pandemic-extremist-groups/5662374002/) from USA Today
 13. [FBI memo warns QAnon poses potential terror threat: report](https://thehill.com/policy/national-security/fbi/455770-fbi-memo-warns-qanon-poses-a-potential-terror-threat-report) from The Hill
 14. [Tracking Viral Misinformation](https://www.nytimes.com/live/2020/2020-election-misinformation-distortions#youtube-clamped-down-on-content-but-researchers-say-qanon-still-spread) from The New York Times

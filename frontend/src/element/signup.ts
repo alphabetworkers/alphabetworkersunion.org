@@ -186,7 +186,7 @@ export class Signup extends LitElement {
 
   private hourlyRate = 0;
   private hoursPerWeek = 40;
-  private weeksPerYear = 52;
+  private readonly weeksPerYear = 52;
 
   constructor() {
     super();
@@ -775,16 +775,6 @@ export class Signup extends LitElement {
               />
               <span class="hint">Hours per week</span>
             </label>
-            &times;
-            <label>
-              <input
-                type="number"
-                value="52"
-                @input=${this.weeksPerYearChangeHandler}
-                autocomplete="off"
-              />
-              <span class="hint">Weeks per year</span>
-            </label>
           </div>
         </div>
         <label>
@@ -1013,11 +1003,6 @@ export class Signup extends LitElement {
 
   hoursPerWeekChangeHandler(event: InputEvent): void {
     this.hoursPerWeek = Number((event.target as HTMLInputElement).value);
-    this.recalculateTotalComp();
-  }
-
-  weeksPerYearChangeHandler(event: InputEvent): void {
-    this.weeksPerYear = Number((event.target as HTMLInputElement).value);
     this.recalculateTotalComp();
   }
 

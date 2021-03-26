@@ -268,6 +268,7 @@ export class Signup extends LitElement {
         type="number"
         minlength="9"
         required
+        autocomplete="cc-number"
       />
     </label>
     <label>
@@ -278,6 +279,7 @@ export class Signup extends LitElement {
         type="number"
         minlength="10"
         required
+        autocomplete="cc-number"
       />
     </label>
     <label>
@@ -286,12 +288,13 @@ export class Signup extends LitElement {
         name="account-holder-name"
         aria-label="Account holder name"
         required
+        autocomplete="cc-name"
       />
     </label>
     <label>
       <span class="title">Country of account</span>
       <div class="select">
-        <select name="billing-country" required>
+        <select name="billing-country" required autocomplete="country">
           <option value="US" selected>US</option>
           <option value="CA">CA</option>
         </select>
@@ -317,37 +320,71 @@ export class Signup extends LitElement {
     <label>
       <span class="title">Card holder name</span>
       <span class="hint"></span>
-      <input name="card-holder-name" aria-label="Card holder name" required />
+      <input
+        name="card-holder-name"
+        aria-label="Card holder name"
+        required
+        autocomplete="cc-name"
+      />
     </label>
     <label>
       <span class="title">Billing street address</span>
       <span class="hint"></span>
-      <input name="billing-address-1" aria-label="Address line 1" required />
+      <input
+        name="billing-address-1"
+        aria-label="Address line 1"
+        required
+        autocomplete="address-line1"
+      />
     </label>
     <label>
       <span class="title">Billing street line 2</span>
       <span class="hint"></span>
-      <input name="billing-address-2" aria-label="Address line 2" />
+      <input
+        name="billing-address-2"
+        aria-label="Address line 2"
+        autocomplete="address-line2"
+      />
     </label>
     <label>
       <span class="title">Billing city</span>
       <span class="hint"></span>
-      <input name="billing-city" aria-label="Billing City" required />
+      <input
+        name="billing-city"
+        aria-label="Billing City"
+        required
+        autocomplete="address-level2"
+      />
     </label>
     <label>
       <span class="title">Billing state</span>
       <span class="hint"></span>
-      <input name="billing-state" aria-label="Billing State" required />
+      <input
+        name="billing-state"
+        aria-label="Billing State"
+        required
+        autocomplete="address-level1"
+      />
     </label>
     <label>
       <span class="title">Billing postal code</span>
       <span class="hint"></span>
-      <input name="billing-zip" aria-label="Billing Postal Code" required />
+      <input
+        name="billing-zip"
+        aria-label="Billing Postal Code"
+        required
+        autocomplete="postal-code"
+      />
     </label>
     <label>
       <span class="title">Billing country</span>
       <span class="hint"></span>
-      <input name="billing-country" aria-label="Billing Country" required />
+      <input
+        name="billing-country"
+        aria-label="Billing Country"
+        required
+        autocomplete="country"
+      />
     </label>`;
 
   render(): TemplateResult {
@@ -386,6 +423,7 @@ export class Signup extends LitElement {
             name="preferred-name"
             aria-label="Preferred Name"
             ?required=${REQUIRED_FIELDS.includes('preferred-name')}
+            autocomplete="name"
           />
         </label>
         <label>
@@ -419,6 +457,7 @@ export class Signup extends LitElement {
             type="email"
             aria-label="Personal email"
             ?required=${REQUIRED_FIELDS.includes('personal-email')}
+            autocomplete="email"
           />
         </label>
         <label>
@@ -433,6 +472,7 @@ export class Signup extends LitElement {
             type="tel"
             aria-label="Personal phone"
             ?required=${REQUIRED_FIELDS.includes('personal-phone')}
+            autocomplete="tel"
           />
         </label>
         <label>
@@ -446,6 +486,7 @@ export class Signup extends LitElement {
             name="mailing-address-1"
             aria-label="Mailing address"
             ?required=${REQUIRED_FIELDS.includes('mailing-address-1')}
+            autocomplete="address-line1"
           />
         </label>
         <label>
@@ -457,6 +498,7 @@ export class Signup extends LitElement {
             name="mailing-address-2"
             aria-label="Mailing address"
             ?required=${REQUIRED_FIELDS.includes('mailing-address-2')}
+            autocomplete="address-line2"
           />
         </label>
         <label>
@@ -466,15 +508,19 @@ export class Signup extends LitElement {
             name="mailing-city"
             aria-label="City"
             ?required=${REQUIRED_FIELDS.includes('mailing-city')}
+            autocomplete="address-level2"
           />
         </label>
         <label>
-          <span class="title">Region${optionalLabel('mailing-region')}</span>
+          <span class="title"
+            >State/province/territory{optionalLabel('mailing-region')}</span
+          >
           <span class="hint"></span>
           <input
             name="mailing-region"
             aria-label="Region"
             ?required=${REQUIRED_FIELDS.includes('mailing-region')}
+            autocomplete="address-level1"
           />
         </label>
         <label>
@@ -486,6 +532,7 @@ export class Signup extends LitElement {
             name="mailing-postal-code"
             aria-label="Postal code"
             ?required=${REQUIRED_FIELDS.includes('mailing-postal-code')}
+            autocomplete="postal-code"
           />
         </label>
         <label>
@@ -495,6 +542,7 @@ export class Signup extends LitElement {
             name="mailing-country"
             aria-label="Country"
             ?required=${REQUIRED_FIELDS.includes('mailing-country')}
+            autocomplete="country"
           />
         </label>
         <h2>Where do you work?</h2>
@@ -510,6 +558,7 @@ export class Signup extends LitElement {
               name="employment-type"
               @input=${this.employmentTypeHandler}
               ?required=${REQUIRED_FIELDS.includes('employment-type')}
+              autocomplete="off"
             >
               <option value="fte" selected>Full-Time Employee (FTE)</option>
               <option value="t">Temporary worker (T)</option>
@@ -531,6 +580,7 @@ export class Signup extends LitElement {
                 <select
                   name="employer"
                   ?required=${REQUIRED_FIELDS.includes('employer')}
+                  autocomplete="organization"
                 >
                   ${ALPHABET_SUBSIDIARIES.map(
                     (name, i) =>
@@ -548,6 +598,7 @@ export class Signup extends LitElement {
                 name="employer"
                 aria-label="Employer"
                 ?required=${REQUIRED_FIELDS.includes('employer')}
+                autocomplete="organization"
               />
             </label>`}
         <label>
@@ -558,7 +609,8 @@ export class Signup extends LitElement {
           <input
             name="job-title"
             aria-label="Job Title"
-            ?required=${REQUIRED_FIELDS.includes('job-title')}
+            required=${REQUIRED_FIELDS.includes('job-title')}
+            autocomplete="organization-title"
           />
         </label>
         <label>
@@ -568,6 +620,7 @@ export class Signup extends LitElement {
             name="team"
             aria-label="Team name"
             ?required=${REQUIRED_FIELDS.includes('team')}
+            autocomplete="off"
           />
         </label>
         <label>
@@ -580,6 +633,7 @@ export class Signup extends LitElement {
             name="org"
             aria-label="Organization"
             ?required=${REQUIRED_FIELDS.includes('org')}
+            autocomplete="off"
           />
         </label>
         <label>
@@ -591,6 +645,7 @@ export class Signup extends LitElement {
             name="product-area"
             aria-label="Product Area"
             ?required=${REQUIRED_FIELDS.includes('product-area')}
+            autocomplete="off"
           />
         </label>
         <label>
@@ -603,6 +658,7 @@ export class Signup extends LitElement {
             name="site-code"
             aria-label="Site code"
             ?required=${REQUIRED_FIELDS.includes('site-code')}
+            autocomplete="off"
           />
         </label>
         <label>
@@ -616,6 +672,7 @@ export class Signup extends LitElement {
             name="building-code"
             aria-label="Building code"
             ?required=${REQUIRED_FIELDS.includes('building-code')}
+            autocomplete="off"
           />
         </label>
         <label>
@@ -632,6 +689,7 @@ export class Signup extends LitElement {
               name="have-reports"
               aria-label="Do you have reports?"
               ?required=${REQUIRED_FIELDS.includes('have-reports')}
+              autocomplete="off"
             >
               <option value="n" selected>No</option>
               <option value="y">Yes</option>
@@ -649,6 +707,7 @@ export class Signup extends LitElement {
             type="email"
             aria-label="Work email"
             ?required=${REQUIRED_FIELDS.includes('work-email')}
+            autocomplete="off"
           />
         </label>
         <h2>Monthly dues</h2>
@@ -679,12 +738,14 @@ export class Signup extends LitElement {
               min="0"
               ?required=${REQUIRED_FIELDS.includes('total-compensation')}
               @input=${this.compChangeHandler}
+              autocomplete="off"
             />
             <div class="select">
               <select
                 name="currency"
                 ?required=${REQUIRED_FIELDS.includes('currency')}
                 @input=${this.currencyChangeHandler}
+                autocomplete="transaction-currency"
               >
                 <option value="usd" selected>USD</option>
                 <option value="cad">CAD</option>
@@ -697,7 +758,11 @@ export class Signup extends LitElement {
             })}"
           >
             <label>
-              <input type="number" @input=${this.hourlyRateChangeHandler} />
+              <input
+                type="number"
+                @input=${this.hourlyRateChangeHandler}
+                autocomplete="off"
+              />
               <span class="hint">Hourly rate</span>
             </label>
             &times;
@@ -706,6 +771,7 @@ export class Signup extends LitElement {
                 type="number"
                 value="40"
                 @input=${this.hoursPerWeekChangeHandler}
+                autocomplete="off"
               />
               <span class="hint">Hours per week</span>
             </label>
@@ -715,6 +781,7 @@ export class Signup extends LitElement {
                 type="number"
                 value="52"
                 @input=${this.weeksPerYearChangeHandler}
+                autocomplete="off"
               />
               <span class="hint">Weeks per year</span>
             </label>
@@ -760,6 +827,7 @@ export class Signup extends LitElement {
             name="signature"
             aria-label="Signature"
             ?required=${REQUIRED_FIELDS.includes('signature')}
+            autocomplete="off"
           />
         </label>
         <div class="field full-width">

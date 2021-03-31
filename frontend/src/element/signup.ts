@@ -513,7 +513,7 @@ export class Signup extends LitElement {
         </label>
         <label>
           <span class="title"
-            >State/province/territory{optionalLabel('mailing-region')}</span
+            >State/province/territory${optionalLabel('mailing-region')}</span
           >
           <span class="hint"></span>
           <input
@@ -803,29 +803,26 @@ export class Signup extends LitElement {
           </button>
         </div>
         ${this.paymentMethod === 'bank' ? this.bankTemplate : this.cardTemplate}
+        <h2>Accept Agreement</h2>
         <label class="full-width">
-          <span class="title"
-            >Accept Agreement${optionalLabel('signature')}</span
-          >
-          <span class="hint"
-            >Type in your name below to agree to the
-            <a href="">membership terms</a> of the Communications Workers of
-            America, under whom AWU is formed. You also authorize the regular
-            charge of your dues and one-time $5 initiation fee</span
-          >
+          <span class="title">
+            Type your name below to accept the membership terms of the
+            Communications Workers of America, under which AWU is formed. You
+            also authorize a one-time $5 initiation fee, and the regular charge
+            of your calculated dues.
+            <em
+              >Nothing will be charged until the Membership Committee reviews
+              and accepts your membership application.</em
+            >
+          </span>
           <input
             name="signature"
             aria-label="Signature"
+            placeholder="Signature"
             ?required=${REQUIRED_FIELDS.includes('signature')}
             autocomplete="off"
           />
         </label>
-        <div class="field full-width">
-          <span class="hint"
-            >A one-time $5 signup fee will be charged after your application is
-            approved, and dues will be charged on the 5th of each month.</span
-          >
-        </div>
         <div class="actions">
           <span class="spacer"></span>
           <button type="submit" class="primary submit">Submit</button>

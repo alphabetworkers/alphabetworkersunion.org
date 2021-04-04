@@ -1060,6 +1060,7 @@ class SpliceableUrlSearchParams {
 declare global {
   interface Window {
     SIGNUP_API: string;
+    PLAID_TOKEN_API: string;
     STRIPE_KEY: string;
     fillTestValues: () => void;
   }

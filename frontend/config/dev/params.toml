@@ -1,2 +1,3 @@
 stripe_key = 'pk_test_51I9k6TE1rwuQcCei5yDImwRkr5S6qIzakaDope6nrnEQcTn9CjqmosnWnlwDbRUYMudlYNS0OVsNqpgjbs3MwQbp00FO2VIwzx'
 signup_api = 'http://localhost:8787/'
+plaid_token_api = 'http://localhost:8788/'

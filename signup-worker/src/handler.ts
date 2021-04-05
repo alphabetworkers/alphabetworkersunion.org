@@ -1,4 +1,5 @@
 import {stripeClient} from './stripe';
+import {plaidClient} from './plaid';
 import Stripe from 'stripe';
 
 import {REQUIRED_FIELDS, METADATA} from './fields';
@@ -33,8 +34,15 @@ export async function handleRequest(request: Request): Promise<Response> {
     }
     let customer: Stripe.Customer;
     try {
+      let source: string;
+      if (fields.has('plaid-public-token')) {
+        const {access_token} = await plaidClient.itemPublicTokenExchange(fields.get('plaid-public-token')! as string);
+        source = (await plaidClient.processorStripeBankAccountTokenCreate(access_token, fields.get('plaid-account-id')! as string)).stripe_bank_account_token;
+      } else {
+        source = fields.get('stripe-payment-token') as string;
+      }
       customer = await stripeClient.createCustomer({
-        source: fields.get('stripe-payment-token') as string,
+        source,
         email: fields.get('personal-email') as string,
         name: fields.get('preferred-name') as string,
         metadata: {

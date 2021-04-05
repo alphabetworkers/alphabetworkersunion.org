@@ -18,6 +18,42 @@ import styles from './signup.scss';
 
 import { REQUIRED_FIELDS } from '../../../signup-worker/src/fields';
 
+const PLAID_LIB_URL = 'https://cdn.plaid.com/link/v2/stable/link-initialize.js';
+
+interface PlaidMetadata {
+  institution: {
+    name: string;
+  };
+  accounts: {
+    name: string;
+    id: string;
+  }[];
+}
+
+interface PlaidToken {
+  public_token: string;
+  account_name: string;
+  account_id: string;
+}
+
+let loadingPlaid: Promise<Window['Plaid']> | undefined;
+function loadPlaid(): Promise<Window['Plaid']> {
+  if (!loadingPlaid) {
+    loadingPlaid = new Promise((resolve, reject) => {
+      const plaidScript = document.createElement('script');
+      plaidScript.addEventListener('load', () => {
+        resolve(window.Plaid);
+      });
+      plaidScript.addEventListener('error', (error) => {
+        reject(error);
+      });
+      plaidScript.src = PLAID_LIB_URL;
+      document.body.append(plaidScript);
+    });
+  }
+  return loadingPlaid;
+}
+
 const ALPHABET_SUBSIDIARIES = [
   'Google',
   'Alphabet',
@@ -184,12 +220,18 @@ export class Signup extends LitElement {
   @internalProperty()
   private isCompCalculatorOpen = false;
 
+  @internalProperty()
+  private plaidToken?: PlaidToken;
+
   private hourlyRate = 0;
   private hoursPerWeek = 40;
   private readonly weeksPerYear = 52;
 
+  private readonly plaid: Promise<Window['Plaid']> = loadPlaid();
+
   constructor() {
     super();
+
     // TODO debugging tool, remove later
     window.fillTestValues = () => {
       this.employmentType.value = 'fte';
@@ -260,46 +302,85 @@ export class Signup extends LitElement {
 
   // TODO prevent scrolling from incrementing number fields
   // TODO server-side validation, and accept error responses
-  private readonly bankTemplate: TemplateResult = html` <label>
-      <span class="title">Routing number</span>
-      <input
-        name="routing-number"
-        aria-label="Routing number"
-        type="number"
-        minlength="9"
-        required
-        autocomplete="cc-number"
-      />
-    </label>
-    <label>
-      <span class="title">Account number</span>
-      <input
-        name="account-number"
-        aria-label="Account number"
-        type="number"
-        minlength="10"
-        required
-        autocomplete="cc-number"
-      />
-    </label>
-    <label>
-      <span class="title">Account holder name</span>
-      <input
-        name="account-holder-name"
-        aria-label="Account holder name"
-        required
-        autocomplete="cc-name"
-      />
-    </label>
-    <label>
-      <span class="title">Country of account</span>
-      <div class="select">
-        <select name="billing-country" required autocomplete="country">
-          <option value="US" selected>US</option>
-          <option value="CA">CA</option>
-        </select>
-      </div>
-    </label>`;
+  bankTemplate(): TemplateResult {
+    return this.plaidToken
+      ? html`
+          <div class="field full-width">
+            <span class="title">Verified Account</span>
+            <span class="hint"></span>
+            <p>
+              ${this.plaidToken!.account_name}
+              <button @click=${this.clearPlaid}>Remove</button>
+            </p>
+          </div>
+        `
+      : html`
+          <div class="field full-width">
+            <span class="title">Connect bank</span>
+            <span class="hint"
+              >Use Plaid to instantly verify your bank account.</span
+            >
+            <button
+              @click=${this.openPlaid}
+              class="primary"
+              type="button"
+              type="button"
+            >
+              Connect Bank
+            </button>
+          </div>
+          <div class="field full-width">
+            <span class="title or"><span>Or</span></span>
+          </div>
+          <label>
+            <span class="title">Routing number</span>
+            <span class="hint"
+              >If you enter your routing/account numbers here manually, two
+              microdepots will be made into your account. We will need to
+              contact you once those deposits have cleared to verify your bank
+              account.</span
+            >
+            <input
+              name="routing-number"
+              aria-label="Routing number"
+              type="number"
+              minlength="9"
+              required
+              autocomplete="cc-number"
+            />
+          </label>
+          <label>
+            <span class="title">Account number</span>
+            <span class="hint"></span>
+            <input
+              name="account-number"
+              aria-label="Account number"
+              type="number"
+              minlength="10"
+              required
+              autocomplete="cc-number"
+            />
+          </label>
+          <label>
+            <span class="title">Account holder name</span>
+            <input
+              name="account-holder-name"
+              aria-label="Account holder name"
+              required
+              autocomplete="cc-name"
+            />
+          </label>
+          <label>
+            <span class="title">Country of account</span>
+            <div class="select">
+              <select name="billing-country" required autocomplete="country">
+                <option value="US" selected>US</option>
+                <option value="CA">CA</option>
+              </select>
+            </div>
+          </label>
+        `;
+  }
 
   private readonly cardTemplate: TemplateResult = html` <div
       class="field full-width"
@@ -802,7 +883,9 @@ export class Signup extends LitElement {
             Card
           </button>
         </div>
-        ${this.paymentMethod === 'bank' ? this.bankTemplate : this.cardTemplate}
+        ${this.paymentMethod === 'bank'
+          ? this.bankTemplate()
+          : this.cardTemplate}
         <h2>Accept Agreement</h2>
         <label class="full-width">
           <span class="title">
@@ -838,16 +921,24 @@ export class Signup extends LitElement {
   async submit(event: Event): Promise<void> {
     event.preventDefault();
     this.enableInvalidStyles();
-    // TODO add CAPTCHA
+    // TODO add CAPTCHA?
 
     this.isLoading = true;
     const fields = new SpliceableUrlSearchParams(new FormData(this.form));
     try {
-      const [token, body] = await (this.paymentMethod === 'bank'
-        ? this.bankAccountToken(fields)
-        : this.cardToken(fields));
+      let body: FormData;
+      if (this.plaidToken) {
+        body = fields.getRemainder();
+        body.set('plaid-public-token', this.plaidToken.public_token);
+        body.set('plaid-account-id', this.plaidToken.account_id);
+      } else {
+        const [token, remainingFields] = await (this.paymentMethod === 'bank'
+          ? this.bankAccountToken(fields)
+          : this.cardToken(fields));
+        body = remainingFields;
+        body.set('stripe-payment-token', token.id);
+      }
 
-      body.set('stripe-payment-token', token.id);
       const result = await fetch(window.SIGNUP_API, { method: 'POST', body });
 
       if (result.ok) {
@@ -1023,6 +1114,33 @@ export class Signup extends LitElement {
       behavior: 'smooth',
       block: 'center',
     });
+  }
+
+  async openPlaid(): Promise<void> {
+    // TODO re-use client token when possible.
+    const { link_token } = await (
+      await fetch(window.PLAID_TOKEN_API, { method: 'post' })
+    ).json();
+    const handler = (await this.plaid).create({
+      token: link_token,
+      onSuccess: (public_token: string, metadata: PlaidMetadata) => {
+        this.plaidToken = {
+          public_token,
+          account_name: `${metadata.institution.name} ${metadata.accounts[0].name}`,
+          account_id: metadata.accounts[0].id,
+        };
+      },
+      onExit: () => {
+        // TODO if exit, user probably could not find their financial institution.  Show the account number fields instead.
+        // TODO re-use this iframe when possible, instead of re-creating every time.  Must silently recover if the token expires.
+        handler.destroy();
+      },
+    } as any);
+    handler.open();
+  }
+
+  clearPlaid(): void {
+    this.plaidToken = undefined;
   }
 }
 

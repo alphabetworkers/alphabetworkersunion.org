@@ -5,6 +5,10 @@ workers_dev = true
 route = ""
 zone_id = "ebdbcc9f178b7b36f9768e6ec55972d6"
 webpack_config = "webpack.config.js"
+vars = { PLAID_ORIGIN = "https://sandbox.plaid.com" }
 
 [dev]
 port = 8787
+
+[env.production]
+vars = { PLAID_ORIGIN = "https://production.plaid.com" }

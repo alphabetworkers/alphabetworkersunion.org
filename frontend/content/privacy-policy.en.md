@@ -17,7 +17,7 @@ The membership form is currently operated on our behalf by [Communication Worker
 
 We may collect personal information about you that you submit via additional forms and email contacts to various @alphabetworkersunion.org aliases. Any personal information that you provide to us is voluntary. We use this information to help us fulfill your request. We make every effort to ensure the secure collection and transmission of your sensitive information using industry-standard data collection and encryption methodologies, such as SSL (Secure Sockets Layer). We do not share information collected in this manner with any third parties.
 
-The AWU website will not post your personal contact information, including e-mail address, street address and phone numbers, without your consent. 
+The AWU website will not post your personal contact information, including e-mail address, street address and phone numbers, without your consent.
 
 If you want to update or remove your information from our database, please contact us.
 

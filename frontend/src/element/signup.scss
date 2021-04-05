@@ -54,6 +54,13 @@ label,
   flex-direction: column;
   justify-content: flex-end;
   align-items: stretch;
+
+  p {
+    padding: 0 10px;
+    margin: 0;
+    font-size: 1.6em;
+    font-weight: bold;
+  }
 }
 
 .title {
@@ -62,6 +69,18 @@ label,
   padding: 0 10px;
   font-weight: 500;
   color: constants.$gray-70;
+
+  &.or {
+    text-align: center;
+    border-bottom: solid 1px;
+    height: 0.5em;
+    margin-bottom: 0.5em;
+
+    span {
+      background: white;
+      padding: 0 20px;
+    }
+  }
 }
 
 .hint {

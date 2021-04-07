@@ -125,8 +125,7 @@ support the Walkout for Real Change, they also
 [retaliated against the organizers](https://www.wired.com/story/google-walkout-organizers-say-theyre-facing-retaliation/)
 and ignored four out of the five [demands](https://www.thecut.com/2018/11/google-walkout-organizers-explain-demands.html).
 [More workers were fired and disciplined](https://www.cnbc.com/2019/11/27/googles-thanksgiving-four-present-a-challenge-to-leadership.html)
-for organizing. When their coworkers protested those firings,
-[they faced retaliation as well.](https://www.theguardian.com/us-news/2019/dec/17/fifth-google-worker-activist-fired-in-a-month-says-company-is-targeting-the-vulnerable)
+for organizing.
 The [Communication Workers of America (CWA)](https://cwa-union.org/) agreed to
 help defend these workers, and after a year of legal battles the National Labor
 Relations Board

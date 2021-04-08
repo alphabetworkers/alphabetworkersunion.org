@@ -18,6 +18,42 @@ import styles from './signup.scss';
 
 import { REQUIRED_FIELDS } from '../../../signup-worker/src/fields';
 
+const PLAID_LIB_URL = 'https://cdn.plaid.com/link/v2/stable/link-initialize.js';
+
+interface PlaidMetadata {
+  institution: {
+    name: string;
+  };
+  accounts: {
+    name: string;
+    id: string;
+  }[];
+}
+
+interface PlaidToken {
+  public_token: string;
+  account_name: string;
+  account_id: string;
+}
+
+let loadingPlaid: Promise<Window['Plaid']> | undefined;
+function loadPlaid(): Promise<Window['Plaid']> {
+  if (!loadingPlaid) {
+    loadingPlaid = new Promise((resolve, reject) => {
+      const plaidScript = document.createElement('script');
+      plaidScript.addEventListener('load', () => {
+        resolve(window.Plaid);
+      });
+      plaidScript.addEventListener('error', (error) => {
+        reject(error);
+      });
+      plaidScript.src = PLAID_LIB_URL;
+      document.body.append(plaidScript);
+    });
+  }
+  return loadingPlaid;
+}
+
 const ALPHABET_SUBSIDIARIES = [
   'Google',
   'Alphabet',
@@ -184,12 +220,18 @@ export class Signup extends LitElement {
   @internalProperty()
   private isCompCalculatorOpen = false;
 
+  @internalProperty()
+  private plaidToken?: PlaidToken;
+
   private hourlyRate = 0;
   private hoursPerWeek = 40;
-  private weeksPerYear = 52;
+  private readonly weeksPerYear = 52;
+
+  private readonly plaid: Promise<Window['Plaid']> = loadPlaid();
 
   constructor() {
     super();
+
     // TODO debugging tool, remove later
     window.fillTestValues = () => {
       this.employmentType.value = 'fte';
@@ -260,43 +302,85 @@ export class Signup extends LitElement {
 
   // TODO prevent scrolling from incrementing number fields
   // TODO server-side validation, and accept error responses
-  private readonly bankTemplate: TemplateResult = html` <label>
-      <span class="title">Routing number</span>
-      <input
-        name="routing-number"
-        aria-label="Routing number"
-        type="number"
-        minlength="9"
-        required
-      />
-    </label>
-    <label>
-      <span class="title">Account number</span>
-      <input
-        name="account-number"
-        aria-label="Account number"
-        type="number"
-        minlength="10"
-        required
-      />
-    </label>
-    <label>
-      <span class="title">Account holder name</span>
-      <input
-        name="account-holder-name"
-        aria-label="Account holder name"
-        required
-      />
-    </label>
-    <label>
-      <span class="title">Country of account</span>
-      <div class="select">
-        <select name="billing-country" required>
-          <option value="US" selected>US</option>
-          <option value="CA">CA</option>
-        </select>
-      </div>
-    </label>`;
+  bankTemplate(): TemplateResult {
+    return this.plaidToken
+      ? html`
+          <div class="field full-width">
+            <span class="title">Verified Account</span>
+            <span class="hint"></span>
+            <p>
+              ${this.plaidToken!.account_name}
+              <button @click=${this.clearPlaid}>Remove</button>
+            </p>
+          </div>
+        `
+      : html`
+          <div class="field full-width">
+            <span class="title">Connect bank</span>
+            <span class="hint"
+              >Use Plaid to instantly verify your bank account.</span
+            >
+            <button
+              @click=${this.openPlaid}
+              class="primary"
+              type="button"
+              type="button"
+            >
+              Connect Bank
+            </button>
+          </div>
+          <div class="field full-width">
+            <span class="title or"><span>Or</span></span>
+          </div>
+          <label>
+            <span class="title">Routing number</span>
+            <span class="hint"
+              >If you enter your routing/account numbers here manually, two
+              microdepots will be made into your account. We will need to
+              contact you once those deposits have cleared to verify your bank
+              account.</span
+            >
+            <input
+              name="routing-number"
+              aria-label="Routing number"
+              type="number"
+              minlength="9"
+              required
+              autocomplete="cc-number"
+            />
+          </label>
+          <label>
+            <span class="title">Account number</span>
+            <span class="hint"></span>
+            <input
+              name="account-number"
+              aria-label="Account number"
+              type="number"
+              minlength="10"
+              required
+              autocomplete="cc-number"
+            />
+          </label>
+          <label>
+            <span class="title">Account holder name</span>
+            <input
+              name="account-holder-name"
+              aria-label="Account holder name"
+              required
+              autocomplete="cc-name"
+            />
+          </label>
+          <label>
+            <span class="title">Country of account</span>
+            <div class="select">
+              <select name="billing-country" required autocomplete="country">
+                <option value="US" selected>US</option>
+                <option value="CA">CA</option>
+              </select>
+            </div>
+          </label>
+        `;
+  }
 
   private readonly cardTemplate: TemplateResult = html` <div
       class="field full-width"
@@ -317,37 +401,71 @@ export class Signup extends LitElement {
     <label>
       <span class="title">Card holder name</span>
       <span class="hint"></span>
-      <input name="card-holder-name" aria-label="Card holder name" required />
+      <input
+        name="card-holder-name"
+        aria-label="Card holder name"
+        required
+        autocomplete="cc-name"
+      />
     </label>
     <label>
       <span class="title">Billing street address</span>
       <span class="hint"></span>
-      <input name="billing-address-1" aria-label="Address line 1" required />
+      <input
+        name="billing-address-1"
+        aria-label="Address line 1"
+        required
+        autocomplete="address-line1"
+      />
     </label>
     <label>
       <span class="title">Billing street line 2</span>
       <span class="hint"></span>
-      <input name="billing-address-2" aria-label="Address line 2" />
+      <input
+        name="billing-address-2"
+        aria-label="Address line 2"
+        autocomplete="address-line2"
+      />
     </label>
     <label>
       <span class="title">Billing city</span>
       <span class="hint"></span>
-      <input name="billing-city" aria-label="Billing City" required />
+      <input
+        name="billing-city"
+        aria-label="Billing City"
+        required
+        autocomplete="address-level2"
+      />
     </label>
     <label>
       <span class="title">Billing state</span>
       <span class="hint"></span>
-      <input name="billing-state" aria-label="Billing State" required />
+      <input
+        name="billing-state"
+        aria-label="Billing State"
+        required
+        autocomplete="address-level1"
+      />
     </label>
     <label>
       <span class="title">Billing postal code</span>
       <span class="hint"></span>
-      <input name="billing-zip" aria-label="Billing Postal Code" required />
+      <input
+        name="billing-zip"
+        aria-label="Billing Postal Code"
+        required
+        autocomplete="postal-code"
+      />
     </label>
     <label>
       <span class="title">Billing country</span>
       <span class="hint"></span>
-      <input name="billing-country" aria-label="Billing Country" required />
+      <input
+        name="billing-country"
+        aria-label="Billing Country"
+        required
+        autocomplete="country"
+      />
     </label>`;
 
   render(): TemplateResult {
@@ -369,6 +487,13 @@ export class Signup extends LitElement {
           complete: this.isComplete,
         })}"
       >
+        <p class="full-width">
+          If you have any trouble completing this form, contact the Membership
+          Committee at
+          <a href="mailto:membership@alphabetworkersunion.org"
+            >membership@alphabetworkersunion.org</a
+          >.
+        </p>
         <h2>Let's get to know you</h2>
         <label class="full-width">
           <span class="title"
@@ -379,6 +504,7 @@ export class Signup extends LitElement {
             name="preferred-name"
             aria-label="Preferred Name"
             ?required=${REQUIRED_FIELDS.includes('preferred-name')}
+            autocomplete="name"
           />
         </label>
         <label>
@@ -412,6 +538,7 @@ export class Signup extends LitElement {
             type="email"
             aria-label="Personal email"
             ?required=${REQUIRED_FIELDS.includes('personal-email')}
+            autocomplete="email"
           />
         </label>
         <label>
@@ -426,6 +553,7 @@ export class Signup extends LitElement {
             type="tel"
             aria-label="Personal phone"
             ?required=${REQUIRED_FIELDS.includes('personal-phone')}
+            autocomplete="tel"
           />
         </label>
         <label>
@@ -439,6 +567,7 @@ export class Signup extends LitElement {
             name="mailing-address-1"
             aria-label="Mailing address"
             ?required=${REQUIRED_FIELDS.includes('mailing-address-1')}
+            autocomplete="address-line1"
           />
         </label>
         <label>
@@ -450,6 +579,7 @@ export class Signup extends LitElement {
             name="mailing-address-2"
             aria-label="Mailing address"
             ?required=${REQUIRED_FIELDS.includes('mailing-address-2')}
+            autocomplete="address-line2"
           />
         </label>
         <label>
@@ -459,15 +589,19 @@ export class Signup extends LitElement {
             name="mailing-city"
             aria-label="City"
             ?required=${REQUIRED_FIELDS.includes('mailing-city')}
+            autocomplete="address-level2"
           />
         </label>
         <label>
-          <span class="title">Region${optionalLabel('mailing-region')}</span>
+          <span class="title"
+            >State/province/territory${optionalLabel('mailing-region')}</span
+          >
           <span class="hint"></span>
           <input
             name="mailing-region"
             aria-label="Region"
             ?required=${REQUIRED_FIELDS.includes('mailing-region')}
+            autocomplete="address-level1"
           />
         </label>
         <label>
@@ -479,6 +613,7 @@ export class Signup extends LitElement {
             name="mailing-postal-code"
             aria-label="Postal code"
             ?required=${REQUIRED_FIELDS.includes('mailing-postal-code')}
+            autocomplete="postal-code"
           />
         </label>
         <label>
@@ -488,6 +623,7 @@ export class Signup extends LitElement {
             name="mailing-country"
             aria-label="Country"
             ?required=${REQUIRED_FIELDS.includes('mailing-country')}
+            autocomplete="country"
           />
         </label>
         <h2>Where do you work?</h2>
@@ -503,6 +639,7 @@ export class Signup extends LitElement {
               name="employment-type"
               @input=${this.employmentTypeHandler}
               ?required=${REQUIRED_FIELDS.includes('employment-type')}
+              autocomplete="off"
             >
               <option value="fte" selected>Full-Time Employee (FTE)</option>
               <option value="t">Temporary worker (T)</option>
@@ -524,6 +661,7 @@ export class Signup extends LitElement {
                 <select
                   name="employer"
                   ?required=${REQUIRED_FIELDS.includes('employer')}
+                  autocomplete="organization"
                 >
                   ${ALPHABET_SUBSIDIARIES.map(
                     (name, i) =>
@@ -541,6 +679,7 @@ export class Signup extends LitElement {
                 name="employer"
                 aria-label="Employer"
                 ?required=${REQUIRED_FIELDS.includes('employer')}
+                autocomplete="organization"
               />
             </label>`}
         <label>
@@ -551,7 +690,8 @@ export class Signup extends LitElement {
           <input
             name="job-title"
             aria-label="Job Title"
-            ?required=${REQUIRED_FIELDS.includes('job-title')}
+            required=${REQUIRED_FIELDS.includes('job-title')}
+            autocomplete="organization-title"
           />
         </label>
         <label>
@@ -561,6 +701,7 @@ export class Signup extends LitElement {
             name="team"
             aria-label="Team name"
             ?required=${REQUIRED_FIELDS.includes('team')}
+            autocomplete="off"
           />
         </label>
         <label>
@@ -573,6 +714,7 @@ export class Signup extends LitElement {
             name="org"
             aria-label="Organization"
             ?required=${REQUIRED_FIELDS.includes('org')}
+            autocomplete="off"
           />
         </label>
         <label>
@@ -584,6 +726,7 @@ export class Signup extends LitElement {
             name="product-area"
             aria-label="Product Area"
             ?required=${REQUIRED_FIELDS.includes('product-area')}
+            autocomplete="off"
           />
         </label>
         <label>
@@ -596,6 +739,7 @@ export class Signup extends LitElement {
             name="site-code"
             aria-label="Site code"
             ?required=${REQUIRED_FIELDS.includes('site-code')}
+            autocomplete="off"
           />
         </label>
         <label>
@@ -609,6 +753,7 @@ export class Signup extends LitElement {
             name="building-code"
             aria-label="Building code"
             ?required=${REQUIRED_FIELDS.includes('building-code')}
+            autocomplete="off"
           />
         </label>
         <label>
@@ -625,6 +770,7 @@ export class Signup extends LitElement {
               name="have-reports"
               aria-label="Do you have reports?"
               ?required=${REQUIRED_FIELDS.includes('have-reports')}
+              autocomplete="off"
             >
               <option value="n" selected>No</option>
               <option value="y">Yes</option>
@@ -642,6 +788,7 @@ export class Signup extends LitElement {
             type="email"
             aria-label="Work email"
             ?required=${REQUIRED_FIELDS.includes('work-email')}
+            autocomplete="off"
           />
         </label>
         <h2>Monthly dues</h2>
@@ -650,8 +797,9 @@ export class Signup extends LitElement {
             >Total Compensation (TC)${optionalLabel('total-compensation')}</span
           >
           <span class="hint"
-            >Annual. Used to calculate your union dues. We expect members to be
-            honest, but this is the honor system: we won't check.</span
+            >Used to calculate your union dues. Select the calculator icon if
+            you don't have an annual salary. We expect members to be honest, but
+            this is the honor system: we won't check.</span
           >
           <div class="dollar-input">
             <button
@@ -671,12 +819,14 @@ export class Signup extends LitElement {
               min="0"
               ?required=${REQUIRED_FIELDS.includes('total-compensation')}
               @input=${this.compChangeHandler}
+              autocomplete="off"
             />
             <div class="select">
               <select
                 name="currency"
                 ?required=${REQUIRED_FIELDS.includes('currency')}
                 @input=${this.currencyChangeHandler}
+                autocomplete="transaction-currency"
               >
                 <option value="usd" selected>USD</option>
                 <option value="cad">CAD</option>
@@ -689,7 +839,11 @@ export class Signup extends LitElement {
             })}"
           >
             <label>
-              <input type="number" @input=${this.hourlyRateChangeHandler} />
+              <input
+                type="number"
+                @input=${this.hourlyRateChangeHandler}
+                autocomplete="off"
+              />
               <span class="hint">Hourly rate</span>
             </label>
             &times;
@@ -698,17 +852,9 @@ export class Signup extends LitElement {
                 type="number"
                 value="40"
                 @input=${this.hoursPerWeekChangeHandler}
+                autocomplete="off"
               />
               <span class="hint">Hours per week</span>
-            </label>
-            &times;
-            <label>
-              <input
-                type="number"
-                value="52"
-                @input=${this.weeksPerYearChangeHandler}
-              />
-              <span class="hint">Weeks per year</span>
             </label>
           </div>
         </div>
@@ -737,29 +883,29 @@ export class Signup extends LitElement {
             Card
           </button>
         </div>
-        ${this.paymentMethod === 'bank' ? this.bankTemplate : this.cardTemplate}
+        ${this.paymentMethod === 'bank'
+          ? this.bankTemplate()
+          : this.cardTemplate}
+        <h2>Accept Agreement</h2>
         <label class="full-width">
-          <span class="title"
-            >Accept Agreement${optionalLabel('signature')}</span
-          >
-          <span class="hint"
-            >Type in your name below to agree to the
-            <a href="">membership terms</a> of the Communications Workers of
-            America, under whom AWU is formed. You also authorize the regular
-            charge of your dues and one-time $5 initiation fee</span
-          >
+          <span class="title">
+            Type your name below to accept the membership terms of the
+            Communications Workers of America, under which AWU is formed. You
+            also authorize a one-time $5 initiation fee, and the regular charge
+            of your calculated dues.
+            <em
+              >Nothing will be charged until the Membership Committee reviews
+              and accepts your membership application.</em
+            >
+          </span>
           <input
             name="signature"
             aria-label="Signature"
+            placeholder="Signature"
             ?required=${REQUIRED_FIELDS.includes('signature')}
+            autocomplete="off"
           />
         </label>
-        <div class="field full-width">
-          <span class="hint"
-            >A one-time $5 signup fee will be charged after your application is
-            approved, and dues will be charged on the 5th of each month.</span
-          >
-        </div>
         <div class="actions">
           <span class="spacer"></span>
           <button type="submit" class="primary submit">Submit</button>
@@ -775,16 +921,24 @@ export class Signup extends LitElement {
   async submit(event: Event): Promise<void> {
     event.preventDefault();
     this.enableInvalidStyles();
-    // TODO add CAPTCHA
+    // TODO add CAPTCHA?
 
     this.isLoading = true;
     const fields = new SpliceableUrlSearchParams(new FormData(this.form));
     try {
-      const [token, body] = await (this.paymentMethod === 'bank'
-        ? this.bankAccountToken(fields)
-        : this.cardToken(fields));
+      let body: FormData;
+      if (this.plaidToken) {
+        body = fields.getRemainder();
+        body.set('plaid-public-token', this.plaidToken.public_token);
+        body.set('plaid-account-id', this.plaidToken.account_id);
+      } else {
+        const [token, remainingFields] = await (this.paymentMethod === 'bank'
+          ? this.bankAccountToken(fields)
+          : this.cardToken(fields));
+        body = remainingFields;
+        body.set('stripe-payment-token', token.id);
+      }
 
-      body.set('stripe-payment-token', token.id);
       const result = await fetch(window.SIGNUP_API, { method: 'POST', body });
 
       if (result.ok) {
@@ -940,11 +1094,6 @@ export class Signup extends LitElement {
     this.recalculateTotalComp();
   }
 
-  weeksPerYearChangeHandler(event: InputEvent): void {
-    this.weeksPerYear = Number((event.target as HTMLInputElement).value);
-    this.recalculateTotalComp();
-  }
-
   formattedDues(): string {
     const comp = Number(this.totalCompensation?.value);
     if (!Number.isNaN(comp)) {
@@ -965,6 +1114,33 @@ export class Signup extends LitElement {
       behavior: 'smooth',
       block: 'center',
     });
+  }
+
+  async openPlaid(): Promise<void> {
+    // TODO re-use client token when possible.
+    const { link_token } = await (
+      await fetch(window.PLAID_TOKEN_API, { method: 'post' })
+    ).json();
+    const handler = (await this.plaid).create({
+      token: link_token,
+      onSuccess: (public_token: string, metadata: PlaidMetadata) => {
+        this.plaidToken = {
+          public_token,
+          account_name: `${metadata.institution.name} ${metadata.accounts[0].name}`,
+          account_id: metadata.accounts[0].id,
+        };
+      },
+      onExit: () => {
+        // TODO if exit, user probably could not find their financial institution.  Show the account number fields instead.
+        // TODO re-use this iframe when possible, instead of re-creating every time.  Must silently recover if the token expires.
+        handler.destroy();
+      },
+    } as any);
+    handler.open();
+  }
+
+  clearPlaid(): void {
+    this.plaidToken = undefined;
   }
 }
 
@@ -1002,6 +1178,7 @@ class SpliceableUrlSearchParams {
 declare global {
   interface Window {
     SIGNUP_API: string;
+    PLAID_TOKEN_API: string;
     STRIPE_KEY: string;
     fillTestValues: () => void;
   }

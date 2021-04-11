@@ -28,11 +28,11 @@ center that states, "You have the right to discuss wage rates, bonuses, and work
 
 Shannon knew her rights. If you're a data center worker and want to [learn more about your rights as a worker](https://knowourrights.org/), join us for an informational event:
 
-[Thursday April 29th, 7:30 EST / 6:30 CST](https://zoom.us/meeting/register/tZcsfu6qpzosGNVS5G3lm9JqsNP_db3Hkm91)
+[Thursday April 29th, 7:30 ET / 6:30 CT](https://zoom.us/meeting/register/tZcsfu6qpzosGNVS5G3lm9JqsNP_db3Hkm91)
 
 or
 
-[Thursday April 29th, 7:30 MST / 6:30 PT](https://zoom.us/meeting/register/tJMkcOqvrTgsH9VFfbUUpS7vPuiDK5_zSMqx)
+[Thursday April 29th, 7:30 MT / 6:30 PT](https://zoom.us/meeting/register/tJMkcOqvrTgsH9VFfbUUpS7vPuiDK5_zSMqx)
 
 FTEs and TVCs are welcome!
 

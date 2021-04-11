@@ -34,7 +34,7 @@ or
 
 [Thursday April 29th, 7:30 MST / 6:30 PT](https://zoom.us/meeting/register/tJMkcOqvrTgsH9VFfbUUpS7vPuiDK5_zSMqx)
 
-FTEs and TVCs  are welcome!
+FTEs and TVCs are welcome!
 
 
 ## Changing Alphabet

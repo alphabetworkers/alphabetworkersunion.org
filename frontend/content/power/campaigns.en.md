@@ -8,6 +8,35 @@ layout: textheavy
 
 {{< header />}}
 
+## Data center workers: know our rights
+
+On January 27th, 2021, Shannon Wait made the following Facebook post:
+
+"My employer told us who do heavy lifting and manual labor that if we lose our bottle of water or cap that they will not be replacing it DURING A PANDEMIC but you can't take extra breaks to go get water so just stay thirsty and be glad you have a job."
+
+Earlier during the pandemic, [she and other data center workers were promised bonus pay](https://www.bbc.com/news/technology-56659212),
+but when she asked about that bonus, she was told by a manager via email that
+"It is never ok to discuss compensation with your peers".
+
+Watch Shannon share her story:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vBDOp3KfmuM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+After asking members of Alphabet Workers Union to help her file an unfair labor practice against Google and
+Modis, a settlement was reached, which includes Shannon's suspension being overturned and Google posting a document in her data
+center that states, "You have the right to discuss wage rates, bonuses, and working conditions".
+
+Shannon knew her rights. If you're a data center worker and want to [learn more about your rights as a worker](https://knowourrights.org/), join us for an informational event:
+
+[Thursday April 29th, 7:30 EST / 6:30 CST](https://zoom.us/meeting/register/tZcsfu6qpzosGNVS5G3lm9JqsNP_db3Hkm91)
+
+or
+
+[Thursday April 29th, 7:30 MST / 6:30 PT](https://zoom.us/meeting/register/tJMkcOqvrTgsH9VFfbUUpS7vPuiDK5_zSMqx)
+
+FTEs and TVCs  are welcome!
+
+
 ## Changing Alphabet
 
 Before publicly announcing the Alphabet Workers Union on January 4th, 2021, our union has been involved in affecting change at Alphabet. We will continue to take action when there are injustices in the workplace and when we believe Alphabet isn’t living up to our [values]({{< ref "principles/mission-statement" >}}).

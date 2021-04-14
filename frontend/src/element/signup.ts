@@ -335,10 +335,9 @@ export class Signup extends LitElement {
           <label>
             <span class="title">Routing number</span>
             <span class="hint"
-              >If you enter your routing/account numbers here manually, two
-              microdepots will be made into your account. We will need to
-              contact you once those deposits have cleared to verify your bank
-              account.</span
+              >If you enter your routing or account numbers manually, two
+              microdepots are made into your account. In order to verify your bank account, we will need to
+              contact you after those deposits have cleared.</span
             >
             <input
               name="routing-number"
@@ -387,9 +386,9 @@ export class Signup extends LitElement {
     >
       <span class="title">Card details</span>
       <span class="hint">
-        We encourage you to use a bank account instead though, so that less is
+        We encourage you to use a bank account instead, so that less is
         lost to transaction fees. If you still want to use a card, debit cards
-        allow lower fees than credit cards.
+        have lower fees than credit cards.
       </span>
       <div class="card-container">
         <slot
@@ -499,7 +498,7 @@ export class Signup extends LitElement {
           <span class="title"
             >Preferred name${optionalLabel('preferred-name')}</span
           >
-          <span class="hint">So we know what to call you</span>
+          <span class="hint">Enter your name so we know what you prefer</span>
           <input
             name="preferred-name"
             aria-label="Preferred Name"
@@ -546,7 +545,7 @@ export class Signup extends LitElement {
             >Personal phone${optionalLabel('personal-phone')}</span
           >
           <span class="hint"
-            >In case we need to contact you with low latency (rare).</span
+            >We rarely use this contact method, but will use it if we can't reach you via any other methods.</span
           >
           <input
             name="personal-phone"
@@ -641,7 +640,7 @@ export class Signup extends LitElement {
               ?required=${REQUIRED_FIELDS.includes('employment-type')}
               autocomplete="off"
             >
-              <option value="fte" selected>Full-Time Employee (FTE)</option>
+              <option value="fte" selected>Full-time employee (FTE)</option>
               <option value="t">Temporary worker (T)</option>
               <option value="v">Vendor employee (V)</option>
               <option value="c">Contractor (C)</option>
@@ -696,7 +695,7 @@ export class Signup extends LitElement {
         </label>
         <label>
           <span class="title">Team name${optionalLabel('team')}</span>
-          <span class="hint">Lets us connect you with your coworkers</span>
+          <span class="hint">So we can connect you with your coworkers</span>
           <input
             name="team"
             aria-label="Team name"
@@ -721,7 +720,7 @@ export class Signup extends LitElement {
           <span class="title"
             >Product area (PA)${optionalLabel('product-area')}</span
           >
-          <span class="hint">Lets us connect you with your coworkers</span>
+          <span class="hint"></span>
           <input
             name="product-area"
             aria-label="Product Area"
@@ -732,8 +731,8 @@ export class Signup extends LitElement {
         <label>
           <span class="title">Site code${optionalLabel('site-code')}</span>
           <span class="hint"
-            >So we can connect you with your local workplace units. Site code is
-            a country code followed by a location code (e.g. "US-MTV").</span
+            >So we can connect you with your local chapters. Site code is
+            a country code followed by a location code (for example, "US-MTV").</span
           >
           <input
             name="site-code"
@@ -794,11 +793,11 @@ export class Signup extends LitElement {
         <h2>Monthly dues</h2>
         <div class="field">
           <span class="title"
-            >Total Compensation (TC)${optionalLabel('total-compensation')}</span
+            >Total compensation (TC)${optionalLabel('total-compensation')}</span
           >
           <span class="hint"
-            >Used to calculate your union dues. Select the calculator icon if
-            you don't have an annual salary. We expect members to be honest, but
+            >Used to calculate your union dues. If you don't have an annual salary, 
+            click the Calculator icon. We expect members to be honest, but
             this is the honor system: we won't check.</span
           >
           <div class="dollar-input">
@@ -874,7 +873,7 @@ export class Signup extends LitElement {
             class=${classMap({ selected: this.isMethod('bank') })}
             @click=${this.setMethod('bank')}
           >
-            Bank Account
+            Bank account
           </button>
           <button
             class=${classMap({ selected: this.isMethod('card') })}
@@ -886,15 +885,15 @@ export class Signup extends LitElement {
         ${this.paymentMethod === 'bank'
           ? this.bankTemplate()
           : this.cardTemplate}
-        <h2>Accept Agreement</h2>
+        <h2>Accept agreement</h2>
         <label class="full-width">
           <span class="title">
-            Type your name below to accept the membership terms of the
+            Type your name in the Signature field to accept the membership terms of the
             Communications Workers of America, under which AWU is formed. You
             also authorize a one-time $5 initiation fee, and the regular charge
             of your calculated dues.
             <em
-              >Nothing will be charged until the Membership Committee reviews
+              >Nothing is charged until the Membership Committee reviews
               and accepts your membership application.</em
             >
           </span>

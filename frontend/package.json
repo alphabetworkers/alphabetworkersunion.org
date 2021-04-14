@@ -41,10 +41,10 @@
     "start:hugo": "hugo server",
     "start:webpack": "webpack --mode=development --watch",
     "fix": "run-s fix:eslint fix:prettier",
-    "fix:prettier": "prettier --write src content",
+    "fix:prettier": "prettier --write src",
     "fix:eslint": "eslint --fix src",
     "check": "run-s check:eslint check:prettier",
-    "check:prettier": "prettier --check src content",
+    "check:prettier": "prettier --check src",
     "check:eslint": "eslint src",
     "clean": "rm -rf .public .static .assets .resources"
   },

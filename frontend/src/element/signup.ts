@@ -336,7 +336,7 @@ export class Signup extends LitElement {
             <span class="title">Routing number</span>
             <span class="hint"
               >If you enter your routing or account numbers manually, two
-              microdepots are made into your account. In order to verify your bank account, we will need to
+              microdeposits are made into your account. In order to verify your bank account, we will need to
               contact you after those deposits have cleared.</span
             >
             <input

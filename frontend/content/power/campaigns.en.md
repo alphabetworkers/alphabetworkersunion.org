@@ -20,7 +20,7 @@ but when she asked about that bonus, she was told by a manager via email that
 
 Watch Shannon share her story:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/vBDOp3KfmuM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{{< fig >}}{{< youtube vBDOp3KfmuM >}}{{< /fig >}}
 
 After asking members of Alphabet Workers Union to help her file an unfair labor practice against Google and
 Modis, a settlement was reached, which includes Shannon's suspension being overturned and Google posting a document in her data

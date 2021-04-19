@@ -26,7 +26,7 @@ Yes.
 
 ### Can managers join this union?
 
-Managers face additional risks getting involved with organizing. If you're a manager interested in joining, we'd love to have a conversation with you. Please fill out the [manager interest form](https://airtable.com/shr9bTB9G10keL5jY) and a union member will reach out to discuss.
+Managers face additional risks getting involved with organizing. If you're a manager interested in joining, we'd love to have a conversation with you. Please fill out the [manager interest form](https://airtable.com/shr3RpVTuP25kHMdm) and a union member will reach out to discuss.
 
 ### How big is the union?
 

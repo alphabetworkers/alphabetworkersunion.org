@@ -300,86 +300,99 @@ export class Signup extends LitElement {
     }
   }
 
+  private connectedPlaidTemplate(): TemplateResult {
+    return html` <div class="field full-width">
+      <span class="title">Verified Account</span>
+      <span class="hint"></span>
+      <p>
+        ${this.plaidToken!.account_name}
+        <button @click=${this.clearPlaid}>Remove</button>
+      </p>
+    </div>`;
+  }
+
+  private paymentTemplate(): TemplateResult {
+    return html` <div class="field full-width">
+        <span class="title">Connect bank</span>
+        <span class="hint">
+          Use Plaid to instantly verify your bank account. Nothing will be
+          charged right now.
+        </span>
+        <button
+          @click=${this.openPlaid}
+          class="primary"
+          type="button"
+          type="button"
+        >
+          Connect Bank
+        </button>
+      </div>
+      <div class="field full-width">
+        <span class="title or"><span>Or</span></span>
+      </div>
+      <div class="payment-method-toggle full-width">
+        <button
+          class=${classMap({ selected: this.isMethod('bank') })}
+          @click=${this.setMethod('bank')}
+        >
+          Bank account
+        </button>
+        <button
+          class=${classMap({ selected: this.isMethod('card') })}
+          @click=${this.setMethod('card')}
+        >
+          Card
+        </button>
+      </div>
+      ${this.paymentMethod === 'bank' ? this.bankTemplate : this.cardTemplate}`;
+  }
+
   // TODO prevent scrolling from incrementing number fields
   // TODO server-side validation, and accept error responses
-  bankTemplate(): TemplateResult {
-    return this.plaidToken
-      ? html`
-          <div class="field full-width">
-            <span class="title">Verified Account</span>
-            <span class="hint"></span>
-            <p>
-              ${this.plaidToken!.account_name}
-              <button @click=${this.clearPlaid}>Remove</button>
-            </p>
-          </div>
-        `
-      : html`
-          <div class="field full-width">
-            <span class="title">Connect bank</span>
-            <span class="hint"
-              >Use Plaid to instantly verify your bank account.</span
-            >
-            <button
-              @click=${this.openPlaid}
-              class="primary"
-              type="button"
-              type="button"
-            >
-              Connect Bank
-            </button>
-          </div>
-          <div class="field full-width">
-            <span class="title or"><span>Or</span></span>
-          </div>
-          <label>
-            <span class="title">Routing number</span>
-            <span class="hint"
-              >If you enter your routing or account numbers manually, two
-              microdeposits are made into your account. In order to verify your bank account, we will need to
-              contact you after those deposits have cleared.</span
-            >
-            <input
-              name="routing-number"
-              aria-label="Routing number"
-              type="number"
-              minlength="9"
-              required
-              autocomplete="cc-number"
-            />
-          </label>
-          <label>
-            <span class="title">Account number</span>
-            <span class="hint"></span>
-            <input
-              name="account-number"
-              aria-label="Account number"
-              type="number"
-              minlength="10"
-              required
-              autocomplete="cc-number"
-            />
-          </label>
-          <label>
-            <span class="title">Account holder name</span>
-            <input
-              name="account-holder-name"
-              aria-label="Account holder name"
-              required
-              autocomplete="cc-name"
-            />
-          </label>
-          <label>
-            <span class="title">Country of account</span>
-            <div class="select">
-              <select name="billing-country" required autocomplete="country">
-                <option value="US" selected>US</option>
-                <option value="CA">CA</option>
-              </select>
-            </div>
-          </label>
-        `;
-  }
+  private readonly bankTemplate: TemplateResult = html` <label>
+      <span class="title">Routing number</span>
+      <span class="hint">
+        If you enter your routing or account numbers manually, two microdeposits are made into your account. In order to verify your bank account, we will need to contact you after those deposits have cleared.
+      </span>
+      <input
+        name="routing-number"
+        aria-label="Routing number"
+        type="number"
+        minlength="9"
+        required
+        autocomplete="cc-number"
+      />
+    </label>
+    <label>
+      <span class="title">Account number</span>
+      <span class="hint"></span>
+      <input
+        name="account-number"
+        aria-label="Account number"
+        type="number"
+        minlength="10"
+        required
+        autocomplete="cc-number"
+      />
+    </label>
+    <label>
+      <span class="title">Account holder name</span>
+      <input
+        name="account-holder-name"
+        aria-label="Account holder name"
+        required
+        autocomplete="cc-name"
+      />
+    </label>
+    <label>
+      <span class="title">Country of account</span>
+      <div class="select">
+        <select name="billing-country" required autocomplete="country">
+          <option value="US" selected>US</option>
+          <option value="CA">CA</option>
+        </select>
+      </div>
+    </label>`;
 
   private readonly cardTemplate: TemplateResult = html` <div
       class="field full-width"
@@ -868,23 +881,9 @@ export class Signup extends LitElement {
             <strong>${this.formattedDues()}</strong>/mo
           </div>
         </label>
-        <div class="payment-method-toggle full-width">
-          <button
-            class=${classMap({ selected: this.isMethod('bank') })}
-            @click=${this.setMethod('bank')}
-          >
-            Bank account
-          </button>
-          <button
-            class=${classMap({ selected: this.isMethod('card') })}
-            @click=${this.setMethod('card')}
-          >
-            Card
-          </button>
-        </div>
-        ${this.paymentMethod === 'bank'
-          ? this.bankTemplate()
-          : this.cardTemplate}
+        ${this.plaidToken
+          ? this.connectedPlaidTemplate()
+          : this.paymentTemplate()}
         <h2>Accept agreement</h2>
         <label class="full-width">
           <span class="title">

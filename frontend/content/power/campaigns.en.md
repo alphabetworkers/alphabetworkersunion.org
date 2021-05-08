@@ -8,6 +8,15 @@ layout: textheavy
 
 {{< header />}}
 
+## Justice for childcare center workers
+
+
+Support transportation equity for early childhood educators! 
+
+Sign and share the [letter to show your support for these educators](https://justiceforgcc.org/) asking Google to provide a transportation stipend.
+
+Google operates four Childcare Centers in the Bay Area that help provide subsidized childcare to Google workers by Google workers. These Google Childcare Center workers are being required to return to work while Google’s shuttle service transportation, which many rely on, remains suspended. When workers raised this issue, the corporate response was “transportation is just a perk, not a benefit.” Shifting this cost to essential workers, who earn far less than the Googlers whose children they care for, is unacceptable. Google must do better.
+
 ## Data center workers: know our rights
 
 On January 27th, 2021, Shannon Wait made the following Facebook post:
@@ -26,15 +35,7 @@ After asking members of Alphabet Workers Union to help her file an unfair labor 
 Modis, a settlement was reached, which includes Shannon's suspension being overturned and Google posting a document in her data
 center that states, "You have the right to discuss wage rates, bonuses, and working conditions".
 
-Shannon knew her rights. If you're a data center worker and want to [learn more about your rights as a worker](https://knowourrights.org/), join us for an informational event:
-
-[Thursday April 29th, 7:30 ET / 6:30 CT](https://zoom.us/meeting/register/tZcsfu6qpzosGNVS5G3lm9JqsNP_db3Hkm91)
-
-or
-
-[Thursday April 29th, 7:30 MT / 6:30 PT](https://zoom.us/meeting/register/tJMkcOqvrTgsH9VFfbUUpS7vPuiDK5_zSMqx)
-
-FTEs and TVCs are welcome!
+Shannon knew her rights. If you're a data center worker and want to learn more about your rights as a worker, [let us know](https://airtable.com/shr3RpVTuP25kHMdm)!
 
 
 ## Changing Alphabet

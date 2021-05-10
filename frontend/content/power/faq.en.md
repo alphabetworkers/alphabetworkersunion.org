@@ -76,7 +76,7 @@ We are building an active and growing group to mobilize large numbers of Alphabe
 
 ### Isn’t 1% of total compensation for dues a bit high?
 
-Dues are our money: we all vote on the budget, which we write. We are trying to organize inside of a trillion dollar corporation, and we need enough money to do that. Many of our members will be TVCs, so while many engineers may be paying $3000 a year in dues, many TVCs will be paying $400 a year or less in dues. Dues pay for staff, who are critical to our organizing efforts. Dues mean that we can support hourly workers if we go on strike. While the raw number may sound high, 1% is lower than dues at most unions (we found the average to be 1.25% in an analysis of other unions’ dues). If the dues are a hardship for you, they can be reduced or waived; reach out!
+Dues are our money: we all vote on the budget, which we write. We are trying to organize inside of a trillion dollar corporation, and we need enough money to do that. Many of our members will be TVCs, so while many engineers may be paying $3000 a year in dues, many TVCs will be paying $400 a year or less in dues. Dues pay for staff, who are critical to our organizing efforts. Dues mean that we can support hourly workers if we go on strike. While the raw number may sound high, 1% is lower than dues at most unions (we found the average to be 1.25% in an analysis of other unions’ dues).
 
 ### Exactly how much of dues goes towards CWA and CWA Local 1400?
 

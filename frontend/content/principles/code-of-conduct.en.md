@@ -88,7 +88,7 @@ All members, both full and retired, are expected to:
 * abide by Union rules and the Articles to the best of their ability
 * support their coworkers both within and outside of our union
 * stand in solidarity with AWU-CWA members, AWU-CWA as a whole, and CWA
-* keep AWU-CWA and CWA business, plans, and conflicts internal to AWU-CWA and CWA (see Appendix for what this is intended to do). This means:
+* keep AWU-CWA and CWA business, plans, and conflicts internal to AWU-CWA and CWA. This means:
     * do not share confidential AWU-CWA business, such as meeting minutes, granular member data, and campaign plans, outside of AWU-CWA or CWA
     * do not publicize internal conflicts, especially those related to interpersonal matters, outside of AWU-CWA and CWA
         * discussing interpersonal conflicts with individuals (even nonmembers) for advice and support is allowed, but use best judgment on which details should be kept private for the safety of our Union

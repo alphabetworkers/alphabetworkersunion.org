@@ -1,6 +1,6 @@
 ---
-title: 'Code of Conduct'
-linktitle: 'Code of Conduct'
+title: 'Code of conduct'
+linktitle: 'Code of conduct'
 date: 2021-05-10T20:28:32-04:00
 weight: 4
 layout: textheavy
@@ -8,11 +8,11 @@ layout: textheavy
 
 {{< header />}}
 
-## Anti-Harassment
+## Anti-harassment
 
 Alphabet Workers Union is dedicated to providing a harassment-free experience for everyone. We do not tolerate harassment of participants in any form.
 
-This code of conduct applies to all Alphabet Workers Union spaces and in interactions with and about members, including but not limited to conferences, chat clients such as Slack, email, file sharing such as in Dropbox, and videoconferencing such as with Zoom. Both online and off.
+This code of conduct applies to all Alphabet Workers Union spaces and in interactions with and about members, including but not limited to conferences, chat clients such as Discord, email, file sharing such as in Dropbox, and videoconferencing such as with Zoom. Both online and off.
 
 Some Alphabet Workers Union spaces may have additional rules in place, which will be made clearly available to participants. Participants are responsible for knowing and abiding by these rules. 
 
@@ -38,7 +38,7 @@ Some Alphabet Workers Union spaces may have additional rules in place, which wil
 * Deliberate “outing” of any aspect of a person’s identity without their consent, except as necessary to protect vulnerable people from intentional abuse.
 * Publication of non-harassing private communication.
 
-## Platform Usage
+## Platform usage
 
 The foundation of our union organizing is in face-to-face conversations. It is generally expected that your first and primary points of contact will be with other members of your Workplace Unit, Working Group, Committee, or Chapter.
 
@@ -65,8 +65,8 @@ All members in good standing have the following rights in the Union:
 * Freedom of speech, specifically the freedom to participate in union communication platforms within the policies of each
 * Freedom of assembly
 * Freedom from discrimination on the basis of craft, skill, age, race, caste, sex, gender (including gender identity, gender expression, and trans status), sexual orientation, religious or political beliefs, affiliation, disability, neurodivergence, immigration status, family or marital status, or any other protected characteristic
-* The right to Union support in cases of workplace mistreatment and for workers whose employment status is pending determination of any legal processes
-    * Does not guarantee a certain type of support that the Union can provide
+* The right to union support in cases of workplace mistreatment and for workers whose employment status is pending determination of any legal processes
+    * Does not guarantee a certain type of support that the union can provide
 * The right to discuss and to participate in establishing via referendum or Assembly:
     * The amount and frequency of dues, fees, and assessments, within the bounds of CWA’s constitution and bylaws
     * AWU-CWA internal and strategic matters
@@ -85,22 +85,22 @@ All members in good standing have the following rights in the Union:
 ### Responsibilities
 
 All members, both full and retired, are expected to:
-* abide by Union rules and the Articles to the best of their ability
-* support their coworkers both within and outside of our union
-* stand in solidarity with AWU-CWA members, AWU-CWA as a whole, and CWA
-* keep AWU-CWA and CWA business, plans, and conflicts internal to AWU-CWA and CWA. This means:
-    * do not share confidential AWU-CWA business, such as meeting minutes, granular member data, and campaign plans, outside of AWU-CWA or CWA
-    * do not publicize internal conflicts, especially those related to interpersonal matters, outside of AWU-CWA and CWA
-        * discussing interpersonal conflicts with individuals (even nonmembers) for advice and support is allowed, but use best judgment on which details should be kept private for the safety of our Union
-    * do not engage with the press on Union matters without being a trained spokesperson
-        * follow the Communications Committee’s press rules and CWA’s guidelines on social media posts, and ask them if there is any doubt on whether something is allowed
-    * maintain a high standard of conduct whenever you may be interpreted as a Union representative or otherwise affiliated with AWU-CWA
-* keep other people’s membership in the union private unless they give you explicit permission to do so or they have already publicly outed themselves
+* Abide by Union rules and the Articles to the best of their ability
+* Support their coworkers both within and outside of our union
+* Stand in solidarity with AWU-CWA members, AWU-CWA as a whole, and CWA
+* Keep AWU-CWA and CWA business, plans, and conflicts internal to AWU-CWA and CWA. This means:
+    * Do not share confidential AWU-CWA business, such as meeting minutes, granular member data, and campaign plans, outside of AWU-CWA or CWA
+    * Do not publicize internal conflicts, especially those related to interpersonal matters, outside of AWU-CWA and CWA
+        * Discussing interpersonal conflicts with individuals (even nonmembers) for advice and support is allowed, but use best judgment on which details should be kept private for the safety of our Union
+    * Do not engage with the press on Union matters without being a trained spokesperson
+        * Follow the Communications Committee’s press rules and CWA’s guidelines on social media posts, and ask them if there is any doubt on whether something is allowed
+    * Maintain a high standard of conduct whenever you may be interpreted as a Union representative or otherwise affiliated with AWU-CWA
+* Keep other people’s membership in the union private unless they give you explicit permission to do so or they have already publicly outed themselves
 
 In addition, although these are not explicit requirements, members are encouraged to:
-* follow guidelines passed by work committees
-* vote in elections when they are eligible to do so, to make their voice heard
-* keep aware of union activities via email or by attending meetings, to allow AWU to mobilize quickly
-* stand in solidarity with other unions and labor organizations
+* Follow guidelines passed by work committees
+* Vote in elections when they are eligible to do so, to make their voice heard
+* Keep aware of union activities via email or by attending meetings, to allow AWU to mobilize quickly
+* Stand in solidarity with other unions and labor organizations
 
-As a reminder, AWU uses a mode of enforcement that aligns with restorative justice rather than punitive justice. The “Enforcements” section discusses this briefly.
+As a reminder, AWU-CWA uses a mode of enforcement that aligns with restorative justice rather than punitive justice. The “Enforcement” section above discusses this briefly.

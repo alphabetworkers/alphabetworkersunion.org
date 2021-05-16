@@ -40,11 +40,11 @@ Some Alphabet Workers Union spaces may have additional rules in place, which wil
 
 ## Platform usage
 
-The foundation of our union organizing is in face-to-face conversations. It is generally expected that your first and primary points of contact will be with other members of your Workplace Unit, Working Group, Committee, or Chapter.
+The foundation of our union organizing is in face-to-face conversations. It is generally expected that your first and primary points of contact will be with other members of your workplace unit, working group, committee, or chapter.
 
 We expect that most organizing will happen in smaller, more focused groups, while broader forums exist to allow for wider discussion, including asking and answering questions and concerns, connecting with members from across our union, and advertising specific-topic forums. Keep in mind that these larger, more open forums may be too fast-moving for all union members to be able to participate in a timely fashion, so folks raising questions or concerns may be redirected to other people or forums, and any specific topics that gather large interest may be worth spinning up another channel and moving the conversation there. Disagreements can (and should!) be brought up, and may be appropriate in larger venues, but the ideal resolutions are almost always going to be in smaller, more focused groups.
 
-As such, Administrators or moderators may moderate for topicality or keeping groups appropriately focused, with enforcement being considered more strictly in groups with larger audiences. 
+As such, administrators or moderators may moderate for topicality or keeping groups appropriately focused, with enforcement being considered more strictly in groups with larger audiences. 
 
 ## Enforcement
 
@@ -56,11 +56,11 @@ Violations of these policies may result in restricting write/comment capability 
 
 All decisions may be raised with other members for mediation or brought up to the Executive Council, if all else fails and remediation does not seem possible. It is encouraged to start with your local chapter coordinator or union steward for guidance.  
 
-## Rights and Responsibilities
+## Rights and responsibilities
 
 ### Rights
 
-All members in good standing have the following rights in the Union:
+All members in good standing have the following rights in the union:
 * Equal rights to participate in union activities
 * Freedom of speech, specifically the freedom to participate in union communication platforms within the policies of each
 * Freedom of assembly

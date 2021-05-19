@@ -27,5 +27,6 @@ import './docs/mission/articles/Alphabet_Workers_Union_Articles.pdf';
 import './docs/press/press-kit/Press-Kit.zip';
 import './docs/press/press-kit/2021-02-04-Modis-Google-ULP-Charge.pdf';
 import './docs/notices/CWA_1400-AWU_NOMINATION_NOTICE_2021.pdf';
+import './docs/notices/CWA_1400-AWU_NOMINATION_NOTICE_2021-05-10.pdf';
 
 import './favicon.ico';

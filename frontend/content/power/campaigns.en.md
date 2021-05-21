@@ -10,8 +10,7 @@ layout: textheavy
 
 ## Justice for childcare center workers
 
-
-Support transportation equity for early childhood educators! 
+Support transportation equity for early childhood educators!
 
 Sign and share the [letter to show your support for these educators](https://justiceforgcc.org/) asking Google to provide a transportation stipend.
 
@@ -36,7 +35,6 @@ Modis, a settlement was reached, which includes Shannon's suspension being overt
 center that states, "You have the right to discuss wage rates, bonuses, and working conditions".
 
 Shannon knew her rights. If you're a data center worker and want to learn more about your rights as a worker, [let us know](https://airtable.com/shr3RpVTuP25kHMdm)!
-
 
 ## Changing Alphabet
 

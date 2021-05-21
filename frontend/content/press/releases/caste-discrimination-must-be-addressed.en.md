@@ -27,8 +27,7 @@ Alphabet’s anti-discrimination policy in India already explicitly prohibits ca
 Alphabet can lead the industry and become the first technology company to add caste as a protected category globally.
 
 Sundar Pichai made a [commitment to addressing racial equity](https://blog.google/inside-google/company-announcements/commitments-racial-equity/).
-Alphabet must commit to caste equity with the same urgency. Recognizing and addressing caste-based discrimination will benefit Alphabet, its workers, and its users worldwide. 
+Alphabet must commit to caste equity with the same urgency. Recognizing and addressing caste-based discrimination will benefit Alphabet, its workers, and its users worldwide.
 
 Caste-oppressed workers have the right to a safe workplace and this is why we have committed to this fight. The fight for the civil rights of caste-oppressed people is a workers’ fight.
 Caste should be recognized as a [protected class by the federal government](https://subscriptlaw.com/protected-classes/) and be included in anti-harassment policies within our industry.
-

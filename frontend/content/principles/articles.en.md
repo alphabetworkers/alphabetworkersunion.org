@@ -15,7 +15,7 @@ _This is the Easy Version of the Articles. The [full version of the Articles](/d
 
 {{< pimg "img/mission/articles/awu-logo.png" "Alphabet Workers Union logo" >}}
 
-We are the Alphabet Workers Union. We are a group focused on advancing and defending the interests of the workers. We promote solidarity, democracy, and social and economic justice in the workplace, our communities, and society. We are a part of Local 1400 of the Communications Workers of America. They are a more established local of CWA who are helping us get our start. We plan to work with them until we have learned enough to strategically run our own local, at which point we will charter our own local. Consequently and for the time being, we are also subject to the [bylaws of 1400](https://actionnetwork.org/user_files/user_files/000/052/479/original/By-Laws_FINAL_July_2020.pdf) and the [CWA constitution](https://cwa-union.org/for-locals/cwa-constitution). Membership is available to any worker employed by Alphabet or within its network of subsidiary and vendor companies, throughout the United States of America and Canada.
+We are the Alphabet Workers Union. We are a group focused on advancing and defending the interests of the workers. We promote solidarity, democracy, and social and economic justice in the workplace, our communities, and society. We are a part of Local 1400 of the Communications Workers of America. They are a more established local of CWA who are helping us get our start. We plan to work with them until we have learned enough to strategically run our own local, at which point we will charter our own local. Consequently and for the time being, we are also subject to the [bylaws of Local 1400](https://actionnetwork.org/user_files/user_files/000/052/479/original/By-Laws_FINAL_July_2020.pdf) and the [CWA constitution](https://cwa-union.org/for-locals/cwa-constitution). Membership is available to any worker employed by Alphabet or within its network of subsidiary and vendor companies, throughout the United States of America and Canada.
 
 ## Membership
 
@@ -74,7 +74,7 @@ AWU only works by us all working together. If a member has caused enough harm th
 
 ### Managers
 
-The question of how to best include managers is a complex one and one that the Articles working group didn’t feel comfortable defining without more active participation from the rest of the membership. As such, they only included two restrictions around managers. First, managers cannot be Shop Stewards, to ensure people don’t have to look to someone in their reporting chain as their primary point of contact in AWU. Second, any dispute between a manager and a regular employee must be mediated by someone not from their Workplace Unit. Beyond this, the Articles Committee decided to leave it to be a decision made by the Membership Committee.
+The question of how to best include managers is a complex one and one that the Articles working group didn’t feel comfortable defining without more active participation from the rest of the membership. As such, they only included two restrictions around managers. First, managers can only be Shop Stewards as allowed by the AWU Rules, to ensure people don’t have to look to someone in their reporting chain as their primary point of contact in AWU. Second, any dispute between a manager and a regular employee must be mediated by someone not from their Workplace Unit. Beyond this, the Articles Committee decided to leave it to be a decision made by the Membership Committee.
 
 ### Member Data
 
@@ -94,12 +94,13 @@ In all matters, decisions made by the collective membership in referendums are t
 
 ### Executive Council
 
-In order to ensure that AWU is able to operate smoothly and respond quickly to issues that come up, we have an Executive Council. The Executive Council will have regular meetings and authority to make certain decisions about the function of Work Committees, Workplace Units, and Chapters. The Executive Council will have at least 7 members, which will include the following Chairs:
+In order to ensure that AWU is able to operate smoothly and respond quickly to issues that come up, we have an Executive Council. The Executive Council will have regular meetings and authority to make certain decisions about the function of Work Committees, Workplace Units, and Chapters. The Executive Council will have at least 5 members, which will include the following Chairs:
 
 - Executive Chair
-- Vice Executive Chair
 - Financial Chair
 - Recording Chair
+- Organizing Chair
+- Communications Chair
 
 ### Steering Committee
 
@@ -110,9 +111,10 @@ To make sure we can get broad input in planning out our campaigns and making pol
 - Chapter Coordinators.
 - For each Chapter, one additional representative for every 150 members.
 
-#### Distinctions between the Steering Committee and the Executive Council
+The Steering Committee will be made up of approximately the same ratio of TVCs to FTEs that Alphabet itself has in North America: 1:2.  If less than one third of the Steering Committee are TVCs, the TVC Workplace Unit can elect extra delegates to get the desired ratio.
 
-The Steering Committee is where most broad, strategic decisions get made. This is meant to be a representative group to ensure that the policies and strategies of AWU are continually adapting based on our changing circumstances. On the other hand, the Executive Council is responsible for quick decisions, times when we need to make a quick determination on how to best apply the agreed upon polices and strategies.
+#### Distinctions between the Steering Committee and the Executive Council
+The Steering Committee is where most broad, strategic decisions get made. This is meant to be a representative group to ensure that the policies and strategies of AWU are continually adapting based on our changing circumstances. On the other hand, the Executive Council is responsible for quick decisions, times when we need to make a quick determination on how to best apply the agreed upon polices and strategies. 
 
 ### Workplace Units
 

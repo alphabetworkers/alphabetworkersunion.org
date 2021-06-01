@@ -16,7 +16,7 @@ In yet another demonstration of Alphabet’s two-tier employment system, all of 
 
 Our member Phares Lee (and many other Alphabet TVCs) are required to use employee badges printed with their [deadnames](https://en.wikipedia.org/wiki/Deadnaming), routinely referred to by deadname in automated systems (even after they make name update to their Teams profile page), and prevented from participating with ERGs.
 
-Join our fight for worker equity and trans rights by signing [our petition for TVC workers like Phares](https://hellomyname.org/) who are othered by Alphabet and Google.
+Join our fight for worker equity and trans rights by signing [our petition for TVC workers like Phares](https://dropthedeadnames.org/) who are othered by Alphabet and Google.
 
 ## Justice for childcare center workers
 

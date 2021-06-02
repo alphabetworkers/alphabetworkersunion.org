@@ -14,7 +14,7 @@ Alphabet encourages full-time employees to “bring your whole self to work,” 
 
 In yet another demonstration of Alphabet’s two-tier employment system, all of those considerations go out the window for TVCs (temps, vendors, and contractors).
 
-Our member Phares Lee (and many other Alphabet TVCs) are required to use employee badges printed with their [deadnames](https://en.wikipedia.org/wiki/Deadnaming), routinely referred to by deadname in automated systems (even after they make name update to their Teams profile page), and prevented from participating with ERGs.
+Like many other Alphabet TVCs, our member Phares Lee is required to use an employee badge printed with their [deadname](https://en.wikipedia.org/wiki/Deadnaming), routinely referred to by deadname in automated systems (even after updating their Teams profile), and prevented from participating with ERGs.
 
 Join our fight for worker equity and trans rights by signing [our petition for TVC workers like Phares](https://dropthedeadnames.org/) who are othered by Alphabet and Google.
 

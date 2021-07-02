@@ -9,29 +9,22 @@ aliases: [/reclaim-your-power/events.en.md]
 
 {{< header />}}
 
-Interested in learning more about Alphabet Workers Union?
-Register for one of our **informational events!**
+## Union day: #DropTheDeadnames campaign update
 
-At these events, you can learn:
+In just 18 days after launching the campaign, Phares Lee was able to resolve workplace issues that were not addressed in his 3 years working before having a union. 
 
-- Why Alphabet workers need a union,
-- What Alphabet Workers Union is,
-- How our union is organized.
+At our next union day, he will tell his story and lead a discussion about the importance of union activism to secure LGBTQ+ rights at work.
 
-At the end, we’ll also show Alphabet workers how to join Alphabet Workers Union.
+At this event, we will discuss:
 
-We'll also add more event times on an ongoing basis.
+- What lessons can be learned from the drop the deadnames campaign?
+- What is a union and why is building a strong union, one of the most effective ways to ensure LGBTQA+ rights in the workplace?
+- What still needs to change in your workplace?
+- What still needs to be done? Where do we go from here?
 
 Click any of the following links to register.
 
-_Times are listed in both Pacific Time (PT) and Eastern Time (ET)._
+### Wednesday, July 14th, 2021
 
-### Saturday, April 10th, 2021
-
-- [10 am PT / 1 pm ET](https://zoom.us/meeting/register/tJcsdeisrTsiHtFKj0w6EtRDqRGV9-rfOMiI)
-- [1 pm PT / 4pm ET](https://zoom.us/meeting/register/tJcrdeyrrT0rG9YuCQdIfRJEa0EifMNmAFQS)
-
-### Sunday, April 25th, 2021
-
-- [10 am PT / 1 pm ET](https://zoom.us/meeting/register/tJMpcOivqz8oHN3ziw8cEIxjiZSkMP-_64Ve)
-- [1 pm PT / 4pm ET](https://zoom.us/meeting/register/tJwtdeugqz8sHde7FjwXSPZzzU_BzeDlZO2t)
+- [7:30 PM ET / 6:30 PM CT](https://zoom.us/meeting/register/tJMld-ihqj0sE9SeG9HU8NPwX4ARZ5Rxz1ny)
+- [7:30 PM MT / 6:30 PM PT](https://zoom.us/meeting/register/tJApdOGtqzwvGNCQX6XP_Q-z8xKaTgM1QZJU)

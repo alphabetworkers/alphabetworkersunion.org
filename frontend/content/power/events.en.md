@@ -9,9 +9,9 @@ aliases: [/reclaim-your-power/events.en.md]
 
 {{< header />}}
 
-## Union Day: #DropTheDeadnames campaign update
+## Union Day: Drop the deadnames campaign update
 
-In just 18 days after launching the campaign, Phares Lee was able to resolve workplace issues that were not addressed in his 3 years working before having a union. 
+In just 18 days after launching the # DropTheDeadnames campaign, Phares Lee was able to resolve workplace issues that were not addressed in his 3 years working before having a union. 
 
 At our next Union Day, he will tell his story and lead a discussion about the importance of union activism to secure LGBTQ+ rights at work.
 

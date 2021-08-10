@@ -11,7 +11,7 @@ aliases: [/reclaim-your-power/events.en.md]
 
 ## Union Day: Succeeding in Perf
 
-Come join us for a presentation about the myths of Perf at Google where we’ll tell you how perf really works. Learn some workers’ tips for succeeding in the Perf and promotion process. At the end of the event, we’ll share ways that you can take action and organize your fellow workers around Perf.
+Come join us for a presentation about the myths of Perf at Google where we’ll tell you how Perf really works. Learn some workers’ tips for succeeding in the Perf and promotion process. At the end of the event, we’ll share ways that you can take action and organize your fellow workers around Perf.
 
 ### Tuesday, August 17th, 2021
 

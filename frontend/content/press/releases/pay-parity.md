@@ -1,6 +1,6 @@
 ---
-title: 'AWU Letter Demanding Google Immediately Give Back Pay to Underpaid Contractors'
-linktitle: 'AWU Letter Demanding Google Immediately Give Back Pay to Underpaid Contractors'
+title: 'AWU Letter Calls On Alphabet to Deliver Pay Parity For All Temporary Workers'
+linktitle: 'AWU Letter Calls On Alphabet to Deliver Pay Parity For All Temporary Workers'
 date: 2021-09-15T06:00:00-05:00
 layout: textheavy
 ---

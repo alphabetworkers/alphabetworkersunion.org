@@ -1,7 +1,7 @@
 ---
 title: 'AWU Letter Demanding Google Immediately Give Back Pay to Underpaid Contractors'
 linktitle: 'AWU Letter Demanding Google Immediately Give Back Pay to Underpaid Contractors'
-date: 2021-09-15T20:00:00-05:00
+date: 2021-09-15T06:00:00-05:00
 layout: textheavy
 ---
 

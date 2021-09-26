@@ -1,0 +1,17 @@
+{
+  "author": "Alphabet Workers Union members",
+  "description": "Shared dependencies for the alphabetworkersunion.org site.",
+  "devDependencies": {
+    "@cloudflare/wrangler": "^1.19.3",
+    "execa": "^5.1.1"
+  },
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "name": "alphabetworkersunion",
+  "private": "true",
+  "scripts": {
+    "build": "node index.js build frontend plaid-token-worker signup-worker",
+    "dev": "node index.js dev plaid-token-worker signup-worker"
+  },
+  "version": "0.0.1"
+}

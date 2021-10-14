@@ -64,7 +64,7 @@ When you sign a card, your information undergoes a verification process. Once ve
 
 ### How much are dues?
 
-1% of total compensation, due monthly.
+1% of total annual compensation, due in monthly increments.
 
 ### How are dues collected?
 

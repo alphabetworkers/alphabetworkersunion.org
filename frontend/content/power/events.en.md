@@ -9,10 +9,10 @@ aliases: [/reclaim-your-power/events.en.md]
 
 {{< header />}}
 
-## Union Day: Succeeding in Perf
+## Union Day: Discrimination in the workplace
 
-Come join us for a presentation about the myths of Perf at Google where we’ll tell you how Perf really works. Learn some workers’ tips for succeeding in the Perf and promotion process. At the end of the event, we’ll share ways that you can take action and organize your fellow workers around Perf.
+Join us to hear former Googler [Chelsey Glasson](https://www.theguardian.com/technology/2021/apr/09/she-sued-for-pregnancy-discrimination-now-shes-battling-googles-army-of-lawyers) share a few stories from her experiences with discrimination, harassment and retaliation and some opportunities that have emerged to support whistleblowers. After her talk, AWU will discuss ways to organize around these issues.
 
-### Tuesday, August 17th, 2021
+### Thursday, October 21st, 2021
 
-- [8 PM ET / 5 PM PT](https://us06web.zoom.us/meeting/register/tZ0rd-CvrTspHNDFixwIlRZrPxEEgGGmkLY0)
+- [7 PM ET / 4 PM PT](https://us06web.zoom.us/meeting/register/tZUkce6tqTksHtBAJrcxdgGtJvE4sxubjBIl)

@@ -27,4 +27,4 @@ Join us for a union day where we discuss tactics for handling unexpected Perf re
 
 ## About union days
 
-Union days are open to all workers at Alphabet. We welcome TVCs, FTEs, union members, and non-members who are interested in learning more about workplace issues. Union days are period events where we discuss ongoing campaigns, workplace concerns, organizing opportunities, and other ways to get involved to improve Alphabet. All are welcome!
+Union days are open to all workers at Alphabet. We welcome TVCs, FTEs, union members, and non-members who are interested in learning more about workplace issues. Union days are periodic events where we discuss ongoing campaigns, workplace concerns, organizing opportunities, and other ways to get involved to improve Alphabet. All are welcome!

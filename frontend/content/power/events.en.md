@@ -19,7 +19,7 @@ Join us to hear former Googler [Chelsey Glasson](https://www.theguardian.com/tec
 
 ## Union Day: Perf results are out, now what?
 
-Join us for a union day where we discuss tactics for handling unexpected Perf results and how to collectively change the Perf system together. At the end, we’ll leave you with some quick actions to get more involved..
+Join us for a union day where we discuss tactics for handling unexpected Perf results and how to collectively change the Perf system together. At the end, we’ll leave you with some quick actions to get more involved.
 
 ### Tuesday, November 2nd, 2021
 

@@ -8,28 +8,16 @@ layout: textheavy
 
 {{< header />}}
 
-## Drop the deadnames
+## Pay parity for all TVCs
 
-Alphabet encourages full-time employees to “bring your whole self to work,” funds Employee Resource Groups (ERGs) to support employees of diverse backgrounds, and prioritizes identity-affirming treatment such as ensuring employees are referred to by their chosen names.
+We believe that all workers at Google should receive the full wages they are legally entitled to and have earned. We demand that Google immediately pay back all Temps, Vendors and Contractors (TVCs) who have been knowingly underpaid by Google. 
 
-In yet another demonstration of Alphabet’s two-tier employment system, all of those considerations go out the window for TVCs (temps, vendors, and contractors).
+It has recently come to light, as reported by [The New York Times](https://www.nytimes.com/2021/09/10/technology/google-temporary-workers-labor-laws-pay.html) and [The Guardian](https://www.theguardian.com/technology/2021/sep/10/google-underpaid-workers-illegal-pay-disparity-documents), that Google has knowingly underpaid TVCs across dozens of countries, in direct violation of pay parity laws across the globe. [Google has consistently obscured its employees’ salaries](https://www.vox.com/recode/2019/5/31/18644866/google-contractors-pay-ratings-glassdoor)—and now, we know more about why. 
 
-Like many other Alphabet TVCs, our member Phares Lee is required to use an employee badge printed with their [deadname](https://en.wikipedia.org/wiki/Deadnaming), routinely referred to by deadname in automated systems (even after updating their Teams profile), and prevented from participating with ERGs.
-
-Join our fight for worker equity and trans rights by signing [our petition for TVC workers like Phares](https://dropthedeadnames.org/) who are othered by Alphabet and Google.
-
-## Justice for childcare center workers
-
-Support transportation equity for early childhood educators!
-
-Sign and share the [letter to show your support for these educators](https://justiceforgcc.org/) asking Google to provide a transportation stipend.
-
-Google operates four Childcare Centers in the Bay Area that help provide subsidized childcare to Google workers by Google workers. These Google Childcare Center workers are being required to return to work while Google’s shuttle service transportation, which many rely on, remains suspended. When workers raised this issue, the corporate response was “transportation is just a perk, not a benefit.” Shifting this cost to essential workers, who earn far less than the Googlers whose children they care for, is unacceptable. Google must do better.
+Join our fight to dismantle the two-tiered perma-temp system. Sign and share our [letter for TVC workers](https://payparity.org/)!
 
 ## Changing Alphabet
 
 Before publicly announcing the Alphabet Workers Union on January 4th, 2021, our union has been involved in affecting change at Alphabet. We will continue to take action when there are injustices in the workplace and when we believe Alphabet isn’t living up to our [values]({{< ref "principles/mission-statement" >}}).
 
-Over the course of 2020, we’ve created space to give Alphabet workers opportunities to voice their concerns, such as by holding listening events on the one-year anniversary of the firings of the “Thanksgiving Four” and speaking out in chatrooms about Dr. Gebru’s firing.
-
-We will continue to share our efforts here and defend our fellow workers!
+We will continue to share our efforts here and defend our fellow workers! When we organize, we win! To learn about our successful campaigns, check out [our wins]({{< ref "power/wins" >}}).

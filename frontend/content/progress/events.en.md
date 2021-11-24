@@ -4,7 +4,7 @@ linktitle: 'Events'
 date: 2020-12-24T15:46:45-05:00
 weight: 2
 layout: textheavy
-aliases: [/reclaim-your-power/events.en.md]
+aliases: [/reclaim-your-power/events.en.md], [/power/events.en.md]
 ---
 
 {{< header />}}

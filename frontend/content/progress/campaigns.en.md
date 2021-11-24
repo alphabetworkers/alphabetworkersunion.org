@@ -4,6 +4,7 @@ linktitle: 'Campaigns'
 date: 2020-12-15T22:25:27-05:00
 weight: 3
 layout: textheavy
+aliases: [/power/campaigns.en.md]
 ---
 
 {{< header />}}

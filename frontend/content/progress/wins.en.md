@@ -4,6 +4,7 @@ linktitle: 'Wins'
 date: 2021-07-07T22:25:27-05:00
 weight: 3
 layout: textheavy
+aliases: [/progress/wins.en.md]
 ---
 
 {{< header />}}

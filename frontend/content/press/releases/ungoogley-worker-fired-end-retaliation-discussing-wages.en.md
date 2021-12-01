@@ -28,7 +28,7 @@ Workers at Alphabet have noticed an alarming trend as the workforce has shifted 
 
 “We, the workers of the Alphabet Workers Union-CWA, stand in full support of Tuesday Carne and all Alphabet workers who simply want fair pay for fair work,” said Alphabet Workers Union member Rachael Sawyer. “As a TVC worker and AWU member, I am organizing to put an end to Alphabet’s segregated, two-tiered employment system. We will continue to support Tuesday, the other workers at Modis and all Alphabet workers against unjust working conditions and fear mongering from management.” 
 
-The unfair labor practice charge alleges that Modis management illegally retaliated against Carne for discussing wages.  
+The ULP charge alleges that Modis management illegally retaliated against Carne for discussing wages.  
 
 “Tuesday Carne’s experience shows that even within a company that has faced accountability regarding their worker retaliation, management is often encouraged to continue to silence workers seeking to exercise their legal right to discuss pay in the workplace,” said Don Trementozzi, the president of CWA Local 1400. “It is clear that Google must do more to make sure the rights of TVC’s are no longer trampled on and we are proud to stand with Tuesday and all other Alphabet TVC’s.”
 

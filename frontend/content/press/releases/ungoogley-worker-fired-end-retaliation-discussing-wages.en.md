@@ -26,7 +26,7 @@ Carne’s firing and efforts to hold Modis and Google accountable by filing an U
  
 Workers at Alphabet have noticed an alarming trend as the workforce has shifted from majority direct employees to majority TVC staff. This has led to growing disparity in pay, benefits, and access for thousands of workers who are central to Alphabet’s functioning. Alphabet Workers Union-CWA is committed to standing in solidarity with all workers at Alphabet to ensure that our workplaces are equitable and transparent. 
 
-“We, the workers of the Alphabet Workers Union-CWA, stand in full support of Tuesday Carne and all Alphabet workers who simply want fair pay for fair work,” said Alphabet Workers Union member Rachael Sawyer, “As a TVC worker and AWU member, I am organizing to put an end to Alphabet’s segregated, two-tiered employment system. We will continue to support Tuesday, the other workers at Modis and all Alphabet workers against unjust working conditions and fear mongering from management.” 
+“We, the workers of the Alphabet Workers Union-CWA, stand in full support of Tuesday Carne and all Alphabet workers who simply want fair pay for fair work,” said Alphabet Workers Union member Rachael Sawyer. “As a TVC worker and AWU member, I am organizing to put an end to Alphabet’s segregated, two-tiered employment system. We will continue to support Tuesday, the other workers at Modis and all Alphabet workers against unjust working conditions and fear mongering from management.” 
 
 The unfair labor practice charge alleges that Modis management illegally retaliated against Carne for discussing wages.  
 

@@ -17,14 +17,17 @@ function getBillingAnchor(): Date {
   return now;
 }
 
-function totalCompDollarsToBillingCycleDuesCents(totalComp: number): number {
+function totalCompDollarsToBillingCycleDuesCents(totalComp: number, paymentMethod: string): number {
+  // TODO is there a way to check ACH vs Card on the stripeClient object here?
+  const multiplier = paymentMethod === 'card' ? 1.029 : 1;
   const annualDues = Math.floor(totalComp / 100);
-  const monthlyDues = Math.floor(annualDues / 12);
+  const monthlyDues = Math.floor(annualDues / 12 * multiplier);
   const monthlyDuesCents = monthlyDues * 100;
   return monthlyDuesCents;
 }
 
 export async function handleRequest(request: Request): Promise<Response> {
+  let sourceType = '';
   try {
     const fields = await request.formData();
     for (const fieldName of REQUIRED_FIELDS) {
@@ -38,7 +41,14 @@ export async function handleRequest(request: Request): Promise<Response> {
       if (fields.has('plaid-public-token')) {
         const {access_token} = await plaidClient.itemPublicTokenExchange(fields.get('plaid-public-token')! as string);
         source = (await plaidClient.processorStripeBankAccountTokenCreate(access_token, fields.get('plaid-account-id')! as string)).stripe_bank_account_token;
+        sourceType = 'plaid';
       } else {
+        let stripeToken = fields.get('stripe-payment-token') as unknown as Stripe.Token;
+        if(stripeToken?.bank_account) {
+          sourceType = 'bank';
+        } else if (stripeToken?.card) {
+          sourceType = 'card';
+        }
         source = fields.get('stripe-payment-token') as string;
       }
       customer = await stripeClient.createCustomer({
@@ -69,7 +79,7 @@ export async function handleRequest(request: Request): Promise<Response> {
         price_data: {
           currency: (fields.get('currency') as string),
           product: DUES_PRODUCT_ID,
-          unit_amount: totalCompDollarsToBillingCycleDuesCents(Number(fields.get('total-compensation') as string)),
+          unit_amount: totalCompDollarsToBillingCycleDuesCents(Number(fields.get('total-compensation') as string), sourceType),
           recurring: {
             interval: 'month',
           },

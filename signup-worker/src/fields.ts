@@ -18,6 +18,7 @@ const REQUIRED_METADATA = [
   'job-title',
   'have-reports',
   'total-compensation',
+  'sms-consent',
 ];
 
 export const REQUIRED_FIELDS = REQUIRED_METADATA.concat([
@@ -32,6 +33,7 @@ const OPTIONAL_METADATA = [
   'building-code',
   'product-area',
   'work-email',
+  'birthday',
 ];
 
 export const METADATA = REQUIRED_METADATA.concat(OPTIONAL_METADATA);

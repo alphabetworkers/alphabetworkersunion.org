@@ -170,6 +170,10 @@ export class Signup extends LitElement {
   haveReports!: HTMLInputElement;
   @query('[name="total-compensation"]')
   totalCompensation!: HTMLInputElement;
+  @query('name="birthday"]')
+  birthday!: HTMLInputElement;
+  @query('[name="sms-consent"]')
+  smsConsent!: HTMLInputElement;
 
   // Payment info input elements.
   @query('[name="card-holder-name"]')
@@ -251,6 +255,8 @@ export class Signup extends LitElement {
       this.jobTitle.value = 'foo';
       this.haveReports.value = 'n';
       this.totalCompensation.value = '250000';
+      this.birthday.value = '01/01/1950';
+      this.smsConsent.value = '1';
       this.billingCountry.value = 'US';
       this.routingNumber.value = '110000000';
       this.accountNumber.value = '000123456789';
@@ -398,8 +404,10 @@ export class Signup extends LitElement {
     >
       <span class="title">Card details</span>
       <span class="hint">
-        We encourage you to use a bank account instead to avoid the additional
-        2.9% processing fees charge.
+        <em>Please consider using a bank account to pay dues.</em> This both
+        saves you the 2.9% processing fee charge, and also your union's
+        administrative overhead by saving the work of getting updated payment
+        information when cards expire or are cancelled.
       </span>
       <div class="card-container">
         <slot
@@ -552,6 +560,16 @@ export class Signup extends LitElement {
             ?required=${REQUIRED_FIELDS.includes('preferred-language')}
           />
         </label>
+        <label>
+          <span class="title">Birthday${optionalLabel('birthday')}</span>
+          <span class="hint"></span>
+          <input
+            name="birthday"
+            type="date"
+            aria-label="Birthday"
+            ?required=${REQUIRED_FIELDS.includes('birthday')}
+          />
+        </label>
         <h2>How can we contact you?</h2>
         <label>
           <span class="title"
@@ -651,6 +669,31 @@ export class Signup extends LitElement {
             ?required=${REQUIRED_FIELDS.includes('mailing-country')}
             autocomplete="country"
           />
+        </label>
+        <label>
+          <span class="title"
+            >Would you like SMS and email
+            updates?${optionalLabel('sms-consent')}</span
+          >
+          <span class="hint"
+            >Yes, I want to receive updates about my union and other
+            union-related news from CWA. Message & data rates may apply. Visit
+            <a href="https://www.cwa-union.org/sms-terms"
+              >https://www.cwa-union.org/sms-terms</a
+            >
+            for Terms & Conditions and Privacy Policy.
+          </span>
+          <div class="select">
+            <select
+              name="sms-consent"
+              aria-label="Opt in to SMS and email?"
+              ?required=${REQUIRED_FIELDS.includes('sms-consent')}
+              autocomplete="off"
+            >
+              <option value="n">No</option>
+              <option value="y" selected>Yes</option>
+            </select>
+          </div>
         </label>
         <h2>Where do you work?</h2>
         <label>
@@ -1113,7 +1156,8 @@ export class Signup extends LitElement {
   duesTemplate(): TemplateResult {
     return this.isPayingWithCard()
       ? html`<div class="dues">
-          TC &times; 1% &div; 12 &times; 1.029 =
+          TC &times; 1% &div; 12
+          <span class="dues-card-multiplier"> &times; 1.029</span> =
           <strong>${this.formattedDues()}</strong>/mo
         </div>`
       : html` <div class="dues">

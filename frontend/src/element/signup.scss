@@ -262,6 +262,7 @@ select {
 .payment-method-toggle button {
   background: white;
   margin-right: 16px;
+  cursor: pointer;
 }
 
 .card-container {
@@ -272,6 +273,12 @@ button.primary,
 .payment-method-toggle button.selected {
   background: constants.$brand;
   color: white;
+  cursor: auto;
+}
+
+button.primary:hover {
+  background-color: constants.$brand-dark;
+  cursor: pointer;
 }
 
 .actions {

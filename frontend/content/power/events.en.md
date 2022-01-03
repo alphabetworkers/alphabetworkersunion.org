@@ -9,9 +9,12 @@ aliases: [/reclaim-your-power/events.en.md]
 
 {{< header />}}
 
-## Upcoming union days
+## New year, new you-nion!
 
-Events coming soon! We add upcoming union days here as soon as they are scheduled.
+Join us to celebrate the one-year anniversary of our union going public!
+We'll celebrate the wins of 2021, share our vision for 2022, and make our new year's resolutions together.
+
+[Register to attend Thursday, January 13th, 2022 7 pm ET / 4 pm PT](https://us06web.zoom.us/meeting/register/tZEldOqsrjorHdai8sbnc9HfY5_9RhJknB4k).
 
 ## About union days
 

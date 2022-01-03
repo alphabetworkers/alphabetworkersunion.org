@@ -203,7 +203,7 @@ export class Signup extends LitElement {
   cardElement: StripeCardElement;
 
   @internalProperty()
-  protected paymentMethod: 'bank' | 'card' = 'bank';
+  protected paymentMethod: 'bank' | 'card' | 'plaid' = 'plaid';
 
   @internalProperty()
   isFirstPartyEmployer = true;
@@ -261,7 +261,7 @@ export class Signup extends LitElement {
   }
 
   protected setMethod(
-    method: 'bank' | 'card'
+    method: 'bank' | 'card' | 'plaid'
   ): (event?: MouseEvent) => unknown {
     return (event?: MouseEvent) => {
       event?.preventDefault();
@@ -269,7 +269,7 @@ export class Signup extends LitElement {
     };
   }
 
-  protected isMethod(method: 'bank' | 'card'): boolean {
+  protected isMethod(method: 'bank' | 'card' | 'plaid'): boolean {
     return this.paymentMethod === method;
   }
 
@@ -312,48 +312,47 @@ export class Signup extends LitElement {
   }
 
   private paymentTemplate(): TemplateResult {
-    return html` <div class="field full-width">
-        <span class="title">Connect bank</span>
-        <span class="hint">
-          Use Plaid to instantly verify your bank account. Nothing will be
-          charged right now.
-        </span>
-        <button
-          @click=${this.openPlaid}
-          class="primary"
-          type="button"
-          type="button"
-        >
-          Connect Bank
-        </button>
-      </div>
-      <div class="field full-width">
-        <span class="title or"><span>Or</span></span>
-      </div>
+    return html` <h2>Payment</h2>
+
       <div class="payment-method-toggle full-width">
+        <button
+          class=${classMap({ selected: this.isMethod('plaid') })}
+          @click=${this.setMethod('plaid')}
+        >
+          Bank Account (automatic)
+        </button>
         <button
           class=${classMap({ selected: this.isMethod('bank') })}
           @click=${this.setMethod('bank')}
         >
-          Bank account
+          Bank account (manual)
         </button>
         <button
           class=${classMap({ selected: this.isMethod('card') })}
           @click=${this.setMethod('card')}
         >
-          Card
+          Card (debit/credit)
         </button>
       </div>
-      ${this.paymentMethod === 'bank' ? this.bankTemplate : this.cardTemplate}`;
+      ${this.paymentMethodTemplate()}`;
   }
 
   // TODO prevent scrolling from incrementing number fields
   // TODO server-side validation, and accept error responses
-  private readonly bankTemplate: TemplateResult = html` <label>
-      <span class="title">Routing number</span>
+  private readonly bankTemplate: TemplateResult = html`<div
+      class="field full-width"
+    >
+      <span class="title">Connect bank</span>
       <span class="hint">
-        If you enter your routing or account numbers manually, two microdeposits are made into your account. In order to verify your bank account, we will need to contact you after those deposits have cleared.
+        If you enter your routing or account numbers manually, two microdeposits
+        are made into your account. In order to verify your bank account, we
+        will need to contact you after those deposits have cleared. This process
+        usually takes 2-3 days.
       </span>
+    </div>
+    <label>
+      <span class="title">Routing number</span>
+      <span class="hint"> </span>
       <input
         name="routing-number"
         aria-label="Routing number"
@@ -394,14 +393,14 @@ export class Signup extends LitElement {
       </div>
     </label>`;
 
-  private readonly cardTemplate: TemplateResult = html` <div
+  private readonly cardTemplate: TemplateResult = html`<div
       class="field full-width"
     >
       <span class="title">Card details</span>
       <span class="hint">
-        We encourage you to use a bank account instead, so that less is
-        lost to transaction fees. If you still want to use a card, debit cards
-        have lower fees than credit cards.
+        We encourage you to use a bank account instead, so that less is lost to
+        transaction fees. If you still want to use a card, debit cards have
+        lower fees than credit cards.
       </span>
       <div class="card-container">
         <slot
@@ -479,6 +478,21 @@ export class Signup extends LitElement {
         autocomplete="country"
       />
     </label>`;
+
+  private readonly plaidTemplate = html` <div class="field full-width">
+    <span class="title">Connect bank</span>
+    <span class="hint">
+      Click below to use Plaid to instantly connect your bank account.
+    </span>
+    <button
+      @click=${this.openPlaid}
+      class="primary"
+      type="button"
+      type="button"
+    >
+      Connect Bank
+    </button>
+  </div>`;
 
   render(): TemplateResult {
     return html`
@@ -558,7 +572,8 @@ export class Signup extends LitElement {
             >Personal phone${optionalLabel('personal-phone')}</span
           >
           <span class="hint"
-            >We rarely use this contact method, but will use it if we can't reach you via any other methods.</span
+            >We rarely use this contact method, but will use it if we can't
+            reach you via any other methods.</span
           >
           <input
             name="personal-phone"
@@ -744,8 +759,9 @@ export class Signup extends LitElement {
         <label>
           <span class="title">Site code${optionalLabel('site-code')}</span>
           <span class="hint"
-            >So we can connect you with your local chapters. Site code is
-            a country code followed by a location code (for example, "US-MTV").</span
+            >So we can connect you with your local chapters. Site code is a
+            country code followed by a location code (for example,
+            "US-MTV").</span
           >
           <input
             name="site-code"
@@ -809,9 +825,9 @@ export class Signup extends LitElement {
             >Total compensation (TC)${optionalLabel('total-compensation')}</span
           >
           <span class="hint"
-            >Used to calculate your union dues. If you don't have an annual salary, 
-            click the Calculator icon. We expect members to be honest, but
-            this is the honor system: we won't check.</span
+            >Used to calculate your union dues. If you don't have an annual
+            salary, click the Calculator icon. We expect members to be honest,
+            but this is the honor system: we won't check.</span
           >
           <div class="dollar-input">
             <button
@@ -881,19 +897,20 @@ export class Signup extends LitElement {
             <strong>${this.formattedDues()}</strong>/mo
           </div>
         </label>
+
         ${this.plaidToken
           ? this.connectedPlaidTemplate()
           : this.paymentTemplate()}
         <h2>Accept agreement</h2>
         <label class="full-width">
           <span class="title">
-            Type your name in the Signature field to accept the membership terms of the
-            Communications Workers of America, under which AWU is formed. You
-            also authorize a one-time $5 initiation fee, and the regular charge
-            of your calculated dues.
+            Type your name in the Signature field to accept the membership terms
+            of the Communications Workers of America, under which AWU is formed.
+            You also authorize a one-time $5 initiation fee, and the regular
+            charge of your calculated dues.
             <em
-              >Nothing is charged until the Membership Committee reviews
-              and accepts your membership application.</em
+              >Nothing is charged until the Membership Committee reviews and
+              accepts your membership application.</em
             >
           </span>
           <input
@@ -1098,6 +1115,17 @@ export class Signup extends LitElement {
       return `$${Math.floor(Math.floor(comp) / 100 / 12)}`;
     } else {
       return '$0';
+    }
+  }
+
+  paymentMethodTemplate(): TemplateResult {
+    switch (this.paymentMethod) {
+      case 'bank':
+        return this.bankTemplate;
+      case 'card':
+        return this.cardTemplate;
+      case 'plaid':
+        return this.plaidTemplate;
     }
   }
 

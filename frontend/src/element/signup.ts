@@ -398,9 +398,8 @@ export class Signup extends LitElement {
     >
       <span class="title">Card details</span>
       <span class="hint">
-        We encourage you to use a bank account instead, so that less is lost to
-        transaction fees. If you still want to use a card, debit cards have
-        lower fees than credit cards.
+        We encourage you to use a bank account instead to avoid the additional
+        2.9% processing fees charge.
       </span>
       <div class="card-container">
         <slot
@@ -889,15 +888,12 @@ export class Signup extends LitElement {
         <label>
           <span class="title">Monthly dues</span>
           <span class="hint"
-            >Dues are 1% of your TC. This is billed monthly, and is pooled and
-            democratically controlled by you and your fellow members.</span
+            >Dues are 1% of your TC, plus processing fee if you opt to pay with
+            a card. This is billed monthly, and is pooled and democratically
+            controlled by you and your fellow members.</span
           >
-          <div class="dues">
-            TC &times; 1% &div; 12 =
-            <strong>${this.formattedDues()}</strong>/mo
-          </div>
+          ${this.duesTemplate()}
         </label>
-
         ${this.plaidToken
           ? this.connectedPlaidTemplate()
           : this.paymentTemplate()}
@@ -953,6 +949,7 @@ export class Signup extends LitElement {
         body = remainingFields;
         body.set('stripe-payment-token', token.id);
       }
+      body.set('payment-method', this.paymentMethod);
 
       const result = await fetch(window.SIGNUP_API, { method: 'POST', body });
 
@@ -1109,10 +1106,28 @@ export class Signup extends LitElement {
     this.recalculateTotalComp();
   }
 
+  isPayingWithCard(): boolean {
+    return this.paymentMethod === 'card';
+  }
+
+  duesTemplate(): TemplateResult {
+    return this.isPayingWithCard()
+      ? html`<div class="dues">
+          TC &times; 1% &div; 12 &times; 1.029 =
+          <strong>${this.formattedDues()}</strong>/mo
+        </div>`
+      : html` <div class="dues">
+          TC &times; 1% &div; 12 =
+          <strong>${this.formattedDues()}</strong>/mo
+        </div>`;
+  }
+
   formattedDues(): string {
     const comp = Number(this.totalCompensation?.value);
+    const cardMultiplier = this.isPayingWithCard() ? 1.029 : 1;
+
     if (!Number.isNaN(comp)) {
-      return `$${Math.floor(Math.floor(comp) / 100 / 12)}`;
+      return `$${Math.floor((Math.floor(comp) / 100 / 12) * cardMultiplier)}`;
     } else {
       return '$0';
     }

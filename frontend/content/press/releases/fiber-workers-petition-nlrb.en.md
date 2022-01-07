@@ -29,7 +29,7 @@ Google Fiber customer service. Both the Alphabet subcontractor, BDS Connected So
 
 “Google Fiber actually began in Kansas City. Some of us have been working here for years and want to make sure that all of our coworkers have the power to keep the things
 we like about our job, but also continue to make our workplace better. We organized with AWU-CWA so that we all get a seat at the table, a say in our working conditions, and
-collective bargaining power,” said Eris Derickson, Retail Associate - Google andBDS Connected Solutions.
+collective bargaining power,” said Eris Derickson, Retail Associate - Google and BDS Connected Solutions.
  
 By ensuring both full time Alphabet workers and contractors alike have a protected voice on the job, the Kansas City chapter of AWU-CWA is paving the way for industry-wide
 standards that will better the shared working conditions at Alphabet, Silicon Valley, and beyond. The union filing from Kansas City makes it clear that AWU-CWA is gearing

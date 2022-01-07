@@ -21,4 +21,4 @@ Join our fight to dismantle the two-tiered perma-temp system. Sign and share our
 
 Before publicly announcing the Alphabet Workers Union on January 4th, 2021, our union has been involved in affecting change at Alphabet. We will continue to take action when there are injustices in the workplace and when we believe Alphabet isn’t living up to our [values]({{< ref "principles/mission-statement" >}}).
 
-We will continue to share our efforts here and defend our fellow workers! When we organize, we win! To learn about our successful campaigns, check out [our wins]({{< ref "power/wins" >}}).
+We will continue to share our efforts here and defend our fellow workers! When we organize, we win! To learn about our successful campaigns, check out [our wins]({{< ref "progress/wins" >}}).

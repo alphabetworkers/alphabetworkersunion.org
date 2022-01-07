@@ -27,7 +27,7 @@ software engineer at Alphabet Inc.'s Google and the executive chair of the Alpha
 A total of 10 out of the 11 eligible employees have signed union cards with AWU-CWA. The workers work for BDS Connected Solutions, a contractor which provides
 Google Fiber customer service. Both the Alphabet subcontractor, BDS Connected Solutions, and Alphabet will be listed as joint employers on the filing.
 
-“Google fiber actually began in Kansas City. Some of us have been working here for years and want to make sure that all of our coworkers have the power to keep the things
+“Google Fiber actually began in Kansas City. Some of us have been working here for years and want to make sure that all of our coworkers have the power to keep the things
 we like about our job, but also continue to make our workplace better. We organized with AWU-CWA so that we all get a seat at the table, a say in our working conditions, and
 collective bargaining power,” said Eris Derickson, Retail Associate - Google andBDS Connected Solutions.
  

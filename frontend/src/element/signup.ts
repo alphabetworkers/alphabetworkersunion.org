@@ -678,10 +678,13 @@ export class Signup extends LitElement {
           <span class="hint"
             >Yes, I want to receive updates about my union and other
             union-related news from CWA. Message & data rates may apply. Visit
+            <<<<<<< HEAD
             <a href="https://www.cwa-union.org/sms-terms"
               >https://www.cwa-union.org/sms-terms</a
             >
-            for Terms & Conditions and Privacy Policy.
+            for Terms & Conditions and Privacy Policy. =======
+            https://www.cwa-union.org/sms-terms for Terms & Conditions and
+            Privacy Policy. >>>>>>> 62798ed661418d3b79edc8ea8e140abc2741b159
           </span>
           <div class="select">
             <select

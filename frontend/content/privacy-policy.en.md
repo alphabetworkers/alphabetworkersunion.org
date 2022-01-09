@@ -7,7 +7,7 @@ layout: textheavy
 
 {{< header />}}
 
-Alphabet Workers Union - Comminications Workers of America local 1400 ("us", "we", or "our") operates the AlphabetWorkersUnion.org website (the “website”). This page informs you of our policies regarding the collection, use and disclosure of personal information when you use our website. We will not use or share your information with anyone except as described in this privacy policy. We don’t collect any of your personal information so there is nothing to share.
+Alphabet Workers Union - Communications Workers of America Local 1400 ("us", "we", or "our") operates the AlphabetWorkersUnion.org website (the “website”). This page informs you of our policies regarding the collection, use and disclosure of personal information when you use our website. We will not use or share your information with anyone except as described in this privacy policy. We don’t collect any of your personal information so there is nothing to share.
 
 The following discloses our information gathering and dissemination practices for this website. The type and amount of information received depends on how you use the site.
 

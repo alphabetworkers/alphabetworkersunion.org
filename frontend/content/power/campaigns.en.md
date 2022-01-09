@@ -8,6 +8,10 @@ layout: textheavy
 
 {{< header />}}
 
+## Google Fiber TVC workers in Kansas City file petition with NLRB to win bargaining rights
+
+A supermajority of workers at BDS Connected Solutions, a Google Fiber subcontractor, have signed union cards and filed with the NLRB to win union recognition and bargaining power on the job. Workers were already dues-paying members of AWU-CWA and are now calling on the NLRB to grant them the bargaining rights that they have earned by successfully organizing their workplace in Kansas City, Missouri. These bargaining rights would force Alphabet to recognize the Alphabet Workers Union as the bargaining unit for workers. The union filing from Kansas City makes it clear that we are gearing up to win bargaining rights to secure more for workers within Alphabet Inc. Join our fight!
+
 ## Pay parity for all TVCs
 
 We believe that all workers at Google should receive the full wages they are legally entitled to and have earned. We demand that Google immediately pay back all Temps, Vendors and Contractors (TVCs) who have been knowingly underpaid by Google. 

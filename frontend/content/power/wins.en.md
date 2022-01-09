@@ -10,6 +10,14 @@ layout: textheavy
 
 When we organize, we win!
 
+## Datacenter workers win back bonus at Modis!
+
+We helped datacenter workers win back a bonus that was promised to them by Modis, a company that contracts with Google. In October, Modis announced that they were cancelling a $200 per week attendance incentive bonus that was promised to datacenter workers in September and was supposed to run through December. Workers had stopped receiving the attendance bonus without any explanation at the beginning of October. 
+
+Datacenter workers are the backbone of Google. They have continued working in person throughout the global pandemic. Modis workers, including AWU members, reached out to AWU staff and leadership and immediately began to organize. Within just 2 days, Modis announced that they would be reinstating the bonuses, along with backpay.
+
+Read more about this story in how [Google Temps Fought Loss of Pandemic Bonus. And Won.](https://www.nytimes.com/2021/11/05/technology/google-workers.html)
+
 ## Drop the deadnames
 
 As a transgender man, Phares Lee had to live with his deadname on his name badge while working at Google for the past three years. He asked repeatedly for this to change

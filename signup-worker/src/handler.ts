@@ -17,14 +17,16 @@ function getBillingAnchor(): Date {
   return now;
 }
 
-function totalCompDollarsToBillingCycleDuesCents(totalComp: number): number {
+function totalCompDollarsToBillingCycleDuesCents(totalComp: number, paymentMethod: string): number {
+  const multiplier = paymentMethod === 'card' ? 1.029 : 1;
   const annualDues = Math.floor(totalComp / 100);
-  const monthlyDues = Math.floor(annualDues / 12);
+  const monthlyDues = Math.floor(annualDues / 12 * multiplier);
   const monthlyDuesCents = monthlyDues * 100;
   return monthlyDuesCents;
 }
 
 export async function handleRequest(request: Request): Promise<Response> {
+  let paymentMethod: string;
   try {
     const fields = await request.formData();
     for (const fieldName of REQUIRED_FIELDS) {
@@ -41,6 +43,7 @@ export async function handleRequest(request: Request): Promise<Response> {
       } else {
         source = fields.get('stripe-payment-token') as string;
       }
+      paymentMethod = fields.get('payment-method') as string;
       customer = await stripeClient.createCustomer({
         source,
         email: fields.get('personal-email') as string,
@@ -69,7 +72,7 @@ export async function handleRequest(request: Request): Promise<Response> {
         price_data: {
           currency: (fields.get('currency') as string),
           product: DUES_PRODUCT_ID,
-          unit_amount: totalCompDollarsToBillingCycleDuesCents(Number(fields.get('total-compensation') as string)),
+          unit_amount: totalCompDollarsToBillingCycleDuesCents(Number(fields.get('total-compensation') as string), paymentMethod),
           recurring: {
             interval: 'month',
           },

@@ -9,12 +9,13 @@ aliases: [/reclaim-your-power/events.en.md]
 
 {{< header />}}
 
-## New year, new you-nion!
+## Black History Month Union Movie Night
 
-Join us to celebrate the one-year anniversary of our union going public!
-We'll celebrate the wins of 2021, share our vision for 2022, and make our new year's resolutions together.
+As part of Black History Month, we will be screening [At The River I Stand](https://www.youtube.com/watch?v=xzRUwwRQzVc&ab_channel=CaliforniaNewsreel), a powerful hour-long documentary recounting the 1968 Memphis sanitations workers' strike, and the two eventful months that led to the assassination of Dr. Martin Luther King, Jr. and the climax of the Civil Rights Movement. The screening will be followed by a short discussion.
+ Invite your co-workers! AWU Members and non-members are both welcome.
+Register for the event
 
-[Register to attend Thursday, January 13th, 2022 7 pm ET / 4 pm PT](https://us06web.zoom.us/meeting/register/tZEldOqsrjorHdai8sbnc9HfY5_9RhJknB4k).
+[Register to attend Friday, February 18th, 2022 7 pm ET / 4 pm PT](https://airtable.com/shrBIdrstW1s7Z1GH).
 
 ## About union days
 

@@ -11,21 +11,21 @@ aliases: [/reclaim-your-power/events.en.md]
 
 ## Black History Month Union Movie Night
 
-As part of Black History Month, we will be screening [At The River I Stand](https://www.youtube.com/watch?v=xzRUwwRQzVc&ab_channel=CaliforniaNewsreel), a powerful hour-long documentary recounting the 1968 Memphis sanitations workers' strike, and the two eventful months that led to the assassination of Dr. Martin Luther King, Jr. and the climax of the Civil Rights Movement. The screening will be followed by a short discussion.
- Invite your co-workers! AWU Members and non-members are both welcome.
-Register for the event
+As part of Black History Month on Friday, February 18th, 2022 7 pm ET / 4 pm PT, AWU-CWA will be screening [At The River I Stand](https://www.youtube.com/watch?v=xzRUwwRQzVc&ab_channel=CaliforniaNewsreel), a powerful hour-long documentary recounting the 1968 Memphis sanitations workers' strike, and the two eventful months that led to the assassination of Dr. Martin Luther King, Jr. and the climax of the Civil Rights Movement. The screening will be followed by a short discussion.
+
+Invite your co-workers! AWU members and non-members are both welcome.
 
 [Register to attend Friday, February 18th, 2022 7 pm ET / 4 pm PT](https://airtable.com/shrBIdrstW1s7Z1GH).
 
-## AWU TVC OFfice Hours
+## AWU TVC Office Hours
 
-The AWU TVC office hours are scheduled on the 3rd Monday each month at 6 pm starting in March. Register in advance for the Zoom meeting.
+AWU is hosting TVC office hours each month. Register in advance for the Zoom meeting.
 
 [Register to attend Tuesday, February 22nd, 2022 9pm ET / 6 pm PT](https://bit.ly/36a9uEB)
 [Register to attend Monday, March 21st, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
 [Register to attend Monday, April 18th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
 
-Alphabet Workers Union hosts monthly TVC office hours, which is open all Alphabet TVCs, regardless of whether they are AWU members. Both TVC and FTE union organizers will be present as facilitators. We'll share the latest news on our workplace organizing efforts, but more importantly this is an open forum for everyone. Come share your workplace concerns, challenges, and questions of any kind.
+AWU hosts monthly office hours that are open to all Alphabet TVCs. Nonmembers are welcome to attend, and worker organizers, both TVC and FTE, will be facilitating the session. We'll share the latest news on our workplace organizing efforts, but more importantly this is an open forum for everyone. Come share your workplace concerns, challenges, and questions of any kind.
 
 ## About union days
 

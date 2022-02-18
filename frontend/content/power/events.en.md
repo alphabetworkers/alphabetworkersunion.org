@@ -17,6 +17,16 @@ Register for the event
 
 [Register to attend Friday, February 18th, 2022 7 pm ET / 4 pm PT](https://airtable.com/shrBIdrstW1s7Z1GH).
 
+## AWU TVC OFfice Hours
+
+The AWU TVC office hours are scheduled on the 3rd Monday each month at 6 pm starting in March. Register in advance for the Zoom meeting.
+
+[Register to attend Tuesday, February 22nd, 2022 9pm ET / 6 pm PT](https://bit.ly/36a9uEB)
+[Register to attend Monday, March 21st, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
+[Register to attend Monday, April 18th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
+
+Alphabet Workers Union hosts monthly TVC office hours, which is open all Alphabet TVCs, regardless of whether they are AWU members. Both TVC and FTE union organizers will be present as facilitators. We'll share the latest news on our workplace organizing efforts, but more importantly this is an open forum for everyone. Come share your workplace concerns, challenges, and questions of any kind.
+
 ## About union days
 
 Union days are open to all workers at Alphabet. We welcome TVCs, FTEs, union members, and non-members who are interested in learning more about workplace issues. Union days are periodic events where we discuss ongoing campaigns, workplace concerns, organizing opportunities, and other ways to get involved to improve Alphabet. All are welcome!

@@ -22,7 +22,9 @@ Invite your co-workers! AWU members and non-members are both welcome.
 AWU is hosting TVC office hours each month. Register in advance for the Zoom meeting.
 
 [Register to attend Tuesday, February 22nd, 2022 9pm ET / 6 pm PT](https://bit.ly/36a9uEB)
+
 [Register to attend Monday, March 21st, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
+
 [Register to attend Monday, April 18th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
 
 AWU hosts monthly office hours that are open to all Alphabet TVCs. Nonmembers are welcome to attend, and worker organizers, both TVC and FTE, will be facilitating the session. We'll share the latest news on our workplace organizing efforts, but more importantly this is an open forum for everyone. Come share your workplace concerns, challenges, and questions of any kind.

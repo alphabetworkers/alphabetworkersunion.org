@@ -3,9 +3,9 @@ import {
   html,
   LitElement,
   TemplateResult,
-  internalProperty,
+  state,
 } from 'lit-element';
-import { query } from 'lit-element/lib/decorators.js';
+import { query } from 'lit/decorators.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 import {
   loadStripe,
@@ -206,25 +206,25 @@ export class Signup extends LitElement {
 
   cardElement: StripeCardElement;
 
-  @internalProperty()
+  @state()
   protected paymentMethod: 'bank' | 'card' | 'plaid' = 'plaid';
 
-  @internalProperty()
+  @state()
   isFirstPartyEmployer = true;
 
-  @internalProperty()
+  @state()
   isLoading = false;
 
-  @internalProperty()
+  @state()
   isContractor = false;
 
-  @internalProperty()
+  @state()
   isComplete = false;
 
-  @internalProperty()
+  @state()
   private isCompCalculatorOpen = false;
 
-  @internalProperty()
+  @state()
   private plaidToken?: PlaidToken;
 
   private hourlyRate = 0;

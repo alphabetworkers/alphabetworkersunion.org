@@ -65,7 +65,7 @@ module.exports = {
       },
       {
         test: /img\/meet-the-union\/.+\.(png|jpe?g)$/i,
-        use: [{
+        use: ['file-loader', {
           loader: 'webpack-image-resize-loader',
           options: {
             width: 400,
@@ -77,7 +77,7 @@ module.exports = {
       },
       {
         test: /selfies\/.+\.(png|jpe?g)$/i,
-        use: [{
+        use: ['file-loader', {
           loader: 'webpack-image-resize-loader',
           options: {
             width: 200,

@@ -1,0 +1,3 @@
+stripe_key = 'pk_test_51I9k6TE1rwuQcCei5yDImwRkr5S6qIzakaDope6nrnEQcTn9CjqmosnWnlwDbRUYMudlYNS0OVsNqpgjbs3MwQbp00FO2VIwzx'
+signup_api = 'https://signup-worker.alphabetworkersunion.workers.dev/'
+plaid_token_api = 'https://plaid-token-worker.alphabetworkersunion.workers.dev/'

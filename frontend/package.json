@@ -39,7 +39,7 @@
     "create": "hugo new",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "run-s build:webpack build:hugo",
-    "build:webpack": "webpack",
+    "build:webpack": "webpack --mode=production",
     "build:hugo": "hugo --environment=prod",
     "start": "npm-run-all build:webpack -p start:*",
     "start:hugo": "hugo server --environment=dev",

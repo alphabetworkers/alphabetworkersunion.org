@@ -7,12 +7,7 @@ import {
 } from 'lit-element';
 import { query } from 'lit/decorators.js';
 import { classMap } from 'lit-html/directives/class-map.js';
-import {
-  loadStripe,
-  StripeCardElement,
-  Token,
-  StripeError,
-} from '@stripe/stripe-js';
+import { loadStripe, StripeCardElement, Token } from '@stripe/stripe-js';
 
 import styles from './signup.scss';
 
@@ -311,7 +306,7 @@ export class Signup extends LitElement {
       <span class="title">Verified Account</span>
       <span class="hint"></span>
       <p>
-        ${this.plaidToken!.account_name}
+        ${this.plaidToken?.account_name}
         <button @click=${this.clearPlaid}>Remove</button>
       </p>
     </div>`;
@@ -1220,6 +1215,7 @@ export class Signup extends LitElement {
         // TODO re-use this iframe when possible, instead of re-creating every time.  Must silently recover if the token expires.
         handler.destroy();
       },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
     handler.open();
   }

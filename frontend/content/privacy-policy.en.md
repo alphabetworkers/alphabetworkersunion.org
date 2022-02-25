@@ -7,7 +7,7 @@ layout: textheavy
 
 {{< header />}}
 
-Alphabet Workers Union ("us", "we", or "our") operates the AlphabetWorkersUnion.org website (the “website”). This page informs you of our policies regarding the collection, use and disclosure of personal information when you use our website. We will not use or share your information with anyone except as described in this privacy policy. We don’t collect any of your personal information so there is nothing to share.
+Alphabet Workers Union - Communications Workers of America Local 1400 ("us", "we", or "our") operates the AlphabetWorkersUnion.org website (the “website”). This page informs you of our policies regarding the collection, use and disclosure of personal information when you use our website. We will not use or share your information with anyone except as described in this privacy policy. We don’t collect any of your personal information so there is nothing to share.
 
 The following discloses our information gathering and dissemination practices for this website. The type and amount of information received depends on how you use the site.
 
@@ -17,7 +17,7 @@ The membership form is currently operated on our behalf by [Communication Worker
 
 We may collect personal information about you that you submit via additional forms and email contacts to various @alphabetworkersunion.org aliases. Any personal information that you provide to us is voluntary. We use this information to help us fulfill your request. We make every effort to ensure the secure collection and transmission of your sensitive information using industry-standard data collection and encryption methodologies, such as SSL (Secure Sockets Layer). We do not share information collected in this manner with any third parties.
 
-The AWU website will not post your personal contact information, including e-mail address, street address and phone numbers, without your consent.
+The AWU-CWA website will not post your personal contact information, including e-mail address, street address and phone numbers, without your consent.
 
 If you want to update or remove your information from our database, please contact us.
 

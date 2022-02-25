@@ -52,7 +52,7 @@ Staff organizers (the people paid salaries by AWU) are not members of AWU, and d
 
 ### Unions protect bad and lazy workers
 
-We all want our coworkers to be good at their jobs, and our lives are harder if they're not. Keep in mind that other countries with big Alphabet offices (Ireland and France, for example) have laws that make it much harder to fire employees than in the U.S./Canada, and our coworkers there are as competent and hardworking.
+We all want our coworkers to be good at their jobs, and our lives are harder if they're not. Keep in mind that other countries with big Alphabet offices (Ireland and France, for example) have laws that make it much harder to fire employees than in the U.S./Canada, and our coworkers there are just as competent and hardworking.
 
 ### Work within the system (ERGs, listening sessions, TGIF, Dory)
 

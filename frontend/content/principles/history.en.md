@@ -1,5 +1,5 @@
 ---
-title: 'History of Alphabet Workers Union'
+title: 'History of Alphabet Workers Union - Communications Workers of America Local 1400'
 linktitle: 'History'
 date: 2020-12-15T22:27:06-05:00
 weight: 2
@@ -160,7 +160,7 @@ In January 2020, Alphabet workers met with CWA representatives to discuss
 organizing a union and make plans for the future. This initial base brought in
 more workers. The pandemic made in-person organizing difficult, but weekly
 organizing lunches moved online and provided more connections for building
-AWU. Over the rest of the year we learned, we organized, we talked to our
+AWU-CWA. Over the rest of the year we learned, we organized, we talked to our
 coworkers and created our union.
 
 On January 4th, 2021 the Alphabet Workers Union launched publicly and continues

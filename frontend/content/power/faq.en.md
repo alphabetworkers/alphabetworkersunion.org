@@ -28,6 +28,12 @@ Yes.
 
 Yes, managers under the director level are welcome to join us. Managers face additional risks getting involved with organizing, so if you're a manager interested in joining, we'd love to have a conversation with you. Please fill out the [interest form](https://airtable.com/shr3RpVTuP25kHMdm) and a union member will reach out to discuss.
 
+### Can workers in Canada join this union?
+
+Yes. Currently, our card-sign form only allows US addresses; we're working to address this. Until we get the form fixed, you can still join AWU! Just fill out the card-sign form with any address (it's helpful if you put "Canada" in the street address portion), then send an email with the subject "Canadian AWU Signup Address Correction" to info@cwalocal1400.org with your name and your actual address. We'll correct your address in our system. 
+
+For Annual Total Compensation, please enter your compensation in US Dollars. You can use a conversion rate of 1 CAD to 0.7 USD.
+
 ### How big is the union?
 
 {{< member-count >}}+ people and growing every day!

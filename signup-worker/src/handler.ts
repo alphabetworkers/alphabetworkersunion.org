@@ -1,4 +1,4 @@
-import { StripeClient, stripeClient } from './stripe';
+import { stripeClient } from './stripe';
 import { plaidClient } from './plaid';
 import Stripe from 'stripe';
 
@@ -84,6 +84,7 @@ export async function handleRequest(request: Request): Promise<Response> {
         behavior: 'keep_as_draft',
       },
     });
+
     await stripeClient.createInvoiceItem({
       customer: customer.id,
       price: DUES_SIGNUP_PRICE_ID,

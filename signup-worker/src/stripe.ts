@@ -61,11 +61,11 @@ export class StripeClient {
     }).then(throwError<Stripe.Invoice>());
   }
 
-  /**
-* Sends a call to create a InvoiceItem object.
-*
-* @link https://stripe.com/docs/api/invoiceitems?lang=node
-*/
+    /**
+  * Sends a call to create a InvoiceItem object.
+  *
+  * @link https://stripe.com/docs/api/invoiceitems?lang=node
+  */
   createInvoiceItem(params: Stripe.InvoiceItemCreateParams) {
     return fetch(`${STRIPE_API}invoiceitems`, {
       method: 'POST',

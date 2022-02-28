@@ -9,7 +9,7 @@ const STRIPE_API = 'https://api.stripe.com/v1/';
  * still depends on stripe-node for its type declarations.
  */
 export class StripeClient {
-  private readonly headers: {[key: string]: string};
+  private readonly headers: { [key: string]: string };
 
   /**
    * Instantiate a client instance.  No overhead in destroying or creating, it
@@ -46,6 +46,32 @@ export class StripeClient {
       headers: this.headers,
       body: formurlencoded(params),
     }).then(throwError<Stripe.Subscription>());
+  }
+
+  /**
+ * Sends a call to create a Invoice object.
+ *
+ * @link https://stripe.com/docs/api/invoices?lang=node
+ */
+  createInvoice(params: Stripe.InvoiceCreateParams) {
+    return fetch(`${STRIPE_API}invoices`, {
+      method: 'POST',
+      headers: this.headers,
+      body: formurlencoded(params),
+    }).then(throwError<Stripe.Invoice>());
+  }
+
+  /**
+* Sends a call to create a InvoiceItem object.
+*
+* @link https://stripe.com/docs/api/invoiceitems?lang=node
+*/
+  createInvoiceItem(params: Stripe.InvoiceItemCreateParams) {
+    return fetch(`${STRIPE_API}invoices`, {
+      method: 'POST',
+      headers: this.headers,
+      body: formurlencoded(params),
+    }).then(throwError<Stripe.InvoiceItem>());
   }
 
   updateSubscription(id: string, params: Stripe.SubscriptionUpdateParams): Promise<Stripe.Subscription> {

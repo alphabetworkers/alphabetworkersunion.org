@@ -1,8 +1,8 @@
-import {stripeClient} from './stripe';
-import {plaidClient} from './plaid';
+import { stripeClient } from './stripe';
+import { plaidClient } from './plaid';
 import Stripe from 'stripe';
 
-import {REQUIRED_FIELDS, METADATA} from './fields';
+import { REQUIRED_FIELDS, METADATA } from './fields';
 
 /**
  * Generate a Date object for the UTC midnight of the next month.
@@ -25,6 +25,32 @@ function totalCompDollarsToBillingCycleDuesCents(totalComp: number, paymentMetho
   return monthlyDuesCents;
 }
 
+async function sendConfirmationEmail(formData: FormData): Promise<Response> {
+  const preferredName = formData.get('preferred-name') as string;
+  const apiRequestBody = JSON.stringify({
+    from: { 'email': 'noreply@alphabetworkersunion.org', 'name': 'Alphabet Workers Union' },
+    'personalizations': [{
+      'to': [{ 'email': formData.get('personal-email') as string, 'name': preferredName }],
+      'dynamic_template_data': {
+        'name': preferredName,
+      }
+    }],
+    'template_id': SENDGRID_DYNAMIC_TEMPLATE,
+  });
+  const apiRequestHeaders = {
+    'Authorization': `Bearer ${SENDGRID_API_KEY}`,
+    'Content-Type': 'application/json',
+  };
+  const url = SENDGRID_HOST + 'mail/send';
+
+  const response = await fetch(
+    url,
+    { body: apiRequestBody, headers: apiRequestHeaders, method: 'POST' }
+  );
+  console.log(JSON.stringify(response));
+  return response;
+}
+
 export async function handleRequest(request: Request): Promise<Response> {
   let paymentMethod: string;
   try {
@@ -38,7 +64,7 @@ export async function handleRequest(request: Request): Promise<Response> {
     try {
       let source: string;
       if (fields.has('plaid-public-token')) {
-        const {access_token} = await plaidClient.itemPublicTokenExchange(fields.get('plaid-public-token')! as string);
+        const { access_token } = await plaidClient.itemPublicTokenExchange(fields.get('plaid-public-token')! as string);
         source = (await plaidClient.processorStripeBankAccountTokenCreate(access_token, fields.get('plaid-account-id')! as string)).stripe_bank_account_token;
       } else {
         source = fields.get('stripe-payment-token') as string;
@@ -79,7 +105,7 @@ export async function handleRequest(request: Request): Promise<Response> {
         },
       }],
       add_invoice_items: [
-        {price: DUES_SIGNUP_PRICE_ID},
+        { price: DUES_SIGNUP_PRICE_ID },
       ],
     });
 
@@ -88,11 +114,12 @@ export async function handleRequest(request: Request): Promise<Response> {
         behavior: 'keep_as_draft',
       },
     });
-    return new Response(JSON.stringify({success: true}), {headers: {'Access-Control-Allow-Origin': '*'}})
+    await sendConfirmationEmail(fields);
+    return new Response(JSON.stringify({ success: true }), { headers: { 'Access-Control-Allow-Origin': '*' } })
   } catch (e) {
     console.warn(e);
-    const error = e instanceof InvalidParamError ? e.toObject() : {message: e.message};
-    return new Response(JSON.stringify({success: false, error}), {status: 400, headers: {'Access-Control-Allow-Origin': '*'}});
+    const error = e instanceof InvalidParamError ? e.toObject() : { message: e.message };
+    return new Response(JSON.stringify({ success: false, error }), { status: 400, headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 }
 
@@ -101,8 +128,8 @@ class InvalidParamError extends Error {
     super(message);
   }
 
-  toObject(): {param: string, message: string} {
-    return {param: this.paramName, message: this.message};
+  toObject(): { param: string, message: string } {
+    return { param: this.paramName, message: this.message };
   }
 }
 
@@ -112,7 +139,7 @@ class MissingParamError extends InvalidParamError {
   }
 }
 
-function stripeCustomerParamToField(param: string): string|null {
+function stripeCustomerParamToField(param: string): string | null {
   if (param === 'source') {
     return 'stripe-payment-token';
   } else if (param === 'email') {

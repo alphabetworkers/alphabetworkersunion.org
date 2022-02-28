@@ -1,8 +1,8 @@
-import {stripeClient} from './stripe';
-import {plaidClient} from './plaid';
+import { StripeClient, stripeClient } from './stripe';
+import { plaidClient } from './plaid';
 import Stripe from 'stripe';
 
-import {REQUIRED_FIELDS, METADATA} from './fields';
+import { REQUIRED_FIELDS, METADATA } from './fields';
 
 /**
  * Generate a Date object for the UTC midnight of the next month.
@@ -38,7 +38,7 @@ export async function handleRequest(request: Request): Promise<Response> {
     try {
       let source: string;
       if (fields.has('plaid-public-token')) {
-        const {access_token} = await plaidClient.itemPublicTokenExchange(fields.get('plaid-public-token')! as string);
+        const { access_token } = await plaidClient.itemPublicTokenExchange(fields.get('plaid-public-token')! as string);
         source = (await plaidClient.processorStripeBankAccountTokenCreate(access_token, fields.get('plaid-account-id')! as string)).stripe_bank_account_token;
       } else {
         source = fields.get('stripe-payment-token') as string;
@@ -78,21 +78,26 @@ export async function handleRequest(request: Request): Promise<Response> {
           },
         },
       }],
-      add_invoice_items: [
-        {price: DUES_SIGNUP_PRICE_ID},
-      ],
     });
-
     await stripeClient.updateSubscription(subscription.id, {
       pause_collection: {
         behavior: 'keep_as_draft',
       },
     });
-    return new Response(JSON.stringify({success: true}), {headers: {'Access-Control-Allow-Origin': '*'}})
+    await stripeClient.createInvoiceItem({
+      customer: customer.id,
+      price: DUES_SIGNUP_PRICE_ID,
+    });
+    await stripeClient.createInvoice({
+      customer: customer.id,
+      collection_method: 'charge_automatically',
+    });
+
+    return new Response(JSON.stringify({ success: true }), { headers: { 'Access-Control-Allow-Origin': '*' } })
   } catch (e) {
     console.warn(e);
-    const error = e instanceof InvalidParamError ? e.toObject() : {message: e.message};
-    return new Response(JSON.stringify({success: false, error}), {status: 400, headers: {'Access-Control-Allow-Origin': '*'}});
+    const error = e instanceof InvalidParamError ? e.toObject() : { message: e.message };
+    return new Response(JSON.stringify({ success: false, error }), { status: 400, headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 }
 
@@ -101,8 +106,8 @@ class InvalidParamError extends Error {
     super(message);
   }
 
-  toObject(): {param: string, message: string} {
-    return {param: this.paramName, message: this.message};
+  toObject(): { param: string, message: string } {
+    return { param: this.paramName, message: this.message };
   }
 }
 
@@ -112,7 +117,7 @@ class MissingParamError extends InvalidParamError {
   }
 }
 
-function stripeCustomerParamToField(param: string): string|null {
+function stripeCustomerParamToField(param: string): string | null {
   if (param === 'source') {
     return 'stripe-payment-token';
   } else if (param === 'email') {

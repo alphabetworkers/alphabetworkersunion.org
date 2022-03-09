@@ -1,8 +1,8 @@
 @use '../css/constants';
 
 h2 {
-  font-size: 1.4em;
   color: constants.$brand;
+  font-size: 1.4em;
   font-weight: 700;
   padding: 0 10px;
   grid-column: 1 / -1;

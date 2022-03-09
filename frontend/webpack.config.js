@@ -65,27 +65,29 @@ module.exports = {
       },
       {
         test: /img\/meet-the-union\/.+\.(png|jpe?g)$/i,
-        use: ['file-loader', {
-          loader: 'webpack-image-resize-loader',
-          options: {
-            width: 400,
-            fileLoaderOptions: {
-              name: '[path][name].[ext]',
-            },
+        use: [
+          {
+            loader: 'file-loader',
+            options: {name: '[path][name].[ext]'},
           },
-        }],
+          {
+            loader: 'webpack-image-resize-loader',
+            options: {width: 400},
+          }
+        ],
       },
       {
         test: /selfies\/.+\.(png|jpe?g)$/i,
-        use: ['file-loader', {
-          loader: 'webpack-image-resize-loader',
-          options: {
-            width: 200,
-            fileLoaderOptions: {
-              name: path.join(ASSETS_DIR, '[path][name].[ext]'),
-            },
+        use: [
+          {
+            loader: 'file-loader',
+            options: {name: '[path][name].[ext]'},
           },
-        }],
+          {
+            loader: 'webpack-image-resize-loader',
+            options: {width: 200},
+          }
+        ],
       },
       {
         test: /favicon\.ico/i,

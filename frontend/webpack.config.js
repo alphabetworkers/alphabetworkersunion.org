@@ -81,11 +81,14 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: {name: '[path][name].[ext]'},
+            options: {name: path.join(ASSETS_DIR, '[path][name].[ext]')},
           },
           {
             loader: 'webpack-image-resize-loader',
-            options: {width: 200},
+            options: {
+              width: 200,
+              format: 'jpeg',
+            },
           }
         ],
       },

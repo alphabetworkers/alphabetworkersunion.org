@@ -1,5 +1,6 @@
 import { stripeClient } from './stripe';
 import { plaidClient } from './plaid';
+import { sendgridClient } from './sendgrid';
 import Stripe from 'stripe';
 
 import { REQUIRED_FIELDS, METADATA } from './fields';
@@ -23,32 +24,6 @@ function totalCompDollarsToBillingCycleDuesCents(totalComp: number, paymentMetho
   const monthlyDues = Math.floor(annualDues / 12 * multiplier);
   const monthlyDuesCents = monthlyDues * 100;
   return monthlyDuesCents;
-}
-
-async function sendConfirmationEmail(formData: FormData): Promise<Response> {
-  const preferredName = formData.get('preferred-name') as string;
-  const apiRequestBody = JSON.stringify({
-    from: { 'email': 'noreply@alphabetworkersunion.org', 'name': 'Alphabet Workers Union' },
-    'personalizations': [{
-      'to': [{ 'email': formData.get('personal-email') as string, 'name': preferredName }],
-      'dynamic_template_data': {
-        'name': preferredName,
-      }
-    }],
-    'template_id': SENDGRID_DYNAMIC_TEMPLATE,
-  });
-  const apiRequestHeaders = {
-    'Authorization': `Bearer ${SENDGRID_API_KEY}`,
-    'Content-Type': 'application/json',
-  };
-  const url = SENDGRID_HOST + 'mail/send';
-
-  const response = await fetch(
-    url,
-    { body: apiRequestBody, headers: apiRequestHeaders, method: 'POST' }
-  );
-  console.log(JSON.stringify(response));
-  return response;
 }
 
 export async function handleRequest(request: Request): Promise<Response> {
@@ -114,7 +89,9 @@ export async function handleRequest(request: Request): Promise<Response> {
         behavior: 'keep_as_draft',
       },
     });
-    await sendConfirmationEmail(fields);
+
+    await sendgridClient.sendWelcomeEmail(fields.get('preferred-name') as string, fields.get('personal-email') as string);
+
     return new Response(JSON.stringify({ success: true }), { headers: { 'Access-Control-Allow-Origin': '*' } })
   } catch (e) {
     console.warn(e);

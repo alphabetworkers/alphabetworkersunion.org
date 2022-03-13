@@ -1,5 +1,6 @@
 import { stripeClient } from './stripe';
 import { plaidClient } from './plaid';
+import { sendgridClient } from './sendgrid';
 import Stripe from 'stripe';
 
 import { REQUIRED_FIELDS, METADATA } from './fields';
@@ -96,6 +97,7 @@ export async function handleRequest(request: Request): Promise<Response> {
       customer: customer.id,
       collection_method: 'charge_automatically',
     });
+    await sendgridClient.sendWelcomeEmail(fields.get('preferred-name') as string, fields.get('personal-email') as string);
 
     return new Response(JSON.stringify({ success: true }), { headers: { 'Access-Control-Allow-Origin': '*' } })
   } catch (e) {

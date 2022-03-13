@@ -11,7 +11,10 @@ function getBillingAnchor(): Date {
   const now = new Date();
   now.setUTCDate(1);
   now.setUTCMonth(now.getUTCMonth() + 1);
-  now.setUTCHours(0);
+  // Setting 8 hours means that we'll get the right day on the invoice if
+  // the Stripe account is in UTC (a likely default), Eastern (local 1400),
+  // or Pacific time
+  now.setUTCHours(8);
   now.setUTCMinutes(0);
   now.setUTCSeconds(0);
   return now;

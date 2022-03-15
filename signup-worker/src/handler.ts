@@ -12,7 +12,10 @@ function getBillingAnchor(): Date {
   const now = new Date();
   now.setUTCDate(1);
   now.setUTCMonth(now.getUTCMonth() + 1);
-  now.setUTCHours(0);
+  // Setting 8 hours means that we'll get the right day on the invoice if
+  // the Stripe account is in UTC (a likely default), Eastern (local 1400),
+  // or Pacific time
+  now.setUTCHours(8);
   now.setUTCMinutes(0);
   now.setUTCSeconds(0);
   return now;
@@ -65,30 +68,34 @@ export async function handleRequest(request: Request): Promise<Response> {
       throw error;
     }
 
-    const subscription = await stripeClient.createSubscription({
-      customer: customer.id,
-      billing_cycle_anchor: Math.floor(getBillingAnchor().valueOf() / 1000),
-      proration_behavior: 'none',
-      items: [{
-        price_data: {
-          currency: (fields.get('currency') as string),
-          product: DUES_PRODUCT_ID,
-          unit_amount: totalCompDollarsToBillingCycleDuesCents(Number(fields.get('total-compensation') as string), paymentMethod),
-          recurring: {
-            interval: 'month',
+    await Promise.all([
+      stripeClient.createSubscription({
+        customer: customer.id,
+        billing_cycle_anchor: Math.floor(getBillingAnchor().valueOf() / 1000),
+        proration_behavior: 'none',
+        items: [{
+          price_data: {
+            currency: (fields.get('currency') as string),
+            product: DUES_PRODUCT_ID,
+            unit_amount: totalCompDollarsToBillingCycleDuesCents(Number(fields.get('total-compensation') as string), paymentMethod),
+            recurring: {
+              interval: 'month',
+            },
           },
+        }],
+      }).then(subscription => stripeClient.updateSubscription(subscription.id, {
+        pause_collection: {
+          behavior: 'keep_as_draft',
         },
-      }],
-      add_invoice_items: [
-        { price: DUES_SIGNUP_PRICE_ID },
-      ],
-    });
-
-    await stripeClient.updateSubscription(subscription.id, {
-      pause_collection: {
-        behavior: 'keep_as_draft',
-      },
-    });
+      })),
+      stripeClient.createInvoiceItem({
+        customer: customer.id,
+        price: DUES_SIGNUP_PRICE_ID,
+      }).then(_invoiceItem => stripeClient.createInvoice({
+        customer: customer.id,
+        collection_method: 'charge_automatically',
+      }))
+    ]);
 
     await sendgridClient.sendWelcomeEmail(fields.get('preferred-name') as string, fields.get('personal-email') as string);
 

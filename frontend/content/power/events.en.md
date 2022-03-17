@@ -9,7 +9,7 @@ aliases: [/reclaim-your-power/events.en.md]
 
 {{< header />}}
 
-## Google Fiber Union Day: Organizing a bargaining unit
+## Union Day: Organizing a bargaining unit
 
 On [Sunday, March 20th at 3 pm ET/ 12pm PT](https://us06web.zoom.us/meeting/register/tZUuc-ygpj8rEtbU-2W_R7PJyVFqN8LPuf_U), join us for a panel discussion of Google Fiber TVC workers who are organizing their workplace. Their union election started on March 4th and runs through March 24th. These workers will share their organizing efforts and give us first-hand experience about building a bargaining unit at Alphabet. 
 

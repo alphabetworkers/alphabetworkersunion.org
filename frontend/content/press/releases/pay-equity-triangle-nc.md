@@ -13,8 +13,6 @@ _February 18, 2022 at 7am ET_
 
 _Press contact: press@alphabetworkersunion.org_
 
-# AWU-CWA Workers Demand Pay Equity for Offices Aimed at Diversity Recruitment as Google Cuts Worker Pay
-
 In the Triangle area of North Carolina, Alphabet workers of the Alphabet Workers Union-CWA launched the [Triangle Comp Grievance Letter](https://airtable.com/shrWrnlxqumeJhF1g)
 internally to Google on Monday, February 14, 2022. Workers from the Durham and Chapel Hill Google offices in North Carolina came together to demand pay equity for current and
 future employees in the area. Over a quarter of employees across the local office sites have signed the grievance letter along with Google workers across the country,

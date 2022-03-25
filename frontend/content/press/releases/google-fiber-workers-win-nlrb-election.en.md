@@ -21,7 +21,7 @@ _Press contact: press@alphabetworkersunion.org_
 (Kansas City, MO)— Today the National Labor Relations Board announced that in a 9-1 vote the Google Fiber subcontract workers with BDS Connected Solutions in Kansas City, MO overwhelmingly won their election for a union, after a many month campaign that dealt with a continuous union-busting effort from management. A hundred percent of the unit voted in the election. 
 
 The unit is represented by AWU-CWA local 1400, part of Communications Workers of America (CWA), and affiliated with CODE-CWA. These are the first Google Fiber
-workers to successfully unionize and the first recognized bargaining unit of AWU-CWA. Meaning that the unit will be the first group of AWU-CWA workers with
+workers to successfully unionize and the first recognized bargaining unit of AWU-CWA, meaning that the unit will be the first group of AWU-CWA workers with
 bargaining rights in the country. Workers include retail associates at multiple Google Fiber retail locations in Kansas City, MO. 
 
 “Today we are elated to see the NLRB reaffirm what we have already known—that we enjoy overwhelming support for our union as the workers of BDS Connected Solutions,

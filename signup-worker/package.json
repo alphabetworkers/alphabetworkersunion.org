@@ -1,11 +1,17 @@
 {
-  "name": "pname",
+  "name": "signup-worker",
   "version": "1.0.0",
   "description": "Cloudflare worker TypeScript template",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
+    "check:eslint": "eslint src",
+    "check:prettier": "prettier --check src",
+    "check": "run-s check:eslint check:prettier",
     "dev": "NODE_ENV=development npm run build",
+    "fix:eslint": "eslint --fix src",
+    "fix:prettier": "prettier --write src",
+    "fix": "run-s fix:eslint fix:prettier",
     "format": "prettier --write '**/*.{ts,js,css,json,md}'",
     "test:clean": "rimraf ./transpiled/src ./transpiled/test",
     "test": "npm run test:clean && npm run transpile && mocha --require source-map-support/register --recursive transpiled/test",
@@ -33,5 +39,19 @@
     "form-urlencoded": "^4.2.1",
     "plaid": "^9.0.0-beta.13",
     "stripe": "^8.132.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.scss": [
+      "prettier --write"
+    ],
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }

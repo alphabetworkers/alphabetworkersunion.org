@@ -10,7 +10,7 @@ layout: textheavy
 
 ### Who is in our union?
 
-All sorts of people! As of January 2021 we have over {{< member-count >}} members. Out of respect for our members’ privacy we do not have a public list of union members, but we have members from several Alphabet subsidiaries, TVCs (members of the temporary, vendor, and contractor workforce), both tech and non-tech job families, and people located all over the US and Canada.
+All sorts of people! As of January 2022 we have over {{< member-count >}} members. Out of respect for our members’ privacy we do not have a public list of union members, but we have members from several Alphabet subsidiaries, TVCs (members of the temporary, vendor, and contractor workforce), both tech and non-tech job families, and people located all over the US and Canada.
 
 ### What about workers outside the US and Canada?
 

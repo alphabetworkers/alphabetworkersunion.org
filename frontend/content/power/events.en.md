@@ -9,17 +9,13 @@ aliases: [/reclaim-your-power/events.en.md]
 
 {{< header />}}
 
-## Google Fiber Union Day: Organizing a bargaining unit
-
-On [Sunday, March 20th at 3 pm ET/ 12pm PT](https://us06web.zoom.us/meeting/register/tZUuc-ygpj8rEtbU-2W_R7PJyVFqN8LPuf_U), join us for a panel discussion of Google Fiber TVC workers who are organizing their workplace. Their union election started on March 4th and runs through March 24th. These workers will share their organizing efforts and give us first-hand experience about building a bargaining unit at Alphabet. 
-
 ## AWU TVC Office Hours
 
 AWU is hosting TVC office hours each month. Register in advance for the Zoom meeting.
 
-[Register to attend Monday, March 21st, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
-
 [Register to attend Monday, April 18th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
+
+[Register to attend Monday, May 16th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
 
 AWU hosts monthly office hours that are open to all Alphabet TVCs. Nonmembers are welcome to attend, and worker organizers, both TVC and FTE, will be facilitating the session. We'll share the latest news on our workplace organizing efforts, but more importantly this is an open forum for everyone. Come share your workplace concerns, challenges, and questions of any kind.
 

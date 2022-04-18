@@ -34,6 +34,10 @@ Yes. Currently, our card-sign form only allows US addresses; we're working to ad
 
 For Annual Total Compensation, please enter your compensation in US Dollars. You can use a conversion rate of 1 CAD to 0.7 USD.
 
+### Can non-US citizens join this union?
+
+Yes. For more information, see [Immigrant Employee Rights under the National Labor Relations Act](https://www.nlrb.gov/sites/default/files/attachments/basic-page/node-3024/immigrant_employee_rights_one_pager_english_pdf_21860.pdf).
+
 ### How big is the union?
 
 {{< member-count >}}+ people and growing every day!

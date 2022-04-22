@@ -3,7 +3,7 @@ import {
   ItemPublicTokenExchangeResponse,
   ProcessorStripeBankAccountTokenCreateRequest,
   ProcessorStripeBankAccountTokenCreateResponse,
-} from 'plaid'
+} from 'plaid';
 
 // TODO consolidate with the code in ../../plaid-token-worker
 /**
@@ -12,7 +12,7 @@ import {
  * still depends on plaid-node for its type declarations.
  */
 export class PlaidClient {
-  private readonly headers: { [key: string]: string }
+  private readonly headers: { [key: string]: string };
 
   /**
    * Instantiate a client instance.  No overhead in destroying or creating, it
@@ -23,7 +23,7 @@ export class PlaidClient {
       'PLAID-CLIENT-ID': clientId,
       'PLAID-SECRET': secret,
       'Content-Type': 'application/json',
-    })
+    });
   }
 
   /**
@@ -40,7 +40,7 @@ export class PlaidClient {
       body: JSON.stringify({
         public_token,
       } as ItemPublicTokenExchangeRequest),
-    }).then(throwError<ItemPublicTokenExchangeResponse>())
+    }).then(throwError<ItemPublicTokenExchangeResponse>());
   }
 
   /**
@@ -59,21 +59,21 @@ export class PlaidClient {
         access_token,
         account_id,
       } as ProcessorStripeBankAccountTokenCreateRequest),
-    }).then(throwError<ProcessorStripeBankAccountTokenCreateResponse>())
+    }).then(throwError<ProcessorStripeBankAccountTokenCreateResponse>());
   }
 }
 
 function throwError<T>(): (response: Response) => Promise<T> {
   return async (response: Response) => {
     if (response.ok) {
-      return response.json() as Promise<T>
+      return response.json() as Promise<T>;
     } else {
-      return Promise.reject(await response.json())
+      return Promise.reject(await response.json());
     }
-  }
+  };
 }
 
 /**
  * Create a new re-usable instance.
  */
-export const plaidClient = new PlaidClient(PLAID_CLIENT_ID, PLAID_SECRET)
+export const plaidClient = new PlaidClient(PLAID_CLIENT_ID, PLAID_SECRET);

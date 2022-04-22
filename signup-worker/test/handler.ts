@@ -1,6 +1,6 @@
-import { describe, it } from 'mocha'
-import { expect } from 'chai'
-import { handleRequest } from '../src/handler'
+import { describe, it } from 'mocha';
+import { expect } from 'chai';
+import { handleRequest } from '../src/handler';
 
 describe('handler returns response with request method', () => {
   const methods = [
@@ -13,12 +13,12 @@ describe('handler returns response with request method', () => {
     'OPTIONS',
     'TRACE',
     'PATCH',
-  ]
+  ];
   methods.forEach((method) => {
     it(method, async () => {
-      const result = await handleRequest(new Request('/', { method }))
-      const text = await result.text()
-      expect(text).to.include(method)
-    })
-  })
-})
+      const result = await handleRequest(new Request('/', { method }));
+      const text = await result.text();
+      expect(text).to.include(method);
+    });
+  });
+});

@@ -19,12 +19,12 @@ const REQUIRED_METADATA = [
   'have-reports',
   'total-compensation',
   'sms-consent',
-]
+];
 
 export const REQUIRED_FIELDS = REQUIRED_METADATA.concat([
   'preferred-name',
   'personal-email',
-])
+]);
 
 const OPTIONAL_METADATA = [
   'pronouns',
@@ -34,6 +34,6 @@ const OPTIONAL_METADATA = [
   'product-area',
   'work-email',
   'birthday',
-]
+];
 
-export const METADATA = REQUIRED_METADATA.concat(OPTIONAL_METADATA)
+export const METADATA = REQUIRED_METADATA.concat(OPTIONAL_METADATA);

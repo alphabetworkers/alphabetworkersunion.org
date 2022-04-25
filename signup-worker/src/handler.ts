@@ -46,12 +46,16 @@ export async function handleRequest(request: Request): Promise<Response> {
       let source: string;
       if (fields.has('plaid-public-token')) {
         const { access_token } = await plaidClient.itemPublicTokenExchange(
-          (fields.get('plaid-public-token') ?? '') as string,
+          // cloudflare doesn't like it when this is fixed
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          fields.get('plaid-public-token')! as string,
         );
         source = (
           await plaidClient.processorStripeBankAccountTokenCreate(
             access_token,
-            (fields.get('plaid-account-id') ?? '') as string,
+            // cloudflare doesn't like it when this is fixed
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            fields.get('plaid-account-id')! as string,
           )
         ).stripe_bank_account_token;
       } else {

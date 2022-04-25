@@ -1,4 +1,4 @@
-import {LinkTokenCreateRequest, LinkTokenCreateResponse} from 'plaid';
+import { LinkTokenCreateRequest, LinkTokenCreateResponse } from 'plaid';
 
 /**
  * Because plaid-node does not work without the Node runtime, we must
@@ -6,7 +6,7 @@ import {LinkTokenCreateRequest, LinkTokenCreateResponse} from 'plaid';
  * still depends on plaid-node for its type declarations.
  */
 export class PlaidClient {
-  private readonly headers: {[key: string]: string};
+  private readonly headers: { [key: string]: string };
 
   /**
    * Instantiate a client instance. No overhead in destroying or creating, it
@@ -30,16 +30,16 @@ export class PlaidClient {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify({
-        'client_name': 'Alphabet Workers Union',
-        'language': 'en',
-        'country_codes': ['US', 'CA'],
-        'user': {
-          'client_user_id': String(Math.random()),
+        client_name: 'Alphabet Workers Union',
+        language: 'en',
+        country_codes: ['US', 'CA'],
+        user: {
+          client_user_id: String(Math.random()),
         },
-        'products': ['auth'],
-        'account_filters': {
-          'depository': {
-            'account_subtypes': ['checking'],
+        products: ['auth'],
+        account_filters: {
+          depository: {
+            account_subtypes: ['checking'],
           },
         },
       } as LinkTokenCreateRequest),

@@ -9,13 +9,19 @@ aliases: [/reclaim-your-power/events.en.md]
 
 {{< header />}}
 
+## Union day: Charleston Cigar Factory Strike
+
+A talk from a labor historian about the Charleston Cigar Factory Strike of 1945-46 and the labor movement's intersection with civil rights.
+
+[Register to attend Thursday, May 5th, 2022 8pm ET / 5 pm PT](https://us06web.zoom.us/meeting/register/tZEqduutpzgvHdcwUETU4PaYnx2vK4w5QhNs)
+
 ## AWU TVC Office Hours
 
 AWU is hosting TVC office hours each month. Register in advance for the Zoom meeting.
 
-[Register to attend Monday, April 18th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
-
 [Register to attend Monday, May 16th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
+
+[Register to attend Monday, June 20th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
 
 AWU hosts monthly office hours that are open to all Alphabet TVCs. Nonmembers are welcome to attend, and worker organizers, both TVC and FTE, will be facilitating the session. We'll share the latest news on our workplace organizing efforts, but more importantly this is an open forum for everyone. Come share your workplace concerns, challenges, and questions of any kind.
 

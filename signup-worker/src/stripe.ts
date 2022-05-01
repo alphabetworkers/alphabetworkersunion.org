@@ -17,7 +17,8 @@ export class StripeClient {
    */
   constructor(key: string) {
     this.headers = Object.freeze({
-      'Authorization': `Basic ${btoa(key + ':')}`,
+      Authorization: `Basic ${btoa(key + ':')}`,
+
       'Content-Type': 'application/x-www-form-urlencoded',
     });
   }
@@ -49,10 +50,10 @@ export class StripeClient {
   }
 
   /**
- * Sends a call to create a Invoice object.
- *
- * @link https://stripe.com/docs/api/invoices?lang=node
- */
+   * Sends a call to create a Invoice object.
+   *
+   * @link https://stripe.com/docs/api/invoices?lang=node
+   */
   createInvoice(params: Stripe.InvoiceCreateParams) {
     return fetch(`${STRIPE_API}invoices`, {
       method: 'POST',
@@ -61,11 +62,11 @@ export class StripeClient {
     }).then(throwError<Stripe.Invoice>());
   }
 
-    /**
-  * Sends a call to create a InvoiceItem object.
-  *
-  * @link https://stripe.com/docs/api/invoiceitems?lang=node
-  */
+  /**
+   * Sends a call to create a InvoiceItem object.
+   *
+   * @link https://stripe.com/docs/api/invoiceitems?lang=node
+   */
   createInvoiceItem(params: Stripe.InvoiceItemCreateParams) {
     return fetch(`${STRIPE_API}invoiceitems`, {
       method: 'POST',
@@ -74,7 +75,10 @@ export class StripeClient {
     }).then(throwError<Stripe.InvoiceItem>());
   }
 
-  updateSubscription(id: string, params: Stripe.SubscriptionUpdateParams): Promise<Stripe.Subscription> {
+  updateSubscription(
+    id: string,
+    params: Stripe.SubscriptionUpdateParams,
+  ): Promise<Stripe.Subscription> {
     return fetch(`${STRIPE_API}subscriptions/${encodeURIComponent(id)}`, {
       method: 'POST',
       headers: this.headers,

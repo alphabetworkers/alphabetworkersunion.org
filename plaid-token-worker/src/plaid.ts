@@ -1,15 +1,15 @@
-import {LinkTokenCreateRequest, LinkTokenCreateResponse} from 'plaid';
+import { LinkTokenCreateRequest, LinkTokenCreateResponse } from 'plaid';
 
 /**
  * Because plaid-node does not work without the Node runtime, we must
- * re-implement API calls directly to the Plaid RESTful API.  This project
+ * re-implement API calls directly to the Plaid RESTful API. This project
  * still depends on plaid-node for its type declarations.
  */
 export class PlaidClient {
-  private readonly headers: {[key: string]: string};
+  private readonly headers: { [key: string]: string };
 
   /**
-   * Instantiate a client instance.  No overhead in destroying or creating, it
+   * Instantiate a client instance. No overhead in destroying or creating, it
    * only stores an API key.
    */
   constructor(clientId: string, secret: string) {
@@ -30,16 +30,16 @@ export class PlaidClient {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify({
-        'client_name': 'Alphabet Workers Union',
-        'language': 'en',
-        'country_codes': ['US', 'CA'],
-        'user': {
-          'client_user_id': String(Math.random()),
+        client_name: 'Alphabet Workers Union',
+        language: 'en',
+        country_codes: ['US', 'CA'],
+        user: {
+          client_user_id: String(Math.random()),
         },
-        'products': ['auth'],
-        'account_filters': {
-          'depository': {
-            'account_subtypes': ['checking'],
+        products: ['auth'],
+        account_filters: {
+          depository: {
+            account_subtypes: ['checking'],
           },
         },
       } as LinkTokenCreateRequest),

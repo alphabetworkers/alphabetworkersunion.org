@@ -1,4 +1,9 @@
-import {ItemPublicTokenExchangeRequest, ItemPublicTokenExchangeResponse, ProcessorStripeBankAccountTokenCreateRequest, ProcessorStripeBankAccountTokenCreateResponse} from 'plaid';
+import {
+  ItemPublicTokenExchangeRequest,
+  ItemPublicTokenExchangeResponse,
+  ProcessorStripeBankAccountTokenCreateRequest,
+  ProcessorStripeBankAccountTokenCreateResponse,
+} from 'plaid';
 
 // TODO consolidate with the code in ../../plaid-token-worker
 /**
@@ -7,7 +12,7 @@ import {ItemPublicTokenExchangeRequest, ItemPublicTokenExchangeResponse, Process
  * still depends on plaid-node for its type declarations.
  */
 export class PlaidClient {
-  private readonly headers: {[key: string]: string};
+  private readonly headers: { [key: string]: string };
 
   /**
    * Instantiate a client instance.  No overhead in destroying or creating, it
@@ -26,7 +31,9 @@ export class PlaidClient {
    *
    * @link https://stripe.com/docs/api/customers/create?lang=node
    */
-  itemPublicTokenExchange(public_token: string): Promise<ItemPublicTokenExchangeResponse> {
+  itemPublicTokenExchange(
+    public_token: string,
+  ): Promise<ItemPublicTokenExchangeResponse> {
     return fetch(`${PLAID_ORIGIN}/item/public_token/exchange`, {
       method: 'POST',
       headers: this.headers,
@@ -41,7 +48,10 @@ export class PlaidClient {
    *
    * @link https://stripe.com/docs/api/customers/create?lang=node
    */
-  processorStripeBankAccountTokenCreate(access_token: string, account_id: string): Promise<ProcessorStripeBankAccountTokenCreateResponse> {
+  processorStripeBankAccountTokenCreate(
+    access_token: string,
+    account_id: string,
+  ): Promise<ProcessorStripeBankAccountTokenCreateResponse> {
     return fetch(`${PLAID_ORIGIN}/processor/stripe/bank_account_token/create`, {
       method: 'POST',
       headers: this.headers,
@@ -58,7 +68,7 @@ function throwError<T>(): (response: Response) => Promise<T> {
     if (response.ok) {
       return response.json() as Promise<T>;
     } else {
-      return Promise.reject((await response.json()));
+      return Promise.reject(await response.json());
     }
   };
 }

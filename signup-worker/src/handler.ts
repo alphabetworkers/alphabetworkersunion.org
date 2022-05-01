@@ -21,10 +21,13 @@ function getBillingAnchor(): Date {
   return now;
 }
 
-function totalCompDollarsToBillingCycleDuesCents(totalComp: number, paymentMethod: string): number {
+function totalCompDollarsToBillingCycleDuesCents(
+  totalComp: number,
+  paymentMethod: string,
+): number {
   const multiplier = paymentMethod === 'card' ? 1.029 : 1;
   const annualDues = Math.floor(totalComp / 100);
-  const monthlyDues = Math.floor(annualDues / 12 * multiplier);
+  const monthlyDues = Math.floor((annualDues / 12) * multiplier);
   const monthlyDuesCents = monthlyDues * 100;
   return monthlyDuesCents;
 }
@@ -42,8 +45,19 @@ export async function handleRequest(request: Request): Promise<Response> {
     try {
       let source: string;
       if (fields.has('plaid-public-token')) {
-        const { access_token } = await plaidClient.itemPublicTokenExchange(fields.get('plaid-public-token')! as string);
-        source = (await plaidClient.processorStripeBankAccountTokenCreate(access_token, fields.get('plaid-account-id')! as string)).stripe_bank_account_token;
+        const { access_token } = await plaidClient.itemPublicTokenExchange(
+          // cloudflare doesn't like it when this is fixed
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          fields.get('plaid-public-token')! as string,
+        );
+        source = (
+          await plaidClient.processorStripeBankAccountTokenCreate(
+            access_token,
+            // cloudflare doesn't like it when this is fixed
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            fields.get('plaid-account-id')! as string,
+          )
+        ).stripe_bank_account_token;
       } else {
         source = fields.get('stripe-payment-token') as string;
       }
@@ -57,7 +71,7 @@ export async function handleRequest(request: Request): Promise<Response> {
             metadata[fieldName] = fields.get(fieldName) as string;
             return metadata;
           }, {} as Record<string, string>),
-        }
+        },
       });
     } catch (error) {
       console.warn(error);
@@ -69,41 +83,63 @@ export async function handleRequest(request: Request): Promise<Response> {
     }
 
     await Promise.all([
-      stripeClient.createSubscription({
-        customer: customer.id,
-        billing_cycle_anchor: Math.floor(getBillingAnchor().valueOf() / 1000),
-        proration_behavior: 'none',
-        items: [{
-          price_data: {
-            currency: (fields.get('currency') as string),
-            product: DUES_PRODUCT_ID,
-            unit_amount: totalCompDollarsToBillingCycleDuesCents(Number(fields.get('total-compensation') as string), paymentMethod),
-            recurring: {
-              interval: 'month',
+      stripeClient
+        .createSubscription({
+          customer: customer.id,
+          billing_cycle_anchor: Math.floor(getBillingAnchor().valueOf() / 1000),
+          proration_behavior: 'none',
+          items: [
+            {
+              price_data: {
+                currency: fields.get('currency') as string,
+                product: DUES_PRODUCT_ID,
+                unit_amount: totalCompDollarsToBillingCycleDuesCents(
+                  Number(fields.get('total-compensation') as string),
+                  paymentMethod,
+                ),
+                recurring: {
+                  interval: 'month',
+                },
+              },
             },
-          },
-        }],
-      }).then(subscription => stripeClient.updateSubscription(subscription.id, {
-        pause_collection: {
-          behavior: 'keep_as_draft',
-        },
-      })),
-      stripeClient.createInvoiceItem({
-        customer: customer.id,
-        price: DUES_SIGNUP_PRICE_ID,
-      }).then(_invoiceItem => stripeClient.createInvoice({
-        customer: customer.id,
-        collection_method: 'charge_automatically',
-      }))
+          ],
+        })
+        .then((subscription) =>
+          stripeClient.updateSubscription(subscription.id, {
+            pause_collection: {
+              behavior: 'keep_as_draft',
+            },
+          }),
+        ),
+      stripeClient
+        .createInvoiceItem({
+          customer: customer.id,
+          price: DUES_SIGNUP_PRICE_ID,
+        })
+        .then(() =>
+          stripeClient.createInvoice({
+            customer: customer.id,
+            collection_method: 'charge_automatically',
+          }),
+        ),
     ]);
 
-    await sendgridClient.sendWelcomeEmail(fields.get('preferred-name') as string, fields.get('personal-email') as string);
+    await sendgridClient.sendWelcomeEmail(
+      fields.get('preferred-name') as string,
+      fields.get('personal-email') as string,
+    );
 
-    return new Response(JSON.stringify({ success: true }), { headers: { 'Access-Control-Allow-Origin': '*' } })
+    return new Response(JSON.stringify({ success: true }), {
+      headers: { 'Access-Control-Allow-Origin': '*' },
+    });
   } catch (e) {
     console.warn(e);
-    const error = e instanceof InvalidParamError ? e.toObject() : { message: e.message };
-    return new Response(JSON.stringify({ success: false, error }), { status: 400, headers: { 'Access-Control-Allow-Origin': '*' } });
+    const error =
+      e instanceof InvalidParamError ? e.toObject() : { message: e.message };
+    return new Response(JSON.stringify({ success: false, error }), {
+      status: 400,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+    });
   }
 }
 
@@ -112,7 +148,7 @@ class InvalidParamError extends Error {
     super(message);
   }
 
-  toObject(): { param: string, message: string } {
+  toObject(): { param: string; message: string } {
     return { param: this.paramName, message: this.message };
   }
 }

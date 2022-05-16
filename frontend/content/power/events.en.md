@@ -9,12 +9,6 @@ aliases: [/reclaim-your-power/events.en.md]
 
 {{< header />}}
 
-## Union day: Charleston Cigar Factory Strike
-
-A talk from a labor historian about the Charleston Cigar Factory Strike of 1945-46 and the labor movement's intersection with civil rights.
-
-[Register to attend Thursday, May 5th, 2022 8pm ET / 5 pm PT](https://us06web.zoom.us/meeting/register/tZEqduutpzgvHdcwUETU4PaYnx2vK4w5QhNs)
-
 ## AWU TVC Office Hours
 
 AWU is hosting TVC office hours each month. Register in advance for the Zoom meeting.
@@ -33,8 +27,14 @@ Union days are open to all workers at Alphabet. We welcome TVCs, FTEs, union mem
 
 Previously recorded union days are added here. However, the recording can never replace the real thing. We record the presentations, but in order to enable workers to speak freely, the breakout room discussions and Q & As aren't recorded. The best way to experience a Union Day is to attend so that you don't miss out on the great conversations!
 
+### Google Fiber: Fighting for a bargaining unit
+
+A panel discussion of Google Fiber TVC workers who are organizing their workplace. These workers share their organizing efforts and give us first-hand experience about building the first bargaining unit organized with Alphabet Workers Union.
+
+{{< fig >}}{{< youtube pg76vsZKCzM >}}{{< /fig >}}
+
 ### Discrimination in the workplace with Chelsey Glasson
 
-Hear former Googler, Chelsey Glasson, share a few stories from her experiences with discrimination, harassment, and retaliation and some opportunities that have emerged to support whistleblowers. 
+Hear former Googler, Chelsey Glasson, share a few stories from her experiences with pregnancy discrimination, harassment, and retaliation and some opportunities that have emerged to support whistleblowers. 
 
 {{< fig >}}{{< youtube bDY35DfHGfY >}}{{< /fig >}}

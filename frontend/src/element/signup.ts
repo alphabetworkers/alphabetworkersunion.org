@@ -11,7 +11,10 @@ import { loadStripe, StripeCardElement, Token } from '@stripe/stripe-js';
 
 import styles from './signup.scss';
 
-import { REQUIRED_FIELDS } from '../../../signup-worker/src/fields';
+import {
+  REQUIRED_FIELDS,
+  FTE_REQUIRED_FIELDS,
+} from '../../../signup-worker/src/fields';
 
 const PLAID_LIB_URL = 'https://cdn.plaid.com/link/v2/stable/link-initialize.js';
 
@@ -525,63 +528,63 @@ export class Signup extends LitElement {
         <h2>Let's get to know you</h2>
         <label class="full-width">
           <span class="title"
-            >Preferred name${optionalLabel('preferred-name')}</span
+            >Preferred name${this.optionalLabel('preferred-name')}</span
           >
           <span class="hint">Enter your name so we know what you prefer</span>
           <input
             name="preferred-name"
             aria-label="Preferred Name"
-            ?required=${REQUIRED_FIELDS.includes('preferred-name')}
+            ?required=${this.isFieldRequired('preferred-name')}
             autocomplete="name"
           />
         </label>
         <label>
-          <span class="title">Pronouns${optionalLabel('pronouns')}</span>
+          <span class="title">Pronouns${this.optionalLabel('pronouns')}</span>
           <span class="hint">So we know how to address you</span>
           <input
             name="pronouns"
             aria-label="Pronouns"
-            ?required=${REQUIRED_FIELDS.includes('pronouns')}
+            ?required=${this.isFieldRequired('pronouns')}
           />
         </label>
         <label>
           <span class="title"
-            >Preferred language${optionalLabel('preferred-language')}</span
+            >Preferred language${this.optionalLabel('preferred-language')}</span
           >
           <span class="hint">So we know how to talk to you</span>
           <input
             name="preferred-language"
             aria-label="Preferred language"
-            ?required=${REQUIRED_FIELDS.includes('preferred-language')}
+            ?required=${this.isFieldRequired('preferred-language')}
           />
         </label>
         <label>
-          <span class="title">Birthday${optionalLabel('birthday')}</span>
+          <span class="title">Birthday${this.optionalLabel('birthday')}</span>
           <span class="hint"></span>
           <input
             name="birthday"
             type="date"
             aria-label="Birthday"
-            ?required=${REQUIRED_FIELDS.includes('birthday')}
+            ?required=${this.isFieldRequired('birthday')}
           />
         </label>
         <h2>How can we contact you?</h2>
         <label>
           <span class="title"
-            >Personal email${optionalLabel('personal-email')}</span
+            >Personal email${this.optionalLabel('personal-email')}</span
           >
           <span class="hint">This will be our primary method of contact.</span>
           <input
             name="personal-email"
             type="email"
             aria-label="Personal email"
-            ?required=${REQUIRED_FIELDS.includes('personal-email')}
+            ?required=${this.isFieldRequired('personal-email')}
             autocomplete="email"
           />
         </label>
         <label>
           <span class="title"
-            >Personal phone${optionalLabel('personal-phone')}</span
+            >Personal phone${this.optionalLabel('personal-phone')}</span
           >
           <span class="hint"
             >We rarely use this contact method, but will use it if we can't
@@ -591,13 +594,13 @@ export class Signup extends LitElement {
             name="personal-phone"
             type="tel"
             aria-label="Personal phone"
-            ?required=${REQUIRED_FIELDS.includes('personal-phone')}
+            ?required=${this.isFieldRequired('personal-phone')}
             autocomplete="tel"
           />
         </label>
         <label>
           <span class="title"
-            >Mailing address${optionalLabel('mailing-address-1')}</span
+            >Mailing address${this.optionalLabel('mailing-address-1')}</span
           >
           <span class="hint"
             >CWA Local 1400 needs your address to send you paper ballots.</span
@@ -605,70 +608,74 @@ export class Signup extends LitElement {
           <input
             name="mailing-address-1"
             aria-label="Mailing address"
-            ?required=${REQUIRED_FIELDS.includes('mailing-address-1')}
+            ?required=${this.isFieldRequired('mailing-address-1')}
             autocomplete="address-line1"
           />
         </label>
         <label>
           <span class="title"
-            >Address line 2${optionalLabel('mailing-address-2')}</span
+            >Address line 2${this.optionalLabel('mailing-address-2')}</span
           >
           <span class="hint">Apt, unit, etc.</span>
           <input
             name="mailing-address-2"
             aria-label="Mailing address"
-            ?required=${REQUIRED_FIELDS.includes('mailing-address-2')}
+            ?required=${this.isFieldRequired('mailing-address-2')}
             autocomplete="address-line2"
           />
         </label>
         <label>
-          <span class="title">City${optionalLabel('mailing-city')}</span>
+          <span class="title">City${this.optionalLabel('mailing-city')}</span>
           <span class="hint"></span>
           <input
             name="mailing-city"
             aria-label="City"
-            ?required=${REQUIRED_FIELDS.includes('mailing-city')}
+            ?required=${this.isFieldRequired('mailing-city')}
             autocomplete="address-level2"
           />
         </label>
         <label>
           <span class="title"
-            >State/province/territory${optionalLabel('mailing-region')}</span
+            >State/province/territory${this.optionalLabel(
+              'mailing-region'
+            )}</span
           >
           <span class="hint"></span>
           <input
             name="mailing-region"
             aria-label="Region"
-            ?required=${REQUIRED_FIELDS.includes('mailing-region')}
+            ?required=${this.isFieldRequired('mailing-region')}
             autocomplete="address-level1"
           />
         </label>
         <label>
           <span class="title"
-            >Postal code${optionalLabel('mailing-postal-code')}</span
+            >Postal code${this.optionalLabel('mailing-postal-code')}</span
           >
           <span class="hint"></span>
           <input
             name="mailing-postal-code"
             aria-label="Postal code"
-            ?required=${REQUIRED_FIELDS.includes('mailing-postal-code')}
+            ?required=${this.isFieldRequired('mailing-postal-code')}
             autocomplete="postal-code"
           />
         </label>
         <label>
-          <span class="title">Country${optionalLabel('mailing-country')}</span>
+          <span class="title"
+            >Country${this.optionalLabel('mailing-country')}</span
+          >
           <span class="hint"></span>
           <input
             name="mailing-country"
             aria-label="Country"
-            ?required=${REQUIRED_FIELDS.includes('mailing-country')}
+            ?required=${this.isFieldRequired('mailing-country')}
             autocomplete="country"
           />
         </label>
         <label>
           <span class="title"
             >Would you like SMS and email
-            updates?${optionalLabel('sms-consent')}</span
+            updates?${this.optionalLabel('sms-consent')}</span
           >
           <span class="hint"
             >Yes, I want to receive updates about my union and other
@@ -682,7 +689,7 @@ export class Signup extends LitElement {
             <select
               name="sms-consent"
               aria-label="Opt in to SMS and email?"
-              ?required=${REQUIRED_FIELDS.includes('sms-consent')}
+              ?required=${this.isFieldRequired('sms-consent')}
               autocomplete="off"
             >
               <option value="n">No</option>
@@ -693,16 +700,17 @@ export class Signup extends LitElement {
         <h2>Where do you work?</h2>
         <label>
           <span class="title"
-            >Employement type${optionalLabel('employment-type')}</span
+            >Employment type${this.optionalLabel('employment-type')}</span
           >
           <span class="hint"
-            >So we know what kind of workers are in our union.</span
+            >So we know what kind of workers are in our union. If you're not
+            sure, "Vendor employee (V)" is probably the right answer.</span
           >
           <div class="select">
             <select
               name="employment-type"
               @input=${this.employmentTypeHandler}
-              ?required=${REQUIRED_FIELDS.includes('employment-type')}
+              ?required=${this.isFieldRequired('employment-type')}
               autocomplete="off"
             >
               <option value="fte" selected>Full-time employee (FTE)</option>
@@ -718,13 +726,13 @@ export class Signup extends LitElement {
                 >Alphabet
                 ${this.employmentType?.value === 'c'
                   ? 'client'
-                  : 'employer'}${optionalLabel('employer')}</span
+                  : 'employer'}${this.optionalLabel('employer')}</span
               >
               <span class="hint"></span>
               <div class="select">
                 <select
                   name="employer"
-                  ?required=${REQUIRED_FIELDS.includes('employer')}
+                  ?required=${this.isFieldRequired('employer')}
                   autocomplete="organization"
                 >
                   ${ALPHABET_SUBSIDIARIES.map(
@@ -736,40 +744,40 @@ export class Signup extends LitElement {
             </label>`
           : html` <label>
               <span class="title"
-                >Vendor employer${optionalLabel('employer')}</span
+                >Vendor employer${this.optionalLabel('employer')}</span
               >
               <span class="hint"></span>
               <input
                 name="employer"
                 aria-label="Employer"
-                ?required=${REQUIRED_FIELDS.includes('employer')}
+                ?required=${this.isFieldRequired('employer')}
                 autocomplete="organization"
               />
             </label>`}
         <label>
-          <span class="title">Job title${optionalLabel('job-title')}</span>
+          <span class="title">Job title${this.optionalLabel('job-title')}</span>
           <span class="hint"
             >We want to know what kinds of workers are in our union</span
           >
           <input
             name="job-title"
             aria-label="Job Title"
-            required=${REQUIRED_FIELDS.includes('job-title')}
+            required=${this.isFieldRequired('job-title')}
             autocomplete="organization-title"
           />
         </label>
         <label>
-          <span class="title">Team name${optionalLabel('team')}</span>
+          <span class="title">Team name${this.optionalLabel('team')}</span>
           <span class="hint">So we can connect you with your coworkers</span>
           <input
             name="team"
             aria-label="Team name"
-            ?required=${REQUIRED_FIELDS.includes('team')}
+            ?required=${this.isFieldRequired('team')}
             autocomplete="off"
           />
         </label>
         <label>
-          <span class="title">Organization${optionalLabel('org')}</span>
+          <span class="title">Organization${this.optionalLabel('org')}</span>
           <span class="hint"
             >The larger team/department/organization of which your team is a
             part.</span
@@ -777,24 +785,24 @@ export class Signup extends LitElement {
           <input
             name="org"
             aria-label="Organization"
-            ?required=${REQUIRED_FIELDS.includes('org')}
+            ?required=${this.isFieldRequired('org')}
             autocomplete="off"
           />
         </label>
         <label>
           <span class="title"
-            >Product area (PA)${optionalLabel('product-area')}</span
+            >Product area (PA)${this.optionalLabel('product-area')}</span
           >
           <span class="hint"></span>
           <input
             name="product-area"
             aria-label="Product Area"
-            ?required=${REQUIRED_FIELDS.includes('product-area')}
+            ?required=${this.isFieldRequired('product-area')}
             autocomplete="off"
           />
         </label>
         <label>
-          <span class="title">Site code${optionalLabel('site-code')}</span>
+          <span class="title">Site code${this.optionalLabel('site-code')}</span>
           <span class="hint"
             >So we can connect you with your local chapters. Site code is a
             country code followed by a location code (for example,
@@ -803,13 +811,13 @@ export class Signup extends LitElement {
           <input
             name="site-code"
             aria-label="Site code"
-            ?required=${REQUIRED_FIELDS.includes('site-code')}
+            ?required=${this.isFieldRequired('site-code')}
             autocomplete="off"
           />
         </label>
         <label>
           <span class="title"
-            >Building code${optionalLabel('building-code')}</span
+            >Building code${this.optionalLabel('building-code')}</span
           >
           <span class="hint"
             >So we can connect you with your local coworkers.</span
@@ -817,13 +825,14 @@ export class Signup extends LitElement {
           <input
             name="building-code"
             aria-label="Building code"
-            ?required=${REQUIRED_FIELDS.includes('building-code')}
+            ?required=${this.isFieldRequired('building-code')}
             autocomplete="off"
           />
         </label>
         <label>
           <span class="title"
-            >Do you have reports?${optionalLabel('have-reports')}</span
+            >Do other workers report up to
+            you?${this.optionalLabel('have-reports')}</span
           >
           <span class="hint"
             >Individuals with (non-intern/student researcher) reports face a
@@ -834,7 +843,7 @@ export class Signup extends LitElement {
             <select
               name="have-reports"
               aria-label="Do you have reports?"
-              ?required=${REQUIRED_FIELDS.includes('have-reports')}
+              ?required=${this.isFieldRequired('have-reports')}
               autocomplete="off"
             >
               <option value="n" selected>No</option>
@@ -843,7 +852,9 @@ export class Signup extends LitElement {
           </div>
         </label>
         <label>
-          <span class="title">Work email${optionalLabel('work-email')}</span>
+          <span class="title"
+            >Work email${this.optionalLabel('work-email')}</span
+          >
           <span class="hint"
             >Used to verify your employment in most cases. We will never contact
             this address.</span
@@ -852,14 +863,15 @@ export class Signup extends LitElement {
             name="work-email"
             type="email"
             aria-label="Work email"
-            ?required=${REQUIRED_FIELDS.includes('work-email')}
+            ?required=${this.isFieldRequired('work-email')}
             autocomplete="off"
           />
         </label>
         <h2>Monthly dues</h2>
         <div class="field">
           <span class="title"
-            >Total compensation (TC)${optionalLabel('total-compensation')}</span
+            >Total compensation
+            (TC)${this.optionalLabel('total-compensation')}</span
           >
           <span class="hint"
             >Used to calculate your union dues. If you don't have an annual
@@ -882,14 +894,14 @@ export class Signup extends LitElement {
               name="total-compensation"
               aria-label="Total Annual Compensation"
               min="0"
-              ?required=${REQUIRED_FIELDS.includes('total-compensation')}
+              ?required=${this.isFieldRequired('total-compensation')}
               @input=${this.compChangeHandler}
               autocomplete="off"
             />
             <div class="select">
               <select
                 name="currency"
-                ?required=${REQUIRED_FIELDS.includes('currency')}
+                ?required=${this.isFieldRequired('currency')}
                 @input=${this.currencyChangeHandler}
                 autocomplete="transaction-currency"
               >
@@ -951,7 +963,7 @@ export class Signup extends LitElement {
             name="signature"
             aria-label="Signature"
             placeholder="Signature"
-            ?required=${REQUIRED_FIELDS.includes('signature')}
+            ?required=${this.isFieldRequired('signature')}
             autocomplete="off"
           />
         </label>
@@ -1105,6 +1117,7 @@ export class Signup extends LitElement {
   employmentTypeHandler(): void {
     this.isFirstPartyEmployer = this.employmentType.value !== 'v';
     this.isContractor = this.employmentType.value === 'c';
+    this.requestUpdate();
   }
 
   compChangeHandler(): void {
@@ -1223,10 +1236,24 @@ export class Signup extends LitElement {
   clearPlaid(): void {
     this.plaidToken = undefined;
   }
-}
 
-function optionalLabel(name: string): string {
-  return REQUIRED_FIELDS.includes(name) ? '' : ' (optional)';
+  isFte(): boolean {
+    return (
+      this.employmentType?.value === 'fte' ||
+      this.employmentType?.value === undefined
+    );
+  }
+
+  isFieldRequired(name: string): boolean {
+    return (
+      REQUIRED_FIELDS.includes(name) ||
+      (this.isFte() && FTE_REQUIRED_FIELDS.includes(name))
+    );
+  }
+
+  optionalLabel(name: string): string {
+    return this.isFieldRequired(name) ? '' : ' (optional)';
+  }
 }
 
 /**

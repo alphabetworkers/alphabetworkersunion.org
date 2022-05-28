@@ -3,7 +3,7 @@ import { plaidClient } from './plaid';
 import { sendgridClient } from './sendgrid';
 import Stripe from 'stripe';
 
-import { REQUIRED_FIELDS, METADATA } from './fields';
+import { REQUIRED_FIELDS, METADATA, FTE_REQUIRED_FIELDS } from './fields';
 
 /**
  * Generate a Date object for the UTC midnight of the next month.
@@ -39,6 +39,13 @@ export async function handleRequest(request: Request): Promise<Response> {
     for (const fieldName of REQUIRED_FIELDS) {
       if (!fields.get(fieldName)) {
         throw new MissingParamError(fieldName);
+      }
+    }
+    if (fields.get('employment-type') === 'fte') {
+      for (const fieldName of FTE_REQUIRED_FIELDS) {
+        if (!fields.get(fieldName)) {
+          throw new MissingParamError(fieldName);
+        }
       }
     }
     let customer: Stripe.Customer;

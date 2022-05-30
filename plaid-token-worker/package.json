@@ -1,7 +1,7 @@
 {
   "name": "plaid-token-worker",
   "version": "1.0.0",
-  "description": "",
+  "description": "Worker that generates Plaid tokens",
   "main": "index.js",
   "scripts": {
     "build": "webpack",

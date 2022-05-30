@@ -29,13 +29,10 @@ export class StripeClient {
    * @link https://stripe.com/docs/api/customers/create?lang=node
    */
   fetchCustomer(email: string): Promise<Stripe.ApiList<Stripe.Customer>> {
-    return fetch(
-      `${STRIPE_API}customers/search?query=email:'${email}'`,
-      {
-        method: 'GET',
-        headers: this.headers,
-      },
-    ).then(throwError<Stripe.ApiList<Stripe.Customer>>());
+    return fetch(`${STRIPE_API}customers/search?query=email:'${email}'`, {
+      method: 'GET',
+      headers: this.headers,
+    }).then(throwError<Stripe.ApiList<Stripe.Customer>>());
   }
 }
 

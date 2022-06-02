@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-env node */
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const STATIC_DIR = '.static';
-const ASSETS_DIR = path.join('..', '.assets');
+const ASSETS_DIR = '../.assets/';
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -12,11 +14,11 @@ module.exports = {
       {
         test: /\.ts$/,
         use: 'ts-loader',
-        exclude: /node_modules/
+        exclude: /[\\/]node_modules[\\/]/
       },
       {
         test: /\.s?css$/,
-        exclude: /element\//,
+        exclude: /element[\\/]/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
@@ -25,7 +27,7 @@ module.exports = {
         ],
       },
       {
-        test: /element\/.*\.scss$/,
+        test: /element[\\/].*\.scss$/,
         use: [{
           loader: 'lit-scss-loader',
           options: {
@@ -35,18 +37,18 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf|svg)$/i,
-        exclude: /img/,
+        exclude: /[\\/]img[\\/]/,
         type: 'asset/resource',
         generator: {
-          filename: path.join('fonts', '[hash][ext][query]'),
+          filename: 'fonts/[hash][ext][query]',
         },
       },
       {
         include: path.resolve(__dirname, 'src', 'img'),
-        exclude: [/selfies/, /img\/meet-the-union/, /static/],
+        exclude: [/[\\/]selfies[\\/]/, /[\\/]img[\\/]meet-the-union/, /[\\/]static[\\/]/],
         type: 'asset/resource',
         generator: {
-          filename: path.join(ASSETS_DIR, '[file]'),
+          filename: ASSETS_DIR+'[file]',
         },
       },
       {
@@ -64,7 +66,7 @@ module.exports = {
         },
       },
       {
-        test: /img\/meet-the-union\/.+\.(png|jpe?g)$/i,
+        test: /[\\/]img[\\/]meet-the-union[\\/].+\.(png|jpe?g)$/i,
         use: [
           {
             loader: 'file-loader',
@@ -77,11 +79,11 @@ module.exports = {
         ],
       },
       {
-        test: /selfies\/.+\.(png|jpe?g)$/i,
+        test: /[\\/]selfies[\\/].+\.(png|jpe?g)$/i,
         use: [
           {
             loader: 'file-loader',
-            options: {name: path.join(ASSETS_DIR, '[path][name].[ext]')},
+            options: {name: ASSETS_DIR+'[path][name].[ext]'},
           },
           {
             loader: 'webpack-image-resize-loader',
@@ -93,7 +95,7 @@ module.exports = {
         ],
       },
       {
-        test: /favicon\.ico/i,
+        include: path.resolve(__dirname, 'src', 'favicon.ico'),
         type: 'asset/resource',
         generator: {
           filename: '[file]',
@@ -103,16 +105,16 @@ module.exports = {
   },
   mode: 'production',
   resolve: {
-    extensions: ['.ts'],
+    extensions: ['.ts', '...'],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: path.join(ASSETS_DIR, 'main.css'),
+      filename: ASSETS_DIR+'main.css',
     }),
   ],
   output: {
     publicPath: '',
-    filename: path.join(ASSETS_DIR, 'main.js'),
+    filename: ASSETS_DIR+'main.js',
     path: path.resolve(__dirname, STATIC_DIR),
   },
 };

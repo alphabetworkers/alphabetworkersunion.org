@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "noImplicitAny": true,
-    "module": "es6",
-    "target": "es6",
+    "experimentalDecorators": true,
     "moduleResolution": "node",
-    "experimentalDecorators": true
+    "noImplicitAny": true,
+    "outDir": "./dist",
+    "strict": false,
+    "target": "es2016",
+    "types": ["plaid-link", "webpack-env"]
   },
-  "include": [
-    "src/global.d.ts",
-    "node_modules/@types/plaid-link/index.d.ts"
+  "includes": [
+    "src/**/*"
   ]
 }

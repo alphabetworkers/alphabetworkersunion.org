@@ -9,9 +9,10 @@
     "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
+    "@types/node": "^17.0.35",
     "@types/plaid-link": "^2.0.7",
     "@types/smoothscroll-polyfill": "^0.3.1",
-    "@types/webpack-env": "^1.16.0",
+    "@types/webpack-env": "^1.17.0",
     "@typescript-eslint/eslint-plugin": "^4.10.0",
     "@typescript-eslint/parser": "^4.10.0",
     "css-loader": "^5.0.1",

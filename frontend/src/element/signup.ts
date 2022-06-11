@@ -8,7 +8,7 @@ import {
 import { query } from 'lit/decorators.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { loadStripe, StripeCardElement, Token } from '@stripe/stripe-js';
-import { allCountries, CountryData } from 'country-region-data';
+import { allCountries } from 'country-region-data';
 import { repeat } from 'lit/directives/repeat.js';
 
 import styles from './signup.scss';

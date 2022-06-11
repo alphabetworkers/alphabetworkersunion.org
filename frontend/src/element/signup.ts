@@ -503,7 +503,7 @@ export class Signup extends LitElement {
       type="button"
       type="button"
     >
-      Connect Bank
+      Connect bank
     </button>
   </div>`;
 
@@ -515,7 +515,7 @@ export class Signup extends LitElement {
           The membership committee will review your application, and we'll send
           your union membership card after it's approved.
         </p>
-        <p>Welcome to the union!</p>
+        <p>Welcome to our union!</p>
       </div>
       <form
         @input=${this.clearInvalidity}

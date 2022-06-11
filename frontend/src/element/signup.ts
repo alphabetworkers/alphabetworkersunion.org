@@ -659,20 +659,23 @@ export class Signup extends LitElement {
             )}</span
           >
           <span class="hint"></span>
-          <select
-            name="mailing-region"
-            aria-label="Region"
-            ?required=${this.isFieldRequired('mailing-region')}
-            autocomplete="address-level1"
-          >
-            ${repeat(
-              this.availableRegions,
-              (regionData) => regionData[1],
-              (regionData, index) => html`
-                <option value=${regionData[0]}>${regionData[0]}</option>
-              `
-            )}
-          </select>
+          <div class="select">
+            <select
+              class="region-select"
+              name="mailing-region"
+              aria-label="Region"
+              ?required=${this.isFieldRequired('mailing-region')}
+              autocomplete="address-level1"
+            >
+              ${repeat(
+                this.availableRegions,
+                (regionData) => regionData[1],
+                (regionData, index) => html`
+                  <option value=${regionData[0]}>${regionData[0]}</option>
+                `
+              )}
+            </select>
+          </div>
         </label>
         <label>
           <span class="title"

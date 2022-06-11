@@ -402,7 +402,7 @@ export class Signup extends LitElement {
     >
       <span class="title">Card details</span>
       <span class="hint">
-        <strong>This option is unavailable until July 10th, 2022.</strong>
+        This option is unavailable until July 10th, 2022.
         <em>Please consider using a bank account to pay dues.</em> This both
         saves you the 2.9% processing fee charge, and also your union's
         administrative overhead by saving the work of getting updated payment

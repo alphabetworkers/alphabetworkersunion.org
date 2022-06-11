@@ -952,7 +952,8 @@ export class Signup extends LitElement {
         <label class="full-width">
           <span class="title">
             Type your name in the Signature field to accept the membership terms
-            of the Communications Workers of America, under which AWU-CWA is formed.
+            of the Communications Workers of America, under which AWU-CWA is
+            formed.
             You also authorize a one-time $5 initiation fee, and the regular
             charge of your calculated dues.
             <em

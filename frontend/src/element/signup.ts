@@ -639,16 +639,18 @@ export class Signup extends LitElement {
             >Only workers in the US or Canada are currently eligible for AWU
             membership</span
           >
-          <select
-            name="mailing-country"
-            aria-label="Country"
-            ?required=${this.isFieldRequired('mailing-country')}
-            autocomplete="country"
-            @input=${this.mailingCountryChangeHandler}
-          >
-            <option value="United States">United States</option>
-            <option value="Canada">Canada</option>
-          </select>
+          <div class="select">
+            <select
+              name="mailing-country"
+              aria-label="Country"
+              ?required=${this.isFieldRequired('mailing-country')}
+              autocomplete="country"
+              @input=${this.mailingCountryChangeHandler}
+            >
+              <option value="United States">United States</option>
+              <option value="Canada">Canada</option>
+            </select>
+          </div>
         </label>
         <label>
           <span class="title"
@@ -1136,6 +1138,11 @@ export class Signup extends LitElement {
     this.availableRegions = allCountries.find(
       (countryData) => countryData[0] === this.mailingCountry.value
     )[2];
+    this.currency.value =
+      this.mailingCountry.value == 'United States' ? 'usd' : 'cad';
+    if (this.billingCountry != null) {
+      this.billingCountry.value = this.mailingCountry.value;
+    }
     this.requestUpdate();
   }
 
@@ -1145,13 +1152,15 @@ export class Signup extends LitElement {
 
   currencyChangeHandler(): void {
     this.requestUpdate();
-    switch (this.currency.value) {
-      case 'usd':
-        this.billingCountry.value = 'US';
-        break;
-      case 'cad':
-        this.billingCountry.value = 'CA';
-        break;
+    if (this.billingCountry != null) {
+      switch (this.currency.value) {
+        case 'usd':
+          this.billingCountry.value = 'United States';
+          break;
+        case 'cad':
+          this.billingCountry.value = 'Canada';
+          break;
+      }
     }
   }
 

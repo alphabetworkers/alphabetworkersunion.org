@@ -1,19 +1,16 @@
 import {
-  CSSResult,
   customElement,
   eventOptions,
   html,
-  internalProperty,
+  state,
   LitElement,
   query,
   TemplateResult,
-  unsafeCSS,
 } from 'lit-element';
 
 import { polyfill } from 'smoothscroll-polyfill';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const homeSliderCss = require('./home-slider.scss');
+import styles from './home-slider.scss';
 
 polyfill();
 
@@ -31,10 +28,10 @@ export class HomeSlider extends LitElement {
   @query('.who')
   who: HTMLElement;
 
-  @internalProperty() weArePreviousDisabled = false;
-  @internalProperty() weAreNextDisabled = false;
-  @internalProperty() whoPreviousDisabled = false;
-  @internalProperty() whoNextDisabled = false;
+  @state() weArePreviousDisabled = false;
+  @state() weAreNextDisabled = false;
+  @state() whoPreviousDisabled = false;
+  @state() whoNextDisabled = false;
 
   /**
    * The timer ID returned from window.setInterval for the auto-advance timer.
@@ -43,9 +40,7 @@ export class HomeSlider extends LitElement {
    */
   private autoAdvanceTimer = 0;
 
-  static get styles(): CSSResult {
-    return unsafeCSS(homeSliderCss);
-  }
+  static styles = styles;
 
   render(): TemplateResult {
     return html`
@@ -298,9 +293,10 @@ export class HomeSlider extends LitElement {
    * Returns the scroll container and line height (in pixels) associated with
    * `element`, which should be a dynamic-element div.
    */
-  private getScrollMetrics(
-    element: HTMLElement
-  ): { container: Element; lineHeightPx: number } {
+  private getScrollMetrics(element: HTMLElement): {
+    container: Element;
+    lineHeightPx: number;
+  } {
     const container = element.querySelector('.scroll-container');
     // Bit of a hack here, this only works because the computed line height
     // happens to be in pixels.

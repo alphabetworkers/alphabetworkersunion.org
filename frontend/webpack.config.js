@@ -10,7 +10,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.ts$/,
+        test: /\.ts$/,
         use: 'ts-loader',
         exclude: /node_modules/
       },
@@ -25,9 +25,13 @@ module.exports = {
         ],
       },
       {
-        test: /element\/.*\.s?css$/,
-        use: 'sass-loader',
-        type: 'asset/source',
+        test: /element\/.*\.scss$/,
+        use: [{
+          loader: 'lit-scss-loader',
+          options: {
+            minify: true, // defaults to false
+          },
+        }, 'extract-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf|svg)$/i,
@@ -61,27 +65,32 @@ module.exports = {
       },
       {
         test: /img\/meet-the-union\/.+\.(png|jpe?g)$/i,
-        use: [{
-          loader: 'webpack-image-resize-loader',
-          options: {
-            width: 400,
-            fileLoaderOptions: {
-              name: '[path][name].[ext]',
-            },
+        use: [
+          {
+            loader: 'file-loader',
+            options: {name: '[path][name].[ext]'},
           },
-        }],
+          {
+            loader: 'webpack-image-resize-loader',
+            options: {width: 400},
+          }
+        ],
       },
       {
         test: /selfies\/.+\.(png|jpe?g)$/i,
-        use: [{
-          loader: 'webpack-image-resize-loader',
-          options: {
-            width: 200,
-            fileLoaderOptions: {
-              name: path.join(ASSETS_DIR, '[path][name].[ext]'),
-            },
+        use: [
+          {
+            loader: 'file-loader',
+            options: {name: path.join(ASSETS_DIR, '[path][name].[ext]')},
           },
-        }],
+          {
+            loader: 'webpack-image-resize-loader',
+            options: {
+              width: 200,
+              format: 'jpeg',
+            },
+          }
+        ],
       },
       {
         test: /favicon\.ico/i,
@@ -92,6 +101,7 @@ module.exports = {
       },
     ],
   },
+  mode: 'production',
   resolve: {
     extensions: ['.ts'],
   },

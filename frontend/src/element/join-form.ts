@@ -6,7 +6,7 @@ import {
   CSSResult,
   TemplateResult,
 } from 'lit-element';
-import { query } from 'lit-element/lib/decorators.js';
+import { query } from 'lit/decorators.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 
 const FORM_URL = 'https://cwa1400.unioni.se/signup';

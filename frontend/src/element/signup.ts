@@ -488,7 +488,8 @@ export class Signup extends LitElement {
   private readonly plaidTemplate = html` <div class="field full-width">
     <span class="title">Connect bank</span>
     <span class="hint">
-      Click Connect bank to use Plaid to instantly connect your bank account.
+      Click Connect bank to use Plaid to instantly connect your
+      bank account.
     </span>
     <button
       @click=${this.openPlaid}

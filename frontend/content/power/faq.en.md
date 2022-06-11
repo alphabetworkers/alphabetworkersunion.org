@@ -10,7 +10,7 @@ layout: textheavy
 
 ### Who is in our union?
 
-All sorts of people! As of January 2021 we have over {{< member-count >}} members. Out of respect for our members’ privacy we do not have a public list of union members, but we have members from several Alphabet subsidiaries, TVCs (members of the temporary, vendor, and contractor workforce), both tech and non-tech job families, and people located all over the US and Canada.
+All sorts of people! As of January 2022 we have over {{< member-count >}} members. Out of respect for our members’ privacy we do not have a public list of union members, but we have members from several Alphabet subsidiaries, TVCs (members of the temporary, vendor, and contractor workforce), both tech and non-tech job families, and people located all over the US and Canada.
 
 ### What about workers outside the US and Canada?
 
@@ -27,6 +27,16 @@ Yes.
 ### Can managers join this union?
 
 Yes, managers under the director level are welcome to join us. Managers face additional risks getting involved with organizing, so if you're a manager interested in joining, we'd love to have a conversation with you. Please fill out the [interest form](https://airtable.com/shr3RpVTuP25kHMdm) and a union member will reach out to discuss.
+
+### Can workers in Canada join this union?
+
+Yes. Currently, our card-sign form only allows US addresses; we're working to address this. Until we get the form fixed, you can still join AWU! Just fill out the card-sign form with any address (it's helpful if you put "Canada" in the street address portion), then send an email with the subject "Canadian AWU Signup Address Correction" to info@cwalocal1400.org with your name and your actual address. We'll correct your address in our system. 
+
+For Annual Total Compensation, please enter your compensation in US Dollars. You can use a conversion rate of 1 CAD to 0.7 USD.
+
+### Can non-US citizens join this union?
+
+Yes. For more information, see [Immigrant Employee Rights under the National Labor Relations Act](https://www.nlrb.gov/sites/default/files/attachments/basic-page/node-3024/immigrant_employee_rights_one_pager_english_pdf_21860.pdf).
 
 ### How big is the union?
 

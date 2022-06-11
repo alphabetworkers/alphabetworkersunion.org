@@ -323,7 +323,7 @@ export class Signup extends LitElement {
           class=${classMap({ selected: this.isMethod('plaid') })}
           @click=${this.setMethod('plaid')}
         >
-          Bank Account (automatic)
+          Bank account
         </button>
         <button
           class=${classMap({ selected: this.isMethod('bank') })}
@@ -335,7 +335,7 @@ export class Signup extends LitElement {
           class=${classMap({ selected: this.isMethod('card') })}
           @click=${this.setMethod('card')}
         >
-          Card (debit/credit)
+          Card
         </button>
       </div>
       ${this.paymentMethodTemplate()}`;
@@ -402,6 +402,7 @@ export class Signup extends LitElement {
     >
       <span class="title">Card details</span>
       <span class="hint">
+        This option is unavailable until July 10th, 2022.
         <em>Please consider using a bank account to pay dues.</em> This both
         saves you the 2.9% processing fee charge, and also your union's
         administrative overhead by saving the work of getting updated payment
@@ -487,7 +488,7 @@ export class Signup extends LitElement {
   private readonly plaidTemplate = html` <div class="field full-width">
     <span class="title">Connect bank</span>
     <span class="hint">
-      Click below to use Plaid to instantly connect your bank account.
+      Click Connect bank to use Plaid to instantly connect your bank account.
     </span>
     <button
       @click=${this.openPlaid}
@@ -951,9 +952,9 @@ export class Signup extends LitElement {
         <label class="full-width">
           <span class="title">
             Type your name in the Signature field to accept the membership terms
-            of the Communications Workers of America, under which AWU is formed.
-            You also authorize a one-time $5 initiation fee, and the regular
-            charge of your calculated dues.
+            of the Communications Workers of America, under which AWU-CWA is
+            formed. You also authorize a one-time $5 initiation fee, and the
+            regular charge of your calculated dues.
             <em
               >Nothing is charged until the Membership Committee reviews and
               accepts your membership application.</em

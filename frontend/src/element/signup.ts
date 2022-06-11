@@ -8,6 +8,8 @@ import {
 import { query } from 'lit/decorators.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { loadStripe, StripeCardElement, Token } from '@stripe/stripe-js';
+import { allCountries } from 'country-region-data';
+import { repeat } from 'lit/directives/repeat.js';
 
 import styles from './signup.scss';
 
@@ -221,6 +223,11 @@ export class Signup extends LitElement {
 
   @state()
   private isCompCalculatorOpen = false;
+
+  @state()
+  private availableRegions = allCountries.find(
+    (countryData) => countryData[1] === 'US'
+  )[2];
 
   @state()
   private plaidToken?: PlaidToken;
@@ -528,13 +535,14 @@ export class Signup extends LitElement {
         </p>
         <h2>Let's get to know you</h2>
         <label class="full-width">
-          <span class="title"
-            >Preferred name${this.optionalLabel('preferred-name')}</span
+          <span class="title">Name${this.optionalLabel('preferred-name')}</span>
+          <span class="hint"
+            >Enter the name you want union members to use when communicating
+            with you</span
           >
-          <span class="hint">Enter your name so we know what you prefer</span>
           <input
             name="preferred-name"
-            aria-label="Preferred Name"
+            aria-label="Name"
             ?required=${this.isFieldRequired('preferred-name')}
             autocomplete="name"
           />
@@ -637,17 +645,49 @@ export class Signup extends LitElement {
         </label>
         <label>
           <span class="title"
+            >Country${this.optionalLabel('mailing-country')}</span
+          >
+          <span class="hint"
+            >Only workers in the US or Canada are currently eligible for AWU
+            membership</span
+          >
+          <div class="select">
+            <select
+              name="mailing-country"
+              aria-label="Country"
+              ?required=${this.isFieldRequired('mailing-country')}
+              autocomplete="country"
+              @input=${this.mailingCountryChangeHandler}
+            >
+              <option value="United States">United States</option>
+              <option value="Canada">Canada</option>
+            </select>
+          </div>
+        </label>
+        <label>
+          <span class="title"
             >State/province/territory${this.optionalLabel(
               'mailing-region'
             )}</span
           >
           <span class="hint"></span>
-          <input
-            name="mailing-region"
-            aria-label="Region"
-            ?required=${this.isFieldRequired('mailing-region')}
-            autocomplete="address-level1"
-          />
+          <div class="select">
+            <select
+              class="region-select"
+              name="mailing-region"
+              aria-label="Region"
+              ?required=${this.isFieldRequired('mailing-region')}
+              autocomplete="address-level1"
+            >
+              ${repeat(
+                this.availableRegions,
+                (regionData) => regionData[1],
+                (regionData, index) => html`
+                  <option value=${regionData[0]}>${regionData[0]}</option>
+                `
+              )}
+            </select>
+          </div>
         </label>
         <label>
           <span class="title"
@@ -659,18 +699,6 @@ export class Signup extends LitElement {
             aria-label="Postal code"
             ?required=${this.isFieldRequired('mailing-postal-code')}
             autocomplete="postal-code"
-          />
-        </label>
-        <label>
-          <span class="title"
-            >Country${this.optionalLabel('mailing-country')}</span
-          >
-          <span class="hint"></span>
-          <input
-            name="mailing-country"
-            aria-label="Country"
-            ?required=${this.isFieldRequired('mailing-country')}
-            autocomplete="country"
           />
         </label>
         <label>
@@ -1121,19 +1149,33 @@ export class Signup extends LitElement {
     this.requestUpdate();
   }
 
+  mailingCountryChangeHandler(): void {
+    this.availableRegions = allCountries.find(
+      (countryData) => countryData[0] === this.mailingCountry.value
+    )[2];
+    this.currency.value =
+      this.mailingCountry.value == 'United States' ? 'usd' : 'cad';
+    if (this.billingCountry != null) {
+      this.billingCountry.value = this.mailingCountry.value;
+    }
+    this.requestUpdate();
+  }
+
   compChangeHandler(): void {
     this.requestUpdate();
   }
 
   currencyChangeHandler(): void {
     this.requestUpdate();
-    switch (this.currency.value) {
-      case 'usd':
-        this.billingCountry.value = 'US';
-        break;
-      case 'cad':
-        this.billingCountry.value = 'CA';
-        break;
+    if (this.billingCountry != null) {
+      switch (this.currency.value) {
+        case 'usd':
+          this.billingCountry.value = 'United States';
+          break;
+        case 'cad':
+          this.billingCountry.value = 'Canada';
+          break;
+      }
     }
   }
 

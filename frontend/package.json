@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@stripe/stripe-js": "^1.11.0",
+    "country-region-data": "^2.4.0",
     "lit": "^2.2.0",
     "smoothscroll-polyfill": "^0.4.4"
   },

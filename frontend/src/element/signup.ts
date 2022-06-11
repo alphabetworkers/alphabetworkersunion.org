@@ -8,6 +8,8 @@ import {
 import { query } from 'lit/decorators.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { loadStripe, StripeCardElement, Token } from '@stripe/stripe-js';
+import { allCountries, CountryData } from 'country-region-data';
+import { repeat } from 'lit/directives/repeat.js';
 
 import styles from './signup.scss';
 
@@ -73,11 +75,8 @@ const ALPHABET_SUBSIDIARIES = [
   'Baarzo',
   'Waze Mobile Limited',
   'Alphabet Capital US',
-  'Google Argentina',
   'Channel Intelligence',
   'Appurify',
-  'Google Spain',
-  'Google Ireland Holdings',
   'Neverware',
   'Actifio',
   'CapitalG',
@@ -91,20 +90,12 @@ const ALPHABET_SUBSIDIARIES = [
   'Anvato',
   'Jibe Mobile',
   'Adometry',
-  'Google Netherlands',
   'BufferBox',
-  'Google Norway',
   'Keyhole',
-  'Google Mexico',
-  'Google Czech Republic',
   'DevOps Research and Assessments',
   'Pulse.io',
-  'Google Italy',
   'Chronicle',
-  'Google France',
   'Fly Labs',
-  'Google Austria',
-  'Google New Zealand',
 ];
 
 /**
@@ -221,6 +212,11 @@ export class Signup extends LitElement {
 
   @state()
   private isCompCalculatorOpen = false;
+
+  @state()
+  private availableRegions = allCountries.find(
+    (countryData) => countryData[1] === 'US'
+  )[2];
 
   @state()
   private plaidToken?: PlaidToken;
@@ -527,13 +523,14 @@ export class Signup extends LitElement {
         </p>
         <h2>Let's get to know you</h2>
         <label class="full-width">
-          <span class="title"
-            >Preferred name${this.optionalLabel('preferred-name')}</span
+          <span class="title">Name${this.optionalLabel('preferred-name')}</span>
+          <span class="hint"
+            >Enter the name you want union members to use when communicating
+            with you</span
           >
-          <span class="hint">Enter your name so we know what you prefer</span>
           <input
             name="preferred-name"
-            aria-label="Preferred Name"
+            aria-label="Name"
             ?required=${this.isFieldRequired('preferred-name')}
             autocomplete="name"
           />
@@ -636,17 +633,44 @@ export class Signup extends LitElement {
         </label>
         <label>
           <span class="title"
+            >Country${this.optionalLabel('mailing-country')}</span
+          >
+          <span class="hint"
+            >Only workers in the US or Canada are currently eligible for AWU
+            membership</span
+          >
+          <select
+            name="mailing-country"
+            aria-label="Country"
+            ?required=${this.isFieldRequired('mailing-country')}
+            autocomplete="country"
+            @input=${this.mailingCountryChangeHandler}
+          >
+            <option value="United States">United States</option>
+            <option value="Canada">Canada</option>
+          </select>
+        </label>
+        <label>
+          <span class="title"
             >State/province/territory${this.optionalLabel(
               'mailing-region'
             )}</span
           >
           <span class="hint"></span>
-          <input
+          <select
             name="mailing-region"
             aria-label="Region"
             ?required=${this.isFieldRequired('mailing-region')}
             autocomplete="address-level1"
-          />
+          >
+            ${repeat(
+              this.availableRegions,
+              (regionData) => regionData[1],
+              (regionData, index) => html`
+                <option value=${regionData[0]}>${regionData[0]}</option>
+              `
+            )}
+          </select>
         </label>
         <label>
           <span class="title"
@@ -658,18 +682,6 @@ export class Signup extends LitElement {
             aria-label="Postal code"
             ?required=${this.isFieldRequired('mailing-postal-code')}
             autocomplete="postal-code"
-          />
-        </label>
-        <label>
-          <span class="title"
-            >Country${this.optionalLabel('mailing-country')}</span
-          >
-          <span class="hint"></span>
-          <input
-            name="mailing-country"
-            aria-label="Country"
-            ?required=${this.isFieldRequired('mailing-country')}
-            autocomplete="country"
           />
         </label>
         <label>
@@ -1117,6 +1129,13 @@ export class Signup extends LitElement {
   employmentTypeHandler(): void {
     this.isFirstPartyEmployer = this.employmentType.value !== 'v';
     this.isContractor = this.employmentType.value === 'c';
+    this.requestUpdate();
+  }
+
+  mailingCountryChangeHandler(): void {
+    this.availableRegions = allCountries.find(
+      (countryData) => countryData[0] === this.mailingCountry.value
+    )[2];
     this.requestUpdate();
   }
 

@@ -596,8 +596,8 @@ export class Signup extends LitElement {
             >Personal phone${this.optionalLabel('personal-phone')}</span
           >
           <span class="hint"
-            >We rarely use this contact method, but will use it if we can't
-            reach you via any other methods.</span
+            >We sometimes contactact each other via phone call or text message,
+            particularly if we can't reach you via any other methods.</span
           >
           <input
             name="personal-phone"

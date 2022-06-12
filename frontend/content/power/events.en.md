@@ -9,13 +9,19 @@ aliases: [/reclaim-your-power/events.en.md]
 
 {{< header />}}
 
+## Google Maps Strike Pledge
+
+Join us for a union day event that is a panel discussion of Google Maps TVC workers who are organizing their workplace around unsafe working conditions. After a petition and strike pledge was signed by the majority of their office, return to office (RTO) was extended by 90 days! These workers will share their organizing efforts and give us first-hand experience about organizing a strike at Alphabet.
+
+[Register to attend Wednesday, June 22nd, 2022 9pm ET / 6 pm PT](https://us06web.zoom.us/meeting/register/tZcqcuGgqTMoHtR4KKi0ZBoRyg0axg7pmLKA)
+
 ## AWU TVC Office Hours
 
 AWU is hosting TVC office hours each month. Register in advance for the Zoom meeting.
 
-[Register to attend Monday, May 16th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
+[Register to attend Monday, July 18th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
 
-[Register to attend Monday, June 20th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
+[Register to attend Monday, August 15th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
 
 AWU hosts monthly office hours that are open to all Alphabet TVCs. Nonmembers are welcome to attend, and worker organizers, both TVC and FTE, will be facilitating the session. We'll share the latest news on our workplace organizing efforts, but more importantly this is an open forum for everyone. Come share your workplace concerns, challenges, and questions of any kind.
 

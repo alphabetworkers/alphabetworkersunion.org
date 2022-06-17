@@ -14,9 +14,9 @@ _June 06, 2022 at 3pm ET_
 
 _Press contact: press@alphabetworkersunion.org_
 
-**(Morristown, NJ)**—Nearly a dozen Google contract workers won back tens of thousands of dollars in back pay owed to them by Artech, a subcontractor of Accenture, which
+**(Morristown, NJ)**—Nearly a dozen Google contract workers won back tens of thousands of dollars in backpay owed to them by Artech, a subcontractor of Accenture, which
 is a major subcontractor of Google. Workers discovered a discrepancy between their pay stubs and the amount designated by Accenture to be paid directly to Artech
-employees. Workers were losing $5 to $10 dollars an hour, resulting in thousands of dollars of unpaid back pay. Currently there are still some workers waiting to
+employees. Workers were losing $5 to $10 dollars an hour, resulting in thousands of dollars of unpaid backpay. Currently there are still some workers waiting to
 receive the over ten thousand they are owed in backpay. The lack of pay transparency is an issue rampant amongst temporary, vendor and contract workers at
 Google and Google must do more to ensure all workers are able to clearly understand their pay floor and salary raises opportunities. 
 

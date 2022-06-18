@@ -1,14 +1,12 @@
 name = "jwt-worker"
-type = "webpack"
 account_id = "394d48aba686b2466fe12e540c5d9466"
 workers_dev = true
-route = ""
-zone_id = "ebdbcc9f178b7b36f9768e6ec55972d6"
-webpack_config = "webpack.config.js"
 vars = { PLAID_ORIGIN = "https://sandbox.plaid.com", SENDGRID_DYNAMIC_TEMPLATE="d-5d9795b1c27e4897b6bca60eb519450b", SIGNING_KEY = "secret" }
+main = "./src/index"
+compatibility_date = "2022-06-18"
 
 [dev]
-port = 8789
+port = 8790
 
 [env.production]
 vars = { PLAID_ORIGIN = "https://production.plaid.com" }

@@ -682,7 +682,7 @@ export class Signup extends LitElement {
               ${repeat(
                 this.availableRegions,
                 (regionData) => regionData[1],
-                (regionData, index) => html`
+                (regionData) => html`
                   <option value=${regionData[0]}>${regionData[0]}</option>
                 `
               )}

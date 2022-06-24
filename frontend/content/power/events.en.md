@@ -9,12 +9,6 @@ aliases: [/reclaim-your-power/events.en.md]
 
 {{< header />}}
 
-## Google Maps Strike Pledge
-
-Join us for a union day event that is a panel discussion by Google Maps TVC workers who are organizing their workplace around unsafe working conditions. After a petition and strike pledge were signed by the majority of their office, return to office (RTO) was extended by 90 days! These workers will share their organizing efforts and give us first-hand experience about organizing a strike at Alphabet.
-
-[Register to attend Wednesday, June 22nd, 2022 9 pm ET / 6 pm PT](https://us06web.zoom.us/meeting/register/tZcqcuGgqTMoHtR4KKi0ZBoRyg0axg7pmLKA)
-
 ## Organizing towards caste equity at Alphabet
 
 Join us for a discussion on the history of caste discrimination, how it manifests in the US and in tech workspaces. We will also talk about our efforts to date on anti-caste organizing at Alphabet and take collective action towards bringing caste equity in our workplace!

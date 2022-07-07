@@ -48,10 +48,8 @@ Petition signatures must be those of members in good standing (see below for def
 
 For this election, a petition “signature” is either:
 
-<ol type="a">
-  <li>a hand-written signature and printed name on the nomination petition</li>
-  <li>an email from a member that includes their name, the name of the person they are nominating, and the position they are nominating for (printed).</li>
-</ol>
+1. a hand-written signature and printed name on the nomination petition
+1. an email from a member that includes their name, the name of the person they are nominating, and the position they are nominating for (printed)
 
 **Nominees for Executive Chair must be members in good standing as of July 1, 2022.** Petitions for these officer positions will require **10 signatures** of members in good standing of CWA Local 1400.
 

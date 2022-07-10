@@ -44,18 +44,6 @@ function getSubscriptionItems(
       {
         price_data: {
           currency: currency,
-          product: DUES_PRODUCT_ID,
-          unit_amount: totalCompDollarsToBillingCycleDuesCents(
-            totalComp,
-          ),
-          recurring: {
-            interval: 'month',
-          },
-        },
-      },
-      {
-        price_data: {
-          currency: currency,
           product: CARD_FEE_PRODUCT_ID,
           unit_amount: getCardFeeCents(
             totalComp,

@@ -26,8 +26,21 @@ function getSubscriptionItems(
   totalComp: number,
   paymentMethod: string,
 ): Stripe.SubscriptionCreateParams.Item[] {
+  const duesItem = {
+    price_data: {
+      currency: currency,
+      product: DUES_PRODUCT_ID,
+      unit_amount: totalCompDollarsToBillingCycleDuesCents(
+        totalComp,
+      ),
+      recurring: {
+        interval: 'month',
+      },
+    },
+  } as Stripe.SubscriptionCreateParams.Item;
   if (paymentMethod === 'card') {
     return [
+      duesItem,
       {
         price_data: {
           currency: currency,
@@ -40,31 +53,22 @@ function getSubscriptionItems(
           },
         },
       },
-      { price_data: {
-        currency: currency,
-        product: CARD_FEE_PRODUCT_ID,
-        unit_amount: getCardFeeCents(
-          totalComp,
-        ),
-        recurring: {
-          interval: 'month',
+      {
+        price_data: {
+          currency: currency,
+          product: CARD_FEE_PRODUCT_ID,
+          unit_amount: getCardFeeCents(
+            totalComp,
+          ),
+          recurring: {
+            interval: 'month',
+          },
         },
-      },},
+      },
     ];
   }
   return [
-    {
-      price_data: {
-        currency: currency,
-        product: DUES_PRODUCT_ID,
-        unit_amount: totalCompDollarsToBillingCycleDuesCents(
-          totalComp,
-        ),
-        recurring: {
-          interval: 'month',
-        },
-      },
-    },
+    duesItem,
   ];
 }
 

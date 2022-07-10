@@ -2,6 +2,7 @@ import { stripeClient } from './stripe';
 import { plaidClient } from './plaid';
 import { sendgridClient } from './sendgrid';
 import Stripe from 'stripe';
+import { CARD_PROCESSING_FEE } from '../../common/constants.js';
 
 import { REQUIRED_FIELDS, METADATA, FTE_REQUIRED_FIELDS } from './fields';
 
@@ -63,7 +64,7 @@ function getSubscriptionItems(
 function getCardFeeCents(
   totalComp: number,
 ): number {
-  return totalCompDollarsToBillingCycleDuesCents(totalComp) * 0.029;
+  return totalCompDollarsToBillingCycleDuesCents(totalComp) * CARD_PROCESSING_FEE;
 }
 
 function totalCompDollarsToBillingCycleDuesCents(

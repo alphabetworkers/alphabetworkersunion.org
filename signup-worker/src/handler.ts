@@ -31,9 +31,7 @@ function getSubscriptionItems(
     price_data: {
       currency: currency,
       product: DUES_PRODUCT_ID,
-      unit_amount: totalCompDollarsToBillingCycleDuesCents(
-        totalComp,
-      ),
+      unit_amount: totalCompDollarsToBillingCycleDuesCents(totalComp),
       recurring: {
         interval: 'month',
       },
@@ -46,9 +44,7 @@ function getSubscriptionItems(
         price_data: {
           currency: currency,
           product: CARD_FEE_PRODUCT_ID,
-          unit_amount: getCardFeeCents(
-            totalComp,
-          ),
+          unit_amount: getCardFeeCents(totalComp),
           recurring: {
             interval: 'month',
           },
@@ -56,20 +52,16 @@ function getSubscriptionItems(
       },
     ];
   }
-  return [
-    duesItem,
-  ];
+  return [duesItem];
 }
 
-function getCardFeeCents(
-  totalComp: number,
-): number {
-  return totalCompDollarsToBillingCycleDuesCents(totalComp) * CARD_PROCESSING_FEE;
+function getCardFeeCents(totalComp: number): number {
+  return (
+    totalCompDollarsToBillingCycleDuesCents(totalComp) * CARD_PROCESSING_FEE
+  );
 }
 
-function totalCompDollarsToBillingCycleDuesCents(
-  totalComp: number,
-): number {
+function totalCompDollarsToBillingCycleDuesCents(totalComp: number): number {
   const annualDues = Math.floor(totalComp / 100);
   const monthlyDues = Math.floor(annualDues / 12);
   const monthlyDuesCents = monthlyDues * 100;

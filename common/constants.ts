@@ -1,0 +1,2 @@
+export const CARD_PROCESSING_FEE = 0.029;
+export const FRIENDLY_CARD_PROCESSING_FEE = "2.9%";

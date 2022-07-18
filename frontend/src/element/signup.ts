@@ -10,6 +10,10 @@ import { classMap } from 'lit-html/directives/class-map.js';
 import { loadStripe, StripeCardElement, Token } from '@stripe/stripe-js';
 import { allCountries } from 'country-region-data';
 import { repeat } from 'lit/directives/repeat.js';
+import {
+  CARD_PROCESSING_FEE,
+  FRIENDLY_CARD_PROCESSING_FEE,
+} from '../../../common/constants';
 
 import styles from './signup.scss';
 
@@ -409,11 +413,10 @@ export class Signup extends LitElement {
     >
       <span class="title">Card details</span>
       <span class="hint">
-        This option is unavailable until July 10th, 2022.
         <em>Please consider using a bank account to pay dues.</em> This both
-        saves you the 2.9% processing fee charge, and also your union's
-        administrative overhead by saving the work of getting updated payment
-        information when cards expire or are cancelled.
+        saves you the ${FRIENDLY_CARD_PROCESSING_FEE} processing fee charge, and
+        also your union's administrative overhead by saving the work of getting
+        updated payment information when cards expire or are cancelled.
       </span>
       <div class="card-container">
         <slot
@@ -1208,8 +1211,10 @@ export class Signup extends LitElement {
     return this.isPayingWithCard()
       ? html`<div class="dues">
           TC &times; 1% &div; 12
-          <span class="dues-card-multiplier"> &times; 1.029</span> =
-          <strong>${this.formattedDues()}</strong>/mo
+          <span class="dues-card-multiplier">
+            &times; ${1 + CARD_PROCESSING_FEE}</span
+          >
+          = <strong>${this.formattedDues()}</strong>/mo
         </div>`
       : html` <div class="dues">
           TC &times; 1% &div; 12 =
@@ -1219,7 +1224,9 @@ export class Signup extends LitElement {
 
   formattedDues(): string {
     const comp = Number(this.totalCompensation?.value);
-    const cardMultiplier = this.isPayingWithCard() ? 1.029 : 1;
+    const cardMultiplier = this.isPayingWithCard()
+      ? 1 + CARD_PROCESSING_FEE
+      : 1;
 
     if (!Number.isNaN(comp)) {
       return `$${Math.floor((Math.floor(comp) / 100 / 12) * cardMultiplier)}`;

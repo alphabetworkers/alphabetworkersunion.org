@@ -2,6 +2,7 @@ import { stripeClient } from './stripe';
 import { plaidClient } from './plaid';
 import { sendgridClient } from './sendgrid';
 import Stripe from 'stripe';
+import { CARD_PROCESSING_FEE } from '../../common/constants.ts';
 
 import { REQUIRED_FIELDS, METADATA, FTE_REQUIRED_FIELDS } from './fields';
 
@@ -21,13 +22,48 @@ function getBillingAnchor(): Date {
   return now;
 }
 
-function totalCompDollarsToBillingCycleDuesCents(
+function getSubscriptionItems(
+  currency: string,
   totalComp: number,
   paymentMethod: string,
-): number {
-  const multiplier = paymentMethod === 'card' ? 1.029 : 1;
+): Stripe.SubscriptionCreateParams.Item[] {
+  const duesItem = {
+    price_data: {
+      currency: currency,
+      product: DUES_PRODUCT_ID,
+      unit_amount: totalCompDollarsToBillingCycleDuesCents(totalComp),
+      recurring: {
+        interval: 'month',
+      },
+    },
+  } as Stripe.SubscriptionCreateParams.Item;
+  if (paymentMethod === 'card') {
+    return [
+      duesItem,
+      {
+        price_data: {
+          currency: currency,
+          product: CARD_FEE_PRODUCT_ID,
+          unit_amount: getCardFeeCents(totalComp),
+          recurring: {
+            interval: 'month',
+          },
+        },
+      },
+    ];
+  }
+  return [duesItem];
+}
+
+function getCardFeeCents(totalComp: number): number {
+  return Math.floor(
+    totalCompDollarsToBillingCycleDuesCents(totalComp) * CARD_PROCESSING_FEE,
+  );
+}
+
+function totalCompDollarsToBillingCycleDuesCents(totalComp: number): number {
   const annualDues = Math.floor(totalComp / 100);
-  const monthlyDues = Math.floor((annualDues / 12) * multiplier);
+  const monthlyDues = Math.floor(annualDues / 12);
   const monthlyDuesCents = monthlyDues * 100;
   return monthlyDuesCents;
 }
@@ -89,27 +125,19 @@ export async function handleRequest(request: Request): Promise<Response> {
       throw error;
     }
 
+    const subscriptionItems = getSubscriptionItems(
+      fields.get('currency') as string,
+      Number(fields.get('total-compensation') as string),
+      paymentMethod,
+    );
+
     await Promise.all([
       stripeClient
         .createSubscription({
           customer: customer.id,
           billing_cycle_anchor: Math.floor(getBillingAnchor().valueOf() / 1000),
           proration_behavior: 'none',
-          items: [
-            {
-              price_data: {
-                currency: fields.get('currency') as string,
-                product: DUES_PRODUCT_ID,
-                unit_amount: totalCompDollarsToBillingCycleDuesCents(
-                  Number(fields.get('total-compensation') as string),
-                  paymentMethod,
-                ),
-                recurring: {
-                  interval: 'month',
-                },
-              },
-            },
-          ],
+          items: subscriptionItems,
         })
         .then((subscription) =>
           stripeClient.updateSubscription(subscription.id, {

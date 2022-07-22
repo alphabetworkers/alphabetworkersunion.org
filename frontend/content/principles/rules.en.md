@@ -1,7 +1,7 @@
 ---
 title: 'Rules'
 linktitle: 'Rules'
-date: 2021-06-01T20:28:32-04:00
+date: 2022-07-22T20:28:32-04:00
 weight: 4
 layout: textheavy
 ---
@@ -38,21 +38,7 @@ In addition to the responsibilities specified in the articles, the Executive Cou
 
 Article 10, Section 1 delegates the definition of additional Executive Council Chairs to the rules.
 
-## Rule 3. Additional delegates to the Steering Committee
-
-Temps, Vendors, and Contractors (TVCs) will compose at least one third of the Steering Committee’s membership.
-
-In the event that the fraction of TVCs on the Steering Committee falls below the ratio specified in Section 1, the TVC Workplace Unit (established by act of the Special Assembly, May 2, 2021) may elect additional delegates to the Steering Committee in order to create the desired ratio.
-
-At the request of the TVC Workplace Unit, the Elections Committee, in coordination with the Membership Committee and Steering Committee Chair, will provide the maximum number of delegates able to be elected.
-
-These special elections may be conducted at most twice per calendar year. They may result in the election of fewer than the maximum number of delegates.
-
-### Relevant articles
-
-Article 16, Section 2(a)(5) delegates the definition of additional delegates to the Steering Committee to the rules.
-
-## Rule 4. Rules relating to stewards
+## Rule 3. Rules relating to stewards
 
 ### Part 1. Definition of manager
 
@@ -64,38 +50,38 @@ For the purposes of this rule, a manager is a person with at least one direct re
 
 ### Part 2. Assignment to squads
 
-In order to maintain consistent relationships within their workplace unit, stewards are generally expected to have a number of assigned members from their workplace unit for whom they are specifically responsible. This group is called a “squad”, and will generally contain at least four (4) members. Specific assignment of stewards to squad members is the responsibility of the Workplace Unit Chair, subject to the following constraints:
+In order to maintain consistent relationships within their Organizing Unit, stewards are generally expected to have a number of assigned members from their Organizing Unit for whom they are specifically responsible. This group is called a “squad”, and will generally contain at least four (4) members. Specific assignment of stewards to squad members is the responsibility of the Workplace Unit Chair or Chapter Coordinator, subject to the following constraints:
 
 (a) A member must not be assigned to a steward who is in the member’s reporting chain, even if the steward does not qualify as a “manager” according to Section 1.
 (b) A non-manager member must not be assigned to a steward who is a manager.
 (c) A member below L8 (or equivalent, for non-ladder-based Bets or companies) must not be assigned to a steward who is above L8 (or equivalent).
 (d) No new members should be assigned to a steward who is terminated, including if they are contesting termination.
 
-If a member’s employment status changes, and the changes create a violation of these assignment rules, the Workplace Unit Chair must remedy the violation within four (4) weeks.
+If a member’s employment status changes, and the changes create a violation of these assignment rules, the Workplace Unit Chair or Chapter Coordinator must remedy the violation within four (4) weeks.
 
 ### Part 3. Additional requirements of stewards
 
 (a) Stewards must be active employees of Alphabet or its contractor companies, with access to some form of work communication. In the event that a steward is terminated, including in cases where that termination is contested, the steward must resign within four (4) weeks.
 
-(b) A steward who anticipates a change in status that would affect their squad assignments (as defined in Section 3) must report that change to their Workplace Unit Chair at least 2 weeks in advance of the change. If such a change in status change happens unexpectedly, the steward must report it to the Workplace Unit Chair as soon as is practical.
+(b) A steward who anticipates a change in status that would affect their squad assignments (as defined in Section 3) must report that change to their Workplace Unit Chair or Chapter Coordinator at least 2 weeks in advance of the change. If such a change in status change happens unexpectedly, the steward must report it to the Workplace Unit Chair or Chapter Coordinator as soon as is practical.
 
 (c) There are no skill requirements for being a steward. No such requirement may prevent an otherwise-eligible member from being a steward.
 
 ### Part 4. Right to change squads
 
-Any member has a right to be reassigned to a different squad at any time, by requesting reassignment from the Chair of the Workplace Unit. The Workplace Unit Chair must reassign them, and may not assign them to the steward whose squad they are leaving in the future. 
+Any member has a right to be reassigned to a different squad at any time, by requesting reassignment from the Workplace Unit Chair or Chapter Coordinator. The Workplace Unit Chair or Chapter Coordinator must reassign them, and may not assign them to the steward whose squad they are leaving in the future. 
 
-If no other stewards are available, the Workplace Unit Chair should consider running new elections. If an election is infeasible, or if there are no volunteers, then the Workplace Unit Chair must contact the Executive Council, which, under these circumstances, may assign the member to a steward from outside the workplace unit.
+If no other stewards are available, the Workplace Unit Chair or Chapter Coordinator should consider running new elections. If an election is infeasible, or if there are no volunteers, then the Workplace Unit Chair or Chapter Coordinator must contact the Executive Council, which, under these circumstances, may assign the member to a steward from outside the Organizing Unit.
 
-### Part 5. Workplace unit right to override steward rules
+### Part 5. Organizing Unit right to override steward rules
 
-The above steward rules may be overridden by majority vote of any workplace unit, in the same way that Article 14, Section 3(a) permits a workplace unit to approve alternative mechanisms for steward selection. The overriding workplace unit is required to keep a written record of any such overrides and must submit the record to the Recording Chair.
+The above steward rules may be overridden by majority vote of any Organizing Unit, in the same way that Article 14, Section 3(a) permits a Organizing Unit to approve alternative mechanisms for steward selection. The overriding Organizing Unit is required to keep a written record of any such overrides and must submit the record to the Recording Chair.
 
 ### Relevant articles
 
 Article 14 discusses stewards in detail and delegates certain definitions and additions to the rules.
 
-## Rule 5: Requirements of former full-time employees
+## Rule 4: Requirements of former full-time employees
 
 ### Part 1: Definition of former members
 
@@ -122,3 +108,73 @@ A former full-time employee who has been terminated and is contesting their term
 Article 7, Section 3 states: Members in good standing who resign or otherwise leave employment may be allowed to participate in AWU activities as decided by the AWU. Such individuals are not required to pay dues and are not entitled to vote.
 
 Article 11, Section 5 contains special rules regarding vacancies in the Executive Council, which this rule does not override.
+
+## Rule 5: Executive Council Election Cadence
+Executive Council members elected before 2022 serve 1 year terms.
+In 2022 the newly elected Executive and Financial Chairs serve 1 year terms.
+
+### Relevant Articles
+Article 11, Section 3 (b) allows the rules to specify the term of Executive Council members.
+
+## Rule 6: Active Workplace Unit Requirements
+Active Workplace Units must have:
+ - either a stewarding structure or an organizing committee,
+ - quarterly (or more frequent) contact with members via e.g. meetings or 1:1s,
+ - at least five (5) members, and
+ - regular attendance of the Organizing Committee by a representative.
+
+An Inactive Workplace Unit is a workplace unit that does not meet all of the above criteria. Inactive Workplace Units may be dissolved as described by Article 13, Section 4.
+
+### Relevant Articles
+Article 13, Section 4 allows the rules to define requirements for Workplace Units to be active.
+
+## Rule 7: Assembly Delegate Requirements
+
+The constant of proportionality as described in Article 8 Section 3 (c) must be approved by the Executive Council prior to publication.
+
+### Relevant Articles
+Article 8, Section 3 (d) delegates to the rules the ability to impose additional requirements on the constant of proportionality.
+
+## Rule 8: Communications Chair Press Policy
+
+It is the Communications Chair’s responsibility to represent AWU-CWA members in all communication. This rule exists to promote the representation of a diverse set of AWU-CWA members in the media and avoid the appearance that the Communications Chair is the voice of AWU-CWA.
+
+1. The Communications Chair cannot be a spokesperson. If a spokesperson is elected Communications Chair, they cease to be a spokesperson for as long as they occupy that position. They may resume being a spokesperson, after their tenure as Communications Chair, if they so choose.
+2. The Communications Chair may speak “on background” with members of the press to supplement information provided by spokespeople, but must not permit the press to name or quote them.
+
+## Rule 9: Policy for media created by AWU members about organizing
+
+### Overview
+
+This rule applies to original content that union members create that is about AWU-CWA and organizing at Alphabet, referred to herein as “AWU-CWA-related media”. This includes, but is not limited to, the following content formats: videos, podcasts, blogs, articles, and books.
+
+In this, rule, “we” refers to the Communications Committee and “you” refers to the author and any other member responsible for the publication of the media.
+
+This policy is not intended to stifle members’ creativity or to tell members not to talk about AWU-CWA. It is intended to make it clear to members how the Communications Committee can support your efforts and when AWU-CWA branding can be used.
+
+If you are creating AWU-CWA-related media that will be shared or published online or in print via websites and social media, you can choose one of two approaches: AWU-CWA branded/supported or not AWU-CWA branded or supported. Whichever approach you choose, you must abide by the [Code of Conduct](https://alphabetworkersunion.org/principles/code-of-conduct/), and you must notify the Communications Committee 2 weeks in advance of the media’s publication date (or best effort) with a summary of the content, so that we can prepare any related social media, talking points, memes, etc.
+
+### AWU-CWA branded and supported
+
+This approach allows you to use AWU-CWA branding prominently in your content, including using AWU-CWA in the title and using our logo and union colors.
+
+If you need help developing your content, the Communications Committee and the Worker Agency are available to help draft and review content.
+
+We will help you promote your content across AWU-CWA channels, including social media, discord, groups.io, and Alphabet Soup.
+
+Because this content will use AWU-CWA branding, it will be seen as “coming from or speaking on behalf of AWU-CWA” and therefore publication cannot proceed until the Communications Committee has reviewed and approved the final version.
+
+### Non-AWU-CWA branded or supported
+
+This approach doesn’t allow you to use AWU-CWA branding, but you can still talk about AWU-CWA and its members according to our [Code of Conduct](https://alphabetworkersunion.org/principles/code-of-conduct/).
+
+The Communications Committee and the Workers Agency will not help you draft your content, but the Communications Committee is available to review content, upon request. There is no guarantee that a member of the Communications Committee will be available to review the content because AWU-CWA-branded union communications will be prioritized.
+
+Depending on the topic—for example, supports our organizing goals or is a topic of interest for our members, we might choose to promote the published content on AWU-CWA channels, including social media, discord, and Alphabet Soup. 
+
+Because this AWU-CWA-related media doesn’t use AWU-CWA branding, the Communications Committee doesn’t need to review and approve the final version, but we still require that you notify the Communications Committee 2 weeks in advance of the media’s publication date (or best effort) with a summary of the content, so that we can prepare any related social media, talking points, memes, etc.
+
+### Exception for this policy
+
+Because Executive Council members are seen as speaking on behalf of our union, any AWU-CWA-related media that they create during their tenure on the EC must be reviewed and approved by the Communications Committee and must use the AWU-CWA branded/supported approach.
+

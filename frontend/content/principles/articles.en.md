@@ -2,14 +2,14 @@
 title: 'Articles'
 subtitle: 'The constitution of our union'
 linktitle: 'Articles'
-date: 2020-12-15T22:27:14-05:00
+date: 2022-07-22T22:27:14-05:00
 weight: 3
 layout: textheavy
 ---
 
 {{< header />}}
 
-_This is the Easy Version of the Articles. The [full version of the Articles](/docs/mission/articles/Alphabet_Workers_Union_Articles.pdf) is also available as a PDF._
+_This is the Easy Version of the Articles. The [full version of the Articles]({{< ref "articles-full" >}}) is also available._
 
 ## Who We Are
 
@@ -26,9 +26,8 @@ Members in good standing who retire or otherwise leave our community of interest
 ### AWU members vote on:
 
 - Election of the AWU Executive Council.
-- Chapter and Workplace Unit representation on the Steering Committee.
+- Workplace Unit Chairs.
 - Chapter Coordinators.
-- Workplace Unit Stewards.
 - Amendments to these Articles.
 
 ### AWU Members + CWA Local 1400 Executive Board vote on:
@@ -41,7 +40,7 @@ Members in good standing who retire or otherwise leave our community of interest
 
 AWU is large enough to have significant democratic power within Local 1400, and the Local 1400 Executive Board has committed to allowing us to choose our own path for organizing Alphabet.
 
-Members can also write referendums to be presented to the entire membership for a vote. In order to get a vote on a referendum, a petition containing signatures from at least 10% of current members must be sent to the Election Committee. The Election Committee will then be responsible for ensuring all members are informed of the referendum and have sufficient time to vote on the matter in question. Subsequently, those decisions will govern the actions of the Executive Council, the Steering Committee and all other bodies of AWU.
+Members can also write referendums to be presented to the entire membership for a vote. In order to get a vote on a referendum, a petition containing signatures from at least 10% of current members must be sent to the Election Committee. The Election Committee will then be responsible for ensuring all members are informed of the referendum and have sufficient time to vote on the matter in question. Subsequently, those decisions will govern the actions of the Executive Council and all other bodies of AWU.
 
 Referendums can be submitted on a wide variety of topics. Referendums can be used to:
 
@@ -102,33 +101,17 @@ In order to ensure that AWU is able to operate smoothly and respond quickly to i
 - Organizing Chair
 - Communications Chair
 
-### Steering Committee
-
-To make sure we can get broad input in planning out our campaigns and making policy decisions on how AWU will behave, there is a Steering Committee. This Committee will use ranked choice voting to decide on issues that come up. All members may attend, but only members with the following roles will vote on the matters discussed:
-
-- Members of the Executive Council.
-- Workplace Unit Chairs.
-- Chapter Coordinators.
-- For each Chapter, one additional representative for every 150 members.
-
-The Steering Committee will be made up of approximately the same ratio of TVCs to FTEs that Alphabet itself has in North America: 1:2.  If less than one third of the Steering Committee are TVCs, the TVC Workplace Unit can elect extra delegates to get the desired ratio.
-
-#### Distinctions between the Steering Committee and the Executive Council
-The Steering Committee is where most broad, strategic decisions get made. This is meant to be a representative group to ensure that the policies and strategies of AWU are continually adapting based on our changing circumstances. On the other hand, the Executive Council is responsible for quick decisions, times when we need to make a quick determination on how to best apply the agreed upon polices and strategies. 
-
 ### Workplace Units
 
 Workplace Units are the foundational building block of AWU. Each is a group of members who are all part of the same department, team, product area, or other similar organizational grouping. Any group of 5 AWU members from the same organizational unit can request to form a Workplace Unit. These can be approved by the Executive Council or by a referendum. An AWU member can belong to multiple Workplace Units. These Units allow members to meet to discuss issues relevant to their particular unit to plan out collective actions. Workplace Units may be formed, disbanded, or otherwise reorganized as requested by a majority vote of the affected members and approved by the Executive Council. Workplace Units have two elected roles:
 
 - Workplace Unit Chair
-- Shop Stewards
 
 ### Chapters
 
 Chapters are groups of workers who all reside in the same geographic location. Chapters must be chartered which can be done by a Membership Referendum, a decision made at a Assembly, or by the Executive Council. Each Chapter has an Organizing Committee responsible for focusing on growth of the Chapter. Additionally, each Chapter has the following roles:
 
 - Chapter Coordinator
-- Delegates for Assembly (at least 1, the exact number is decided by the Elections Committee)
 
 {{< pimg "img/mission/articles/diagram-chapters-and-workplace-units.png" "Diagram 2: How Chapters and Workplace Units Relate" >}}
 

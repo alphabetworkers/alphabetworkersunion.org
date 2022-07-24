@@ -87,6 +87,14 @@ export async function handleRequest(request: Request): Promise<Response> {
         }
       }
     }
+    const totalComp = Number(fields.get('total-compensation') as string);
+    if (totalCompDollarsToBillingCycleDuesCents(totalComp) < 1) {
+      throw new InvalidParamError(
+        'total-compensation',
+        'Enter your annual total compensation.',
+      );
+    }
+
     let customer: Stripe.Customer;
     try {
       let source: string;
@@ -131,7 +139,7 @@ export async function handleRequest(request: Request): Promise<Response> {
 
     const subscriptionItems = getSubscriptionItems(
       currency,
-      Number(fields.get('total-compensation') as string),
+      totalComp,
       paymentMethod,
     );
 

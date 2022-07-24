@@ -9,12 +9,6 @@ aliases: [/reclaim-your-power/events.en.md]
 
 {{< header />}}
 
-## Organizing towards caste equity at Alphabet
-
-Join us for a discussion on the history of caste discrimination, how it manifests in the US and in tech workspaces. We will also talk about our efforts to date on anti-caste organizing at Alphabet and take collective action towards bringing caste equity in our workplace!
-
-[Register to attend Monday, June 27th, 2022 8 pm ET / 5 pm PT](https://us06web.zoom.us/meeting/register/tZ0scO2vqD0uE92v79LVRaiLLqijHadDuY1k)
-
 ## AWU TVC Office Hours
 
 AWU is hosting TVC office hours each month. Register in advance for the Zoom meeting.
@@ -32,6 +26,12 @@ Union days are open to all workers at Alphabet. We welcome TVCs, FTEs, union mem
 ## Watch previous union days
 
 Previously recorded union days are added here. However, the recording can never replace the real thing. We record the presentations, but in order to enable workers to speak freely, the breakout room discussions and Q & As aren't recorded. The best way to experience a Union Day is to attend so that you don't miss out on the great conversations!
+
+### Google Maps strike pledge
+
+A panel discussion of Google Maps TVC workers who are organizing their workplace around unsafe working conditions. After a petition and strike pledge was signed by the majority of their office, RTO was extended by 90 days! These workers share their organizing efforts and give us first-hand experience about organizing a strike at Alphabet.
+
+{{< fig >}}{{< youtube v5YTw-td-6M >}}{{< /fig >}}
 
 ### Google Fiber: Fighting for a bargaining unit
 

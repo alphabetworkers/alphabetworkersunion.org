@@ -124,9 +124,10 @@ export async function handleRequest(request: Request): Promise<Response> {
       }
       throw error;
     }
+    const currency = fields.get('currency') as string;
 
     const subscriptionItems = getSubscriptionItems(
-      fields.get('currency') as string,
+      currency,
       Number(fields.get('total-compensation') as string),
       paymentMethod,
     );
@@ -149,7 +150,11 @@ export async function handleRequest(request: Request): Promise<Response> {
       stripeClient
         .createInvoiceItem({
           customer: customer.id,
-          price: DUES_SIGNUP_PRICE_ID,
+          price_data: {
+            currency: currency,
+            product: INITIATION_FEE_PRODUCT_ID,
+            unit_amount: 500,
+          },
         })
         .then(() =>
           stripeClient.createInvoice({

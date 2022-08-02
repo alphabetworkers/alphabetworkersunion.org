@@ -43,7 +43,9 @@
             {{ end }}
           </div>
         {{ end }}
-        <awu-join-form><span class="button primary light-context">Join us</span></awu-join-form>
+	{{ with .Site.GetPage "/join" }}
+	  <a href="{{ .Permalink }}" class="button primary light-context">Join us</a>
+        {{ end }}
       </div>
     </nav>
     <content>

@@ -14,7 +14,7 @@ This union is open to any worker at Alphabet regardless of political stances. We
 
 ### Unions are undemocratic and very top-down
 
-Our [articles]({{< ref "principles/articles/articles" >}}) are built on a democratic model. While we do have elected representatives, their job is to listen to union members, and they can be held accountable and recalled if they fail to do so. Alphabet's current management structure is extremely top-down; it's not our goal to replicate that.
+Our [articles]({{< ref "principles/articles" >}}) are built on a democratic model. While we do have elected representatives, their job is to listen to union members, and they can be held accountable and recalled if they fail to do so. Alphabet's current management structure is extremely top-down; it's not our goal to replicate that.
 
 ### A union is just another way to amplify cis white male voices at Alphabet
 

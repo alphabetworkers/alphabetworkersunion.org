@@ -13,9 +13,8 @@ aliases: [/reclaim-your-power/events.en.md]
 
 AWU is hosting TVC office hours each month. Register in advance for the Zoom meeting.
 
-[Register to attend Monday, July 18th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
-
 [Register to attend Monday, August 15th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
+[Register to attend Monday, September 19th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
 
 AWU hosts monthly office hours that are open to all Alphabet TVCs. Nonmembers are welcome to attend, and worker organizers, both TVC and FTE, will be facilitating the session. We'll share the latest news on our workplace organizing efforts, but more importantly this is an open forum for everyone. Come share your workplace concerns, challenges, and questions of any kind.
 
@@ -26,6 +25,12 @@ Union days are open to all workers at Alphabet. We welcome TVCs, FTEs, union mem
 ## Watch previous union days
 
 Previously recorded union days are added here. However, the recording can never replace the real thing. We record the presentations, but in order to enable workers to speak freely, the breakout room discussions and Q & As aren't recorded. The best way to experience a Union Day is to attend so that you don't miss out on the great conversations!
+
+### Organizing towards caste equity at Alphabet
+
+A discussion on the history of caste discrimination, how it manifests in the US and in tech workspaces. We also talk about our efforts on anti-caste organizing at Alphabet and how to take collective action towards bringing caste equity in our workplace.
+
+{{< fig >}}{{< youtube qkCZhYwSBp8 >}}{{< /fig >}}
 
 ### Google Maps strike pledge
 

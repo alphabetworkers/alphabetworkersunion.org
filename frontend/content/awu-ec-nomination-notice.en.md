@@ -25,7 +25,7 @@ An article being considered at the annual assembly on July 16, 2022, that will e
 - Aug 10 (12pm PT): Deadline for nominees to accept nomination
 - Aug 11 (3pm PT): Candidate meeting
 - Aug 18 (5pm PT): Deadline for candidate statements
-- Aug 19 Notice to all members with campaign literature (statements)
+- Aug 19: Notice to all members with campaign literature (statements)
 - Aug 23 (12:01am PT): Voting opens (ballot will include copy of statements)
 - Sep 7 (11:59pm PT): Voting closes
 

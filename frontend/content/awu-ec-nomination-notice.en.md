@@ -17,19 +17,19 @@ The term of office for these positions is September 7, 2022 to September 7, 2023
 
 An article being considered at the annual assembly on July 16, 2022, that will extend the terms for Recording Chair, Organizing Chair and Communications Chair to September 7, 2024 if passed.
 
-## Election Timeline
+## Election Timeline (Updated August 12)
 
 - July 20: Petitions available (nominations open)
 - Aug 4 (4pm PT): Petitions due (nominations close)
 - Aug 8 (9am PT): Petitions verified by Elections Comm
 - Aug 10 (12pm PT): Deadline for nominees to accept nomination
 - Aug 11 (3pm PT): Candidate meeting
-- Aug 11 (5pm PT): Deadline for candidate statements
-- Aug 12: Notice to all members with campaign literature (statements)
-- Aug 16 (12:01am PT): Voting opens (ballot will include copy of statements)
-- Aug 31 (11:59pm PT): Voting closes
+- Aug 18 (5pm PT): Deadline for candidate statements
+- Aug 19 Notice to all members with campaign literature (statements)
+- Aug 23 (12:01am PT): Voting opens (ballot will include copy of statements)
+- Sep 7 (11:59pm PT): Voting closes
 
-New term starts Sept 7
+New term starts Sept 14
 
 ## Petitions
 

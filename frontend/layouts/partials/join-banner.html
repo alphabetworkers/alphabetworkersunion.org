@@ -1,5 +1,7 @@
 <section class="home-join-banner">
   <h3>We are Alphabet Workers who stand united.</h3>
-  <awu-join-form><span class="button primary dark-context">Join us</span></awu-join-form>
+  {{ with .Site.GetPage "/join" }}
+    <a href="{{ .Permalink }}" class="button primary dark-context">Join us</a>
+  {{ end }}
   <a href="https://airtable.com/shr3RpVTuP25kHMdm" class="button dark-context secondary">Learn more</a>
 </section>

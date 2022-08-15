@@ -7,5 +7,7 @@
       <div slot="who">{{ . }}</div>
     {{ end }}
   </home-slider>
-  <awu-join-form><span class="button light-context primary home-join">Join us!</span></awu-join-form>
+  {{ with .Site.GetPage "/join" }}
+    <a href="{{ .Permalink }}" class="button light-context primary home-join">Join us!</a>
+  {{ end }}
 </div>

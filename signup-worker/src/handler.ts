@@ -2,7 +2,10 @@ import { stripeClient } from './stripe';
 import { plaidClient } from './plaid';
 import { sendgridClient } from './sendgrid';
 import Stripe from 'stripe';
-import { CARD_PROCESSING_FEE } from '../../common/constants.ts';
+import {
+  CARD_PROCESSING_FEE,
+  INITIATION_FEE_CENTS,
+} from '../../common/constants.ts';
 
 import { REQUIRED_FIELDS, METADATA, FTE_REQUIRED_FIELDS } from './fields';
 
@@ -84,6 +87,14 @@ export async function handleRequest(request: Request): Promise<Response> {
         }
       }
     }
+    const totalComp = Number(fields.get('total-compensation') as string);
+    if (totalCompDollarsToBillingCycleDuesCents(totalComp) < 1) {
+      throw new InvalidParamError(
+        'total-compensation',
+        'Enter your annual total compensation.',
+      );
+    }
+
     let customer: Stripe.Customer;
     try {
       let source: string;
@@ -128,7 +139,7 @@ export async function handleRequest(request: Request): Promise<Response> {
 
     const subscriptionItems = getSubscriptionItems(
       currency,
-      Number(fields.get('total-compensation') as string),
+      totalComp,
       paymentMethod,
     );
 
@@ -153,7 +164,7 @@ export async function handleRequest(request: Request): Promise<Response> {
           price_data: {
             currency: currency,
             product: INITIATION_FEE_PRODUCT_ID,
-            unit_amount: 500,
+            unit_amount: INITIATION_FEE_CENTS,
           },
         })
         .then(() =>

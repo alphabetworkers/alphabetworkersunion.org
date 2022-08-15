@@ -13,6 +13,7 @@ import { repeat } from 'lit/directives/repeat.js';
 import {
   CARD_PROCESSING_FEE,
   FRIENDLY_CARD_PROCESSING_FEE,
+  FRIENDLY_INITIATION_FEE,
 } from '../../../common/constants';
 
 import styles from './signup.scss';
@@ -984,8 +985,8 @@ export class Signup extends LitElement {
           <span class="title">
             Type your name in the Signature field to accept the membership terms
             of the Communications Workers of America, under which AWU-CWA is
-            formed. You also authorize a one-time $5 initiation fee, and the
-            regular charge of your calculated dues.
+            formed. You also authorize a one-time ${FRIENDLY_INITIATION_FEE}
+            initiation fee, and the regular charge of your calculated dues.
             <em
               >Nothing is charged until the Membership Committee reviews and
               accepts your membership application.</em

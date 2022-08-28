@@ -14,7 +14,7 @@ _August 23, 2022 at 3pm ET_
 
 _Press contact: press@alphabetworkersunion.org_
 
-**(Kansas City, MO)—** On Tuesday, July 12, 2022, Alphabet Workers Union-Communication Workers of America Local 1400 (AWU-CWA) filed an Unfair Labor  Practice Charge
+**(Kansas City, MO)—** On Tuesday, July 12, 2022, Alphabet Workers Union-Communication Workers of America Local 1400 (AWU-CWA) filed an Unfair Labor Practice charge
 against BDS Connected Solutions LLC with a Google Fiber union worker. The involved worker, Matt Beck, was eligible for a 4% raise effective May 18, 2022. When the raise
 was not given, management told Matt that union members are no longer eligible for raises. A ULP charge was filed and today, on August 23, 2022, BDS Connected Solutions
 LLC settled, and the worker received their earned 4% raise and missed backpay.  

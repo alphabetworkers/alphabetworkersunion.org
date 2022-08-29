@@ -900,16 +900,17 @@ export class Signup extends LitElement {
             autocomplete="off"
           />
         </label>
-        <h2>Monthly dues</h2>
+        <h2>Membership dues</h2>
         <div class="field">
           <span class="title"
-            >Total compensation
+            >Annual total compensation
             (TC)${this.optionalLabel('total-compensation')}</span
           >
           <span class="hint"
-            >Used to calculate your union dues. If you don't have an annual
-            salary, click the Calculator icon. We expect members to be honest,
-            but this is the honor system: we won't check.</span
+            >Your annual total compensation is used to calculate your monthly
+            union dues. Enter how much you make in a year. If you don't have an
+            annual salary, click the Calculator icon. We expect members to be
+            honest, but this is the honor system: we won't check.</span
           >
           <div class="dollar-input">
             <button
@@ -1209,16 +1210,21 @@ export class Signup extends LitElement {
   }
 
   duesTemplate(): TemplateResult {
+    if (!this.totalCompensation?.value) {
+      return html``;
+    }
+
+    const tc = '$' + this.totalCompensation.value + '/yr';
     return this.isPayingWithCard()
       ? html`<div class="dues">
-          TC &times; 1% &div; 12
+          ${tc} &times; 1% &div; 12
           <span class="dues-card-multiplier">
             &times; ${1 + CARD_PROCESSING_FEE}</span
           >
           = <strong>${this.formattedDues()}</strong>/mo
         </div>`
       : html` <div class="dues">
-          TC &times; 1% &div; 12 =
+          ${tc} &times; 1% &div; 12 =
           <strong>${this.formattedDues()}</strong>/mo
         </div>`;
   }
@@ -1232,7 +1238,7 @@ export class Signup extends LitElement {
     if (!Number.isNaN(comp)) {
       return `$${Math.floor((Math.floor(comp) / 100 / 12) * cardMultiplier)}`;
     } else {
-      return '$0';
+      return '';
     }
   }
 

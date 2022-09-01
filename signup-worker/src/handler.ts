@@ -9,6 +9,11 @@ import {
 
 import { REQUIRED_FIELDS, METADATA, FTE_REQUIRED_FIELDS } from './fields';
 
+// A threshold below which we think someone may have made a mistake (entered
+// monthly income, copied the monthly dues value and pasted it back into the
+// income box, etc) rather than entered their annual income.
+const POTENTIAL_ERROR_TOTAL_COMP_THRESHOLD = 8500;
+
 /**
  * Generate a Date object for the UTC midnight of the next month.
  */
@@ -96,10 +101,11 @@ export async function handleRequest(request: Request): Promise<Response> {
       }
     }
     const totalComp = Number(fields.get('total-compensation') as string);
-    if (totalCompDollarsToBillingCycleDuesCents(totalComp) < 1) {
+    if (totalComp < POTENTIAL_ERROR_TOTAL_COMP_THRESHOLD) {
       throw new InvalidParamError(
         'total-compensation',
-        'Enter your annual total compensation.',
+        'Enter your annual total compensation. If you did so and still receive this error, please' +
+          'email contact@alphabetworkersunion.org to help complete your join request.',
       );
     }
 

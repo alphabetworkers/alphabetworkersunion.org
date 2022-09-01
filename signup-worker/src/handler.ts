@@ -14,8 +14,16 @@ import { REQUIRED_FIELDS, METADATA, FTE_REQUIRED_FIELDS } from './fields';
  */
 function getBillingAnchor(): Date {
   const now = new Date();
-  now.setUTCDate(1);
-  now.setUTCMonth(now.getUTCMonth() + 1);
+  now.setUTCMonth(
+    Number(
+      Intl.DateTimeFormat('en', {
+        month: 'numeric',
+        timeZone: 'America/Los_Angeles',
+      }).format(now),
+    ),
+  );
+  now.setDate(1);
+  now.setDate(now.getDate());
   // Setting 8 hours means that we'll get the right day on the invoice if
   // the Stripe account is in UTC (a likely default), Eastern (local 1400),
   // or Pacific time

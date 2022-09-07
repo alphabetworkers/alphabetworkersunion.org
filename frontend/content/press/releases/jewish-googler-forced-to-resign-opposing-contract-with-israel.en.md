@@ -34,7 +34,7 @@ space for anti-Zionist Jews in the tech industry. The testimony, which includes 
 Google workers have given first-hand accounts of the racism and bias they face within Google because of their stance on Israel-Palestine. 
 
 “Google has consistently sustained a culture of silencing anti-Zionist Jews, and creating toxic and unjust conditions for Palestinian, Arab, and Muslim workers
-at Google,”  said ****Ariel, a product marketing manager at Google for Education since 2015 and member of the Alphabet Workers Union, “Google is ignoring the
+at Google,”  said Ariel, a product marketing manager at Google for Education since 2015 and member of the Alphabet Workers Union, “Google is ignoring the
 widespread internal and public dissent against the company’s complicity in Israel’s apartheid violence via Project Nimbus, and has forced Palestinians at the
 company to feel unsafe bringing their identity to work and speaking out.”
 

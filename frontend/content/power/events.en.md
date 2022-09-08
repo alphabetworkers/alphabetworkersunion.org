@@ -9,12 +9,6 @@ aliases: [/reclaim-your-power/events.en.md]
 
 {{< header />}}
 
-## Union day:  Ending Google’s complicity in Israeli apartheid
-
-Join us for a discussion about organizing to end Google’s complicity in Israeli apartheid through its 1 billion dollar Project Nimbus, a Google Cloud contract with the Israeli government and military. We will discuss ways to take action together and to amplify Palestinian Googlers’ voices. We will also address why anti-Zionism is not antisemitism and how to respond as a community to harmful weaponizations of antisemitism.
-
-[Register to attend Tuesday, August 30th 8 pm ET / 5 pm PT](https://us06web.zoom.us/meeting/register/tZ0sf-6tqT4rHdNw-i5CbtfWAfuAMK93OBlf)
-
 ## AWU TVC Office Hours
 
 AWU is hosting TVC office hours each month. Register in advance for the Zoom meeting.

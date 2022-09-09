@@ -26,6 +26,12 @@ Union days are open to all workers at Alphabet. We welcome TVCs, FTEs, union mem
 
 Previously recorded union days are added here. However, the recording can never replace the real thing. We record the presentations, but in order to enable workers to speak freely, the breakout room discussions and Q & As aren't recorded. The best way to experience a Union Day is to attend so that you don't miss out on the great conversations!
 
+### Ending Google’s complicity in Israeli apartheid
+
+A discussion about organizing to end Google’s complicity in Israeli apartheid through its 1 billion dollar Project Nimbus, a Google Cloud contract with the Israeli government and military. We amplify Palestinian Googlers’ voices. We also address why anti-Zionism is not antisemitism and how to respond as a community to harmful weaponizations of antisemitism.
+
+{{< fig >}}{{< youtube 1ofFDPOAZFg >}}{{< /fig >}}
+
 ### Organizing towards caste equity at Alphabet
 
 A discussion on the history of caste discrimination, how it manifests in the US and in tech workspaces. We also talk about our efforts on anti-caste organizing at Alphabet and how to take collective action towards bringing caste equity in our workplace.

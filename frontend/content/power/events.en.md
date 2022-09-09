@@ -28,7 +28,7 @@ Previously recorded union days are added here. However, the recording can never 
 
 ### Ending Google’s complicity in Israeli apartheid
 
-A discussion about organizing to end Google’s complicity in Israeli apartheid through its 1 billion dollar Project Nimbus, a Google Cloud contract with the Israeli government and military. We will amplify Palestinian Googlers’ voices. We will also address why anti-Zionism is not antisemitism and how to respond as a community to harmful weaponizations of antisemitism.
+A discussion about organizing to end Google’s complicity in Israeli apartheid through its 1 billion dollar Project Nimbus, a Google Cloud contract with the Israeli government and military. We amplify Palestinian Googlers’ voices. We also address why anti-Zionism is not antisemitism and how to respond as a community to harmful weaponizations of antisemitism.
 
 {{< fig >}}{{< youtube 1ofFDPOAZFg >}}{{< /fig >}}
 

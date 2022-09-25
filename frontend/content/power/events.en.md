@@ -13,8 +13,8 @@ aliases: [/reclaim-your-power/events.en.md]
 
 AWU is hosting TVC office hours each month. Register in advance for the Zoom meeting.
 
-[Register to attend Monday, August 15th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
-[Register to attend Monday, September 19th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
+[Register to attend Monday, October 17th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
+[Register to attend Monday, November 21st, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
 
 AWU hosts monthly office hours that are open to all Alphabet TVCs. Nonmembers are welcome to attend, and worker organizers, both TVC and FTE, will be facilitating the session. We'll share the latest news on our workplace organizing efforts, but more importantly this is an open forum for everyone. Come share your workplace concerns, challenges, and questions of any kind.
 
@@ -43,6 +43,12 @@ A discussion on the history of caste discrimination, how it manifests in the US 
 A panel discussion of Google Maps TVC workers who are organizing their workplace around unsafe working conditions. After a petition and strike pledge was signed by the majority of their office, RTO was extended by 90 days! These workers share their organizing efforts and give us first-hand experience about organizing a strike at Alphabet.
 
 {{< fig >}}{{< youtube v5YTw-td-6M >}}{{< /fig >}}
+
+### Cigars, civil rights, and communists
+
+A talk on the Charleston Cigar Factory Strike of 1945-1946 by Rachel Donaldson, PhD, a historian at the College of Charleston.
+
+{{< fig >}}{{< youtube fn6AdsTUpt8 >}}{{< /fig >}}
 
 ### Google Fiber: Fighting for a bargaining unit
 

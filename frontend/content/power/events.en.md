@@ -11,7 +11,7 @@ aliases: [/reclaim-your-power/events.en.md]
 
 ## Union Day: Google's Ghost Workers Demand Respect
 
-[Register to attend Friday, October 14th, 2022 130 pm ET / 1030 pm PT](https://us06web.zoom.us/meeting/register/tZckceitrTMoH9HiwSD95BI0BVQRW2w5yMss)
+[Register to attend Friday, October 14th, 2022 130 pm ET / 1030 am PT](https://us06web.zoom.us/meeting/register/tZckceitrTMoH9HiwSD95BI0BVQRW2w5yMss)
 
 You’ve heard about the two-tiered system of TVCs and FTEs, but there are more hidden layers to Google’s workforce. Come hear about the organizing efforts of the Rater’s subcontractors: Google workers who test, train, and evaluate Google Search algorithms, but are excluded from Google’s wages and benefits standard and some
 make less than $10 per hour without health insurance.

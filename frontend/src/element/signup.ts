@@ -707,7 +707,7 @@ export class Signup extends LitElement {
         </label>
         <label>
           <span class="title"
-            >Would you like SMS and email
+            >Would you like SMS
             updates?${this.optionalLabel('sms-consent')}</span
           >
           <span class="hint"

@@ -14,11 +14,11 @@ weight: 2
                   role="Executive Chair"
                   bio="Parul is a software engineer at Google, having joined as an Engineering Resident in 2019." >}}
 
-{{< large-profile photo="/img/meet-the-union/emily.jpeg"
-                  name="Emily Chang"
+{{< large-profile photo="/img/meet-the-union/chris.jpeg"
+                  name="Chris Scmidt"
                   email="recording@alphabetworkersunion.org"
                   role="Recording Chair"
-                  bio="Emily has been a Googler since 2012, and is an analyst in Trust & Safety." >}}
+                  bio="Chris is a Software Engineer at Google in Cambridge. After participating in more than half a decade of organizing with workers at Google, and seeing the retaliation and pushback that often resulted, he joined AWU-CWA to fight to make sure that no worker would ever need to walk into a meeting with HR alone—either figuratively or literally." >}}
 
 {{< large-profile photo="/img/meet-the-union/ashok.jpeg"
                   name="Ashok Chandwaney"
@@ -26,14 +26,14 @@ weight: 2
                   role="Finance Chair"
                   bio="Ashok is a Software Engineer at Google in Seattle, WA." >}}
 
-{{< large-profile photo="/img/meet-the-union/kate.jpeg"
-                  name="Kate Kenneally"
+{{< large-profile photo="/img/meet-the-union/shelby.jpeg"
+                  name="Shelby Hunter"
                   email="organizing@alphabetworkersunion.org"
                   role="Organizing Chair"
-                  bio="Kate is a Software Engineer at Google in Cambridge, Massachusetts. She joined AWU because she believes a more ethical and equitable Alphabet is possible—and only organized worker power will get us there." >}}
+                  bio="Shelby has been a TVC for Google for 4 years developing training material and policy for Google Maps." >}}
 
 {{< large-profile photo="/img/meet-the-union/jenny.jpeg"
-                  name="Jenny Rosewood"
+                  name="Stephen McMurtry"
                   email="communications@alphabetworkersunion.org"
                   role="Communications Chair"
-                  bio="Jenny is an Information Architect at Google. She is fighting to dismantle the two-tiered TVC system and using worker power to create a more just and equitable world." >}}
+                  bio="Stephen McMurtry is a senior software engineer in Google's Chicago office. He started at the company in 2021 and works on Google Search." >}}

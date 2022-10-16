@@ -26,7 +26,7 @@ weight: 2
                   role="Finance Chair"
                   bio="Ashok is a Software Engineer at Google in Seattle, WA." >}}
 
-{{< large-profile photo="/img/meet-the-union/shelby.jpeg"
+{{< large-profile photo="/img/meet-the-union/shelby.png"
                   name="Shelby Hunter"
                   email="organizing@alphabetworkersunion.org"
                   role="Organizing Chair"

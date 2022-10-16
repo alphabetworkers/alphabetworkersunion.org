@@ -32,7 +32,7 @@ weight: 2
                   role="Organizing Chair"
                   bio="Shelby has been a TVC for Google for 4 years developing training material and policy for Google Maps." >}}
 
-{{< large-profile photo="/img/meet-the-union/jenny.jpeg"
+{{< large-profile photo="/img/meet-the-union/stephen.jpeg"
                   name="Stephen McMurtry"
                   email="communications@alphabetworkersunion.org"
                   role="Communications Chair"

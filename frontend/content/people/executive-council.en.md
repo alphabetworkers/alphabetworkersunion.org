@@ -15,7 +15,7 @@ weight: 2
                   bio="Parul is a software engineer at Google, having joined as an Engineering Resident in 2019." >}}
 
 {{< large-profile photo="/img/meet-the-union/chris.jpeg"
-                  name="Chris Scmidt"
+                  name="Chris Schmidt"
                   email="recording@alphabetworkersunion.org"
                   role="Recording Chair"
                   bio="Chris is a Software Engineer at Google in Cambridge. After participating in more than half a decade of organizing with workers at Google, and seeing the retaliation and pushback that often resulted, he joined AWU-CWA to fight to make sure that no worker would ever need to walk into a meeting with HR alone—either figuratively or literally." >}}

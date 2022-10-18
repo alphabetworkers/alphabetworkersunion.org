@@ -30,7 +30,7 @@ weight: 2
                   name="Shelby Hunter"
                   email="organizing@alphabetworkersunion.org"
                   role="Organizing Chair"
-                  bio="Shelby has been a TVC for Google for 4 years developing training material and policy for Google Maps." >}}
+                  bio="Shelby has been a TVC for Google for 4 years, developing training material and policy for Google Maps." >}}
 
 {{< large-profile photo="/img/meet-the-union/stephen.jpeg"
                   name="Stephen McMurtry"

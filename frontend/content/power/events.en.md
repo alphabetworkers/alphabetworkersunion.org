@@ -9,19 +9,12 @@ aliases: [/reclaim-your-power/events.en.md]
 
 {{< header />}}
 
-## Union Day: Google's Ghost Workers Demand Respect
-
-[Register to attend Friday, October 14th, 2022 130 pm ET / 1030 am PT](https://us06web.zoom.us/meeting/register/tZckceitrTMoH9HiwSD95BI0BVQRW2w5yMss)
-
-You’ve heard about the two-tiered system of TVCs and FTEs, but there are more hidden layers to Google’s workforce. Come hear about the organizing efforts of the Rater’s subcontractors: Google workers who test, train, and evaluate Google Search algorithms, but are excluded from Google’s wages and benefits standard and some
-make less than $10 per hour without health insurance.
-
 ## AWU TVC Office Hours
 
 AWU is hosting TVC office hours each month. Register in advance for the Zoom meeting.
 
-[Register to attend Monday, October 17th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
 [Register to attend Monday, November 21st, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
+[Register to attend Monday, December 19th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
 
 AWU hosts monthly office hours that are open to all Alphabet TVCs. Nonmembers are welcome to attend, and worker organizers, both TVC and FTE, will be facilitating the session. We'll share the latest news on our workplace organizing efforts, but more importantly this is an open forum for everyone. Come share your workplace concerns, challenges, and questions of any kind.
 
@@ -32,6 +25,13 @@ Union days are open to all workers at Alphabet. We welcome TVCs, FTEs, union mem
 ## Watch previous union days
 
 Previously recorded union days are added here. However, the recording can never replace the real thing. We record the presentations, but in order to enable workers to speak freely, the breakout room discussions and Q & As aren't recorded. The best way to experience a Union Day is to attend so that you don't miss out on the great conversations!
+
+### Google's ghost workers demand respect
+
+You’ve heard about the two-tiered system of TVCs and FTEs, but there are more hidden layers to Google’s workforce. Learn about the organizing efforts of the Rater’s subcontractors: Google workers who test, train, and evaluate Google Search algorithms, but are excluded from Google’s wages and benefits standard and some
+make less than $10 per hour without health insurance.
+
+{{< fig >}}{{< youtube 3-Q0Tx-Eo_Q >}}{{< /fig >}}
 
 ### Ending Google’s complicity in Israeli apartheid
 

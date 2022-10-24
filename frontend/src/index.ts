@@ -29,6 +29,7 @@ import './docs/press/press-kit/2021-02-04-Modis-Google-ULP-Charge.pdf';
 import './docs/notices/CWA_1400-AWU_NOMINATION_NOTICE_2021.pdf';
 import './docs/notices/CWA_1400-AWU_NOMINATION_NOTICE_2021-05-10.pdf';
 import './docs/notices/CWA_1400-AWU_NOMINATION_NOTICE_2022.pdf';
+import './docs/notices/CWA-AWU_ELECTION_NOMINATION_NOTICE_2022.pdf';
 import './docs/notices/ELECTION_NOTICE-AWU_5.29.2021.pdf';
 import './docs/notices/Tentative_Certification_of_Nomination_Results-AWU_5.27.2021-signed.pdf';
 import './docs/notices/2021-17-06-Tentative_Certification_of_Election_Results.pdf';

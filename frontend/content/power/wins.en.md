@@ -28,7 +28,7 @@ In another example, the women on a team of about 20 Google SWEs organized becaus
 
 ## Google contract workers win back thousands in pay
 
-Nearly a dozen Google contract workers won back tens of thousands of dollars in back pay owed to them by Artech, a subcontractor of Accenture, which is a major subcontractor of Google. Workers discovered a discrepancy between their pay stubs and the amount designated by Accenture to be paid directly to Artech employees. The lack of pay transparency is an issue rampant amongst temporary, vendor, and contract workers at Google and Google must do more to ensure all workers are able to clearly understand their pay floor and salary raises opportunities. 
+Nearly a dozen Google contract workers won back tens of thousands of dollars in back pay owed to them by Artech, a subcontractor of Accenture, which is a major subcontractor of Google. Workers discovered a discrepancy between their pay stubs and the amount designated by Accenture to be paid directly to Artech employees. The lack of pay transparency is an issue rampant amongst temporary, vendor, and contract workers at Alphabet, and Alphabet must do more to ensure all workers are able to clearly understand their pay floor and salary raises opportunities. 
 
 So far, 13 workers have received over $50,000 in back pay. If you’re an Alphabet worker subcontracted via Artech and want to learn if you’re owed back pay, [let us know](https://airtable.com/shr3RpVTuP25kHMdm)!
 

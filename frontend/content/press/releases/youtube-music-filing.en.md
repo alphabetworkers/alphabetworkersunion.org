@@ -1,7 +1,7 @@
 ---
 title: 'YouTube Music Contract Workers Unionize with Alphabet Workers Union-CWA & File Petition with NLRB to Win Bargaining Rights'
 linktitle: 'YouTube Music Contract Workers Unionize with Alphabet Workers Union-CWA & File Petition with NLRB to Win Bargaining Rights'
-date: 2022-24-10T10:00:00-08:00
+date: 2022-10-24T10:00:00-09:00
 layout: textheavy
 description:
 ---

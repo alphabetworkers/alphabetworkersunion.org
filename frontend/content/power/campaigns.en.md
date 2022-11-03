@@ -18,7 +18,7 @@ Google Search quality depends on the unseen labor of workers at Raterlabs. These
 
 Thenmozhi Soundararajan was scheduled to deliver a talk at Alphabet about caste discrimination, but was deplatformed by discriminatory and casteist disinformation at Alphabet. Tanuja Gupta, who helped organize the cancelled talk, was retaliated against (leading to her resignation) for furthering the cause of caste equity at the workplace.  Alphabet not only failed its civil rights obligations to create a safe workplace but also chose to target women of color leaders instead of addressing its caste discrimination problem.
 
-Caste should be recognized as a [protected class by the federal government](https://subscriptlaw.com/protected-classes/) and be included in anti-harassment policies within our industry. Alphabet’s anti-discrimination policy only explicitly prohibits caste-based discrimination in India: the policy should be raised to this standard worldwide, and caste should be included as a protected category to the US Code of Conduct.
+Caste should be recognized as a [protected class by the federal government](https://subscriptlaw.com/protected-classes/) and be included in anti-harassment policies within our industry. Apple explicity prevents discrimination by caste among US employees since 2020. Alphabet’s anti-discrimination policy only explicitly prohibits caste-based discrimination in India: the policy should be raised to this standard worldwide, and caste should be included as a protected category to the US Code of Conduct.
 
 Hear about our efforts on anti-caste organizing at Alphabet and how to take collective action towards bringing caste equity in our workplace:
 
@@ -26,15 +26,15 @@ Hear about our efforts on anti-caste organizing at Alphabet and how to take coll
 
 ## Protect our workers rights
 
-The overturning of Roe v. Wade will not stop abortions—it will only criminalize working people choosing to exercise their bodily autonomy. Reproductive rights are worker rights! The SCOTUS decision is a direct attack against millions of working people—particularly low-wage workers of color, because those with resources will continue to access safe abortions.
+The overturning of Roe v. Wade will not stop abortions—it will only criminalize working people choosing to exercise their bodily autonomy. Reproductive rights are worker rights! The SCOTUS decision is a direct attack against millions of working people—particularly low-wage workers of color, because those workers cannot access safe reproductive care. Those with resources will continue to access safe abortions.
 
 Google announced that full-time employees—but not temps, vendors and contractors—would have access to relocation services and $5000 in medical coverage for out-of-state procedures, including abortion and gender-affirming healthcare for workers who live in affected trigger-law states. What this fails to address is the tens of thousands of Alphabet contract workers who are more likely to live in states with restricted abortion access and more likely to be underpaid compared to full-time employees. Additionally these workers are more likely to be people who can become pregnant and workers of colors. These are the exact workers that this SCOTUS decision will most harm. Alphabet must stand by its stated support of abortion access and work with their temp, vendor, and contract workforce to identify and offer the types of support that would best protect these workers.
 
-Alphabet must also take proactive steps to defend the privacy of users who may be seeking abortion services or are simply searching for a way to support those choosing to exercise their bodily autonomy. Deleting location data simply does not go far enough.
+Alphabet must also take proactive steps to defend the privacy of users who may be seeking abortion services or are simply searching for a way to support those choosing to exercise their bodily autonomy. Alphabet promising to delete location data simply does not go far enough to protect user privacy.
 
 ## No workers are discount
 
-The past two years of the pandemic have been hard on all of us. But we have continued to do excellent work for Alphabet—as evidenced by the record profits the corporation is enjoying. In spite of our hard work, Alphabet has decided to lower the pay for their employees who work for Google in North Carolina’s Research Triangle offices and place this location into a discount pay band. Not only does this minimize the incredible work of Google employees—it also calls into question how committed Google is to hiring and retaining diverse employees.
+In spite of Alphabet's record profits, Alphabet has decided to lower the pay for employees who work for Google in North Carolina’s Research Triangle offices and place this location into a discount pay band. Not only does this minimize the incredible work of Google employees—it also calls into question how committed Google is to hiring and retaining diverse employees. When offices were opened in Durham, Google celebrated these locations for their diversity and were excited to partner with historically Black colleges and universities (HCBUs).
 
 We call on Google to return these offices to the national pay band, commit to full transparency with workers around future salary decisions, and realize our shared vision for a diverse and well paid workforce in this region.
 
@@ -48,8 +48,7 @@ Join our fight to dismantle the two-tiered perma-temp system. Sign and share our
 
 ## Workers deserve to work in an environment free from their abusers
 
-Alphabet does not provide a safe environment for those who face harassment in the workplace.
-Even when HR confirms harassment, no action is taken to make the reporter safe. Alphabet protects the harasser instead of protecting the person harmed by the harassment. The person who reports harassment is forced to bear the burden, usually leaving Alphabet while their harasser stays or is rewarded for their behavior.
+Alphabet does not provide a safe environment for those who face harassment in the workplace. Even when HR confirms harassment, no action is taken to make the reporter safe. Alphabet protects the harasser instead of protecting the person harmed by the harassment. The person who reports harassment is forced to bear the burden, usually leaving Alphabet while their harasser stays or is rewarded for their behavior.
 
 Alphabet must prioritize the safety of their workers by prioritizing the concerns of those harmed:
 

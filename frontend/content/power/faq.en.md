@@ -30,7 +30,7 @@ Yes, managers under the director level are welcome to join us. Managers face add
 
 ### Can workers in Canada join this union?
 
-Yes. We are open to all Alphabet workers in the US and Canada. For Canadian addresses, the form only accepts credit card payments for Canadian addresses. If you want to pay using a bank account and have a Canadian address, sign up using a credit card and then email membership@alphabetworkersunion.org so we can send you a link to update your payment information.
+Yes. We are open to all Alphabet workers in the US and Canada. For Canadian addresses, the form only accepts credit card payments. If you want to pay using a bank account and have a Canadian address, sign up using a credit card and then email membership@alphabetworkersunion.org, so we can send you a link to update your payment information.
 
 ### Can non-US citizens join this union?
 
@@ -70,7 +70,7 @@ Historically unions have fought for issues from an 8 hour workday, to equal righ
 
 We are not organized around a list of demands or specific issues. We are an organization working to build a structure to create worker power. This work is about forming a system to create change; a power structure that allows us to bolster and back up demands made by ERGs and previous organizing efforts, and continue to drive new changes to make Alphabet a better place for workers. To see some issues that we are currently organizing around, check out our [Campaigns page]({{< ref "power/campaigns" >}}).
 
-Specific things we’ve helped organize in the past include post-Thanksgiving Four support via CWA, the Googlers Against Racism off-corp forum, helping trans TVC's get security badges with their preferred names, legal support for fired workers, organizing alongside TVCs in the wake of the closing of offices in the pandemic, and offering resources to Dr. Timnit Gebru and her team.
+Specific things we’ve helped organize in the past include post-Thanksgiving Four support via CWA, the Googlers Against Racism off-corp forum, helping trans TVCs get security badges with their preferred names, legal support for fired workers, organizing alongside TVCs in the wake of the closing of offices in the pandemic, and offering resources to Dr. Timnit Gebru and her team.
 
 ### What happens once I card-sign?
 
@@ -94,7 +94,7 @@ Dues are our money: we all vote on the budget, which we write. We are trying to 
 
 ### How much of dues goes towards CWA and CWA Local 1400?
 
-We pay a flat fee of $25 per month per member to CWA national, for which we get substantial support for hiring staff and legal representation. We also pay about 6% of dues collected to CWA Local 1400 to cover the administrative cost of our membership (for example, ensuring that our bank accounts are managed legally). After we are better-established, this percentage cost ends when we become our own local. The remainder of our dues collected are completely up to us to spend.
+We pay a flat fee of $25 per month per member to CWA national, for which we get substantial support for hiring staff and legal representation. We also pay about 6% of dues collected to CWA Local 1400 to cover the administrative cost of our membership (for example, ensuring that our bank accounts are managed legally). After we are better-established, this adminstrative cost to CWA Local 1400 ends when we become our own local. The remainder of our dues collected are completely up to us to spend.
 
 ### What do staff do?
 

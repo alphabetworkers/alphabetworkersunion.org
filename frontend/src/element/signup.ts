@@ -839,7 +839,7 @@ export class Signup extends LitElement {
           <span class="hint"
             >So we can connect you with your local chapters. Site code is a
             country code followed by a location code (for example,
-            "US-MTV").</span
+            "US-MTV"). If you do not work in an office, please enter "REMOTE".</span
           >
           <input
             name="site-code"

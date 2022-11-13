@@ -10,15 +10,15 @@ layout: textheavy
 
 ### Who is in our union?
 
-All sorts of people! As of January 2022 we have over {{< member-count >}} members. Out of respect for our members’ privacy we do not have a public list of union members, but we have members from several Alphabet subsidiaries, TVCs (members of the temporary, vendor, and contractor workforce), both tech and non-tech job families, and people located all over the US and Canada.
+All sorts of people! Currently, we have over {{< member-count >}} members. Out of respect for our members’ privacy we do not have a public list of union members, but we have members from several Alphabet subsidiaries, TVCs (members of the temporary, vendor, and contractor workforce), both tech and non-tech job families, and people located all over the US and Canada.
 
 ### What about workers outside the US and Canada?
 
-Due to the infinite and fractal complexity of international labor law, AWU-CWA membership is restricted to workers in the US and Canada. We’ve already reached out to some worker organizations in other countries and we intend to keep communication open and work closely together after our union becomes public.
+Due to the complexity of international labor law, AWU-CWA membership is restricted to workers in the US and Canada. We’re connected with some worker organizations in other countries and we intend to keep communication open and work closely together.
 
 ### What about TVCs? What about other bets?
 
-We believe that all workers who contribute to Alphabet deserve a say in how it is run, therefore TVCs and workers for all of Alphabet are welcome to join the union. We used to be a single company, and we’re not going to let arbitrary corporate structure divide us from each other.
+We believe that all workers who contribute to Alphabet deserve a say in how it is run, therefore temps, vendors, contractors (TVCs) and workers for all of Alphabet are welcome to join the union. We used to be a single company, and we’re not going to let arbitrary corporate structure divide us from each other.
 
 ### Can interns join this union?
 
@@ -30,13 +30,17 @@ Yes, managers under the director level are welcome to join us. Managers face add
 
 ### Can workers in Canada join this union?
 
-Yes. Currently, our card-sign form only allows US addresses; we're working to address this. Until we get the form fixed, you can still join AWU! Just fill out the card-sign form with any address (it's helpful if you put "Canada" in the street address portion), then send an email with the subject "Canadian AWU Signup Address Correction" to info@cwalocal1400.org with your name and your actual address. We'll correct your address in our system. 
-
-For Annual Total Compensation, please enter your compensation in US Dollars. You can use a conversion rate of 1 CAD to 0.7 USD.
+Yes. We are open to all Alphabet workers in the US and Canada. For Canadian addresses, the form only accepts credit card payments. If you want to pay using a bank account and have a Canadian address, sign up using a credit card and then email membership@alphabetworkersunion.org, so we can send you a link to update your payment information.
 
 ### Can non-US citizens join this union?
 
-Yes. For more information, see [Immigrant Employee Rights under the National Labor Relations Act](https://www.nlrb.gov/sites/default/files/attachments/basic-page/node-3024/immigrant_employee_rights_one_pager_english_pdf_21860.pdf).
+Yes. Regardless of your immigration status, you are welcome to join AWU-CWA. Some of our members aren’t US citizens, but they are living and working in the US and Canada for Alphabet. For more information, see [Immigrant Employee Rights under the National Labor Relations Act](https://www.nlrb.gov/sites/default/files/attachments/basic-page/node-3024/immigrant_employee_rights_one_pager_english_pdf_21860.pdf).
+
+### I’m in a right-to-work state. Can I still join?
+Yes. Being in a right-to-work state doesn't prevent you from joining a union.
+
+### Can I be fired for joining?
+According to the [National Labor Relations Board (NLRB)](https://www.nlrb.gov/about-nlrb/rights-we-protect/the-law/employees/your-rights-during-union-organizing), you can't be fired, disciplined, demoted, or penalized in any way for joining a union or participating in union activity.
 
 ### How big is the union?
 
@@ -44,17 +48,17 @@ Yes. For more information, see [Immigrant Employee Rights under the National Lab
 
 &#xfeff;{{< join-form "Join us!" "padded" >}}
 
-### I work for Alphabet. Are you going to force me to join and pay dues (or an “agency fee”)?
+### I work for Alphabet. Am I required to join?
 
-No.
+No, joining AWU-CWA is optional, but we would love to have you join!
 
-### Don’t unions need a contract to be legitimate?
+### Don’t unions need a contract?
 
-No. Workers keep the company running with our labor every day, and our power comes from our ability to collectively cease that labor if our employer will not bargain with us—we just have to collectively understand and wield that power. We can make a material difference in our workplace and show solidarity with one another. It comes down to showing up for each other, talking about our problems, and learning how to act in concert. A contract can be a great tool to make wins for workers concrete and permanent, but we’ve got a bigger toolbox at our disposal.
+No. Workers keep the company running with our labor every day, and our power comes from our ability to collectively cease that labor if our employer will not bargain with us—we just have to collectively understand and wield that power. We can make a material difference in our workplace and show solidarity with one another. It comes down to showing up for each other, talking about our problems, and learning how to act in concert. A contract can be a great tool to make wins for workers concrete and permanent, but it isn’t the only tool in our toolbox at our disposal.
 
 ### Is AWU-CWA a “solidarity union”?
 
-We are a union. We are organizing and building power and resources. That makes us a union. It’s true that we aren’t currently organizing towards a contract with our employer; that’s the only difference between us and other unions you might be aware of.
+We are a union. We are organizing and building power and resources. That makes us a union. Some unions have contracts, some don’t. Some unions have contracts for some workers, while other workers within that same union might not have a contract. They are all still unions.
 
 We reject the description of “solidarity union”—all unions have solidarity. Some are pursuing contracts, and some are not. Semantics matter: we are a real and valid union with real power.
 
@@ -64,9 +68,9 @@ Historically unions have fought for issues from an 8 hour workday, to equal righ
 
 ### What are AWU-CWA’s demands?
 
-We are not organized around a list of demands or specific issues. We are an organization working to build a structure to create worker power. This work is about forming a system to create change; a power structure that allows us to bolster and back up demands made by ERGs and previous organizing efforts, and continue to drive new changes to make Alphabet a better place for workers.
+We are not organized around a list of demands or specific issues. We are an organization working to build a structure to create worker power. This work is about forming a system to create change; a power structure that allows us to bolster and back up demands made by ERGs and previous organizing efforts, and continue to drive new changes to make Alphabet a better place for workers. To see some issues that we are currently organizing around, check out our [Campaigns page]({{< ref "power/campaigns" >}}).
 
-Specific things [we’ve helped organize in the past]({{< ref "power/campaigns" >}}) include post-Thanksgiving Four support via CWA, the Googlers Against Racism off-corp forum, helping trans TVC's get security badges with their preferred names, legal support for fired workers, organizing alongside TVCs in the wake of the closing of offices in the pandemic, and offering resources to Dr. Timnit Gebru and her team.
+Specific things we’ve helped organize in the past include post-Thanksgiving Four support via CWA, the Googlers Against Racism off-corp forum, helping trans TVCs get security badges with their preferred names, legal support for fired workers, organizing alongside TVCs in the wake of the closing of offices in the pandemic, and offering resources to Dr. Timnit Gebru and her team.
 
 ### What happens once I card-sign?
 
@@ -78,21 +82,21 @@ When you sign a card, your information undergoes a verification process. Once ve
 
 ### How are dues collected?
 
-When you sign a card to join AWU-CWA, we will ask you to include a credit card or bank information. Your method of payment will be charged on a monthly basis on the first of the month.
+When you sign a card to join AWU-CWA, we will ask you to include a credit card or bank information (preferred). Your method of payment will be charged on a monthly basis on the first of the month.
 
 ### What are the dues accomplishing?
 
 We are building an active and growing group to mobilize large numbers of Alphabet workers. Dues cover costs like full time organizing staff, software infrastructure, printed material and swag, travel and expenses for assemblies, legal support, training and events, accessibility. There are also contributions to CWA 1400 and the CWA international union to cover required costs, but this is a relatively small portion of the dues collected from Alphabet workers.
 
-### Isn’t 1% of total compensation for dues a bit high?
+### Why collect dues?
 
 Dues are our money: we all vote on the budget, which we write. We are trying to organize inside of a trillion dollar corporation, and we need enough money to do that. Many of our members will be TVCs, so while many engineers may be paying $3000 a year in dues, many TVCs will be paying $400 a year or less in dues. Dues pay for staff, who are critical to our organizing efforts. Dues mean that we can support hourly workers if we go on strike. While the raw number may sound high, 1% is lower than dues at most unions (we found the average to be 1.25% in an analysis of other unions’ dues).
 
-### Exactly how much of dues goes towards CWA and CWA Local 1400?
+### How much of dues goes towards CWA and CWA Local 1400?
 
-We pay a flat fee of $25 per month per member to CWA national, for which we get substantial support for hiring staff and legal representation, among other things. We also pay about 6% of dues collected to CWA Local 1400 to cover the administrative cost of our membership (for example, ensuring that our bank accounts are managed legally). After we are better-established, this percentage cost will be ended when we split off from Local 1400. The remainder of our dues collected are completely up to us to spend.
+We pay a flat fee of $25 per month per member to CWA national, for which we get substantial support for hiring staff and legal representation. We also pay about 6% of dues collected to CWA Local 1400 to cover the administrative cost of our membership (for example, ensuring that our bank accounts are managed legally). After we are better-established, this adminstrative cost to CWA Local 1400 ends when we become our own local. The remainder of our dues collected are completely up to us to spend.
 
-### What do your staff actually do?
+### What do staff do?
 
 Staff are experienced organizers who can work on campaigns as their full-time jobs without burning out, like volunteers do. As we scale, we need staff not just to run campaigns but to train and support our members, to facilitate our organizational structures and decision-making processes, to advise us from their extensive experience in labor organizing, and to run our technical infrastructure. Staff also includes lawyers who can advise our members on questions of labor law and defend members from retaliation.
 

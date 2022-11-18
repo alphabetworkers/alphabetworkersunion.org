@@ -686,7 +686,7 @@ export class Signup extends LitElement {
               ${repeat(
                 this.availableRegions,
                 (regionData) => regionData[1],
-                (regionData, index) => html`
+                (regionData) => html`
                   <option value=${regionData[0]}>${regionData[0]}</option>
                 `
               )}
@@ -838,8 +838,8 @@ export class Signup extends LitElement {
           <span class="title">Site code${this.optionalLabel('site-code')}</span>
           <span class="hint"
             >So we can connect you with your local chapters. Site code is a
-            country code followed by a location code (for example,
-            "US-MTV"). If you do not work in an office, please enter "REMOTE".</span
+            country code followed by a location code (for example, "US-MTV"). If
+            you do not work in an office, please enter "REMOTE".</span
           >
           <input
             name="site-code"

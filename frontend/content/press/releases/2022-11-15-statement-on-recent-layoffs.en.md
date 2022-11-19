@@ -1,7 +1,7 @@
 ---
-title: 'Statement on Recenet Layoffs in the Tech Industry'
-linktitle: 'Statement on Recenet Layoffs in the Tech Industry'
-date: 2022-11-15T015:00:00-09:00
+title: 'Statement on Recent Layoffs in the Tech Industry'
+linktitle: 'Statement on Recent Layoffs in the Tech Industry'
+date: 2022-11-15T15:00:00-08:00
 layout: textheavy
 description:
 ---

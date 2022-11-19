@@ -1,7 +1,7 @@
 ---
 title: 'Google Cancels Talk by Hindu Fundamentalist & Announces New Policies Regarding External Speakers Thanks to Efforts by Workers to End Caste Discrimination at Google'
 linktitle: 'Google Cancels Talk by Hindu Fundamentalist & Announces New Policies Regarding External Speakers Thanks to Efforts by Workers to End Caste Discrimination at Google'
-date: 2022-11-18T016:00:00-09:00
+date: 2022-11-18T16:00:00-08:00
 layout: textheavy
 description:
 ---

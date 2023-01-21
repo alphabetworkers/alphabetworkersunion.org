@@ -211,6 +211,10 @@ export class Signup extends LitElement {
 
   cardElement: StripeCardElement;
 
+  // TODO(#208): Temporary until bank accounts are supported for Canada.
+  @state()
+  protected bankSupported = true;
+
   @state()
   protected paymentMethod: 'bank' | 'card' | 'plaid' = 'plaid';
 
@@ -329,15 +333,28 @@ export class Signup extends LitElement {
 
   private paymentTemplate(): TemplateResult {
     return html` <h2>Payment</h2>
-
+      ${this.bankSupported
+        ? ''
+        : html` <div class="field full-width">
+            <div class="title">
+              Currently only card payment is supported in Canada. Please email
+              <a href="mailto:operations@alphabetworkersunion.org">
+                operations@alphabetworkersunion.org</a
+              >
+              after you've completed sign-up and we can manually switch you over
+              to bank payment if you prefer.
+            </div>
+          </div>`}
       <div class="payment-method-toggle full-width">
         <button
+          ?disabled=${!this.bankSupported}
           class=${classMap({ selected: this.isMethod('plaid') })}
           @click=${this.setMethod('plaid')}
         >
           Bank account
         </button>
         <button
+          ?disabled=${!this.bankSupported}
           class=${classMap({ selected: this.isMethod('bank') })}
           @click=${this.setMethod('bank')}
         >
@@ -1162,6 +1179,13 @@ export class Signup extends LitElement {
       this.mailingCountry.value == 'United States' ? 'usd' : 'cad';
     if (this.billingCountry != null) {
       this.billingCountry.value = this.mailingCountry.value;
+    }
+    // TODO(#208): Temporary until bank accounts are supported for Canada.
+    if (this.mailingCountry.value === 'Canada') {
+      this.paymentMethod = 'card';
+      this.bankSupported = false;
+    } else {
+      this.bankSupported = true;
     }
     this.requestUpdate();
   }

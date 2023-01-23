@@ -993,9 +993,9 @@ export class Signup extends LitElement {
         <label>
           <span class="title">Calculated dues</span>
           <span class="hint"
-            >Annual dues are 1% of your TC, plus processing fee if you opt to pay with
-            a card. This is billed monthly, and is pooled and democratically
-            controlled by you and your fellow members.</span
+            >Annual dues are 1% of your TC, plus processing fee if you opt to
+            pay with a card. This is billed monthly, and is pooled and
+            democratically controlled by you and your fellow members.</span
           >
           ${this.duesTemplate()}
         </label>

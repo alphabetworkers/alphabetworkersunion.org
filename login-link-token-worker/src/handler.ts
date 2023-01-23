@@ -1,6 +1,6 @@
 import { stripeClient } from './stripe';
 import { sendgridClient } from './sendgrid';
-import jwt from 'jsonwebtoken';
+import * as jwt from '@tsndr/cloudflare-worker-jwt';
 import Stripe from 'stripe';
 
 const ONE_HOUR_IN_SECONDS = 60 * 60;

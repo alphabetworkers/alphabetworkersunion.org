@@ -211,6 +211,10 @@ export class Signup extends LitElement {
 
   cardElement: StripeCardElement;
 
+  // TODO(#208): Temporary until bank accounts are supported for Canada.
+  @state()
+  protected bankSupported = true;
+
   @state()
   protected paymentMethod: 'bank' | 'card' | 'plaid' = 'plaid';
 
@@ -329,15 +333,29 @@ export class Signup extends LitElement {
 
   private paymentTemplate(): TemplateResult {
     return html` <h2>Payment</h2>
-
+      ${this.bankSupported
+        ? ''
+        : html` <div class="field full-width">
+            <div class="title">
+              We cannot register Canadian bank payments from this form yet. If
+              you would like to pay with bank withdrawal, please register with a
+              card and, once you've done so, email
+              <a href="mailto:operations@alphabetworkersunion.org">
+                operations@alphabetworkersunion.org</a
+              >
+              to be sent a secure link to update to bank payments.
+            </div>
+          </div>`}
       <div class="payment-method-toggle full-width">
         <button
+          ?disabled=${!this.bankSupported}
           class=${classMap({ selected: this.isMethod('plaid') })}
           @click=${this.setMethod('plaid')}
         >
           Bank account
         </button>
         <button
+          ?disabled=${!this.bankSupported}
           class=${classMap({ selected: this.isMethod('bank') })}
           @click=${this.setMethod('bank')}
         >
@@ -409,92 +427,95 @@ export class Signup extends LitElement {
       </div>
     </label>`;
 
-  private readonly cardTemplate: TemplateResult = html`<div
-      class="field full-width"
-    >
-      <span class="title">Card details</span>
-      <span class="hint">
-        <em>Please consider using a bank account to pay dues.</em> This both
-        saves you the ${FRIENDLY_CARD_PROCESSING_FEE} processing fee charge, and
-        also your union's administrative overhead by saving the work of getting
-        updated payment information when cards expire or are cancelled.
-      </span>
-      <div class="card-container">
-        <slot
-          name="stripe-card-container"
-          @slotchange=${this.rebindStripeElement}
-        ></slot>
+  private cardTemplate(): TemplateResult {
+    return html`<div class="field full-width">
+        <span class="title">Card details</span>
+        <span class="hint">
+          ${this.bankSupported
+            ? html` <em>Please consider using a bank account to pay dues.</em>
+                This both saves you the ${FRIENDLY_CARD_PROCESSING_FEE}
+                processing fee charge, and also your union's administrative
+                overhead by saving the work of getting updated payment
+                information when cards expire or are cancelled.`
+            : ''}
+        </span>
+        <div class="card-container">
+          <slot
+            name="stripe-card-container"
+            @slotchange=${this.rebindStripeElement}
+          ></slot>
+        </div>
       </div>
-    </div>
-    <label>
-      <span class="title">Card holder name</span>
-      <span class="hint"></span>
-      <input
-        name="card-holder-name"
-        aria-label="Card holder name"
-        required
-        autocomplete="cc-name"
-      />
-    </label>
-    <label>
-      <span class="title">Billing street address</span>
-      <span class="hint"></span>
-      <input
-        name="billing-address-1"
-        aria-label="Address line 1"
-        required
-        autocomplete="address-line1"
-      />
-    </label>
-    <label>
-      <span class="title">Billing street line 2</span>
-      <span class="hint"></span>
-      <input
-        name="billing-address-2"
-        aria-label="Address line 2"
-        autocomplete="address-line2"
-      />
-    </label>
-    <label>
-      <span class="title">Billing city</span>
-      <span class="hint"></span>
-      <input
-        name="billing-city"
-        aria-label="Billing City"
-        required
-        autocomplete="address-level2"
-      />
-    </label>
-    <label>
-      <span class="title">Billing state</span>
-      <span class="hint"></span>
-      <input
-        name="billing-state"
-        aria-label="Billing State"
-        required
-        autocomplete="address-level1"
-      />
-    </label>
-    <label>
-      <span class="title">Billing postal code</span>
-      <span class="hint"></span>
-      <input
-        name="billing-zip"
-        aria-label="Billing Postal Code"
-        required
-        autocomplete="postal-code"
-      />
-    </label>
-    <label>
-      <span class="title">Billing country</span>
-      <span class="hint"></span>
-      <input
-        name="billing-country"
-        aria-label="Billing Country"
-        required
-        autocomplete="country"
-      />
-    </label>`;
+      <label>
+        <span class="title">Card holder name</span>
+        <span class="hint"></span>
+        <input
+          name="card-holder-name"
+          aria-label="Card holder name"
+          required
+          autocomplete="cc-name"
+        />
+      </label>
+      <label>
+        <span class="title">Billing street address</span>
+        <span class="hint"></span>
+        <input
+          name="billing-address-1"
+          aria-label="Address line 1"
+          required
+          autocomplete="address-line1"
+        />
+      </label>
+      <label>
+        <span class="title">Billing street line 2</span>
+        <span class="hint"></span>
+        <input
+          name="billing-address-2"
+          aria-label="Address line 2"
+          autocomplete="address-line2"
+        />
+      </label>
+      <label>
+        <span class="title">Billing city</span>
+        <span class="hint"></span>
+        <input
+          name="billing-city"
+          aria-label="Billing City"
+          required
+          autocomplete="address-level2"
+        />
+      </label>
+      <label>
+        <span class="title">Billing state</span>
+        <span class="hint"></span>
+        <input
+          name="billing-state"
+          aria-label="Billing State"
+          required
+          autocomplete="address-level1"
+        />
+      </label>
+      <label>
+        <span class="title">Billing postal code</span>
+        <span class="hint"></span>
+        <input
+          name="billing-zip"
+          aria-label="Billing Postal Code"
+          required
+          autocomplete="postal-code"
+        />
+      </label>
+      <label>
+        <span class="title">Billing country</span>
+        <span class="hint"></span>
+        <input
+          name="billing-country"
+          aria-label="Billing Country"
+          required
+          autocomplete="country"
+        />
+      </label>`;
+  }
 
   private readonly plaidTemplate = html` <div class="field full-width">
     <span class="title">Connect bank</span>
@@ -686,7 +707,7 @@ export class Signup extends LitElement {
               ${repeat(
                 this.availableRegions,
                 (regionData) => regionData[1],
-                (regionData, index) => html`
+                (regionData) => html`
                   <option value=${regionData[0]}>${regionData[0]}</option>
                 `
               )}
@@ -1163,6 +1184,13 @@ export class Signup extends LitElement {
     if (this.billingCountry != null) {
       this.billingCountry.value = this.mailingCountry.value;
     }
+    // TODO(#208): Temporary until bank accounts are supported for Canada.
+    if (this.mailingCountry.value === 'Canada') {
+      this.paymentMethod = 'card';
+      this.bankSupported = false;
+    } else {
+      this.bankSupported = true;
+    }
     this.requestUpdate();
   }
 
@@ -1247,7 +1275,7 @@ export class Signup extends LitElement {
       case 'bank':
         return this.bankTemplate;
       case 'card':
-        return this.cardTemplate;
+        return this.cardTemplate();
       case 'plaid':
         return this.plaidTemplate;
     }

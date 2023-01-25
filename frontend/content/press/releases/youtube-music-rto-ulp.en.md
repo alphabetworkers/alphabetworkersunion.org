@@ -1,7 +1,7 @@
 ---
 title: 'YouTube Music Workers Unionized with Alphabet Workers Union-CWA File ULP Against RTO Attempts that Would Disrupt Union Organizing'
 linktitle: 'YouTube Music Workers Unionized with Alphabet Workers Union-CWA File ULP Against RTO Attempts that Would Disrupt Union Organizing'
-date: 2023-01-23T09:00:00-08:00
+date: 2023-01-24T09:00:00-08:00
 layout: textheavy
 description:
 ---

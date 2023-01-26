@@ -14,6 +14,8 @@ import './img/logo-header.svg';
 import './img/static/og-banner.png';
 // Used for emails
 import './img/static/logo_text_large_transparent.png';
+import './img/static/ma-campaign/email-header.jpg';
+import './img/static/ma-campaign/email-footer.png';
 
 require.context('./img/meet-the-union', false, /\.(jpe?g|png)$/i);
 

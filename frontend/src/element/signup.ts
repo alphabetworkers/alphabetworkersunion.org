@@ -995,7 +995,9 @@ export class Signup extends LitElement {
           <span class="hint"
             >Annual dues are 1% of your TC, plus processing fee if you opt to
             pay with a card. This is billed monthly, and is pooled and
-            democratically controlled by you and your fellow members.</span
+            democratically controlled by you and your fellow members. See
+            <a href="/power/faq/#how-much-are-dues">the FAQ</a> for more details.
+            </span
           >
           ${this.duesTemplate()}
         </label>

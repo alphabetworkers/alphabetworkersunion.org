@@ -1005,7 +1005,10 @@ export class Signup extends LitElement {
         <h2>Accept agreement</h2>
         <label class="full-width">
           <span class="title">
-            Type your name in the Signature field to accept the membership terms
+            Type your name in the Signature field to accept the
+            <a href="https://cwa-union.org/for-locals/cwa-constitution">
+              membership terms</a
+            >
             of the Communications Workers of America, under which AWU-CWA is
             formed. You also authorize a one-time ${FRIENDLY_INITIATION_FEE}
             initiation fee, and the regular charge of your calculated dues.

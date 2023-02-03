@@ -18,11 +18,11 @@ We decided democratically to strike to protect our coworkers' jobs and our union
 
 Our members are fighting back for their union and their livelihoods and they need **YOUR HELP**!
 
-#### **Sign Our YouTube Music Solidarity Letter!**
+#### Sign Our YouTube Music Solidarity Letter!
 
 Read below and sign at [go.awu.fyi/YTMLetter](https://go.awu.fyi/YTMLetter)
 
-#### **Donate to Our YouTube Music Strike Fund!**
+#### Donate to Our YouTube Music Strike Fund!
 
 <div class="gfm-embed" data-url="https://www.gofundme.com/f/AWU-ULPStrikeSupport/widget/medium/"></div><script defer src="https://www.gofundme.com/static/js/embed.js"></script>
 

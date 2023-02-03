@@ -26,6 +26,8 @@ Our members are fighting back for their union and their livelihoods and they nee
 
 [go.awu.fyi/YTMSupport](https://go.awu.fyi/YTMSupport)
 
+<div class="gfm-embed" data-url="https://www.gofundme.com/f/AWU-ULPStrikeSupport/widget/medium/"></div><script defer src="https://www.gofundme.com/static/js/embed.js"></script>
+
 
 ## News Coverage of Our Campaign
 
@@ -77,7 +79,7 @@ Alphabet exercises control, directly and indirectly, over these YouTube Music em
 
 ## YouTube Music Strike Solidarity Letter, Signers, and Support Messages!
 
-**Sign Our YouTube Music Solidarity Letter!** https://go.awu.fyi/YTMLetter
+**Sign Our YouTube Music Solidarity Letter!** [go.awu.fyi/YTMLetter](https://go.awu.fyi/YTMLetter)
 
 We stand in solidarity with the workers at YouTube Music via Cognizant, and we celebrate their decision to unionize with the Alphabet Workers Union-CWA and bargain with you over the workplace conditions that affect their lives. We also support their decision to go on strike against recent unfair labor practices that would undermine their campaign and violate their right to organize.
 

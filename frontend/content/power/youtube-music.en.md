@@ -14,20 +14,19 @@ We, the workers of YouTube Music, employed by Cognizant Technology Solutions and
 
 The vast majority of us were hired remotely, from all over Texas and all over the country. After we filed for our union election, the companies announced a “return to office” plan, telling our coworkers that if they didn’t move to Austin and report to the office, they would lose their jobs. Our employers are now threatening to move our work overseas or take other actions against us if we support our union.
 
-We decided democratically to strike to protect our coworkers jobs and our union!
+We decided democratically to strike to protect our coworkers' jobs and our union!
 
 Our members are fighting back for their union and their livelihoods and they need **YOUR HELP**!
 
-**Sign Our YouTube Music Solidarity Letter!**
+#### **Sign Our YouTube Music Solidarity Letter!**
 
-[go.awu.fyi/YTMLetter](https://go.awu.fyi/YTMLetter)
+Read below and sign at [go.awu.fyi/YTMLetter](https://go.awu.fyi/YTMLetter)
 
-**Donate to Our YouTube Music Strike Fund!**
-
-[go.awu.fyi/YTMSupport](https://go.awu.fyi/YTMSupport)
+#### **Donate to Our YouTube Music Strike Fund!**
 
 <div class="gfm-embed" data-url="https://www.gofundme.com/f/AWU-ULPStrikeSupport/widget/medium/"></div><script defer src="https://www.gofundme.com/static/js/embed.js"></script>
 
+Or at [go.awu.fyi/YTMSupport](https://go.awu.fyi/YTMSupport)
 
 ## News Coverage of Our Campaign
 

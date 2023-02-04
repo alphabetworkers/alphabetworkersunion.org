@@ -340,8 +340,8 @@ export class Signup extends LitElement {
               We cannot register Canadian bank payments from this form yet. If
               you would like to pay with bank withdrawal, please register with a
               card and, once you've done so, email
-              <a href="mailto:operations@alphabetworkersunion.org">
-                operations@alphabetworkersunion.org</a
+              <a href="mailto:membership@alphabetworkersunion.org">
+                membership@alphabetworkersunion.org</a
               >
               to be sent a secure link to update to bank payments.
             </div>
@@ -552,7 +552,7 @@ export class Signup extends LitElement {
         })}"
       >
         <p class="full-width">
-          If you have any trouble completing this form, contact Membership
+          If you have any trouble completing this form, contact the Membership
           Committee at
           <a href="mailto:membership@alphabetworkersunion.org"
             >membership@alphabetworkersunion.org</a

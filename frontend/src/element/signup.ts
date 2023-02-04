@@ -552,7 +552,7 @@ export class Signup extends LitElement {
         })}"
       >
         <p class="full-width">
-          If you have any trouble completing this form, contact the Membership
+          If you have any trouble completing this form, contact Membership
           Committee at
           <a href="mailto:membership@alphabetworkersunion.org"
             >membership@alphabetworkersunion.org</a

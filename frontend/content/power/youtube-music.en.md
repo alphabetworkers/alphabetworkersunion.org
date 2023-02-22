@@ -18,6 +18,10 @@ We decided democratically to strike to protect our coworkers' jobs and our union
 
 Our members are fighting back for their union and their livelihoods and they need **YOUR HELP**!
 
+#### Download Our Strike Compilation Album
+
+As a musically inclined group of workers, we have produced a [Strike Party album](https://alphabetworkers.bandcamp.com/), which can be purchased on Bandcamp. All proceeds support our strike fund!
+
 #### Sign Our YouTube Music Solidarity Letter!
 
 Read below and sign at [go.awu.fyi/YTMLetter](https://go.awu.fyi/YTMLetter)
@@ -29,6 +33,10 @@ Read below and sign at [go.awu.fyi/YTMLetter](https://go.awu.fyi/YTMLetter)
 Or at [go.awu.fyi/YTMSupport](https://go.awu.fyi/YTMSupport)
 
 ## News Coverage of Our Campaign
+
+#### The Verge - February 21, 2023
+
+[Bernie Sanders throws support behind striking YouTube Music workers](https://www.theverge.com/2023/2/21/23608748/bernie-sanders-google-alphabet-youtube-music-workers-strike-awu)
 
 #### Time - February 3, 2023
 
@@ -98,4 +106,4 @@ In Solidarity with Every Google Worker,
 
 <tab><iframe class="airtable-embed" src="https://airtable.com/embed/shr1YRQGEduyH2C71?backgroundColor=red" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
 
-<tab><iframe class="airtable-embed" src="https://airtable.com/embed/shrPI8aTj0ltOP4QF?backgroundColor=red" frameborder="0" onmousewheel="" width="50%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
+<tab><iframe class="airtable-embed" src="https://airtable.com/embed/shrPI8aTj0ltOP4QF?backgroundColor=red" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>

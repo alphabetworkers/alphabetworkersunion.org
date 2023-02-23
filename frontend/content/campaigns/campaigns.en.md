@@ -1,7 +1,7 @@
 ---
-title: 'Campaigns'
-linktitle: 'Campaigns'
-date: 2020-12-15T22:25:27-05:00
+title: 'Our Organizing'
+linktitle: 'Our Organizing'
+date: 2023-02-15T22:25:27-05:00
 weight: 3
 layout: textheavy
 ---

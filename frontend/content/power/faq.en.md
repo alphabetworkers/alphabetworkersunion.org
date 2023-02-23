@@ -72,7 +72,7 @@ Historically unions have fought for issues from an 8 hour workday, to equal righ
 
 ### What are AWU-CWA’s demands?
 
-We are not organized around a list of demands or specific issues. We are an organization working to build a structure to create worker power. This work is about forming a system to create change; a power structure that allows us to bolster and back up demands made by ERGs and previous organizing efforts, and continue to drive new changes to make Alphabet a better place for workers. To see some issues that we are currently organizing around, check out our [Campaigns page]({{< ref "power/campaigns" >}}).
+We are not organized around a list of demands or specific issues. We are an organization working to build a structure to create worker power. This work is about forming a system to create change; a power structure that allows us to bolster and back up demands made by ERGs and previous organizing efforts, and continue to drive new changes to make Alphabet a better place for workers. To see some issues that we are currently organizing around, check out our [Campaigns page]({{< ref "campaigns/campaigns" >}}).
 
 Specific things we’ve helped organize in the past include post-Thanksgiving Four support via CWA, the Googlers Against Racism off-corp forum, helping trans TVCs get security badges with their preferred names, legal support for fired workers, organizing alongside TVCs in the wake of the closing of offices in the pandemic, and offering resources to Dr. Timnit Gebru and her team.
 

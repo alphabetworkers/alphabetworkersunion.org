@@ -8,7 +8,7 @@ layout: textheavy
 
 {{< header />}}
 
-Self-link: [go.awu.fyi/egw](https://go.awu.fyi/every-google-worker)
+Self-link: [go.awu.fyi/egw](https://go.awu.fyi/egw)
 
 At AWU-CWA, we want to organize **Every. Google. Worker.**
 

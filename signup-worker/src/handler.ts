@@ -20,7 +20,7 @@ const POTENTIAL_ERROR_TOTAL_COMP_THRESHOLD = 8500;
 function getBillingAnchor(): Date {
   const now = new Date();
   now.setUTCDate(1);
-  now.setUTCMonth(now.getUTCMonth() + 1);
+  now.setUTCMonth(now.getMonth() + 1);
   // Setting 8 hours means that we'll get the right day on the invoice if
   // the Stripe account is in UTC (a likely default), Eastern (local 1400),
   // or Pacific time

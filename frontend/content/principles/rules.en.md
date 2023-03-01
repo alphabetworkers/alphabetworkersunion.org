@@ -8,7 +8,7 @@ layout: textheavy
 
 {{< header />}}
 
-_As updated by Special Assembly, 5/2/2021_.
+_As updated by General Assembly, 7/16/2022_.
 
 ## Purpose
 

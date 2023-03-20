@@ -26,7 +26,7 @@ Yes.
 
 ### Can lawyers join this union?
 
-Yes, lawyers are generally welcome to join, as long as they are not managers or supervisors. Please fill out the [interest form](https://airtable.com/shr3RpVTuP25kHMdm) and a union member will reach out to discuss.
+Yes, lawyers are generally welcome to join, as long as they are not managers or supervisors. The National Labor Relations Board has generally found that lawyers are able to organize and can do so without ethical or conflict-of-interest concerns. If you have more specific questions, fill out the [interest form](https://airtable.com/shr3RpVTuP25kHMdm) and a union member will reach out to discuss.
 
 ### Can managers join this union?
 

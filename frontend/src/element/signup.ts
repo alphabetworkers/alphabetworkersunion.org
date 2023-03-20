@@ -562,14 +562,14 @@ export class Signup extends LitElement {
         <label class="full-width">
           <span class="title">Name${this.optionalLabel('preferred-name')}</span>
           <span class="hint"
-            >Enter the name you want union members to use when communicating
-            with you</span
+            >Enter the full name you want union members to use when
+            communicating with you</span
           >
           <input
             name="preferred-name"
             aria-label="Name"
             ?required=${this.isFieldRequired('preferred-name')}
-            autocomplete="name"
+            autocomplete="off"
           />
         </label>
         <label>

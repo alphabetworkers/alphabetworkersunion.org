@@ -11,6 +11,8 @@ aliases: [/reclaim-your-power/events.en.md]
 
 ## Events Calendar
 
+**Note:** All times are **Pacific Time**.
+
 <tab><iframe src="https://calendar.google.com/calendar/embed?src=3d4b2f5d3777c59b8058bafec45b8e52d0f9a1e98f5ed980dc439a74e6f82ff2%40group.calendar.google.com&ctz=America%2FLos_Angeles" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 
 ## AWU TVC Office Hours

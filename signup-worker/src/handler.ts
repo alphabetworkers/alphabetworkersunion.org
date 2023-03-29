@@ -15,19 +15,42 @@ import { REQUIRED_FIELDS, METADATA, FTE_REQUIRED_FIELDS } from './fields';
 const POTENTIAL_ERROR_TOTAL_COMP_THRESHOLD = 8500;
 
 /**
- * Generate a Date object for the UTC midnight of the next month.
+ * @param month A `number` indicating the month, as returned by `getUTCMonth()`
+ * @param year A `number` indicating the year, as returned by `getUTCFullYear()`
+ * @returns A `Date` of the billing anchor for the given month in the given year
+ */
+function getBillingAnchorFor(month: number, year: number): Date {
+  // JS months are zero-indexed, but ISO date string months start at 01
+  const monthOneIndexed = month + 1;
+  // Add a leading zero to the month if necessary to get two digits
+  const monthString = (monthOneIndexed < 10 ? '0' : '') + `${monthOneIndexed}`;
+  // Construct an ISO date string (in UTC) and use it to create a Date
+  // Billing at 08:00 UTC means that we'll get the right day on the invoice if
+  // the Stripe account is in UTC (a likely default), Eastern (local 1400),
+  // or Pacific time
+  return new Date(`${year}-${monthString}-01T08:00:00Z`);
+}
+
+/**
+ * Generate a `Date` for the billing anchor of the next month (or of this month,
+ * if this month's billing anchor is still in the future).
  */
 function getBillingAnchor(): Date {
   const now = new Date();
-  now.setUTCDate(1);
-  now.setUTCMonth(now.getUTCMonth() + 1);
-  // Setting 8 hours means that we'll get the right day on the invoice if
-  // the Stripe account is in UTC (a likely default), Eastern (local 1400),
-  // or Pacific time
-  now.setUTCHours(8);
-  now.setUTCMinutes(0);
-  now.setUTCSeconds(0);
-  return now;
+
+  const thisMonth = now.getUTCMonth();
+  const thisMonthsYear = now.getUTCFullYear();
+  const thisMonthsAnchor = getBillingAnchorFor(thisMonth, thisMonthsYear);
+  if (thisMonthsAnchor.getTime() > now.getTime()) {
+    return thisMonthsAnchor;
+  }
+
+  // If we're past this month's billing anchor
+  const nextMonth = (thisMonth + 1) % 12;
+  const nextMonthsYear =
+    nextMonth > thisMonth ? thisMonthsYear : thisMonthsYear + 1;
+  const nextMonthsAnchor = getBillingAnchorFor(nextMonth, nextMonthsYear);
+  return nextMonthsAnchor;
 }
 
 function getSubscriptionItems(

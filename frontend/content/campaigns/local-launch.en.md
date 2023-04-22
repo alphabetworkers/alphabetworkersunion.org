@@ -1,6 +1,6 @@
 ---
-title: 'CWA Local 9009 Launch'
-linktitle: 'CWA Local 9009 Launch'
+title: 'CWA Local 9009'
+linktitle: 'CWA Local 9009'
 date: 2023-04-22T10:00:00-05:00
 weight: 3
 layout: textheavy

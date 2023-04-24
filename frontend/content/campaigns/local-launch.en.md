@@ -39,7 +39,6 @@ On **Thursday, 4 May** our chapters will host member socials at Alphabet sites a
 | Seattle          | TBD                                          | |
 | Bay Area         | TBD: Mountain View                           | |
 | Austin, TX       | Moontower Cider, 1916 Tillery St.            | |
-| NYC              | TBD                                          | |
 | Cambridge        | Promenade in CAM office                      | [go.awu.fyi/cam-launch](https://go.awu.fyi/cam-launch) |
 | So Cal           | TBD                                          | |
 | Triangle, NC     | TBD                                          | |

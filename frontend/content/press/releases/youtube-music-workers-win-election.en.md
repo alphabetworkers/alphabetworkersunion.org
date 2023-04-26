@@ -10,7 +10,7 @@ description:
 
 **FOR IMMEDIATE RELEASE**
 
-_Wednesday, March 22, 2023 3PM CST_
+_Wednesday, April 26, 2023 3PM CST_
 
 _Press contact: press@alphabetworkersunion.org_
 

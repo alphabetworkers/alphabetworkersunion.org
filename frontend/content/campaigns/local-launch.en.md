@@ -35,13 +35,13 @@ On **Thursday, 4 May** our chapters will host member socials at Alphabet sites a
 | Chicago          | Time Out Market Chicago, 916 W Fulton Market | On-Corp Invite    |
 | Waterloo, Canada | TBD                                          | |
 | Montreal, Canada | TBD                                          | |
-| Pittsburgh, PA   | TBD                                          | |
-| Seattle          | TBD                                          | |
+| Pittsburgh, PA   | The Galley Mezzanine                         | |
+| Seattle          | Art Marble 21, 721 Westlake Ave N            | [go.awu.fyi/pnw-launch](https://go.awu.fyi/pnw-launch) |
 | Bay Area         | TBD: Mountain View                           | |
 | Austin, TX       | Moontower Cider, 1916 Tillery St.            | |
-| Cambridge        | Promenade in CAM office                      | [go.awu.fyi/cam-launch](https://go.awu.fyi/cam-launch) |
-| So Cal           | TBD                                          | |
-| Triangle, NC     | TBD                                          | |
-| New York City    | TBD                                          | [go.awu.fyi/nyc-launch](https://go.awu.fyi/nyc-launch) |
+| Cambridge        | Rofftop Garden in CAM office                 | [go.awu.fyi/cam-launch](https://go.awu.fyi/cam-launch) |
+| So Cal           | Wurskuche Restaurant Venice Beach, 625 Lincoln Blvd  | |
+| Triangle, NC     | Clouds Brewing, 905 W Main St, Ste 22, Durham   | |
+| New York City    | Shaffer’s, 151 8th Ave                       | [go.awu.fyi/nyc-launch](https://go.awu.fyi/nyc-launch) |
 
 </center>

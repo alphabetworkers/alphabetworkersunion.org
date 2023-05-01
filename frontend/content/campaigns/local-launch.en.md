@@ -33,11 +33,10 @@ On **Thursday, 4 May** our chapters will host member socials at Alphabet sites a
 | Location/Chapter | Location Venue & Address                     | Registration      |
 | ---------------- | -------------------------------------------- | ----------------- |
 | Chicago          | Time Out Market Chicago, 916 W Fulton Market | On-Corp Invite    |
-| Waterloo, Canada | TBD                                          | |
-| Montreal, Canada | TBD                                          | |
+| Waterloo, Canada | The Round Table, 1 Victoria St S, Kitchener  | Check your email  |
 | Pittsburgh, PA   | The Galley Mezzanine                         | |
 | Seattle          | Art Marble 21, 721 Westlake Ave N            | [go.awu.fyi/pnw-launch](https://go.awu.fyi/pnw-launch) |
-| Bay Area         | TBD: Mountain View                           | |
+| Bay Area         | Das Bierhauz, 35 Castro St, Mountain View    | |
 | Austin, TX       | Moontower Cider, 1916 Tillery St.            | |
 | Cambridge        | Rofftop Garden in CAM office                 | [go.awu.fyi/cam-launch](https://go.awu.fyi/cam-launch) |
 | So Cal           | Wurskuche Restaurant Venice Beach, 625 Lincoln Blvd  | |

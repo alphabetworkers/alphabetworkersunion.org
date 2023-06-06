@@ -10,7 +10,7 @@ layout: textheavy
 
 ## Anti-harassment
 
-Alphabet Workers Union - Communications Workers of America Local 1400 is dedicated to providing a harassment-free experience for everyone. We do not tolerate harassment of participants in any form.
+Alphabet Workers Union - Communications Workers of America Local 9009 is dedicated to providing a harassment-free experience for everyone. We do not tolerate harassment of participants in any form.
 
 This code of conduct applies to all Alphabet Workers Union spaces and in interactions with and about members, including but not limited to conferences, chat clients such as Discord, email, file sharing such as in Dropbox, and videoconferencing such as with Zoom. Both online and off.
 

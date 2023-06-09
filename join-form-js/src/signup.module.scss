@@ -1,0 +1,320 @@
+h2 {
+  color: #ed1c24;
+  font-size: 1.4em;
+  font-weight: 700;
+  padding: 0 10px;
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+.completed {
+  &.not-completed {
+    display: none;
+  }
+
+  h2,
+  p {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1.2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  column-gap: 32px;
+  row-gap: 16px;
+  color: #525153;
+
+  &.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &.complete {
+    display: none;
+  }
+}
+
+label,
+.field {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+
+  p {
+    padding: 0 10px;
+    margin: 0;
+    font-size: 1.6em;
+    font-weight: bold;
+  }
+}
+
+.title {
+  line-height: 1.2em;
+  margin-bottom: 4px;
+  padding: 0 10px;
+  font-weight: 500;
+  color: #6c6865;
+
+  &.or {
+    text-align: center;
+    border-bottom: solid 1px;
+    height: 0.5em;
+    margin-bottom: 0.5em;
+
+    span {
+      background: white;
+      padding: 0 20px;
+    }
+  }
+}
+
+.hint {
+  font-size: 0.8em;
+  line-height: 1.4em;
+  flex: 1;
+  margin-bottom: 4px;
+  padding: 0 10px;
+}
+
+.dollar-input {
+  display: flex;
+  flex-direction: row;
+  height: 48px;
+}
+
+.dollar-input > input {
+  padding-left: 26px;
+  text-align: right;
+  flex: 1;
+
+  // No idea why, but this fixes a col width issue.
+  width: 0;
+}
+
+.dollar-input > .select {
+  width: 84px;
+  margin-left: 16px;
+}
+
+.input-dollar-symbol {
+  position: relative;
+}
+
+.input-dollar-symbol:after {
+  position: absolute;
+  content: '$';
+  font-size: 24px;
+  padding: 7px 0;
+  text-align: right;
+  width: 20px;
+  margin-right: -20px;
+  color: rgba(0, 0, 0, 0.4);
+  z-index: 20;
+}
+
+.compensation-calculator-button {
+  margin-right: 16px;
+  font-size: 2.4em;
+  margin: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.compensation-calculator {
+  font-size: 1.6em;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  align-items: baseline;
+  padding: 0;
+  max-height: 0;
+  box-sizing: border-box;
+  visibility: none;
+  transition-property: max-height, padding;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+
+  &.visible {
+    visibility: visible;
+    max-height: 120px;
+    padding-bottom: 16px;
+    padding-top: 16px;
+  }
+
+  & > label {
+    // No idea why, but this fixes a col width issue.
+    width: 0;
+    flex: 1;
+    margin: 0 4px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    .hint {
+      font-size: 0.5em;
+    }
+
+    input {
+      text-align: right;
+    }
+  }
+}
+
+.dues {
+  padding: 0 10px;
+  font-size: 1.6em;
+  line-height: 48px;
+}
+
+.dues-card-multiplier {
+  color: #ed1c24;
+}
+
+.card-container,
+input,
+select,
+button {
+  font-size: 24px;
+  border: solid 1px #525153;
+  border-radius: 10px;
+  padding: 0 8px;
+  background: white;
+  line-height: 46px; // Height minus border
+  height: 48px;
+  box-sizing: border-box;
+  color: #525153;
+}
+
+button {
+  color: #ed1c24;
+  border: solid 2px #ed1c24;
+  line-height: 44px; // Height minus border
+  font-weight: 600;
+  padding: 0 16px;
+  font-size: 20px;
+}
+
+button[disabled] {
+  border-color: #525153;
+  color: #525153;
+  opacity: 0.7;
+  cursor: default;
+}
+
+.invalidatable {
+  input:invalid,
+  select:invalid {
+    outline: none;
+    background: rgba(255, 0, 0, 0.1);
+    box-shadow: none;
+  }
+
+  input:valid,
+  select:valid {
+    background: white;
+  }
+}
+
+select {
+  appearance: none;
+}
+
+.select {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 48px;
+}
+
+.select > select {
+  flex: 1;
+}
+
+.select::after {
+  content: '';
+  width: 10px;
+  height: 6px;
+  background-color: #000e26;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  position: absolute;
+  top: 22px;
+  right: 10px;
+}
+
+.region-select {
+  width: 100%;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.payment-method-toggle {
+  display: flex;
+  flex-direction: row;
+}
+
+.payment-method-toggle button {
+  background: white;
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.card-container {
+  padding: 8px;
+}
+
+button.primary,
+.payment-method-toggle button.selected {
+  background: #ed1c24;
+  color: white;
+  cursor: auto;
+}
+
+button.primary:hover {
+  background-color: #c60020;
+  cursor: pointer;
+}
+
+.actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: row;
+}
+
+button.submit {
+  grid-column: 1 / -1;
+}
+
+/* Remove controls from number input. */
+input[type='number'] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.spacer {
+  flex: 1;
+}

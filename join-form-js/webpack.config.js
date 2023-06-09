@@ -1,7 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const STATIC_DIR = '.static';
 const ASSETS_DIR = path.join('..', '.assets');
 
 module.exports = {
@@ -15,26 +14,13 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.module\.s?css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true
-            },
-          },
-          'sass-loader',
-        ],
-      },
-      {
         test: /\.s?css$/,
-        exclude: /\.module\.s?css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
+        use: [{
+          loader: 'lit-scss-loader',
+          options: {
+            minify: true, // defaults to false
+          },
+        }, 'extract-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
@@ -50,6 +36,5 @@ module.exports = {
   output: {
     publicPath: '',
     filename: path.join(ASSETS_DIR, 'main.js'),
-    path: path.resolve(__dirname, STATIC_DIR),
   },
 };

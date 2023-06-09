@@ -16,7 +16,7 @@ import {
   FRIENDLY_INITIATION_FEE,
 } from '../../common/constants';
 
-import styles from './signup.module.scss';
+import styles from './signup.scss';
 
 import {
   REQUIRED_FIELDS,

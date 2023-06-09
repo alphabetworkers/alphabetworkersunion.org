@@ -1,0 +1,68 @@
+{
+  "name": "join-form-js",
+  "version": "0.1.0",
+  "description": "This repository provides the JS source code the AWU-CWA Join Form.",
+  "private": true,
+  "dependencies": {
+    "@stripe/stripe-js": "^1.11.0",
+    "country-region-data": "^2.4.0",
+    "lit": "^2.2.0",
+    "smoothscroll-polyfill": "^0.4.4"
+  },
+  "devDependencies": {
+    "@types/plaid-link": "^2.0.7",
+    "@types/smoothscroll-polyfill": "^0.3.1",
+    "@types/webpack-env": "^1.16.0",
+    "@typescript-eslint/eslint-plugin": "^4.10.0",
+    "@typescript-eslint/parser": "^4.10.0",
+    "css-loader": "^5.0.1",
+    "eslint": "^7.16.0",
+    "extract-loader": "^5.1.0",
+    "file-loader": "^6.2.0",
+    "husky": "^4.3.6",
+    "lint-staged": "^10.5.3",
+    "lit-scss-loader": "^2.0.1",
+    "mini-css-extract-plugin": "^1.3.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.8.8",
+    "resolve-url-loader": "^3.1.2",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.0.12",
+    "typescript": "^4.1.3",
+    "webpack": "^5.11.0",
+    "webpack-cli": "^4.2.0",
+    "webpack-image-resize-loader": "^5.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "run-s build:webpack",
+    "build:webpack": "webpack --mode=production",
+    "start": "npm-run-all build:webpack -p start:*",
+    "start:webpack": "webpack --mode=development --watch",
+    "fix": "run-s fix:eslint fix:prettier",
+    "fix:prettier": "prettier --write src",
+    "fix:eslint": "eslint --fix src",
+    "check": "run-s check:eslint check:prettier",
+    "check:prettier": "prettier --check src",
+    "check:eslint": "eslint src",
+    "clean": "rm -rf .public .static .assets .resources"
+  },
+  "author": "Stephen McMurtry <stephenmcmurtry>",
+  "license": "Apache-2.0",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.scss": [
+      "prettier --write"
+    ],
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}

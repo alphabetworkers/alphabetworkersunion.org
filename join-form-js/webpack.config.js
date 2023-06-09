@@ -15,95 +15,32 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.s?css$/,
-        exclude: /element\//,
+        test: /\.module\.s?css$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'resolve-url-loader',
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            },
+          },
           'sass-loader',
         ],
       },
       {
-        test: /element\/.*\.scss$/,
-        use: [{
-          loader: 'lit-scss-loader',
-          options: {
-            minify: true, // defaults to false
-          },
-        }, 'extract-loader', 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf|svg)$/i,
-        exclude: /img/,
-        type: 'asset/resource',
-        generator: {
-          filename: path.join('fonts', '[hash][ext][query]'),
-        },
-      },
-      {
-        include: path.resolve(__dirname, 'src', 'img'),
-        exclude: [/selfies/, /img\/meet-the-union/, /static/],
-        type: 'asset/resource',
-        generator: {
-          filename: path.join(ASSETS_DIR, '[file]'),
-        },
-      },
-      {
-        include: path.resolve(__dirname, 'src', 'img', 'static'),
-        type: 'asset/resource',
-        generator: {
-          filename: '[file]',
-        },
-      },
-      {
-        include: path.resolve(__dirname, 'src', 'docs'),
-        type: 'asset/resource',
-        generator: {
-          filename: '[file]',
-        },
-      },
-      {
-        test: /img\/meet-the-union\/.+\.(png|jpe?g)$/i,
+        test: /\.s?css$/,
+        exclude: /\.module\.s?css$/,
         use: [
-          {
-            loader: 'file-loader',
-            options: {name: '[path][name].[ext]'},
-          },
-          {
-            loader: 'webpack-image-resize-loader',
-            options: {width: 400},
-          }
+          'style-loader',
+          'css-loader',
+          'sass-loader',
         ],
-      },
-      {
-        test: /selfies\/.+\.(png|jpe?g)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {name: path.join(ASSETS_DIR, '[path][name].[ext]')},
-          },
-          {
-            loader: 'webpack-image-resize-loader',
-            options: {
-              width: 200,
-              format: 'jpeg',
-            },
-          }
-        ],
-      },
-      {
-        test: /favicon\.ico/i,
-        type: 'asset/resource',
-        generator: {
-          filename: '[file]',
-        },
       },
     ],
   },
   mode: 'production',
   resolve: {
-    extensions: ['.ts'],
+    extensions: ['.ts', '.scss'],
   },
   plugins: [
     new MiniCssExtractPlugin({

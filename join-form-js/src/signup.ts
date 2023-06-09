@@ -14,9 +14,9 @@ import {
   CARD_PROCESSING_FEE,
   FRIENDLY_CARD_PROCESSING_FEE,
   FRIENDLY_INITIATION_FEE,
-} from './constants';
+} from '../../common/constants';
 
-import styles from './signup.scss';
+import styles from './signup.module.scss';
 
 import {
   REQUIRED_FIELDS,

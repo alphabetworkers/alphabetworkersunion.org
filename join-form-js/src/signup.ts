@@ -537,8 +537,8 @@ export class Signup extends LitElement {
       <div class="completed ${classMap({ 'not-completed': !this.isComplete })}">
         <h2>All done</h2>
         <p>
-          The membership committee will review your application, and we'll send
-          your union membership card after it's approved.
+          The membership committee will review your application and then send a
+          welcome email after it's approved.
         </p>
         <p>Welcome to our union!</p>
       </div>
@@ -732,8 +732,8 @@ export class Signup extends LitElement {
             updates?${this.optionalLabel('sms-consent')}</span
           >
           <span class="hint"
-            >Yes, I want to receive updates about my union and other
-            union-related news from CWA. Message & data rates may apply. Visit
+            >Yes, I want to receive updates from CWA International. Message &
+            data rates may apply. Visit
             <a href="https://www.cwa-union.org/sms-terms"
               >https://www.cwa-union.org/sms-terms</a
             >

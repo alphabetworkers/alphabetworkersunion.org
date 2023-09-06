@@ -175,7 +175,7 @@ export class Signup extends LitElement {
   haveReports!: HTMLInputElement;
   @query('[name="total-compensation"]')
   totalCompensation!: HTMLInputElement;
-  @query('name="birthday"]')
+  @query('[name="birthday"]')
   birthday!: HTMLInputElement;
   @query('[name="tshirt-size"]')
   tshirtSize!: HTMLSelectElement;
@@ -253,7 +253,10 @@ export class Signup extends LitElement {
     super();
 
     // TODO debugging tool, remove later
-    window.fillTestValues = () => {
+    window.fillTestValues = async () => {
+      this.paymentMethod = 'bank';
+      await this.updateComplete;
+
       this.employmentType.value = 'fte';
       this.signature.value = 'foo';
       this.preferredName.value = 'foo';
@@ -272,6 +275,7 @@ export class Signup extends LitElement {
       this.haveReports.value = 'n';
       this.totalCompensation.value = '250000';
       this.birthday.value = '01/01/1950';
+      this.tshirtSize.value = 'other';
       this.smsConsent.value = '1';
       this.billingCountry.value = 'US';
       this.routingNumber.value = '110000000';

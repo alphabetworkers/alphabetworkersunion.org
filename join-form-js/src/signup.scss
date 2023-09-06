@@ -211,12 +211,16 @@ button {
 
 button {
   color: $brand;
-  fill: $brand;
-  border: solid 2px $brand;
+  fill: currentcolor;
+  border: solid 2px currentcolor;
   line-height: 44px; // Height minus border
   font-weight: 600;
   padding: 0 16px;
   font-size: 20px;
+
+  &:hover {
+    color: $brand-dark;
+  }
 }
 
 button[disabled] {
@@ -294,6 +298,7 @@ button.primary,
 .payment-method-toggle button.selected {
   background: $brand;
   color: white;
+  border-color: transparent;
   cursor: auto;
 }
 

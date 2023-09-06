@@ -211,6 +211,7 @@ button {
 
 button {
   color: $brand;
+  fill: $brand;
   border: solid 2px $brand;
   line-height: 44px; // Height minus border
   font-weight: 600;
@@ -221,6 +222,7 @@ button {
 button[disabled] {
   border-color: $gray-80;
   color: $gray-80;
+  fill: $gray-80;
   opacity: 0.7;
   cursor: default;
 }

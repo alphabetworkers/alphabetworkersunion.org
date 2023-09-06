@@ -1,5 +1,11 @@
+$brand: #ed1c24;
+$brand-dark: #c60020;
+$gray-70: #6c6865;
+$gray-80: #525153;
+$black: #000e26;
+
 h2 {
-  color: #ed1c24;
+  color: $brand;
   font-size: 1.4em;
   font-weight: 700;
   padding: 0 10px;
@@ -34,7 +40,7 @@ form {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   column-gap: 32px;
   row-gap: 16px;
-  color: #525153;
+  color: $gray-80;
 
   &.disabled {
     opacity: 0.6;
@@ -66,7 +72,7 @@ label,
   margin-bottom: 4px;
   padding: 0 10px;
   font-weight: 500;
-  color: #6c6865;
+  color: $gray-70;
 
   &.or {
     text-align: center;
@@ -185,7 +191,7 @@ label,
 }
 
 .dues-card-multiplier {
-  color: #ed1c24;
+  color: $brand;
 }
 
 .card-container,
@@ -193,19 +199,19 @@ input,
 select,
 button {
   font-size: 24px;
-  border: solid 1px #525153;
+  border: solid 1px $gray-80;
   border-radius: 10px;
   padding: 0 8px;
   background: white;
   line-height: 46px; // Height minus border
   height: 48px;
   box-sizing: border-box;
-  color: #525153;
+  color: $gray-80;
 }
 
 button {
-  color: #ed1c24;
-  border: solid 2px #ed1c24;
+  color: $brand;
+  border: solid 2px $brand;
   line-height: 44px; // Height minus border
   font-weight: 600;
   padding: 0 16px;
@@ -213,8 +219,8 @@ button {
 }
 
 button[disabled] {
-  border-color: #525153;
-  color: #525153;
+  border-color: $gray-80;
+  color: $gray-80;
   opacity: 0.7;
   cursor: default;
 }
@@ -252,7 +258,7 @@ select {
   content: '';
   width: 10px;
   height: 6px;
-  background-color: #000e26;
+  background-color: $black;
   clip-path: polygon(100% 0%, 0 0%, 50% 100%);
   position: absolute;
   top: 22px;
@@ -284,13 +290,13 @@ select {
 
 button.primary,
 .payment-method-toggle button.selected {
-  background: #ed1c24;
+  background: $brand;
   color: white;
   cursor: auto;
 }
 
 button.primary:hover {
-  background-color: #c60020;
+  background-color: $brand-dark;
   cursor: pointer;
 }
 

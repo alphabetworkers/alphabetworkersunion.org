@@ -177,6 +177,8 @@ export class Signup extends LitElement {
   totalCompensation!: HTMLInputElement;
   @query('name="birthday"]')
   birthday!: HTMLInputElement;
+  @query('[name="tshirt-size"]')
+  tshirtSize!: HTMLSelectElement;
   @query('[name="sms-consent"]')
   smsConsent!: HTMLInputElement;
 
@@ -601,6 +603,35 @@ export class Signup extends LitElement {
             aria-label="Birthday"
             ?required=${this.isFieldRequired('birthday')}
           />
+        </label>
+        <label>
+          <span class="title"
+            >T-shirt size${this.optionalLabel('tshirt-size')}</span
+          >
+          <span class="hint"
+            ><a
+              href="https://worxprinting.coop/wp-content/uploads/2023/08/20230821_Size_Charts.pdf"
+              target="_blank"
+              >Unisex sizing</a
+            ></span
+          >
+          <div class="select">
+            <select
+              name="tshirt-size"
+              aria-label="T-shirt size (unisex)"
+              ?required=${this.isFieldRequired('tshirt-size')}
+              autocomplete="off"
+            >
+              <option value="" selected></option>
+              <option value="s">Small</option>
+              <option value="m">Medium</option>
+              <option value="l">Large</option>
+              <option value="xl">XL</option>
+              <option value="2xl">2XL</option>
+              <option value="3xl">3XL</option>
+              <option value="other">Other (none of the above)</option>
+            </select>
+          </div>
         </label>
         <h2>How can we contact you?</h2>
         <label>

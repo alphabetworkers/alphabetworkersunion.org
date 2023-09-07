@@ -628,12 +628,14 @@ export class Signup extends LitElement {
               autocomplete="off"
             >
               <option value="" selected></option>
+              <option value="xs">XS</option>
               <option value="s">Small</option>
               <option value="m">Medium</option>
               <option value="l">Large</option>
               <option value="xl">XL</option>
               <option value="2xl">2XL</option>
               <option value="3xl">3XL</option>
+              <option value="4xl">4XL</option>
               <option value="other">Other (none of the above)</option>
             </select>
           </div>

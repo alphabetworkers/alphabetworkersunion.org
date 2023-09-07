@@ -6,6 +6,7 @@ import {
   state,
 } from 'lit-element';
 import { query } from 'lit/decorators.js';
+import { choose } from 'lit-html/directives/choose.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { loadStripe, StripeCardElement, Token } from '@stripe/stripe-js';
 import { allCountries } from 'country-region-data';
@@ -976,7 +977,36 @@ export class Signup extends LitElement {
               aria-label="Compensation calculator"
               @click=${this.compCalculatorClickHandler}
             >
-              &#x1F5A9;
+              ${choose(this.isCompCalculatorOpen, [
+                [
+                  false,
+                  // https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/calculate/wght200grad200/48px.svg
+                  () => html`<svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="48"
+                    viewBox="0 -960 960 960"
+                    width="48"
+                  >
+                    <path
+                      d="M324.385-240.461h38.769v-85.154h85.154v-38.77h-85.154v-84.384h-38.769v84.384H240v38.77h84.385v85.154Zm209.307-32.693h184.616v-38.538H533.692v38.538Zm0-104.154h184.616v-38.769H533.692v38.769Zm32.539-163L624.154-599l59.692 58.692L712-568.231l-59.692-58.154L712-686.077l-28.154-28.154-59.692 58.923-57.923-58.923-28.923 28.154L597-626.385l-59.692 58.154 28.923 27.923Zm-314.308-67.077h182.692v-38.769H251.923v38.769ZM215.384-147q-27.782 0-48.083-20.301T147-215.384v-529.232q0-27.782 20.301-48.083T215.384-813h529.232q27.782 0 48.083 20.301T813-744.616v529.232q0 27.782-20.301 48.083T744.616-147H215.384Zm0-43.769h529.232q9.23 0 16.923-7.692 7.692-7.693 7.692-16.923v-529.232q0-9.23-7.692-16.923-7.693-7.692-16.923-7.692H215.384q-9.23 0-16.923 7.692-7.692 7.693-7.692 16.923v529.232q0 9.23 7.692 16.923 7.693 7.692 16.923 7.692Zm-24.615-578.462v578.462-578.462Z"
+                    />
+                  </svg>`,
+                ],
+                [
+                  true,
+                  // https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/calculate/wght200grad200fill1/48px.svg
+                  () => html`<svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="48"
+                    viewBox="0 -960 960 960"
+                    width="48"
+                  >
+                    <path
+                      d="M324.385-240.461h38.769v-85.154h85.154v-38.77h-85.154v-84.384h-38.769v84.384H240v38.77h84.385v85.154Zm209.307-32.693h184.616v-38.538H533.692v38.538Zm0-104.154h184.616v-38.769H533.692v38.769Zm32.539-163L624.154-599l59.692 58.692L712-568.231l-59.692-58.154L712-686.077l-28.154-28.154-59.692 58.923-57.923-58.923-28.923 28.154L597-626.385l-59.692 58.154 28.923 27.923Zm-314.308-67.077h182.692v-38.769H251.923v38.769ZM215.384-147q-27.782 0-48.083-20.301T147-215.384v-529.232q0-27.782 20.301-48.083T215.384-813h529.232q27.782 0 48.083 20.301T813-744.616v529.232q0 27.782-20.301 48.083T744.616-147H215.384Z"
+                    />
+                  </svg>`,
+                ],
+              ])}
             </button>
             <span class="input-dollar-symbol"></span>
             <input

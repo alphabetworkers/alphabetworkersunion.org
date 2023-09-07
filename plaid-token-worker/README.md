@@ -15,4 +15,3 @@ This template uses [`prettier`](https://prettier.io/) to format the project. To 
 ### 👀 Previewing and Publishing
 
 For information on how to preview and publish your worker, please see the [Wrangler docs](https://developers.cloudflare.com/workers/tooling/wrangler/commands/#publish).
-

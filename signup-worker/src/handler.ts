@@ -150,10 +150,13 @@ export async function handleRequest(request: Request): Promise<Response> {
         email: fields.get('personal-email') as string,
         name: fields.get('preferred-name') as string,
         metadata: {
-          ...METADATA.reduce((metadata, fieldName) => {
-            metadata[fieldName] = fields.get(fieldName) as string;
-            return metadata;
-          }, {} as Record<string, string>),
+          ...METADATA.reduce(
+            (metadata, fieldName) => {
+              metadata[fieldName] = fields.get(fieldName) as string;
+              return metadata;
+            },
+            {} as Record<string, string>,
+          ),
         },
       });
     } catch (error) {
@@ -224,7 +227,10 @@ export async function handleRequest(request: Request): Promise<Response> {
 }
 
 class InvalidParamError extends Error {
-  constructor(private readonly paramName: string, message: string) {
+  constructor(
+    private readonly paramName: string,
+    message: string,
+  ) {
     super(message);
   }
 

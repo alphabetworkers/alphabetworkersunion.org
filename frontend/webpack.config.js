@@ -12,7 +12,7 @@ module.exports = {
       {
         test: /\.ts$/,
         use: 'ts-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.s?css$/,
@@ -26,12 +26,17 @@ module.exports = {
       },
       {
         test: /element\/.*\.scss$/,
-        use: [{
-          loader: 'lit-scss-loader',
-          options: {
-            minify: true, // defaults to false
+        use: [
+          {
+            loader: 'lit-scss-loader',
+            options: {
+              minify: true, // defaults to false
+            },
           },
-        }, 'extract-loader', 'css-loader', 'sass-loader'],
+          'extract-loader',
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf|svg)$/i,
@@ -68,12 +73,12 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: {name: '[path][name].[ext]'},
+            options: { name: '[path][name].[ext]' },
           },
           {
             loader: 'webpack-image-resize-loader',
-            options: {width: 400},
-          }
+            options: { width: 400 },
+          },
         ],
       },
       {
@@ -81,7 +86,7 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: {name: path.join(ASSETS_DIR, '[path][name].[ext]')},
+            options: { name: path.join(ASSETS_DIR, '[path][name].[ext]') },
           },
           {
             loader: 'webpack-image-resize-loader',
@@ -89,7 +94,7 @@ module.exports = {
               width: 200,
               format: 'jpeg',
             },
-          }
+          },
         ],
       },
       {

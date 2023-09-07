@@ -11,16 +11,21 @@ module.exports = {
       {
         test: /\.ts$/,
         use: 'ts-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.s?css$/,
-        use: [{
-          loader: 'lit-scss-loader',
-          options: {
-            minify: true, // defaults to false
+        use: [
+          {
+            loader: 'lit-scss-loader',
+            options: {
+              minify: true, // defaults to false
+            },
           },
-        }, 'extract-loader', 'css-loader', 'sass-loader'],
+          'extract-loader',
+          'css-loader',
+          'sass-loader',
+        ],
       },
     ],
   },

@@ -12,7 +12,7 @@ import { REQUIRED_FIELDS, METADATA, FTE_REQUIRED_FIELDS } from './fields';
 // A threshold below which we think someone may have made a mistake (entered
 // monthly income, copied the monthly dues value and pasted it back into the
 // income box, etc) rather than entered their annual income.
-const POTENTIAL_ERROR_TOTAL_COMP_THRESHOLD = 8500;
+const POTENTIAL_ERROR_TOTAL_COMP_THRESHOLD = 6000;
 
 /**
  * @param month A `number` indicating the month, as returned by `getUTCMonth()`

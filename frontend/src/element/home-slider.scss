@@ -59,7 +59,9 @@ slot {
   box-sizing: border-box;
   border-radius: 20px;
   fill: rgba(0, 0, 0, 0.5);
-  transition: background-color 150ms ease, opacity 150ms ease;
+  transition:
+    background-color 150ms ease,
+    opacity 150ms ease;
   font-family: 'Latina Essential';
   font-weight: bold;
   font-size: 0.6em;
@@ -107,7 +109,9 @@ slot {
       inset: 0;
       top: #{0 - $line-height};
       bottom: #{0 - $line-height};
-      box-shadow: inset 1em 0 1em #fff, inset -1em 0 1em #fff;
+      box-shadow:
+        inset 1em 0 1em #fff,
+        inset -1em 0 1em #fff;
     }
   }
 
@@ -179,7 +183,8 @@ slot {
 
     &:after {
       inset: 0;
-      box-shadow: inset 0 #{0 - $line-height} 0.25em #fff,
+      box-shadow:
+        inset 0 #{0 - $line-height} 0.25em #fff,
         inset 0 #{$line-height + 0.1em} 0.25em #fff;
     }
   }

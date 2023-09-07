@@ -235,7 +235,7 @@ export class Signup extends LitElement {
 
   @state()
   private availableRegions = allCountries.find(
-    (countryData) => countryData[1] === 'US'
+    (countryData) => countryData[1] === 'US',
   )[2];
 
   @state()
@@ -281,7 +281,7 @@ export class Signup extends LitElement {
   }
 
   protected setMethod(
-    method: 'bank' | 'card' | 'plaid'
+    method: 'bank' | 'card' | 'plaid',
   ): (event?: MouseEvent) => unknown {
     return (event?: MouseEvent) => {
       event?.preventDefault();
@@ -692,7 +692,7 @@ export class Signup extends LitElement {
         <label>
           <span class="title"
             >State/province/territory${this.optionalLabel(
-              'mailing-region'
+              'mailing-region',
             )}</span
           >
           <span class="hint"></span>
@@ -709,7 +709,7 @@ export class Signup extends LitElement {
                 (regionData) => regionData[1],
                 (regionData) => html`
                   <option value=${regionData[0]}>${regionData[0]}</option>
-                `
+                `,
               )}
             </select>
           </div>
@@ -791,7 +791,7 @@ export class Signup extends LitElement {
                 >
                   ${ALPHABET_SUBSIDIARIES.map(
                     (name, i) =>
-                      html`<option ?selected=${i === 0}>${name}</option>`
+                      html`<option ?selected=${i === 0}>${name}</option>`,
                   )}
                 </select>
               </div>
@@ -1085,7 +1085,7 @@ export class Signup extends LitElement {
   }
 
   async cardToken(
-    data: SpliceableUrlSearchParams
+    data: SpliceableUrlSearchParams,
   ): Promise<[Token, URLSearchParams]> {
     const stripe = await this.stripe;
     const result = await stripe.createToken(this.cardElement, {
@@ -1133,7 +1133,7 @@ export class Signup extends LitElement {
   }
 
   async bankAccountToken(
-    data: SpliceableUrlSearchParams
+    data: SpliceableUrlSearchParams,
   ): Promise<[Token, URLSearchParams]> {
     const stripe = await this.stripe;
     const result = await stripe.createToken('bank_account', {
@@ -1180,7 +1180,7 @@ export class Signup extends LitElement {
 
   mailingCountryChangeHandler(): void {
     this.availableRegions = allCountries.find(
-      (countryData) => countryData[0] === this.mailingCountry.value
+      (countryData) => countryData[0] === this.mailingCountry.value,
     )[2];
     this.currency.value =
       this.mailingCountry.value == 'United States' ? 'usd' : 'cad';
@@ -1221,7 +1221,7 @@ export class Signup extends LitElement {
 
   private recalculateTotalComp(): void {
     this.totalCompensation.value = String(
-      this.hourlyRate * this.hoursPerWeek * this.weeksPerYear
+      this.hourlyRate * this.hoursPerWeek * this.weeksPerYear,
     );
     this.requestUpdate();
   }

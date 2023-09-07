@@ -7,8 +7,5 @@
     "moduleResolution": "node",
     "experimentalDecorators": true
   },
-  "include": [
-    "src/global.d.ts",
-    "node_modules/@types/plaid-link/index.d.ts"
-  ]
+  "include": ["src/global.d.ts", "node_modules/@types/plaid-link/index.d.ts"]
 }

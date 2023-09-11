@@ -897,8 +897,9 @@ export class Signup extends LitElement {
           <span class="title">Site code${this.optionalLabel('site-code')}</span>
           <span class="hint"
             >So we can connect you with your local chapters. Site code is a
-            country code followed by a location code (for example,
-            "US-MTV").</span
+            country code followed by a location code (for example, "US-MTV"). If
+            you do not work in an office, please enter "REMOTE". If you don't
+            know your office location, please enter "OTHER".</span
           >
           <input
             name="site-code"

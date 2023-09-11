@@ -301,7 +301,7 @@ export class HomeSlider extends LitElement {
     // Bit of a hack here, this only works because the computed line height
     // happens to be in pixels.
     const lineHeightPx = Number.parseFloat(
-      getComputedStyle(container).lineHeight
+      getComputedStyle(container).lineHeight,
     );
     return { container, lineHeightPx };
   }

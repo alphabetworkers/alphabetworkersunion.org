@@ -9,14 +9,17 @@ aliases: [/reclaim-your-power/events.en.md]
 
 {{< header />}}
 
+## Events Calendar
+
+**Note:** All times are **Pacific Time**.
+
+<tab><iframe src="https://calendar.google.com/calendar/embed?src=3d4b2f5d3777c59b8058bafec45b8e52d0f9a1e98f5ed980dc439a74e6f82ff2%40group.calendar.google.com&ctz=America%2FLos_Angeles" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
 ## AWU TVC Office Hours
 
-AWU is hosting TVC office hours each month. Register in advance for the Zoom meeting.
-
-[Register to attend Monday, November 21st, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
-[Register to attend Monday, December 19th, 2022 9pm ET / 6 pm PT](https://bit.ly/3oX8RVD)
-
 AWU hosts monthly office hours that are open to all Alphabet TVCs. Nonmembers are welcome to attend, and worker organizers, both TVC and FTE, will be facilitating the session. We'll share the latest news on our workplace organizing efforts, but more importantly this is an open forum for everyone. Come share your workplace concerns, challenges, and questions of any kind.
+
+Stay tuned for new events.
 
 ## About union days
 

@@ -6,6 +6,7 @@ import {
   state,
 } from 'lit-element';
 import { query } from 'lit/decorators.js';
+import { choose } from 'lit-html/directives/choose.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { loadStripe, StripeCardElement, Token } from '@stripe/stripe-js';
 import { allCountries } from 'country-region-data';
@@ -14,14 +15,14 @@ import {
   CARD_PROCESSING_FEE,
   FRIENDLY_CARD_PROCESSING_FEE,
   FRIENDLY_INITIATION_FEE,
-} from '../../../common/constants';
+} from '../../common/constants';
 
 import styles from './signup.scss';
 
 import {
   REQUIRED_FIELDS,
   FTE_REQUIRED_FIELDS,
-} from '../../../signup-worker/src/fields';
+} from '../../signup-worker/src/fields';
 
 const PLAID_LIB_URL = 'https://cdn.plaid.com/link/v2/stable/link-initialize.js';
 
@@ -175,8 +176,10 @@ export class Signup extends LitElement {
   haveReports!: HTMLInputElement;
   @query('[name="total-compensation"]')
   totalCompensation!: HTMLInputElement;
-  @query('name="birthday"]')
+  @query('[name="birthday"]')
   birthday!: HTMLInputElement;
+  @query('[name="tshirt-size"]')
+  tshirtSize!: HTMLSelectElement;
   @query('[name="sms-consent"]')
   smsConsent!: HTMLInputElement;
 
@@ -251,7 +254,10 @@ export class Signup extends LitElement {
     super();
 
     // TODO debugging tool, remove later
-    window.fillTestValues = () => {
+    window.fillTestValues = async () => {
+      this.paymentMethod = 'bank';
+      await this.updateComplete;
+
       this.employmentType.value = 'fte';
       this.signature.value = 'foo';
       this.preferredName.value = 'foo';
@@ -270,6 +276,7 @@ export class Signup extends LitElement {
       this.haveReports.value = 'n';
       this.totalCompensation.value = '250000';
       this.birthday.value = '01/01/1950';
+      this.tshirtSize.value = 'other';
       this.smsConsent.value = '1';
       this.billingCountry.value = 'US';
       this.routingNumber.value = '110000000';
@@ -537,8 +544,8 @@ export class Signup extends LitElement {
       <div class="completed ${classMap({ 'not-completed': !this.isComplete })}">
         <h2>All done</h2>
         <p>
-          The membership committee will review your application, and we'll send
-          your union membership card after it's approved.
+          The membership committee will review your application and then send a
+          welcome email after it's approved.
         </p>
         <p>Welcome to our union!</p>
       </div>
@@ -602,6 +609,37 @@ export class Signup extends LitElement {
             ?required=${this.isFieldRequired('birthday')}
           />
         </label>
+        <label>
+          <span class="title"
+            >T-shirt size${this.optionalLabel('tshirt-size')}</span
+          >
+          <span class="hint"
+            ><a
+              href="https://worxprinting.coop/wp-content/uploads/2023/08/20230821_Size_Charts.pdf"
+              target="_blank"
+              >Unisex sizing</a
+            ></span
+          >
+          <div class="select">
+            <select
+              name="tshirt-size"
+              aria-label="T-shirt size (unisex)"
+              ?required=${this.isFieldRequired('tshirt-size')}
+              autocomplete="off"
+            >
+              <option value="" selected></option>
+              <option value="xs">XS</option>
+              <option value="s">Small</option>
+              <option value="m">Medium</option>
+              <option value="l">Large</option>
+              <option value="xl">XL</option>
+              <option value="2xl">2XL</option>
+              <option value="3xl">3XL</option>
+              <option value="4xl">4XL</option>
+              <option value="other">Other (none of the above)</option>
+            </select>
+          </div>
+        </label>
         <h2>How can we contact you?</h2>
         <label>
           <span class="title"
@@ -637,7 +675,7 @@ export class Signup extends LitElement {
             >Mailing address${this.optionalLabel('mailing-address-1')}</span
           >
           <span class="hint"
-            >CWA Local 1400 needs your address to send you paper ballots.</span
+            >CWA Local 9009 will use your address to send mail.</span
           >
           <input
             name="mailing-address-1"
@@ -732,8 +770,8 @@ export class Signup extends LitElement {
             updates?${this.optionalLabel('sms-consent')}</span
           >
           <span class="hint"
-            >Yes, I want to receive updates about my union and other
-            union-related news from CWA. Message & data rates may apply. Visit
+            >Yes, I want to receive updates from CWA International. Message &
+            data rates may apply. Visit
             <a href="https://www.cwa-union.org/sms-terms"
               >https://www.cwa-union.org/sms-terms</a
             >
@@ -941,7 +979,38 @@ export class Signup extends LitElement {
               aria-label="Compensation calculator"
               @click=${this.compCalculatorClickHandler}
             >
-              &#x1F5A9;
+              ${choose(this.isCompCalculatorOpen, [
+                [
+                  false,
+                  // https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/calculate/wght200grad200/48px.svg
+                  () =>
+                    html`<svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="48"
+                      viewBox="0 -960 960 960"
+                      width="48"
+                    >
+                      <path
+                        d="M324.385-240.461h38.769v-85.154h85.154v-38.77h-85.154v-84.384h-38.769v84.384H240v38.77h84.385v85.154Zm209.307-32.693h184.616v-38.538H533.692v38.538Zm0-104.154h184.616v-38.769H533.692v38.769Zm32.539-163L624.154-599l59.692 58.692L712-568.231l-59.692-58.154L712-686.077l-28.154-28.154-59.692 58.923-57.923-58.923-28.923 28.154L597-626.385l-59.692 58.154 28.923 27.923Zm-314.308-67.077h182.692v-38.769H251.923v38.769ZM215.384-147q-27.782 0-48.083-20.301T147-215.384v-529.232q0-27.782 20.301-48.083T215.384-813h529.232q27.782 0 48.083 20.301T813-744.616v529.232q0 27.782-20.301 48.083T744.616-147H215.384Zm0-43.769h529.232q9.23 0 16.923-7.692 7.692-7.693 7.692-16.923v-529.232q0-9.23-7.692-16.923-7.693-7.692-16.923-7.692H215.384q-9.23 0-16.923 7.692-7.692 7.693-7.692 16.923v529.232q0 9.23 7.692 16.923 7.693 7.692 16.923 7.692Zm-24.615-578.462v578.462-578.462Z"
+                      />
+                    </svg>`,
+                ],
+                [
+                  true,
+                  // https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/calculate/wght200grad200fill1/48px.svg
+                  () =>
+                    html`<svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="48"
+                      viewBox="0 -960 960 960"
+                      width="48"
+                    >
+                      <path
+                        d="M324.385-240.461h38.769v-85.154h85.154v-38.77h-85.154v-84.384h-38.769v84.384H240v38.77h84.385v85.154Zm209.307-32.693h184.616v-38.538H533.692v38.538Zm0-104.154h184.616v-38.769H533.692v38.769Zm32.539-163L624.154-599l59.692 58.692L712-568.231l-59.692-58.154L712-686.077l-28.154-28.154-59.692 58.923-57.923-58.923-28.923 28.154L597-626.385l-59.692 58.154 28.923 27.923Zm-314.308-67.077h182.692v-38.769H251.923v38.769ZM215.384-147q-27.782 0-48.083-20.301T147-215.384v-529.232q0-27.782 20.301-48.083T215.384-813h529.232q27.782 0 48.083 20.301T813-744.616v529.232q0 27.782-20.301 48.083T744.616-147H215.384Z"
+                      />
+                    </svg>`,
+                ],
+              ])}
             </button>
             <span class="input-dollar-symbol"></span>
             <input
@@ -995,10 +1064,8 @@ export class Signup extends LitElement {
           <span class="hint"
             >Annual dues are 1% of your TC, plus processing fee if you opt to
             pay with a card. This is billed monthly, and is pooled and
-            democratically controlled by you and your fellow members. See
-            <a href="/power/faq/#how-much-are-dues">the FAQ</a> for more
-            details.
-          </span>
+            democratically controlled by you and your fellow members.</span
+          >
           ${this.duesTemplate()}
         </label>
         ${this.plaidToken

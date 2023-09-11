@@ -14,7 +14,7 @@ All sorts of people! Currently, we have over {{< member-count >}} members. Out o
 
 ### What about workers outside the US and Canada?
 
-Due to the complexity of international labor law, AWU-CWA membership is restricted to workers in the US and Canada. We’re connected with some worker organizations in other countries and we intend to keep communication open and work closely together.
+Due to the complexity of international labor law, AWU-CWA membership is restricted to workers in the US and Canada. We’re connected with some worker organizations in other countries and we intend to keep communication open and work closely together. Communications Workers of America is part of a global federation of labor organizations called [UNI Global Union](https://uniglobalunion.org/about/sectors/ict-related-services/). We recommend you get in contact with them to find a group organizing in your country.
 
 ### What about TVCs? What about other bets?
 
@@ -23,6 +23,10 @@ We believe that all workers who contribute to Alphabet deserve a say in how it i
 ### Can interns join this union?
 
 Yes.
+
+### Can lawyers join this union?
+
+Yes, lawyers are generally welcome to join, as long as they are not managers or supervisors. The National Labor Relations Board has generally found that lawyers are able to organize and can do so without ethical or conflict-of-interest concerns. If you have more specific questions, fill out the [interest form](https://airtable.com/shr3RpVTuP25kHMdm) and a union member will reach out to discuss.
 
 ### Can managers join this union?
 
@@ -58,7 +62,7 @@ No. Workers keep the company running with our labor every day, and our power com
 
 ### Is AWU-CWA a “solidarity union”?
 
-We are a union. We are organizing and building power and resources. That makes us a union. Some unions have contracts, some don’t. Some unions have contracts for some workers, while other workers within that same union might not have a contract. They are all still unions.
+We are a union with a [pre-majority organizing model](https://www.labornotes.org/2023/01/union-start-you-dont-have-wait). In fact, most US workers in unions were organizing this way until their efforts resulted in the codified labor law we know today. We are organizing and building power and resources. That makes us a union. Some unions have contracts, some don’t. Some unions have contracts for some workers, while other workers within that same union might not have a contract. They are all still unions.
 
 We reject the description of “solidarity union”—all unions have solidarity. Some are pursuing contracts, and some are not. Semantics matter: we are a real and valid union with real power.
 
@@ -68,7 +72,7 @@ Historically unions have fought for issues from an 8 hour workday, to equal righ
 
 ### What are AWU-CWA’s demands?
 
-We are not organized around a list of demands or specific issues. We are an organization working to build a structure to create worker power. This work is about forming a system to create change; a power structure that allows us to bolster and back up demands made by ERGs and previous organizing efforts, and continue to drive new changes to make Alphabet a better place for workers. To see some issues that we are currently organizing around, check out our [Campaigns page]({{< ref "power/campaigns" >}}).
+We are not organized around a list of demands or specific issues. We are an organization working to build a structure to create worker power. This work is about forming a system to create change; a power structure that allows us to bolster and back up demands made by ERGs and previous organizing efforts, and continue to drive new changes to make Alphabet a better place for workers. To see some issues that we are currently organizing around, check out our [Campaigns page]({{< ref "campaigns/campaigns" >}}).
 
 Specific things we’ve helped organize in the past include post-Thanksgiving Four support via CWA, the Googlers Against Racism off-corp forum, helping trans TVCs get security badges with their preferred names, legal support for fired workers, organizing alongside TVCs in the wake of the closing of offices in the pandemic, and offering resources to Dr. Timnit Gebru and her team.
 

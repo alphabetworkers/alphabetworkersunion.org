@@ -54,7 +54,10 @@ async function handleRequestAsync(fields: FormData): Promise<void> {
 }
 
 class InvalidParamError extends Error {
-  constructor(private readonly paramName: string, message: string) {
+  constructor(
+    private readonly paramName: string,
+    message: string,
+  ) {
     super(message);
   }
 

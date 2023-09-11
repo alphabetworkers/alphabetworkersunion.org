@@ -41,7 +41,9 @@
     "check": "run-s check:eslint check:prettier",
     "check:prettier": "prettier --check .",
     "check:eslint": "eslint src",
-    "clean": "rm -rf .public .static .assets .resources"
+    "clean": "rm -rf .public .static .assets .resources",
+    "deploy": "run-s clean build deploy:wrangler",
+    "deploy:wrangler": "wrangler pages deploy .assets --project-name join-form"
   },
   "author": "Stephen McMurtry <stephenmcmurtry>",
   "license": "Apache-2.0",

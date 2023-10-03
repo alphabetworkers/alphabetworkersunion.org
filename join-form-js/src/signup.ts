@@ -238,7 +238,7 @@ export class Signup extends LitElement {
 
   @state()
   private availableRegions = allCountries.find(
-    (countryData) => countryData[1] === 'US',
+    (countryData) => countryData[1] === 'US'
   )[2];
 
   @state()
@@ -288,7 +288,7 @@ export class Signup extends LitElement {
   }
 
   protected setMethod(
-    method: 'bank' | 'card' | 'plaid',
+    method: 'bank' | 'card' | 'plaid'
   ): (event?: MouseEvent) => unknown {
     return (event?: MouseEvent) => {
       event?.preventDefault();
@@ -730,7 +730,7 @@ export class Signup extends LitElement {
         <label>
           <span class="title"
             >State/province/territory${this.optionalLabel(
-              'mailing-region',
+              'mailing-region'
             )}</span
           >
           <span class="hint"></span>
@@ -747,7 +747,7 @@ export class Signup extends LitElement {
                 (regionData) => regionData[1],
                 (regionData) => html`
                   <option value=${regionData[0]}>${regionData[0]}</option>
-                `,
+                `
               )}
             </select>
           </div>
@@ -772,7 +772,7 @@ export class Signup extends LitElement {
           <span class="hint"
             >Yes, I want to receive updates from CWA International. Message &
             data rates may apply. Visit
-            <a href="https://www.cwa-union.org/sms-terms"
+            <a href="https://www.cwa-union.org/sms-terms" target="_blank"
               >https://www.cwa-union.org/sms-terms</a
             >
             for Terms & Conditions and Privacy Policy.
@@ -829,7 +829,7 @@ export class Signup extends LitElement {
                 >
                   ${ALPHABET_SUBSIDIARIES.map(
                     (name, i) =>
-                      html`<option ?selected=${i === 0}>${name}</option>`,
+                      html`<option ?selected=${i === 0}>${name}</option>`
                   )}
                 </select>
               </div>
@@ -1066,7 +1066,7 @@ export class Signup extends LitElement {
             >Annual dues are 1% of your TC, plus processing fee if you opt to
             pay with a card. This is billed monthly, and is pooled and
             democratically controlled by you and your fellow members. See
-            <a href="/faqs#dues">the FAQs</a> for more details.
+            <a href="/faqs#dues" target="_blank">the FAQs</a> for more details.
           </span>
           ${this.duesTemplate()}
         </label>
@@ -1077,8 +1077,10 @@ export class Signup extends LitElement {
         <label class="full-width">
           <span class="title">
             Type your name in the Signature field to accept the
-            <a href="https://cwa-union.org/for-locals/cwa-constitution">
-              membership terms</a
+            <a
+              href="https://cwa-union.org/for-locals/cwa-constitution"
+              target="_blank"
+              >membership terms</a
             >
             of the Communications Workers of America, under which AWU-CWA is
             formed. You also authorize a one-time ${FRIENDLY_INITIATION_FEE}
@@ -1156,7 +1158,7 @@ export class Signup extends LitElement {
   }
 
   async cardToken(
-    data: SpliceableUrlSearchParams,
+    data: SpliceableUrlSearchParams
   ): Promise<[Token, URLSearchParams]> {
     const stripe = await this.stripe;
     const result = await stripe.createToken(this.cardElement, {
@@ -1204,7 +1206,7 @@ export class Signup extends LitElement {
   }
 
   async bankAccountToken(
-    data: SpliceableUrlSearchParams,
+    data: SpliceableUrlSearchParams
   ): Promise<[Token, URLSearchParams]> {
     const stripe = await this.stripe;
     const result = await stripe.createToken('bank_account', {
@@ -1251,7 +1253,7 @@ export class Signup extends LitElement {
 
   mailingCountryChangeHandler(): void {
     this.availableRegions = allCountries.find(
-      (countryData) => countryData[0] === this.mailingCountry.value,
+      (countryData) => countryData[0] === this.mailingCountry.value
     )[2];
     this.currency.value =
       this.mailingCountry.value == 'United States' ? 'usd' : 'cad';
@@ -1292,7 +1294,7 @@ export class Signup extends LitElement {
 
   private recalculateTotalComp(): void {
     this.totalCompensation.value = String(
-      this.hourlyRate * this.hoursPerWeek * this.weeksPerYear,
+      this.hourlyRate * this.hoursPerWeek * this.weeksPerYear
     );
     this.requestUpdate();
   }

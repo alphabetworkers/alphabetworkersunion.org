@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 const ASSETS_DIR = path.join('..', '.assets');
 
@@ -29,17 +30,33 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    compress: true,
+    port: 8000,
+    historyApiFallback: true,
+  },
+  entry: {
+    'script': './signup.ts',
+    'style': './signup.scss',
+  },
   mode: 'production',
   resolve: {
-    extensions: ['.ts', '.scss'],
+    extensions: ['.ts', '.scss', '.js'],
+  },
+  performance: {
+    hints: false,
   },
   plugins: [
     new MiniCssExtractPlugin({
       filename: path.join(ASSETS_DIR, 'main.css'),
     }),
+    new HtmlWebPackPlugin({
+      template: "./index.html",
+      filename: "./index.html",
+    }),
   ],
   output: {
-    publicPath: '',
-    filename: path.join(ASSETS_DIR, 'main.js'),
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].js'
   },
 };

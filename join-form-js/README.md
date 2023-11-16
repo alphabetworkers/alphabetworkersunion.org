@@ -5,10 +5,12 @@ This directory defines the join form script, which is hosted as a static JavaScr
 To test the script, work in a new branch and run:
 
 ```
-npm run deploy
+npm run start
 ```
 
-You should then test the script by modifying the Webflow staging site. When changes are confirmed, check the code into main by running:
+Then head to [http://localhost:8000/](http://localhost:8000/) to test a local version of the form.
+
+Once your changes are tested locally, check with Stephen to modify Webflow staging site. When changes are confirmed there, check the code into main by running:
 
 ```
 gh pr create

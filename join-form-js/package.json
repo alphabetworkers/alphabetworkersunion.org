@@ -4,7 +4,7 @@
   "description": "This repository provides the JS source code the AWU-CWA Join Form.",
   "private": true,
   "dependencies": {
-    "@stripe/stripe-js": "^1.11.0",
+    "@stripe/stripe-js": "^2.2.0",
     "country-region-data": "^2.4.0",
     "lit": "^2.2.0",
     "webpack-dev-server": "^4.15.1"

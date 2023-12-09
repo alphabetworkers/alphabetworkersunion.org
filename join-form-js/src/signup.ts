@@ -8,7 +8,12 @@ import {
 import { query } from 'lit/decorators.js';
 import { choose } from 'lit-html/directives/choose.js';
 import { classMap } from 'lit-html/directives/class-map.js';
-import { loadStripe, StripeCardElement, Token } from '@stripe/stripe-js';
+import {
+  loadStripe,
+  StripeCardElement,
+  StripePaymentElement,
+  Token,
+} from '@stripe/stripe-js';
 import { allCountries } from 'country-region-data';
 import { repeat } from 'lit/directives/repeat.js';
 import {
@@ -353,6 +358,10 @@ export class Signup extends LitElement {
               to be sent a secure link to update to bank payments.
             </div>
           </div>`}
+      <slot
+        name="stripe-payment-container"
+        @slotchange=${this.rebindStripePaymentElement}
+      ></slot>
       <div class="payment-method-toggle full-width">
         <button
           ?disabled=${!this.bankSupported}
@@ -1270,19 +1279,48 @@ export class Signup extends LitElement {
     this.requestUpdate();
   }
 
+  private paymentElement: StripePaymentElement;
   compChangeHandler(): void {
     this.requestUpdate();
     // TODO disable the Stripe element if there is one.
     (async () => {
-      const body = new FormData();
-      body.set('totalCompensation', this.totalCompensation.value);
-      const response = await fetch(window.PAYMENT_INTENT_API, {
-        method: 'post',
-        body,
-      });
-      console.log(await response.json());
-      // TODO anchor stripe element
+      // const body = new FormData();
+      // body.set('totalCompensation', this.totalCompensation.value);
+      // const response = await fetch(window.PAYMENT_INTENT_API, {
+      //   method: 'post',
+      //   body,
+      // });
+      // const {clientSecret} = await response.json();
+      // console.log(clientSecret);
+
+      if (this.stripePaymentContainer instanceof Element) {
+        if (this.paymentElement) {
+          this.paymentElement.unmount();
+        }
+        this.paymentElement = (await this.stripe)
+          .elements({
+            mode: 'subscription',
+            amount: 0,
+            currency: 'usd',
+            paymentMethodTypes: ['us_bank_account', 'card'],
+          })
+          .create('payment', {
+            layout: 'tabs',
+            paymentMethodOrder: ['us_bank_account', 'card'],
+          });
+        // TODO listen to change event and watch for PaymentMethod type.
+        this.paymentElement.mount(this.stripePaymentContainer);
+        // TODO confirm setup inten after form submitted successfully
+      }
     })();
+  }
+
+  private stripePaymentContainer: HTMLElement;
+  private async rebindStripePaymentElement(event: Event): Promise<void> {
+    this.stripePaymentContainer = (
+      event.target as HTMLSlotElement
+    ).assignedElements()[0] as HTMLElement;
+    this.compChangeHandler();
   }
 
   currencyChangeHandler(): void {

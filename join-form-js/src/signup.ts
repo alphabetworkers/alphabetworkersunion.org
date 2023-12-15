@@ -248,6 +248,7 @@ export class Signup extends LitElement {
             </div>
           </div>`}
       <slot
+        class="field full-width"
         name="stripe-payment-container"
         @slotchange=${this.rebindStripePaymentElement}
       ></slot>`;
@@ -832,31 +833,30 @@ export class Signup extends LitElement {
     // TODO add CAPTCHA?
 
     this.isLoading = true;
-    const paymentResult = await (await this.stripeElements).submit();
     console.log('paymentResult', paymentResult);
     // TODO(jonah): create a Customer and a Subscription on the server-side,
     //              wait for the responses then do stripe.confirmSetup with the
     //              Elements object and the subscription client secret.
-    const fields = new SpliceableUrlSearchParams(new FormData(this.form));
+    const body = new FormData(this.form);
     try {
       // TODO(jonah): autofill stripe element with form values
-      let body: FormData;
-      // if (this.plaidToken) {
-      //   body = fields.getRemainder();
-      //   body.set('plaid-public-token', this.plaidToken.public_token);
-      //   body.set('plaid-account-id', this.plaidToken.account_id);
-      // } else {
-      //   const [token, remainingFields] = await (this.paymentMethod === 'bank'
-      //     ? this.bankAccountToken(fields)
-      //     : this.cardToken(fields));
-      //   body = remainingFields;
-      //   body.set('stripe-payment-token', token.id);
-      // }
-      // body.set('payment-method', this.paymentMethod);
+      await (await this.stripeElements).submit();
+      // TODO add payment method into form
 
       const result = await fetch(window.SIGNUP_API, { method: 'POST', body });
 
       if (result.ok) {
+        const responseBody = await result.json();
+        await (await this.stripe).confirmPayment({
+          elements: await this.stripeElements,
+          clientSecret: responseBody['subscriptionClientSecret'],
+          confirmParams: {
+            // TODO(jonah) add a redirect URL.
+            return_url: '',
+            redirect: 'if_required',
+          }
+        });
+        // TODO(jonah): also confirmPayment on initiationClientSecret.
         this.isComplete = true;
       } else {
         const { error } = await result.json();
@@ -876,54 +876,6 @@ export class Signup extends LitElement {
       }
     } finally {
       this.isLoading = false;
-    }
-  }
-
-  async cardToken(
-    data: SpliceableUrlSearchParams,
-  ): Promise<[Token, URLSearchParams]> {
-    const stripe = await this.stripe;
-    const result = await stripe.createToken(this.cardElement as any, {
-      name: data.splice('card-holder-name') as string,
-      address_line1: data.splice('billing-address-1') as string,
-      address_line2: data.splice('billing-address-2') as string,
-      address_city: data.splice('billing-city') as string,
-      address_state: data.splice('billing-state') as string,
-      address_zip: data.splice('billing-zip') as string,
-      address_country: data.splice('billing-country') as string,
-      currency: data.get('currency') as string,
-    });
-    if (result.token) {
-      return [result.token, data.getRemainder()];
-    } else {
-      console.error(result);
-      let message = '';
-      switch (result.error.param) {
-        case 'card[name]':
-          this.setInvalid('card-holder-name', result.error.message);
-          break;
-        case 'card[address_line1]':
-          this.setInvalid('billing-address-1', result.error.message);
-          break;
-        case 'card[address_line2]':
-          this.setInvalid('billing-address-2', result.error.message);
-          break;
-        case 'card[address_city]':
-          this.setInvalid('billing-city', result.error.message);
-          break;
-        case 'card[address_zip]':
-          this.setInvalid('billing-zip', result.error.message);
-          break;
-        case 'card[address_country]':
-          this.setInvalid('billing-country', result.error.message);
-          break;
-        case 'currency':
-          this.setInvalid('currency', result.error.message);
-          break;
-        default:
-          message = result.error.message;
-      }
-      return Promise.reject(message);
     }
   }
 
@@ -1091,33 +1043,6 @@ export class Signup extends LitElement {
 
   optionalLabel(name: string): string {
     return this.isFieldRequired(name) ? '' : ' (optional)';
-  }
-}
-
-/**
- * URLSearchParams wrapper that can remove any accessed field.  Useful for
- * pulling out fields that need to be tokenized and not uploaded directly.
- */
-class SpliceableUrlSearchParams {
-  private readonly original: URLSearchParams;
-  private readonly remainder: URLSearchParams;
-  constructor(original: URLSearchParams | FormData) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- https://github.com/microsoft/TypeScript/issues/30584
-    this.original = new URLSearchParams(original as any);
-    this.remainder = new URLSearchParams(this.original);
-  }
-
-  get(field: string): string | null {
-    return this.original.get(field);
-  }
-
-  splice(field: string): string | null {
-    this.remainder.delete(field);
-    return this.get(field);
-  }
-
-  getRemainder(): URLSearchParams {
-    return new URLSearchParams(this.remainder);
   }
 }
 

@@ -158,7 +158,7 @@ export class Signup extends LitElement {
   @query('[name="tshirt-size"]')
   tshirtSize!: HTMLSelectElement;
   @query('[name="sms-consent"]')
-  smsConsent!: HTMLInputElement;
+  smsConsent!: HTMLSelectElement;
 
   // Payment info input elements.
   @query('[name="currency"]')
@@ -206,13 +206,13 @@ export class Signup extends LitElement {
       this.employmentType.value = 'fte';
       this.signature.value = 'foo';
       this.preferredName.value = 'foo';
-      this.personalEmail.value = 'foo@foo';
+      this.personalEmail.value = 'foo@foo.com';
       this.personalPhone.value = 'foo';
       this.mailingAddress1.value = 'foo';
       this.mailingCity.value = 'foo';
-      this.mailingRegion.value = 'foo';
+      this.mailingRegion.value = 'California';
       this.mailingPostalCode.value = 'foo';
-      this.mailingCountry.value = 'foo';
+      this.mailingCountry.value = 'United States';
       this.employer.value = 'Google';
       this.siteCode.value = 'foo';
       this.org.value = 'foo';
@@ -222,7 +222,7 @@ export class Signup extends LitElement {
       this.totalCompensation.value = '250000';
       this.birthday.value = '01/01/1950';
       this.tshirtSize.value = 'other';
-      this.smsConsent.value = '1';
+      this.smsConsent.value = 'n';
       this.currency.value = 'usd';
       this.signature.value = 'foo';
     };
@@ -849,7 +849,7 @@ export class Signup extends LitElement {
         const responseBody = await result.json();
         await (await this.stripe).confirmPayment({
           elements: await this.stripeElements,
-          clientSecret: responseBody['subscriptionClientSecret'],
+          clientSecret: responseBody['subscription_client_secret'],
           confirmParams: {
             // TODO(jonah) add a redirect URL.
             return_url: '',

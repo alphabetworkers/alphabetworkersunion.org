@@ -161,7 +161,7 @@ export async function handleRequest(request: Request): Promise<Response> {
       paymentMethod,
     );
 
-    const [subPaymentIntent, initiationPaymentIntent] = await Promise.all([
+    const [setupIntent, initiationPaymentIntent] = await Promise.all([
       (async () => {
         const subscription = await stripe.subscriptions.create({
           customer: customer.id,
@@ -170,30 +170,36 @@ export async function handleRequest(request: Request): Promise<Response> {
           payment_behavior: 'default_incomplete',
           payment_settings: { save_default_payment_method: 'on_subscription' },
           items: subscriptionItems,
-          expand: ['latest_invoice.payment_intent'],
+          expand: ['pending_setup_intent'],
         });
-        await stripe.subscriptions.update(subscription.id, {
-          pause_collection: { behavior: 'keep_as_draft' },
-        });
-        return subscription.latest_invoice.payment_intent;
+        // await stripe.subscriptions.update(subscription.id, {
+        //   pause_collection: { behavior: 'keep_as_draft' },
+        // });
+        return subscription.pending_setup_intent;
       })(),
       (async () => {
-        const invoice = await stripe.invoices.create({
+        await stripe.invoiceItems.create({
           customer: customer.id,
-          collection_method: 'charge_automatically',
-          expand: ['payment_intent'],
-        });
-        const item = await strip.invoiceItems.create({
-          customer: customer.id,
-          invoice: invoice.id,
           price_data: {
             currency: currency,
             product: INITIATION_FEE_PRODUCT_ID,
             unit_amount: INITIATION_FEE_CENTS,
           },
-          expand: ['invoice'],
         });
-        return item.invoice.payment_intent;
+        const invoice = await stripe.invoices.create({
+          customer: customer.id,
+          auto_advance: true,
+          collection_method: 'charge_automatically',
+          expand: ['payment_intent'],
+        });
+        // Invoice must be manually finalized before it has a PaymentIntent.
+        const finalizedInvoice = await stripe.invoices.finalizeInvoice(
+          invoice.id,
+          {
+            expand: ['payment_intent'],
+          },
+        );
+        return finalizedInvoice.payment_intent;
       })(),
     ]);
 
@@ -205,7 +211,7 @@ export async function handleRequest(request: Request): Promise<Response> {
     return new Response(
       JSON.stringify({
         success: true,
-        subscription_client_secret: subPaymentIntent.client_secret,
+        subscription_client_secret: setupIntent.client_secret,
         initiation_client_secret: initiationPaymentIntent.client_secret,
       }),
       {

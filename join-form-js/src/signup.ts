@@ -847,14 +847,14 @@ export class Signup extends LitElement {
 
       if (result.ok) {
         const responseBody = await result.json();
-        await (await this.stripe).confirmPayment({
+        await (await this.stripe).confirmSetup({
           elements: await this.stripeElements,
           clientSecret: responseBody['subscription_client_secret'],
           confirmParams: {
             // TODO(jonah) add a redirect URL.
             return_url: '',
-            // redirect: 'if_required',
-          }
+          },
+          redirect: 'if_required',
         });
         // TODO(jonah): also confirmPayment on initiationClientSecret.
         this.isComplete = true;

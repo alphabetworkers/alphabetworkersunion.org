@@ -16,10 +16,18 @@
       # Shell enviornment with useful tools available.
       devShells = forAllSystems (pkgs: {
         default = pkgs.mkShell {
-          buildInputs = [pkgs.nodejs_20 pkgs.nodePackages.wrangler pkgs.cacert];
-          # Wrangler does not pick up on the cert authority bundle by default.
+          buildInputs = [
+            # This is a JS app so need Node/NPM
+            pkgs.nodejs_20
+            # Wrangler from NPM doesn't work directly under NixOS. see
+            # https://github.com/cloudflare/workerd/issues/1482
+            pkgs.nodePackages.wrangler
+            # Wrangler needs runtime access to a CA cert bundle, make sure it
+            # is installed
+            pkgs.cacert];
           shellHook = ''
-            export SSL_CERT_FILE=/etc/ssl/certs/ca-bundle.crt
+            # Tell Wrangler where to find the CA cert bundle.
+            export SSL_CERT_FILE=$NIX_SSL_CERT_FILE
           '';
         };
       });

@@ -833,7 +833,7 @@ export class Signup extends LitElement {
     // TODO add CAPTCHA?
 
     this.isLoading = true;
-    console.log('paymentResult', paymentResult);
+    // console.log('paymentResult', paymentResult);
     // TODO(jonah): create a Customer and a Subscription on the server-side,
     //              wait for the responses then do stripe.confirmSetup with the
     //              Elements object and the subscription client secret.
@@ -853,7 +853,7 @@ export class Signup extends LitElement {
           confirmParams: {
             // TODO(jonah) add a redirect URL.
             return_url: '',
-            redirect: 'if_required',
+            // redirect: 'if_required',
           }
         });
         // TODO(jonah): also confirmPayment on initiationClientSecret.

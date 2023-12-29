@@ -35,8 +35,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "run-s build:webpack",
     "build:webpack": "webpack --mode=production",
-    "start": "npm-run-all build:webpack -p start:*",
-    "start:webpack": "webpack serve",
+    "start": "webpack serve",
     "fix": "run-s fix:eslint fix:prettier",
     "fix:prettier": "prettier --write .",
     "fix:eslint": "eslint --fix src",
@@ -47,7 +46,8 @@
     "deploy": "run-s clean build deploy:wrangler",
     "deploy:wrangler": "wrangler pages deploy dist --project-name join-form"
   },
-  "author": "Stephen McMurtry <stephenmcmurtry>",
+  "author": "Jonah Bron <hi@jonah.id>",
+  "contributors": ["Stephen McMurtry <stephenmcmurtry>"],
   "license": "Apache-2.0",
   "husky": {
     "hooks": {

@@ -243,9 +243,7 @@ class MissingParamError extends InvalidParamError {
 }
 
 function stripeCustomerParamToField(param: string): string | null {
-  if (param === 'source') {
-    return 'stripe-payment-token';
-  } else if (param === 'email') {
+  if (param === 'email') {
     return 'personal-email';
   } else if (param === 'name') {
     return 'preferred-name';

@@ -16,7 +16,11 @@
       # Shell enviornment with useful tools available.
       devShells = forAllSystems (pkgs: {
         default = pkgs.mkShell {
-          buildInputs = [pkgs.nodejs_20 pkgs.nodePackages.wrangler];
+          buildInputs = [pkgs.nodejs_20 pkgs.nodePackages.wrangler pkgs.cacert];
+          # Wrangler does not pick up on the cert authority bundle by default.
+          shellHook = ''
+            export SSL_CERT_FILE=/etc/ssl/certs/ca-bundle.crt
+          '';
         };
       });
   };

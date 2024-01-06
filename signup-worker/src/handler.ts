@@ -161,47 +161,32 @@ export async function handleRequest(request: Request): Promise<Response> {
       paymentMethod,
     );
 
-    const [setupIntent, initiationPaymentIntent] = await Promise.all([
-      (async () => {
-        const subscription = await stripe.subscriptions.create({
-          customer: customer.id,
-          billing_cycle_anchor: Math.floor(getBillingAnchor().valueOf() / 1000),
-          proration_behavior: 'none',
-          payment_behavior: 'default_incomplete',
-          payment_settings: { save_default_payment_method: 'on_subscription' },
-          items: subscriptionItems,
-          expand: ['pending_setup_intent'],
-        });
-        // await stripe.subscriptions.update(subscription.id, {
-        //   pause_collection: { behavior: 'keep_as_draft' },
-        // });
-        return subscription.pending_setup_intent;
-      })(),
-      (async () => {
-        await stripe.invoiceItems.create({
-          customer: customer.id,
-          price_data: {
-            currency: currency,
-            product: INITIATION_FEE_PRODUCT_ID,
-            unit_amount: INITIATION_FEE_CENTS,
-          },
-        });
-        const invoice = await stripe.invoices.create({
-          customer: customer.id,
-          auto_advance: true,
-          collection_method: 'charge_automatically',
-          expand: ['payment_intent'],
-        });
-        // Invoice must be manually finalized before it has a PaymentIntent.
-        const finalizedInvoice = await stripe.invoices.finalizeInvoice(
-          invoice.id,
-          {
-            expand: ['payment_intent'],
-          },
-        );
-        return finalizedInvoice.payment_intent;
-      })(),
-    ]);
+    await stripe.invoiceItems.create({
+      customer: customer.id,
+      price_data: {
+        currency: currency,
+        product: INITIATION_FEE_PRODUCT_ID,
+        unit_amount: INITIATION_FEE_CENTS,
+      },
+    });
+    const subscription = await stripe.subscriptions.create({
+      customer: customer.id,
+      billing_cycle_anchor: Math.floor(getBillingAnchor().valueOf() / 1000),
+      proration_behavior: 'none',
+      payment_behavior: 'default_incomplete',
+      payment_settings: {
+        save_default_payment_method: 'on_subscription',
+        payment_method_types: ['us_bank_account', 'card'],
+      },
+      items: subscriptionItems,
+      expand: ['pending_setup_intent'],
+    });
+    await stripe.subscriptions.update(subscription.id, {
+      pause_collection: {
+        behavior: 'keep_as_draft',
+      },
+    });
+    const setupIntent = subscription.pending_setup_intent;
 
     await sendgridClient.sendWelcomeEmail(
       fields.get('preferred-name') as string,
@@ -212,7 +197,6 @@ export async function handleRequest(request: Request): Promise<Response> {
       JSON.stringify({
         success: true,
         subscription_client_secret: setupIntent.client_secret,
-        initiation_client_secret: initiationPaymentIntent.client_secret,
       }),
       {
         headers: { 'Access-Control-Allow-Origin': '*' },

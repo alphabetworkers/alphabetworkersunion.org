@@ -833,13 +833,9 @@ export class Signup extends LitElement {
     // TODO add CAPTCHA?
 
     this.isLoading = true;
-    // console.log('paymentResult', paymentResult);
-    // TODO(jonah): create a Customer and a Subscription on the server-side,
-    //              wait for the responses then do stripe.confirmSetup with the
-    //              Elements object and the subscription client secret.
     const body = new FormData(this.form);
+    const email = this.personalEmail.value;
     try {
-      // TODO(jonah): autofill stripe element with form values
       await (await this.stripeElements).submit();
       // TODO add payment method into form
 
@@ -851,12 +847,14 @@ export class Signup extends LitElement {
           elements: await this.stripeElements,
           clientSecret: responseBody['subscription_client_secret'],
           confirmParams: {
-            // TODO(jonah) add a redirect URL.
+            // TODO(jonah) add a redirect URL.  change to redirect always, and have a URL param to show completion page.
             return_url: '',
+            payment_method_data: {
+              billing_details: {email},
+            },
           },
           redirect: 'if_required',
         });
-        // TODO(jonah): also confirmPayment on initiationClientSecret.
         this.isComplete = true;
       } else {
         const { error } = await result.json();
@@ -927,10 +925,14 @@ export class Signup extends LitElement {
         this.paymentElement = (await this.stripeElements).create('payment', {
           layout: 'tabs',
           paymentMethodOrder: ['us_bank_account', 'card'],
+          fields: {
+            billingDetails: {
+              email: 'never',
+            },
+          },
         });
         // TODO listen to change event and watch for PaymentMethod type.
         this.paymentElement.mount(this.stripePaymentContainer);
-        // TODO confirm setup inten after form submitted successfully
       }
     })();
   }

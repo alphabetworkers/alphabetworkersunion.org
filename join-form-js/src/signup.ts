@@ -199,7 +199,10 @@ export class Signup extends LitElement {
   constructor() {
     super();
 
-    // TODO debugging tool, remove later
+    if (new URLSearchParams(window.location.search).get('redirect_status') === 'succeeded') {
+      this.isComplete = true;
+    }
+
     window.fillTestValues = async () => {
       await this.updateComplete;
 
@@ -830,7 +833,6 @@ export class Signup extends LitElement {
   async submit(event: Event): Promise<void> {
     event.preventDefault();
     this.enableInvalidStyles();
-    // TODO add CAPTCHA?
 
     this.isLoading = true;
     const body = new FormData(this.form);
@@ -847,8 +849,7 @@ export class Signup extends LitElement {
           elements: await this.stripeElements,
           clientSecret: responseBody['subscription_client_secret'],
           confirmParams: {
-            // TODO(jonah) add a redirect URL.  change to redirect always, and have a URL param to show completion page.
-            return_url: '',
+            return_url: window.location.toString(),
             payment_method_data: {
               billing_details: {email},
             },

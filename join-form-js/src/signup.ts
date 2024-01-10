@@ -1362,12 +1362,17 @@ export class Signup extends LitElement {
   }
 
   setInvalid(field: string, message: string): void {
-    const input = this.form.elements.namedItem(field) as HTMLInputElement;
-    input.setCustomValidity(message);
-    input.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-    });
+    const input = this.form.elements.namedItem(field) as HTMLInputElement|null;
+    if (input) {
+      input.setCustomValidity(message);
+      input.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    } else {
+      console.error(message);
+      alert(message);
+    }
   }
 
   async openPlaid(): Promise<void> {

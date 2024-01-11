@@ -167,6 +167,10 @@ export class Signup extends LitElement {
   signature!: HTMLInputElement;
 
   cardElement: StripeCardElement;
+  private paymentElement: StripePaymentElement;
+
+  @state()
+  lastStripeMethod: string = '';
 
   // TODO(#208): Temporary until bank accounts are supported for Canada.
   @state()
@@ -228,6 +232,7 @@ export class Signup extends LitElement {
       this.smsConsent.value = 'n';
       this.currency.value = 'usd';
       this.signature.value = 'foo';
+      this.requestUpdate();
     };
   }
 
@@ -836,10 +841,10 @@ export class Signup extends LitElement {
 
     this.isLoading = true;
     const body = new FormData(this.form);
+    body.set('payment-method', this.lastStripeMethod);
     const email = this.personalEmail.value;
     try {
       await (await this.stripeElements).submit();
-      // TODO add payment method into form
 
       const result = await fetch(window.SIGNUP_API, { method: 'POST', body });
 
@@ -905,37 +910,8 @@ export class Signup extends LitElement {
     this.requestUpdate();
   }
 
-  private paymentElement: StripePaymentElement;
   compChangeHandler(): void {
     this.requestUpdate();
-    // TODO disable the Stripe element if there is one.
-    (async () => {
-      // const body = new FormData();
-      // body.set('totalCompensation', this.totalCompensation.value);
-      // const response = await fetch(window.PAYMENT_INTENT_API, {
-      //   method: 'post',
-      //   body,
-      // });
-      // const {clientSecret} = await response.json();
-      // console.log(clientSecret);
-
-      if (this.stripePaymentContainer instanceof Element) {
-        if (this.paymentElement) {
-          this.paymentElement.unmount();
-        }
-        this.paymentElement = (await this.stripeElements).create('payment', {
-          layout: 'tabs',
-          paymentMethodOrder: ['us_bank_account', 'card'],
-          fields: {
-            billingDetails: {
-              email: 'never',
-            },
-          },
-        });
-        // TODO listen to change event and watch for PaymentMethod type.
-        this.paymentElement.mount(this.stripePaymentContainer);
-      }
-    })();
   }
 
   private stripePaymentContainer: HTMLElement;
@@ -950,6 +926,28 @@ export class Signup extends LitElement {
     this.stripePaymentContainer = (
       event.target as HTMLSlotElement
     ).assignedElements()[0] as HTMLElement;
+
+    if (this.stripePaymentContainer instanceof Element) {
+      if (this.paymentElement) {
+        this.paymentElement.unmount();
+      }
+      this.paymentElement = (await this.stripeElements).create('payment', {
+        layout: 'tabs',
+        paymentMethodOrder: ['us_bank_account', 'card'],
+        fields: {
+          billingDetails: {
+            email: 'never',
+          },
+        },
+      });
+      this.paymentElement.mount(this.stripePaymentContainer);
+
+      // Keep track of payment method for re-calculating dues.
+      this.paymentElement.on('change', event => {
+        this.lastStripeMethod = event.value.type;
+      });
+    }
+
     this.compChangeHandler();
   }
 
@@ -975,8 +973,7 @@ export class Signup extends LitElement {
   }
 
   isPayingWithCard(): boolean {
-    // TODO(jonah): pull from Stripe element.
-    return true;
+    return this.lastStripeMethod === 'card';
   }
 
   duesTemplate(): TemplateResult {

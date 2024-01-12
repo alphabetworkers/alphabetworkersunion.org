@@ -172,10 +172,6 @@ export class Signup extends LitElement {
   @state()
   lastStripeMethod: string = '';
 
-  // TODO(#208): Temporary until bank accounts are supported for Canada.
-  @state()
-  protected bankSupported = true;
-
   @state()
   isFirstPartyEmployer = true;
 
@@ -242,7 +238,7 @@ export class Signup extends LitElement {
 
   private paymentTemplate(): TemplateResult {
     return html` <h2>Payment</h2>
-      ${this.bankSupported
+      ${this.isBankSupported()
         ? ''
         : html` <div class="field full-width">
             <div class="title">
@@ -828,7 +824,18 @@ export class Signup extends LitElement {
   }
 
   currencyChangeHandler(): void {
-    // TODO(jonah): update Stripe payment element
+    this.updateCurrencyPaymentMethod();
+  }
+
+  async updateCurrencyPaymentMethod(): Promise<void> {
+    (await this.stripeElements).update({
+      currency: this.currency.value,
+      paymentMethodTypes:
+        this.isBankSupported() ?
+          ['us_bank_account', 'card'] :
+          ['card'],
+    });
+    this.requestUpdate();
   }
 
   enableInvalidStyles(): void {
@@ -893,21 +900,15 @@ export class Signup extends LitElement {
     this.availableRegions = allCountries.find(
       (countryData) => countryData[0] === this.mailingCountry.value,
     )[2];
-    // TODO(jonah): update currency in stripe lement based on maiiling country
-    // this.currency.value =
-    //   this.mailingCountry.value == 'United States' ? 'usd' : 'cad';
-    // if (this.billingCountry != null) {
-    //   this.billingCountry.value = this.mailingCountry.value;
-    // }
-    // TODO(#208): Temporary until bank accounts are supported for Canada.
-    // if (this.mailingCountry.value === 'Canada') {
-    //   // TODO()
-    //   this.paymentMethod = 'card';
-    //   this.bankSupported = false;
-    // } else {
-    //   this.bankSupported = true;
-    // }
-    this.requestUpdate();
+    this.currency.value =
+      this.mailingCountry.value == 'United States' ? 'usd' : 'cad';
+
+    this.updateCurrencyPaymentMethod();
+  }
+
+  // TODO(#208): Temporary until bank accounts are supported for Canada.
+  private isBankSupported(): boolean {
+    return !this.mailingCountry || (this.mailingCountry?.value === 'United States' && this.currency.value === 'usd');
   }
 
   compChangeHandler(): void {

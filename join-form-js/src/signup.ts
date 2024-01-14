@@ -851,7 +851,10 @@ export class Signup extends LitElement {
     body.set('payment-method', this.lastStripeMethod);
     const email = this.personalEmail.value;
     try {
-      await (await this.stripeElements).submit();
+      const stripeElementResult = await (await this.stripeElements).submit();
+      if (stripeElementResult.error) {
+        throw new Error(stripeElementResult.error.message);
+      }
 
       const result = await fetch(window.SIGNUP_API, { method: 'POST', body });
 

@@ -1,5 +1,3 @@
-import { stripeClient } from './stripe';
-import { plaidClient } from './plaid';
 import { sendgridClient } from './sendgrid';
 import Stripe from 'stripe';
 import {
@@ -8,6 +6,13 @@ import {
 } from '../../common/constants.ts';
 
 import { REQUIRED_FIELDS, METADATA, FTE_REQUIRED_FIELDS } from './fields';
+
+declare const STRIPE_KEY: string;
+
+const stripe = new Stripe(STRIPE_KEY, {
+  httpClient: Stripe.createFetchHttpClient(),
+  apiVersion: '2020-08-27',
+});
 
 // A threshold below which we think someone may have made a mistake (entered
 // monthly income, copied the monthly dues value and pasted it back into the
@@ -53,7 +58,7 @@ function getBillingAnchor(): Date {
   return nextMonthsAnchor;
 }
 
-function getSubscriptionItems(
+function makeSubscriptionItems(
   currency: string,
   totalComp: number,
   paymentMethod: string,
@@ -126,35 +131,16 @@ export async function handleRequest(request: Request): Promise<Response> {
 
     let customer: Stripe.Customer;
     try {
-      let source: string;
-      if (fields.has('plaid-public-token')) {
-        const { access_token } = await plaidClient.itemPublicTokenExchange(
-          // cloudflare doesn't like it when this is fixed
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          fields.get('plaid-public-token')! as string,
-        );
-        source = (
-          await plaidClient.processorStripeBankAccountTokenCreate(
-            access_token,
-            // cloudflare doesn't like it when this is fixed
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            fields.get('plaid-account-id')! as string,
-          )
-        ).stripe_bank_account_token;
-      } else {
-        source = fields.get('stripe-payment-token') as string;
-      }
       paymentMethod = fields.get('payment-method') as string;
-      customer = await stripeClient.createCustomer({
-        source,
+      customer = await stripe.customers.create({
         email: fields.get('personal-email') as string,
         name: fields.get('preferred-name') as string,
         metadata: {
           ...METADATA.reduce(
-            (metadata, fieldName) => {
-              metadata[fieldName] = fields.get(fieldName) as string;
-              return metadata;
-            },
+            (metadata, fieldName) => ({
+              ...metadata,
+              [fieldName]: fields.get(fieldName) as string,
+            }),
             {} as Record<string, string>,
           ),
         },
@@ -169,52 +155,53 @@ export async function handleRequest(request: Request): Promise<Response> {
     }
     const currency = fields.get('currency') as string;
 
-    const subscriptionItems = getSubscriptionItems(
+    const subscriptionItems = makeSubscriptionItems(
       currency,
       totalComp,
       paymentMethod,
     );
 
-    await Promise.all([
-      stripeClient
-        .createSubscription({
-          customer: customer.id,
-          billing_cycle_anchor: Math.floor(getBillingAnchor().valueOf() / 1000),
-          proration_behavior: 'none',
-          items: subscriptionItems,
-        })
-        .then((subscription) =>
-          stripeClient.updateSubscription(subscription.id, {
-            pause_collection: {
-              behavior: 'keep_as_draft',
-            },
-          }),
-        ),
-      stripeClient
-        .createInvoiceItem({
-          customer: customer.id,
-          price_data: {
-            currency: currency,
-            product: INITIATION_FEE_PRODUCT_ID,
-            unit_amount: INITIATION_FEE_CENTS,
-          },
-        })
-        .then(() =>
-          stripeClient.createInvoice({
-            customer: customer.id,
-            collection_method: 'charge_automatically',
-          }),
-        ),
-    ]);
+    await stripe.invoiceItems.create({
+      customer: customer.id,
+      price_data: {
+        currency: currency,
+        product: INITIATION_FEE_PRODUCT_ID,
+        unit_amount: INITIATION_FEE_CENTS,
+      },
+    });
+    const subscription = await stripe.subscriptions.create({
+      customer: customer.id,
+      billing_cycle_anchor: Math.floor(getBillingAnchor().valueOf() / 1000),
+      proration_behavior: 'none',
+      payment_behavior: 'default_incomplete',
+      payment_settings: {
+        save_default_payment_method: 'on_subscription',
+        payment_method_types: ['us_bank_account', 'card'],
+      },
+      items: subscriptionItems,
+      expand: ['pending_setup_intent'],
+    });
+    await stripe.subscriptions.update(subscription.id, {
+      pause_collection: {
+        behavior: 'keep_as_draft',
+      },
+    });
+    const setupIntent = subscription.pending_setup_intent;
 
     await sendgridClient.sendWelcomeEmail(
       fields.get('preferred-name') as string,
       fields.get('personal-email') as string,
     );
 
-    return new Response(JSON.stringify({ success: true }), {
-      headers: { 'Access-Control-Allow-Origin': '*' },
-    });
+    return new Response(
+      JSON.stringify({
+        success: true,
+        subscription_client_secret: setupIntent.client_secret,
+      }),
+      {
+        headers: { 'Access-Control-Allow-Origin': '*' },
+      },
+    );
   } catch (e) {
     console.warn(e);
     const error =
@@ -246,9 +233,7 @@ class MissingParamError extends InvalidParamError {
 }
 
 function stripeCustomerParamToField(param: string): string | null {
-  if (param === 'source') {
-    return 'stripe-payment-token';
-  } else if (param === 'email') {
+  if (param === 'email') {
     return 'personal-email';
   } else if (param === 'name') {
     return 'preferred-name';

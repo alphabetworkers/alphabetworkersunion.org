@@ -115,6 +115,31 @@ const ALPHABET_SUBSIDIARIES = [
   'Google New Zealand',
 ];
 
+const WORK_EMAIL_SUFFIXES = [
+  ".google",
+  "calicolabs.com",
+  "capitalg.com",
+  "chronicle.security",
+  "deepmind.com",
+  "fiber.google.com",
+  "google.com",
+  "googlers.com",
+  "gv.com",
+  "jigsaw.google.com",
+  "loon.com",
+  "makanipower.com",
+  "nest.com",
+  "owlchemylabs.com",
+  "rewsprojects.com",
+  "sidewalklabs.com",
+  "verily.com",
+  "waymo.com",
+  "waze.com",
+  "wing.com",
+  "x.company",
+  "youtube.com"
+];
+
 /**
  * Signup element.
  *
@@ -1110,6 +1135,14 @@ export class Signup extends LitElement {
     this.form.classList.add('invalidatable');
   }
 
+  validatePersonalEmail(email: string): void {
+    const domain = email.split('@')[1];
+
+    if(WORK_EMAIL_SUFFIXES.some((suffix) => suffix == domain)) {
+      this.setInvalid('personal-email', 'Please enter a non-work email.');
+    }
+  }
+
   async submit(event: Event): Promise<void> {
     event.preventDefault();
     this.enableInvalidStyles();
@@ -1117,6 +1150,7 @@ export class Signup extends LitElement {
 
     this.isLoading = true;
     const fields = new SpliceableUrlSearchParams(new FormData(this.form));
+
     try {
       let body: FormData;
       if (this.plaidToken) {
@@ -1131,6 +1165,9 @@ export class Signup extends LitElement {
         body.set('stripe-payment-token', token.id);
       }
       body.set('payment-method', this.paymentMethod);
+
+
+      this.validatePersonalEmail(fields.splice('personal-email') as string);
 
       const result = await fetch(window.SIGNUP_API, { method: 'POST', body });
 

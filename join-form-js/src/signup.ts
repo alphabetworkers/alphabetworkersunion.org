@@ -1053,7 +1053,6 @@ export class Signup extends LitElement {
 declare global {
   interface Window {
     SIGNUP_API: string;
-    PLAID_TOKEN_API: string;
     STRIPE_KEY: string;
     PAYMENT_INTENT_API: string;
     fillTestValues: () => void;

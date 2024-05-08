@@ -2,7 +2,7 @@ name = "signup-worker"
 main = "./src/index.ts"
 compatibility_date = "2023-03-29"
 account_id = "394d48aba686b2466fe12e540c5d9466"
-vars = { PLAID_ORIGIN = "https://production.plaid.com", DUES_PRODUCT_ID = "prod_LKLGmaCbfcvwHk", DUES_SIGNUP_PRICE_ID = "price_1Kdgj3JGGmDnSmnt40qesLxB", CARD_FEE_PRODUCT_ID = "prod_M2BZrfLu49i6Yi", SENDGRID_DYNAMIC_TEMPLATE = "d-13f0fbb904dd4dfc991d15a05365943b", INITIATION_FEE_PRODUCT_ID = "prod_LKLPlaeMgnhNNk" }
+vars = { DUES_PRODUCT_ID = "prod_LKLGmaCbfcvwHk", DUES_SIGNUP_PRICE_ID = "price_1Kdgj3JGGmDnSmnt40qesLxB", CARD_FEE_PRODUCT_ID = "prod_M2BZrfLu49i6Yi", SENDGRID_DYNAMIC_TEMPLATE = "d-13f0fbb904dd4dfc991d15a05365943b", INITIATION_FEE_PRODUCT_ID = "prod_LKLPlaeMgnhNNk" }
 
 [dev]
 port = 8787

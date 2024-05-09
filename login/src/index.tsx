@@ -1,3 +1,5 @@
+import { render } from 'preact-render-to-string';
+
 /**
  * Welcome to Cloudflare Workers! This is your first worker.
  *
@@ -13,6 +15,6 @@
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-    return new Response('Hello World!');
+    return new Response(render(<div>Hello</div>), { headers: { 'content-type': 'text/html' } });
   },
 };

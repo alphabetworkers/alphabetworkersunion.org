@@ -1,20 +1,24 @@
-import { render } from 'preact-render-to-string';
-
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Bind resources to your worker in `wrangler.toml`. After adding bindings, a type definition for the
- * `Env` object can be regenerated with `npm run cf-typegen`.
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
+import { loginPage } from './login-page';
+import { sendLoginEmail } from './sendgrid';
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-    return new Response(render(<div>Hello</div>), { headers: { 'content-type': 'text/html' } });
+    if (request.method === 'POST') {
+      const body = await request.formData();
+      if (body.get('email')) {
+        try {
+          await sendLoginEmail(body.get('email'), env);
+        } catch (e) {
+          const redirectUrl = new URL(request.url);
+          redirectUrl.searchParams.set('failure', 1);
+          return Response.redirect(redirectUrl.toString());
+        }
+        const redirectUrl = new URL(request.url);
+        redirectUrl.searchParams.set('link_sent', 1);
+        return Response.redirect(redirectUrl.toString());
+      }
+    } else {
+      return loginPage(new URL(request.url).searchParams);
+    }
   },
 };

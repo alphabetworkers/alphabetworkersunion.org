@@ -19,6 +19,7 @@
     "wrangler": "^3.0.0"
   },
   "dependencies": {
+    "@tsndr/cloudflare-worker-jwt": "^2.5.3",
     "preact-render-to-string": "^6.4.2"
   }
 }

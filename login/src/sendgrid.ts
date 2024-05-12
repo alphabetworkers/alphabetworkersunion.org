@@ -1,12 +1,10 @@
 const SENDGRID_ENDPOINT = 'https://api.sendgrid.com/v3';
 
-export function sendLoginEmail(email: string, env: Env): Promise<void> {
+export function sendLoginEmail(email: string, loginLink: string, env: Env): Promise<void> {
   const template_id = env.SENDGRID_LOGIN_TEMPLATE;
   if (!template_id) {
     throw new Error('SENDGRID_LOGIN_TEMPLATE is needed to send login link emails.');
   }
-  // TODO generate a JWT.
-  const loginLink = 'https://alphabetworkersunion.org';
   return send(
     {
       from: {
@@ -37,18 +35,13 @@ async function send(payload: unknown, env: Env): Promise<void> {
       headers: sendgridHeaders(env),
       body: JSON.stringify(payload),
     });
-    console.log('payload', JSON.stringify(payload));
-
-    console.log(response);
     if (response.ok) {
-      console.log('ok', await response.text());
       return;
     } else {
-      console.error('else', await response.text());
       return Promise.reject('Sendgrid email failed.');
     }
   } catch (e) {
-    console.error('e', e);
+    console.error(e);
   }
 }
 

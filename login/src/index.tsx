@@ -1,7 +1,8 @@
 import { loginPage } from './login-page';
 import { sendLoginEmail } from './sendgrid';
-import { sign } from '@tsndr/cloudflare-worker-jwt';
+import { decode, sign, verify } from '@tsndr/cloudflare-worker-jwt';
 import Stripe from 'stripe';
+import { serialize } from 'cookie';
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
@@ -9,7 +10,7 @@ export default {
       const body = await request.formData();
       if (body.get('email')) {
         const email = body.get('email');
-        const customerId = getCustomerIdByEmail(email, env);
+        const customerId = await getCustomerIdByEmail(email, env);
         if (customerId) {
           try {
             const loginLink = await makeLoginLink(request.url, customerId, env);
@@ -22,11 +23,28 @@ export default {
         return Response.redirect(urlWithParam(request.url, 'link_sent'));
       }
     } else {
-      // TODO check for login_token parameter.
-      return loginPage(new URL(request.url).searchParams);
+      const params = new URL(request.url).searchParams;
+      const loginToken = params.get('login_token');
+      if (loginToken && (await verify(loginToken, env.LOGIN_LINK_SECRET))) {
+        const customerId = decode(loginToken).payload.stripeCustomerId;
+        return redirectWithSession(customerId, request, env);
+        // TODO else if condition that checks for session cookie.
+      } else {
+        return loginPage(params);
+      }
     }
   },
 };
+
+async function redirectWithSession(customerId: string, request: Request, env: Env): Response {
+  const sessionToken = await makeSessionToken(customerId, env);
+  const url = new URL(request.url);
+  url.search = '';
+  const response = new Response('', { status: 302 });
+  response.headers.set('Set-Cookie', serialize('session_token', sessionToken, { secure: true, maxAge: 60 * 60 * 24 * 7 }));
+  response.headers.set('Location', url);
+  return response;
+}
 
 async function getCustomerIdByEmail(email: string, env: Env): string | undefined {
   const stripe = new Stripe(env.STRIPE_API_KEY);
@@ -50,8 +68,21 @@ function makeLoginToken(customerId: string, env: Env): Promise<string> {
   );
 }
 
+function makeSessionToken(customerId: string, env): Promise<string> {
+  const secret = env.LOGIN_LINK_SECRET;
+  if (!secret) throw new Error('LOGIN_LINK_SECRET must be a random 512-byte hex string.');
+  return sign(
+    {
+      stripeCustomerId: customerId,
+      exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7,
+    },
+    secret,
+  );
+}
+
 function urlWithParam(url: string, param: string, value?: string = ''): string {
   const newUrl = new URL(url);
+  newUrl.search = '';
   newUrl.searchParams.set(param, value);
   return newUrl.toString();
 }

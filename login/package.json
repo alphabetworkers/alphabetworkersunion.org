@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@tsndr/cloudflare-worker-jwt": "^2.5.3",
-    "preact-render-to-string": "^6.4.2"
+    "preact-render-to-string": "^6.4.2",
+    "stripe": "^15.6.0"
   }
 }

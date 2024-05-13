@@ -35,8 +35,8 @@ export default {
       const url = new URL(request.url);
       const params = url.searchParams;
       const loginToken = params.get('login_token');
-      if (url.pathname === '/stripe-portal') {
-        // TODO create Stripe portal session and redirect
+      if (url.pathname === '/stripe-portal' && session) {
+        return redirectToStripePortal(session.stripeCustomerId, env);
       } else if (loginToken && (await verify(loginToken, env.LOGIN_LINK_SECRET))) {
         const customerId = decode(loginToken).payload.stripeCustomerId;
         return redirectWithSession(customerId, request, env);
@@ -110,4 +110,13 @@ function urlWithParam(url: string, param: string, value?: string = ''): string {
 
 async function makeLoginLink(incomingUrl: string, customerId: string, env: Env): Promise<string> {
   return urlWithParam(incomingUrl, 'login_token', await makeLoginToken(customerId, env));
+}
+
+async function redirectToStripePortal(customer: string, env: Env): Promise<void> {
+  const stripe = new Stripe(env.STRIPE_API_KEY);
+  const portalSession = await stripe.billingPortal.sessions.create({
+    customer,
+    // Omitting return_url because there's nothing else useful to do here yet.
+  });
+  return Response.redirect(portalSession.url);
 }

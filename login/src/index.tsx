@@ -1,8 +1,10 @@
-import { loginPage } from './login-page';
-import { sendLoginEmail } from './sendgrid';
 import { decode, sign, verify } from '@tsndr/cloudflare-worker-jwt';
 import Stripe from 'stripe';
-import { serialize } from 'cookie';
+import { serialize, parse } from 'cookie';
+
+import { loginPage } from './login-page';
+import { memberPage } from './member-page';
+import { sendLoginEmail } from './sendgrid';
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
@@ -21,14 +23,25 @@ export default {
           }
         }
         return Response.redirect(urlWithParam(request.url, 'link_sent'));
+      } else if (body.get('delete_source')) {
+        // TODO get customer ID and delete the source ID in Stripe, then redirect to /stripe-portal
+        return Response.redirect(new URL('stripe-portal', request.url));
+      } else {
+        return Response.redirect('', request.url);
       }
     } else {
-      const params = new URL(request.url).searchParams;
+      const url = new URL(request.url);
+      const params = url.searchParams;
       const loginToken = params.get('login_token');
-      if (loginToken && (await verify(loginToken, env.LOGIN_LINK_SECRET))) {
+      const sessionToken: string = parse(request.headers.get('cookie')).session_token;
+      if (url.pathname === '/stripe-portal') {
+        // TODO create Stripe portal session and redirect
+      } else if (loginToken && (await verify(loginToken, env.LOGIN_LINK_SECRET))) {
         const customerId = decode(loginToken).payload.stripeCustomerId;
         return redirectWithSession(customerId, request, env);
-        // TODO else if condition that checks for session cookie.
+      } else if (sessionToken && (await verify(sessionToken, env.LOGIN_LINK_SECRET))) {
+        const session = decode(sessionToken).payload;
+        return memberPage(session.stripeCustomerId, env);
       } else {
         return loginPage(params);
       }

@@ -27,7 +27,7 @@ export async function memberPage(customerId: string, env: Env): Response {
   );
 }
 
-async function getSourceId(customerId, env: Env): Promise<string | undefined> {
+export async function getSourceId(customerId, env: Env): Promise<string | undefined> {
   const stripe = new Stripe(env.STRIPE_API_KEY);
   const customer = await stripe.customers.retrieve(customerId);
   return customer.default_source ?? undefined;

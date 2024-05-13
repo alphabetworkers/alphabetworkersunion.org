@@ -3,11 +3,13 @@ import Stripe from 'stripe';
 import { serialize, parse } from 'cookie';
 
 import { loginPage } from './login-page';
-import { memberPage } from './member-page';
+import { memberPage, getSourceId } from './member-page';
 import { sendLoginEmail } from './sendgrid';
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+    const sessionToken: string = parse(request.headers.get('cookie')).session_token;
+    const session = (await verify(sessionToken, env.LOGIN_LINK_SECRET)) ? await decode(sessionToken).payload : undefined;
     if (request.method === 'POST') {
       const body = await request.formData();
       if (body.get('email')) {
@@ -24,7 +26,7 @@ export default {
         }
         return Response.redirect(urlWithParam(request.url, 'link_sent'));
       } else if (body.get('delete_source')) {
-        // TODO get customer ID and delete the source ID in Stripe, then redirect to /stripe-portal
+        await deleteCustomerSource(session.stripeCustomerId, env);
         return Response.redirect(new URL('stripe-portal', request.url));
       } else {
         return Response.redirect('', request.url);
@@ -33,14 +35,12 @@ export default {
       const url = new URL(request.url);
       const params = url.searchParams;
       const loginToken = params.get('login_token');
-      const sessionToken: string = parse(request.headers.get('cookie')).session_token;
       if (url.pathname === '/stripe-portal') {
         // TODO create Stripe portal session and redirect
       } else if (loginToken && (await verify(loginToken, env.LOGIN_LINK_SECRET))) {
         const customerId = decode(loginToken).payload.stripeCustomerId;
         return redirectWithSession(customerId, request, env);
-      } else if (sessionToken && (await verify(sessionToken, env.LOGIN_LINK_SECRET))) {
-        const session = decode(sessionToken).payload;
+      } else if (session) {
         return memberPage(session.stripeCustomerId, env);
       } else {
         return loginPage(params);
@@ -48,6 +48,14 @@ export default {
     }
   },
 };
+
+async function deleteCustomerSource(customerId: string, env: Env): Promise<void> {
+  const sourceId = await getSourceId(customerId, env);
+  if (sourceId) {
+    const stripe = new Stripe(env.STRIPE_API_KEY);
+    await stripe.customers.deleteSource(customerId, sourceId);
+  }
+}
 
 async function redirectWithSession(customerId: string, request: Request, env: Env): Response {
   const sessionToken = await makeSessionToken(customerId, env);

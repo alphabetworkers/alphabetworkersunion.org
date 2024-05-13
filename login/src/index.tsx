@@ -9,7 +9,7 @@ import { sendLoginEmail } from './sendgrid';
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const sessionToken: string = parse(request.headers.get('cookie') ?? '').session_token;
-    const session = (await verify(sessionToken, env.LOGIN_LINK_SECRET)) ? decode(sessionToken).payload : undefined;
+    const session = sessionToken && await verify(sessionToken, env.LOGIN_LINK_SECRET) ? decode(sessionToken).payload : undefined;
     const customerId = session?.sub;
     if (request.method === 'POST') {
       const body = await request.formData();

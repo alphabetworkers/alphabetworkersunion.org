@@ -38,7 +38,7 @@ async function send(payload: unknown, env: Env): Promise<void> {
     if (response.ok) {
       return;
     } else {
-      return Promise.reject('Sendgrid email failed.');
+      return Promise.reject(new Error('Sendgrid email failed.'));
     }
   } catch (e) {
     console.error(e);

@@ -1,7 +1,7 @@
 import Stripe from 'stripe';
 import { makeHtmlResponse, renderDocument } from './html';
 
-export async function memberPage(customerId: string, env: Env): Response {
+export async function memberPage(customerId: string, env: Env): Promise<Response> {
   const sourceId = await getSourceId(customerId, env);
   return makeHtmlResponse(
     renderDocument(
@@ -27,8 +27,15 @@ export async function memberPage(customerId: string, env: Env): Response {
   );
 }
 
-export async function getSourceId(customerId, env: Env): Promise<string | undefined> {
+export async function getSourceId(customerId: string, env: Env): Promise<string | undefined> {
   const stripe = new Stripe(env.STRIPE_API_KEY);
   const customer = await stripe.customers.retrieve(customerId);
-  return customer.default_source ?? undefined;
+  if ('default_source' in customer && customer.default_source) {
+    if (typeof customer.default_source === 'string') {
+      return customer.default_source;
+    } else {
+      return customer.default_source.id;
+    }
+  }
+  return undefined;
 }

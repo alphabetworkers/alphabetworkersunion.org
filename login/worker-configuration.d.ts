@@ -2,7 +2,7 @@
 // by running `wrangler types`
 
 interface Env {
-  SENDGRID_LOGIN_TEMPLATE: 'd-678ba471997f44cfa0dc2c01bf824c91';
+  SENDGRID_LOGIN_TEMPLATE: string;
   SENDGRID_API_KEY: string;
   LOGIN_LINK_SECRET: string;
   STRIPE_API_KEY: string;

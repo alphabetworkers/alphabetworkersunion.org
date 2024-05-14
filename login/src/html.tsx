@@ -14,6 +14,14 @@ export function renderDocument(content: VNode) {
       <html lang="en">
         <head>
           <title>AWU-CWA: Login</title>
+          <meta charset="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <style>{`
+            body {
+              font-size: 1.4em;
+              font-family: sans-serif;
+            }
+          `}</style>
         </head>
         <body>{content}</body>
       </html>,

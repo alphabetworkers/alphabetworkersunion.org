@@ -13,19 +13,26 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            margin: '0 auto',
+            gap: 'var(--container-padding)',
+            padding: 'var(--container-padding)',
+            maxWidth: 'min(400px, 90vw)',
+            background: 'var(--white)',
+            borderRadius: 'var(--border-radius)',
           }}
         >
           <p
             style={{
-              background: '#fff7bb',
-              border: 'solid 2px #ffdc5d',
-              padding: 16,
-              borderRadius: 8,
+              background: 'var(--yellow-faded)',
+              border: 'solid 2px var(--yellow)',
+              margin: 0,
+              padding: 'var(--text-padding)',
+              borderRadius: 'var(--border-radius)',
               maxWidth: 'min(700px, 90vw)',
             }}
           >
             ℹ️
-            <strong>Legacy billing must be removed first</strong>
+            <strong>Legacy billing must be removed.</strong>
             <br />
             <br />
             Your bank details are linked via a method that Stripe has deprecated.
@@ -40,23 +47,33 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
             value="1"
             style={{
               fontSize: '1.1em',
-              background: '#b0171d',
+              background: 'var(--primary)',
               padding: '20px 30px',
               border: 0,
               borderRadius: 50,
-              color: 'white',
+              color: 'var(--white)',
             }}
           >
             Delete payment source
           </button>
           <p
             style={{
-              padding: 16,
-              borderRadius: 8,
-              maxWidth: 'min(700px, 90vw)',
+              margin: 0,
+              padding: '0 var(--text-padding)',
             }}
           >
             You'll be taken straight to the billing portal.
+          </p>
+          <p
+            style={{
+              fontSize: '0.6em',
+              opacity: 0.7,
+              padding: '0 var(--text-padding)',
+            }}
+          >
+            For questions, contact the membership committee at
+            <br />
+            <a href="mailto:committee-membership@union.groups.io">committee-membership@union.groups.io</a>.
           </p>
         </form>
       ) : (
@@ -65,18 +82,24 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            margin: '0 auto',
+            gap: 'var(--container-padding)',
+            padding: 'var(--container-padding)',
+            maxWidth: 'min(400px, 90vw)',
+            background: 'var(--white)',
+            borderRadius: 'var(--border-radius)',
           }}
         >
-          <p>Your billing details can be managed in the Stripe billing portal.</p>
+          <p style={{ margin: 0 }}>Your billing details can be managed in the Stripe billing portal.</p>
           <a
             href="/stripe-portal"
             style={{
               fontSize: '1.1em',
-              background: '#b0171d',
+              background: 'var(--primary)',
               padding: '20px 30px',
               border: 0,
               borderRadius: 50,
-              color: 'white',
+              color: 'var(--white)',
               textDecoration: 'none',
             }}
           >

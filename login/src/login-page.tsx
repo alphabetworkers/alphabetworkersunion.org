@@ -4,18 +4,39 @@ export function loginPage(params: URLSearchParams): Response {
   return makeHtmlResponse(
     renderDocument(
       linkSent ? (
-        <>
-          <div>Login link sent, this tab can be closed.</div>
-          <a href=".">Start over</a>
-        </>
+        <div
+          style={{
+            background: 'var(--white)',
+            borderRadius: 'var(--border-radius)',
+            padding: 'var(--container-padding)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'stretch',
+            maxWidth: 'min(400px, 90vw)',
+            margin: '0 auto',
+          }}
+        >
+          <p style={{ margin: '0' }}>
+            If your email was associated with a membership, a login link has been sent.
+            <br />
+            <br />
+            This tab may be closed.
+            <br />
+            <br />
+            <a href=".">Start over</a>
+          </p>
+        </div>
       ) : (
         <form
           action=""
           method="post"
           style={{
+            background: 'var(--white)',
+            borderRadius: 'var(--border-radius)',
+            padding: 'var(--container-padding)',
             display: 'flex',
             flexDirection: 'column',
-            gap: 16,
+            gap: 'var(--container-padding)',
             alignItems: 'stretch',
             maxWidth: 'min(400px, 90vw)',
             margin: '0 auto',
@@ -31,31 +52,31 @@ export function loginPage(params: URLSearchParams): Response {
           </h1>
           <p
             style={{
-              padding: '0 12px',
+              padding: '0 var(--text-padding)',
               margin: 0,
             }}
           >
-            Enter the <em>personal</em> email associated with your account. We'll send you a link to log in right away.
+            Enter the <em>personal</em> email associated with your account. We'll send you a link to log in.
           </p>
           <input
             type="email"
             name="email"
             style={{
               fontSize: '1.4em',
-              padding: 12,
-              borderRadius: 8,
-              border: 'solid 2px #444',
+              padding: 'var(--text-padding)',
+              borderRadius: 'var(--border-radius)',
+              border: 'solid 2px var(--gray-1)',
             }}
           />
           <button
             type="submit"
             style={{
-              fontSize: '1.4em',
-              background: '#ed1c24',
-              padding: 12,
+              fontSize: '1.1em',
+              background: 'var(--primary)',
+              padding: '20px 30px',
               border: 0,
-              borderRadius: 12,
-              color: 'white',
+              borderRadius: 50,
+              color: 'var(--white)',
             }}
           >
             Send Login Link
@@ -64,7 +85,7 @@ export function loginPage(params: URLSearchParams): Response {
             style={{
               fontSize: '0.6em',
               opacity: 0.7,
-              padding: 8,
+              padding: 'var(--text-padding)',
             }}
           >
             If you encounter issues, contact the membership committee at

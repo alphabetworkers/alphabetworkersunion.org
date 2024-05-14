@@ -64,6 +64,7 @@ export function loginPage(params: URLSearchParams): Response {
             style={{
               fontSize: '0.6em',
               opacity: 0.7,
+              padding: 8,
             }}
           >
             If you encounter issues, contact the membership committee at

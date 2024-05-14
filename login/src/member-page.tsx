@@ -6,17 +6,48 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
   return makeHtmlResponse(
     renderDocument(
       sourceId ? (
-        <>
-          Your Stripe account has a legacy bank account association. Before your payment method or dues can be changed, that previous
-          payment source must be removed. Click "Permanently Delete Payment Source" to remove that source. You'll be redirected to the
-          Stripe portal immediately after. In order to remain a member in good-standing, please ensure you setup a new dues payment method
-          shortly thereafter.
-          <form method="post" action="">
-            <button type="submit" name="delete_source" value="1">
-              Permanently Delete Payment Source
-            </button>
-          </form>
-        </>
+        <form method="post" action="" style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}>
+          <p style={{
+            background: '#fff7bb',
+            border: 'solid 2px #ffdc5d',
+            padding: 16,
+            borderRadius: 8,
+            maxWidth: 'min(700px, 90vw)',
+          }}>
+            ℹ️
+            <strong>Legacy billing must be removed first</strong>
+            <br />
+            <br />
+            Your bank details are linked via a method that Stripe has
+            deprecated.
+            <br />
+            <br />
+            Before you can manage your billing details, the current payment
+            source must be removed.  Please be sure to add a new billing method
+            shortly after.
+          </p>
+          <button type="submit" name="delete_source" value="1" style={{
+              fontSize: '1.1em',
+              background: '#b0171d',
+              padding: '20px 30px',
+              border: 0,
+              borderRadius: 50,
+              color: 'white',
+          }}>
+            Delete payment source
+          </button>
+          <p style={{
+            padding: 16,
+            borderRadius: 8,
+            maxWidth: 'min(700px, 90vw)',
+          }}>
+            You'll be taken straight to the billing portal.
+          </p>
+        </form>
       ) : (
         <>
           Click here to navigate to Stripe's customer portal, where you can manage your billing information.

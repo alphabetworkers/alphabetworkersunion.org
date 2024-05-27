@@ -2,10 +2,10 @@ import Stripe from 'stripe';
 import { makeHtmlResponse, renderDocument } from './html';
 
 export async function memberPage(customerId: string, env: Env): Promise<Response> {
-  const sourceId = await getSourceId(customerId, env);
+  const sourceIds = await getSourceIds(customerId, env);
   return makeHtmlResponse(
     renderDocument(
-      sourceId ? (
+      sourceIds.length ? (
         <form
           method="post"
           action=""
@@ -111,15 +111,32 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
   );
 }
 
-export async function getSourceId(customerId: string, env: Env): Promise<string | undefined> {
+/**
+ * Get all source IDs for legacy ACH integrations.
+ */
+export async function getSourceIds(customerId: string, env: Env): Promise<string[]> {
   const stripe = new Stripe(env.STRIPE_API_KEY);
-  const customer = await stripe.customers.retrieve(customerId);
-  if ('default_source' in customer && customer.default_source) {
-    if (typeof customer.default_source === 'string') {
-      return customer.default_source;
-    } else {
-      return customer.default_source.id;
+  const customer = await stripe.customers.retrieve(customerId, { expand: ['sources'] });
+  if ('sources' in customer) {
+    const sources: unknown = customer.sources;
+    console.debug(customer.sources);
+    if (isExpandedSource(sources)) {
+      return sources.data.filter((source) => source.object === 'bank_account' && source.type === 'ach_credit_transfer').map(({ id }) => id);
     }
   }
-  return undefined;
+  return [];
+}
+
+interface ExpandedSource {
+  data: ReadonlyArray<{ id: string; [key: string]: unknown }>;
+}
+
+function isExpandedSource(sources: unknown): sources is ExpandedSource {
+  if (typeof sources === 'object' && sources !== null && 'data' in sources) {
+    const data = sources.data;
+    if (data instanceof Array) {
+      return data.every((source) => typeof source === 'object' && source !== null && 'id' in source);
+    }
+  }
+  return false;
 }

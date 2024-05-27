@@ -3,7 +3,7 @@ import Stripe from 'stripe';
 import { serialize, parse } from 'cookie';
 
 import { loginPage } from './login-page';
-import { memberPage, getSourceId } from './member-page';
+import { memberPage, getSourceIds } from './member-page';
 import { sendLoginEmail } from './sendgrid';
 
 export default {
@@ -55,11 +55,9 @@ export default {
 };
 
 async function deleteCustomerSource(customerId: string, env: Env): Promise<void> {
-  const sourceId = await getSourceId(customerId, env);
-  if (sourceId) {
-    const stripe = new Stripe(env.STRIPE_API_KEY);
-    await stripe.customers.deleteSource(customerId, sourceId);
-  }
+  const sourceIds = await getSourceIds(customerId, env);
+  const stripe = new Stripe(env.STRIPE_API_KEY);
+  await Promise.all(sourceIds.map((sourceId) => stripe.customers.deleteSource(customerId, sourceId)));
 }
 
 async function redirectWithSession(customerId: string, request: Request, env: Env): Promise<Response> {

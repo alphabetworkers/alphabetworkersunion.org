@@ -1,5 +1,6 @@
 import Stripe from 'stripe';
 import { makeHtmlResponse, renderDocument } from './html';
+import { cwaAwuLogo } from './logo';
 
 export async function memberPage(customerId: string, env: Env): Promise<Response> {
   const sourceIds = await getSourceIds(customerId, env);
@@ -21,6 +22,15 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
             borderRadius: 'var(--border-radius)',
           }}
         >
+          {cwaAwuLogo()}
+          <h1
+            style={{
+              textAlign: 'center',
+              margin: 0,
+            }}
+          >
+            AWU-CWA Dues Profile
+          </h1>
           <p
             style={{
               background: 'var(--yellow-faded)',
@@ -35,11 +45,9 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
             <strong>Legacy billing must be removed.</strong>
             <br />
             <br />
-            Your bank details are linked via a method that Stripe has deprecated.
-            <br />
-            <br />
-            Before you can manage your billing details, the current payment source must be removed. Please be sure to add a new billing
-            method shortly after.
+            <strong>NOTE:</strong> The payment method associated with your account was configured through a legacy bank account payment
+            integration. To update your payment method, click this button to first disconnect your existing payment method. You will then be
+            directed to the Stripe Billing Portal to add a new payment method.
           </p>
           <button
             type="submit"
@@ -54,7 +62,7 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
               color: 'var(--white)',
             }}
           >
-            Delete payment source
+            Delete existing payment method
           </button>
           <p
             style={{
@@ -62,16 +70,41 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
               padding: '0 var(--text-padding)',
             }}
           >
-            You'll be taken straight to the billing portal.
+            To view and update your mailing/billing address or retrieve receipts of previous dues charges, navigate to the Stripe Billing
+            Portal:
+          </p>
+          <a
+            href="/stripe-portal"
+            style={{
+              fontSize: '1.1em',
+              background: 'var(--primary)',
+              padding: '20px 30px',
+              border: 0,
+              borderRadius: 50,
+              color: 'var(--white)',
+              textDecoration: 'none',
+            }}
+          >
+            Open Stripe billing portal
+          </a>
+          <p
+            style={{
+              margin: 0,
+              padding: '0 var(--text-padding)',
+            }}
+          >
+            If there are other membership changes you would like to make, such as cancelling your membership (which includes cancelling dues
+            charges), or updating your office location or job information, please fill out the change form:
+            <a href="https://go.awu.fyi/change">go.awu.fyi/change</a>
           </p>
           <p
             style={{
               fontSize: '0.6em',
               opacity: 0.7,
-              padding: '0 var(--text-padding)',
+              padding: 'var(--text-padding)',
             }}
           >
-            For questions, contact the membership committee at
+            Have questions, or are you running into issues? Contact the AWU-CWA Membership Committee:
             <br />
             <a href="mailto:committee-membership@union.groups.io">committee-membership@union.groups.io</a>.
           </p>
@@ -90,7 +123,11 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
             borderRadius: 'var(--border-radius)',
           }}
         >
-          <p style={{ margin: 0 }}>Your billing details can be managed in the Stripe billing portal.</p>
+          {cwaAwuLogo()}
+          <p style={{ margin: 0 }}>
+            To update your payment method on file, view and update your mailing/ billing address or retrieve receipts of previous dues
+            charges, navigate to the Stripe Billing Portal:
+          </p>
           <a
             href="/stripe-portal"
             style={{
@@ -105,6 +142,27 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
           >
             Open Stripe billing portal
           </a>
+          <p
+            style={{
+              margin: 0,
+              padding: '0 var(--text-padding)',
+            }}
+          >
+            If there are other membership changes you would like to make, such as cancelling your membership (which includes cancelling dues
+            charges), or updating your office location or job information, please fill out the change form:
+            <a href="https://go.awu.fyi/change">go.awu.fyi/change</a>
+          </p>
+          <p
+            style={{
+              fontSize: '0.6em',
+              opacity: 0.7,
+              padding: 'var(--text-padding)',
+            }}
+          >
+            Have questions, or are you running into issues? Contact the AWU-CWA Membership Committee:
+            <br />
+            <a href="mailto:committee-membership@union.groups.io">committee-membership@union.groups.io</a>.
+          </p>
         </div>
       ),
     ),
@@ -121,7 +179,7 @@ export async function getSourceIds(customerId: string, env: Env): Promise<string
     const sources: unknown = customer.sources;
     console.debug(customer.sources);
     if (isExpandedSource(sources)) {
-      return sources.data.filter((source) => source.object === 'bank_account' && source.type === 'ach_credit_transfer').map(({ id }) => id);
+      return sources.data.filter((source) => source.object === 'bank_account').map(({ id }) => id);
     }
   }
   return [];

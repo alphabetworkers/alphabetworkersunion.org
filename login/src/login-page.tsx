@@ -1,4 +1,6 @@
 import { makeHtmlResponse, renderDocument } from './html';
+import { cwaAwuLogo } from './logo';
+
 export function loginPage(params: URLSearchParams): Response {
   const linkSent = params.has('link_sent');
   return makeHtmlResponse(
@@ -16,14 +18,27 @@ export function loginPage(params: URLSearchParams): Response {
             margin: '0 auto',
           }}
         >
+          {cwaAwuLogo()}
           <p style={{ margin: '0' }}>
-            If your email was associated with a membership, a login link has been sent.
+            If your email was associated with an AWU-CWA membership, a login link has been sent to thaat email address. Please check your
+            email for next steps.
             <br />
             <br />
             This tab may be closed.
             <br />
             <br />
             <a href=".">Start over</a>
+          </p>
+          <p
+            style={{
+              fontSize: '0.6em',
+              opacity: 0.7,
+              padding: 'var(--text-padding)',
+            }}
+          >
+            Have questions, or are you running into issues? Contact the AWU-CWA Membership Committee:
+            <br />
+            <a href="mailto:committee-membership@union.groups.io">committee-membership@union.groups.io</a>.
           </p>
         </div>
       ) : (
@@ -42,14 +57,26 @@ export function loginPage(params: URLSearchParams): Response {
             margin: '0 auto',
           }}
         >
+          {cwaAwuLogo()}
           <h1
             style={{
               textAlign: 'center',
               margin: 0,
             }}
           >
-            Login to the<br>AWU-CWA</br> dues profile
+            Login to your <br />
+            AWU-CWA
+            <br /> dues profile
           </h1>
+          <p
+            style={{
+              padding: '0 var(--text-padding)',
+              margin: 0,
+            }}
+          >
+            This page allows you to update your payment method and mailing/billing address, as well as retrieve receipts of your previous
+            dues charges. This page is available to both current and former AWU-CWA members.
+          </p>
           <p
             style={{
               padding: '0 var(--text-padding)',
@@ -88,7 +115,7 @@ export function loginPage(params: URLSearchParams): Response {
               padding: 'var(--text-padding)',
             }}
           >
-            If you encounter issues, contact the membership committee at
+            Have questions, or are you running into issues? Contact the AWU-CWA Membership Committee:
             <br />
             <a href="mailto:committee-membership@union.groups.io">committee-membership@union.groups.io</a>.
           </p>

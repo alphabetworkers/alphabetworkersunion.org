@@ -7,14 +7,17 @@
   <script>
     window.STRIPE_KEY = "pk_live_NiJCywVuqdC5fhiMyKOkIOm300CFPvWQjL";
     window.SIGNUP_API = "https:\/\/signup-worker.alphabetworkersunion.workers.dev\/";
-    window.PLAID_TOKEN_API = "https:\/\/plaid-token-worker.alphabetworkersunion.workers.dev\/";
     window.LOGIN_LINK_TOKEN_API = "";
+    window.PAYMENT_INTENT_API = "http://localhost:8787/";
   </script>
-  <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
   <script src="https://js.stripe.com/v3"></script>
   <body>
     <div class="signup-container">
-      <awu-signup><div slot="stripe-card-container"></div></awu-signup>
+      <awu-signup>
+        <div slot="stripe-card-container"></div>
+        <div slot="stripe-payment-container"></div>
+      </awu-signup>
+      <button style="position: fixed;top:0;right:0;" onclick="fillTestValues()">Fill test values</button>
     </div>
   </body>
 </html>

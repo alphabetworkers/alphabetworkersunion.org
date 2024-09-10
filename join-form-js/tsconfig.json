@@ -9,7 +9,6 @@
   },
   "include": [
     "src/global.d.ts",
-    "node_modules/@types/plaid-link/index.d.ts",
     "node_modules/lit-scss-loader/types.d.ts"
   ]
 }

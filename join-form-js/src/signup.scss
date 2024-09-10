@@ -258,6 +258,7 @@ select {
 
 .select > select {
   flex: 1;
+  min-width: 0;
 }
 
 .select::after {

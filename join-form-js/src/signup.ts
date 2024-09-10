@@ -8,7 +8,12 @@ import {
 import { query } from 'lit/decorators.js';
 import { choose } from 'lit-html/directives/choose.js';
 import { classMap } from 'lit-html/directives/class-map.js';
-import { loadStripe, StripeCardElement, Token } from '@stripe/stripe-js';
+import {
+  loadStripe,
+  StripeCardElement,
+  StripePaymentElement,
+  Token,
+} from '@stripe/stripe-js';
 import { allCountries } from 'country-region-data';
 import { repeat } from 'lit/directives/repeat.js';
 import {
@@ -23,42 +28,6 @@ import {
   REQUIRED_FIELDS,
   FTE_REQUIRED_FIELDS,
 } from '../../signup-worker/src/fields';
-
-const PLAID_LIB_URL = 'https://cdn.plaid.com/link/v2/stable/link-initialize.js';
-
-interface PlaidMetadata {
-  institution: {
-    name: string;
-  };
-  accounts: {
-    name: string;
-    id: string;
-  }[];
-}
-
-interface PlaidToken {
-  public_token: string;
-  account_name: string;
-  account_id: string;
-}
-
-let loadingPlaid: Promise<Window['Plaid']> | undefined;
-function loadPlaid(): Promise<Window['Plaid']> {
-  if (!loadingPlaid) {
-    loadingPlaid = new Promise((resolve, reject) => {
-      const plaidScript = document.createElement('script');
-      plaidScript.addEventListener('load', () => {
-        resolve(window.Plaid);
-      });
-      plaidScript.addEventListener('error', (error) => {
-        reject(error);
-      });
-      plaidScript.src = PLAID_LIB_URL;
-      document.body.append(plaidScript);
-    });
-  }
-  return loadingPlaid;
-}
 
 const ALPHABET_SUBSIDIARIES = [
   'Google',
@@ -116,28 +85,28 @@ const ALPHABET_SUBSIDIARIES = [
 ];
 
 const WORK_EMAIL_SUFFIXES = [
-  ".google",
-  "calicolabs.com",
-  "capitalg.com",
-  "chronicle.security",
-  "deepmind.com",
-  "fiber.google.com",
-  "google.com",
-  "googlers.com",
-  "gv.com",
-  "jigsaw.google.com",
-  "loon.com",
-  "makanipower.com",
-  "nest.com",
-  "owlchemylabs.com",
-  "rewsprojects.com",
-  "sidewalklabs.com",
-  "verily.com",
-  "waymo.com",
-  "waze.com",
-  "wing.com",
-  "x.company",
-  "youtube.com"
+  '.google',
+  'calicolabs.com',
+  'capitalg.com',
+  'chronicle.security',
+  'deepmind.com',
+  'fiber.google.com',
+  'google.com',
+  'googlers.com',
+  'gv.com',
+  'jigsaw.google.com',
+  'loon.com',
+  'makanipower.com',
+  'nest.com',
+  'owlchemylabs.com',
+  'rewsprojects.com',
+  'sidewalklabs.com',
+  'verily.com',
+  'waymo.com',
+  'waze.com',
+  'wing.com',
+  'x.company',
+  'youtube.com',
 ];
 
 /**
@@ -154,6 +123,14 @@ export class Signup extends LitElement {
   static styles = styles;
 
   private readonly stripe = loadStripe(window.STRIPE_KEY);
+  private readonly stripeElements = this.stripe.then((stripe) =>
+    stripe.elements({
+      mode: 'subscription',
+      amount: 0,
+      currency: 'usd',
+      paymentMethodTypes: ['us_bank_account', 'card'],
+    }),
+  );
 
   @query('form')
   form!: HTMLFormElement;
@@ -206,45 +183,19 @@ export class Signup extends LitElement {
   @query('[name="tshirt-size"]')
   tshirtSize!: HTMLSelectElement;
   @query('[name="sms-consent"]')
-  smsConsent!: HTMLInputElement;
+  smsConsent!: HTMLSelectElement;
 
   // Payment info input elements.
-  @query('[name="card-holder-name"]')
-  cardHolderName: HTMLInputElement;
-  @query('[name="billing-address-1"]')
-  billingAddress1: HTMLInputElement;
-  @query('[name="billing-address-2"]')
-  billingAddress2: HTMLInputElement;
-  @query('[name="billing-city"]')
-  billingCity: HTMLInputElement;
-  @query('[name="billing-region"]')
-  billingRegion: HTMLInputElement;
-  @query('[name="billing-postal-code"]')
-  billingPostalCode: HTMLInputElement;
-  @query('[name="billing-country"]')
-  billingCountry: HTMLSelectElement;
-  @query('[name="routing-number"]')
-  routingNumber: HTMLInputElement;
-  @query('[name="account-number"]')
-  accountNumber: HTMLInputElement;
-  @query('[name="account-holder-name"]')
-  accountHolderName: HTMLInputElement;
   @query('[name="currency"]')
   currency!: HTMLInputElement;
   @query('[name="signature"]')
   signature!: HTMLInputElement;
 
-  @query('#card')
-  cardContainer!: HTMLElement;
-
   cardElement: StripeCardElement;
-
-  // TODO(#208): Temporary until bank accounts are supported for Canada.
-  @state()
-  protected bankSupported = true;
+  private paymentElement: StripePaymentElement;
 
   @state()
-  protected paymentMethod: 'bank' | 'card' | 'plaid' = 'plaid';
+  lastStripeMethod = '';
 
   @state()
   isFirstPartyEmployer = true;
@@ -263,36 +214,36 @@ export class Signup extends LitElement {
 
   @state()
   private availableRegions = allCountries.find(
-    (countryData) => countryData[1] === 'US'
+    (countryData) => countryData[1] === 'US',
   )[2];
-
-  @state()
-  private plaidToken?: PlaidToken;
 
   private hourlyRate = 0;
   private hoursPerWeek = 40;
   private readonly weeksPerYear = 52;
 
-  private readonly plaid: Promise<Window['Plaid']> = loadPlaid();
-
   constructor() {
     super();
 
-    // TODO debugging tool, remove later
+    if (
+      new URLSearchParams(window.location.search).get('redirect_status') ===
+      'succeeded'
+    ) {
+      this.isComplete = true;
+    }
+
     window.fillTestValues = async () => {
-      this.paymentMethod = 'bank';
       await this.updateComplete;
 
       this.employmentType.value = 'fte';
       this.signature.value = 'foo';
       this.preferredName.value = 'foo';
-      this.personalEmail.value = 'foo@foo';
+      this.personalEmail.value = 'foo@foo.com';
       this.personalPhone.value = 'foo';
       this.mailingAddress1.value = 'foo';
       this.mailingCity.value = 'foo';
-      this.mailingRegion.value = 'foo';
+      this.mailingRegion.value = 'California';
       this.mailingPostalCode.value = 'foo';
-      this.mailingCountry.value = 'foo';
+      this.mailingCountry.value = 'United States';
       this.employer.value = 'Google';
       this.siteCode.value = 'foo';
       this.org.value = 'foo';
@@ -302,70 +253,20 @@ export class Signup extends LitElement {
       this.totalCompensation.value = '250000';
       this.birthday.value = '01/01/1950';
       this.tshirtSize.value = 'other';
-      this.smsConsent.value = '1';
-      this.billingCountry.value = 'US';
-      this.routingNumber.value = '110000000';
-      this.accountNumber.value = '000123456789';
-      this.accountHolderName.value = 'foo';
+      this.smsConsent.value = 'n';
       this.currency.value = 'usd';
       this.signature.value = 'foo';
+      this.requestUpdate();
     };
-  }
-
-  protected setMethod(
-    method: 'bank' | 'card' | 'plaid'
-  ): (event?: MouseEvent) => unknown {
-    return (event?: MouseEvent) => {
-      event?.preventDefault();
-      this.paymentMethod = method;
-    };
-  }
-
-  protected isMethod(method: 'bank' | 'card' | 'plaid'): boolean {
-    return this.paymentMethod === method;
   }
 
   protected clearInvalidity(event: InputEvent): void {
     (event.target as HTMLInputElement).setCustomValidity('');
   }
 
-  /**
-   * Stripe Elements do not work within the ShadowDOM.  To enable it to work
-   * properly, this element accepts a slot called `stripe-card-container`.  It
-   * only needs to exist, and can be empty.  The stripe element is mounted to
-   * that slot element, so that it exists outside of the shadow DOM.
-   */
-  private async rebindStripeElement(event: Event): Promise<void> {
-    const container = (event.target as HTMLSlotElement).assignedElements()[0];
-    if (this.cardElement) {
-      this.cardElement.unmount();
-    }
-    if (container instanceof HTMLElement) {
-      this.cardElement = (await this.stripe).elements().create('card', {
-        style: {
-          base: {
-            fontSize: '24px',
-          },
-        },
-      });
-      this.cardElement.mount(container);
-    }
-  }
-
-  private connectedPlaidTemplate(): TemplateResult {
-    return html` <div class="field full-width">
-      <span class="title">Verified Account</span>
-      <span class="hint"></span>
-      <p>
-        ${this.plaidToken?.account_name}
-        <button @click=${this.clearPlaid}>Remove</button>
-      </p>
-    </div>`;
-  }
-
   private paymentTemplate(): TemplateResult {
     return html` <h2>Payment</h2>
-      ${this.bankSupported
+      ${this.isBankSupported()
         ? ''
         : html` <div class="field full-width">
             <div class="title">
@@ -378,191 +279,12 @@ export class Signup extends LitElement {
               to be sent a secure link to update to bank payments.
             </div>
           </div>`}
-      <div class="payment-method-toggle full-width">
-        <button
-          ?disabled=${!this.bankSupported}
-          class=${classMap({ selected: this.isMethod('plaid') })}
-          @click=${this.setMethod('plaid')}
-        >
-          Bank account
-        </button>
-        <button
-          ?disabled=${!this.bankSupported}
-          class=${classMap({ selected: this.isMethod('bank') })}
-          @click=${this.setMethod('bank')}
-        >
-          Bank account (manual)
-        </button>
-        <button
-          class=${classMap({ selected: this.isMethod('card') })}
-          @click=${this.setMethod('card')}
-        >
-          Card
-        </button>
-      </div>
-      ${this.paymentMethodTemplate()}`;
+      <slot
+        class="field full-width"
+        name="stripe-payment-container"
+        @slotchange=${this.rebindStripePaymentElement}
+      ></slot>`;
   }
-
-  // TODO prevent scrolling from incrementing number fields
-  // TODO server-side validation, and accept error responses
-  private readonly bankTemplate: TemplateResult = html`<div
-      class="field full-width"
-    >
-      <span class="title">Connect bank</span>
-      <span class="hint">
-        If you enter your routing or account numbers manually, two microdeposits
-        are made into your account. In order to verify your bank account, we
-        will need to contact you after those deposits have cleared. This process
-        usually takes 2-3 days.
-      </span>
-    </div>
-    <label>
-      <span class="title">Routing number</span>
-      <span class="hint"> </span>
-      <input
-        name="routing-number"
-        aria-label="Routing number"
-        type="number"
-        minlength="9"
-        required
-        autocomplete="cc-number"
-      />
-    </label>
-    <label>
-      <span class="title">Account number</span>
-      <span class="hint"></span>
-      <input
-        name="account-number"
-        aria-label="Account number"
-        type="number"
-        minlength="10"
-        required
-        autocomplete="cc-number"
-      />
-    </label>
-    <label>
-      <span class="title">Account holder name</span>
-      <input
-        name="account-holder-name"
-        aria-label="Account holder name"
-        required
-        autocomplete="cc-name"
-      />
-    </label>
-    <label>
-      <span class="title">Country of account</span>
-      <div class="select">
-        <select name="billing-country" required autocomplete="country">
-          <option value="US" selected>US</option>
-          <option value="CA">CA</option>
-        </select>
-      </div>
-    </label>`;
-
-  private cardTemplate(): TemplateResult {
-    return html`<div class="field full-width">
-        <span class="title">Card details</span>
-        <span class="hint">
-          ${this.bankSupported
-            ? html` <em>Please consider using a bank account to pay dues.</em>
-                This both saves you the ${FRIENDLY_CARD_PROCESSING_FEE}
-                processing fee charge, and also your union's administrative
-                overhead by saving the work of getting updated payment
-                information when cards expire or are cancelled.`
-            : ''}
-        </span>
-        <div class="card-container">
-          <slot
-            name="stripe-card-container"
-            @slotchange=${this.rebindStripeElement}
-          ></slot>
-        </div>
-      </div>
-      <label>
-        <span class="title">Card holder name</span>
-        <span class="hint"></span>
-        <input
-          name="card-holder-name"
-          aria-label="Card holder name"
-          required
-          autocomplete="cc-name"
-        />
-      </label>
-      <label>
-        <span class="title">Billing street address</span>
-        <span class="hint"></span>
-        <input
-          name="billing-address-1"
-          aria-label="Address line 1"
-          required
-          autocomplete="address-line1"
-        />
-      </label>
-      <label>
-        <span class="title">Billing street line 2</span>
-        <span class="hint"></span>
-        <input
-          name="billing-address-2"
-          aria-label="Address line 2"
-          autocomplete="address-line2"
-        />
-      </label>
-      <label>
-        <span class="title">Billing city</span>
-        <span class="hint"></span>
-        <input
-          name="billing-city"
-          aria-label="Billing City"
-          required
-          autocomplete="address-level2"
-        />
-      </label>
-      <label>
-        <span class="title">Billing state</span>
-        <span class="hint"></span>
-        <input
-          name="billing-state"
-          aria-label="Billing State"
-          required
-          autocomplete="address-level1"
-        />
-      </label>
-      <label>
-        <span class="title">Billing postal code</span>
-        <span class="hint"></span>
-        <input
-          name="billing-zip"
-          aria-label="Billing Postal Code"
-          required
-          autocomplete="postal-code"
-        />
-      </label>
-      <label>
-        <span class="title">Billing country</span>
-        <span class="hint"></span>
-        <input
-          name="billing-country"
-          aria-label="Billing Country"
-          required
-          autocomplete="country"
-        />
-      </label>`;
-  }
-
-  private readonly plaidTemplate = html` <div class="field full-width">
-    <span class="title">Connect bank</span>
-    <span class="hint">
-      Click Connect bank to use Plaid to instantly connect your bank account.
-    </span>
-    <button
-      @click=${this.openPlaid}
-      class="primary"
-      type="button"
-      type="button"
-    >
-      Connect bank
-    </button>
-  </div>`;
 
   render(): TemplateResult {
     return html`
@@ -755,7 +477,7 @@ export class Signup extends LitElement {
         <label>
           <span class="title"
             >State/province/territory${this.optionalLabel(
-              'mailing-region'
+              'mailing-region',
             )}</span
           >
           <span class="hint"></span>
@@ -772,7 +494,7 @@ export class Signup extends LitElement {
                 (regionData) => regionData[1],
                 (regionData) => html`
                   <option value=${regionData[0]}>${regionData[0]}</option>
-                `
+                `,
               )}
             </select>
           </div>
@@ -854,7 +576,7 @@ export class Signup extends LitElement {
                 >
                   ${ALPHABET_SUBSIDIARIES.map(
                     (name, i) =>
-                      html`<option ?selected=${i === 0}>${name}</option>`
+                      html`<option ?selected=${i === 0}>${name}</option>`,
                   )}
                 </select>
               </div>
@@ -1095,9 +817,7 @@ export class Signup extends LitElement {
           </span>
           ${this.duesTemplate()}
         </label>
-        ${this.plaidToken
-          ? this.connectedPlaidTemplate()
-          : this.paymentTemplate()}
+        ${this.paymentTemplate()}
         <h2>Accept agreement</h2>
         <label class="full-width">
           <span class="title">
@@ -1131,6 +851,20 @@ export class Signup extends LitElement {
     `;
   }
 
+  currencyChangeHandler(): void {
+    this.updateCurrencyPaymentMethod();
+  }
+
+  async updateCurrencyPaymentMethod(): Promise<void> {
+    (await this.stripeElements).update({
+      currency: this.currency.value,
+      paymentMethodTypes: this.isBankSupported()
+        ? ['us_bank_account', 'card']
+        : ['card'],
+    });
+    this.requestUpdate();
+  }
+
   enableInvalidStyles(): void {
     this.form.classList.add('invalidatable');
   }
@@ -1138,7 +872,7 @@ export class Signup extends LitElement {
   validatePersonalEmail(email: string): void {
     const domain = email.split('@')[1];
 
-    if(WORK_EMAIL_SUFFIXES.some((suffix) => suffix == domain)) {
+    if (WORK_EMAIL_SUFFIXES.some((suffix) => suffix == domain)) {
       this.setInvalid('personal-email', 'Please enter a non-work email.');
     }
   }
@@ -1146,32 +880,37 @@ export class Signup extends LitElement {
   async submit(event: Event): Promise<void> {
     event.preventDefault();
     this.enableInvalidStyles();
-    // TODO add CAPTCHA?
 
     this.isLoading = true;
-    const fields = new SpliceableUrlSearchParams(new FormData(this.form));
+    const body = new FormData(this.form);
+    body.set('payment-method', this.lastStripeMethod);
+    const email = this.personalEmail.value;
 
     try {
-      let body: FormData;
-      if (this.plaidToken) {
-        body = fields.getRemainder();
-        body.set('plaid-public-token', this.plaidToken.public_token);
-        body.set('plaid-account-id', this.plaidToken.account_id);
-      } else {
-        const [token, remainingFields] = await (this.paymentMethod === 'bank'
-          ? this.bankAccountToken(fields)
-          : this.cardToken(fields));
-        body = remainingFields;
-        body.set('stripe-payment-token', token.id);
+      const stripeElementResult = await (await this.stripeElements).submit();
+      if (stripeElementResult.error) {
+        throw new Error(stripeElementResult.error.message);
       }
-      body.set('payment-method', this.paymentMethod);
-
 
       this.validatePersonalEmail(fields.splice('personal-email') as string);
 
       const result = await fetch(window.SIGNUP_API, { method: 'POST', body });
 
       if (result.ok) {
+        const responseBody = await result.json();
+        await (
+          await this.stripe
+        ).confirmSetup({
+          elements: await this.stripeElements,
+          clientSecret: responseBody['subscription_client_secret'],
+          confirmParams: {
+            return_url: window.location.toString(),
+            payment_method_data: {
+              billing_details: { email },
+            },
+          },
+          redirect: 'if_required',
+        });
         this.isComplete = true;
       } else {
         const { error } = await result.json();
@@ -1194,94 +933,6 @@ export class Signup extends LitElement {
     }
   }
 
-  async cardToken(
-    data: SpliceableUrlSearchParams
-  ): Promise<[Token, URLSearchParams]> {
-    const stripe = await this.stripe;
-    const result = await stripe.createToken(this.cardElement, {
-      name: data.splice('card-holder-name') as string,
-      address_line1: data.splice('billing-address-1') as string,
-      address_line2: data.splice('billing-address-2') as string,
-      address_city: data.splice('billing-city') as string,
-      address_state: data.splice('billing-state') as string,
-      address_zip: data.splice('billing-zip') as string,
-      address_country: data.splice('billing-country') as string,
-      currency: data.get('currency') as string,
-    });
-    if (result.token) {
-      return [result.token, data.getRemainder()];
-    } else {
-      console.error(result);
-      let message = '';
-      switch (result.error.param) {
-        case 'card[name]':
-          this.setInvalid('card-holder-name', result.error.message);
-          break;
-        case 'card[address_line1]':
-          this.setInvalid('billing-address-1', result.error.message);
-          break;
-        case 'card[address_line2]':
-          this.setInvalid('billing-address-2', result.error.message);
-          break;
-        case 'card[address_city]':
-          this.setInvalid('billing-city', result.error.message);
-          break;
-        case 'card[address_zip]':
-          this.setInvalid('billing-zip', result.error.message);
-          break;
-        case 'card[address_country]':
-          this.setInvalid('billing-country', result.error.message);
-          break;
-        case 'currency':
-          this.setInvalid('currency', result.error.message);
-          break;
-        default:
-          message = result.error.message;
-      }
-      return Promise.reject(message);
-    }
-  }
-
-  async bankAccountToken(
-    data: SpliceableUrlSearchParams
-  ): Promise<[Token, URLSearchParams]> {
-    const stripe = await this.stripe;
-    const result = await stripe.createToken('bank_account', {
-      country: data.splice('billing-country') as string,
-      currency: data.get('currency') as string,
-      routing_number: data.splice('routing-number') as string,
-      account_number: data.splice('account-number') as string,
-      account_holder_name: data.splice('account-holder-name') as string,
-      account_holder_type: 'individual',
-    });
-    if (result.token) {
-      return [result.token, data.getRemainder()];
-    } else {
-      console.error(result);
-      let message = '';
-      switch (result.error.param) {
-        case 'bank_account[country]':
-          this.setInvalid('billing-country', result.error.message);
-          break;
-        case 'bank_account[currency]':
-          this.setInvalid('currency', result.error.message);
-          break;
-        case 'bank_account[routing_number]':
-          this.setInvalid('routing-number', result.error.message);
-          break;
-        case 'bank_account[account_number]':
-          this.setInvalid('account-number', result.error.message);
-          break;
-        case 'bank_account[account_holder_name]':
-          this.setInvalid('account-holder-name', result.error.message);
-          break;
-        default:
-          message = result.error.message;
-      }
-      return Promise.reject(message);
-    }
-  }
-
   employmentTypeHandler(): void {
     this.isFirstPartyEmployer = this.employmentType.value !== 'v';
     this.isContractor = this.employmentType.value === 'c';
@@ -1290,39 +941,62 @@ export class Signup extends LitElement {
 
   mailingCountryChangeHandler(): void {
     this.availableRegions = allCountries.find(
-      (countryData) => countryData[0] === this.mailingCountry.value
+      (countryData) => countryData[0] === this.mailingCountry.value,
     )[2];
     this.currency.value =
       this.mailingCountry.value == 'United States' ? 'usd' : 'cad';
-    if (this.billingCountry != null) {
-      this.billingCountry.value = this.mailingCountry.value;
-    }
-    // TODO(#208): Temporary until bank accounts are supported for Canada.
-    if (this.mailingCountry.value === 'Canada') {
-      this.paymentMethod = 'card';
-      this.bankSupported = false;
-    } else {
-      this.bankSupported = true;
-    }
-    this.requestUpdate();
+
+    this.updateCurrencyPaymentMethod();
+  }
+
+  // TODO(#208): Temporary until bank accounts are supported for Canada.
+  private isBankSupported(): boolean {
+    return (
+      !this.mailingCountry ||
+      (this.mailingCountry?.value === 'United States' &&
+        this.currency.value === 'usd')
+    );
   }
 
   compChangeHandler(): void {
     this.requestUpdate();
   }
 
-  currencyChangeHandler(): void {
-    this.requestUpdate();
-    if (this.billingCountry != null) {
-      switch (this.currency.value) {
-        case 'usd':
-          this.billingCountry.value = 'United States';
-          break;
-        case 'cad':
-          this.billingCountry.value = 'Canada';
-          break;
+  private stripePaymentContainer: HTMLElement;
+
+  /**
+   * Stripe Elements do not work within the ShadowDOM.  To enable it to work
+   * properly, this element accepts a slot called `stripe-card-container`.  It
+   * only needs to exist, and can be empty.  The stripe element is mounted to
+   * that slot element, so that it exists outside of the shadow DOM.
+   */
+  private async rebindStripePaymentElement(event: Event): Promise<void> {
+    this.stripePaymentContainer = (
+      event.target as HTMLSlotElement
+    ).assignedElements()[0] as HTMLElement;
+
+    if (this.stripePaymentContainer instanceof Element) {
+      if (this.paymentElement) {
+        this.paymentElement.unmount();
       }
+      this.paymentElement = (await this.stripeElements).create('payment', {
+        layout: 'tabs',
+        paymentMethodOrder: ['us_bank_account', 'card'],
+        fields: {
+          billingDetails: {
+            email: 'never',
+          },
+        },
+      });
+      this.paymentElement.mount(this.stripePaymentContainer);
+
+      // Keep track of payment method for re-calculating dues.
+      this.paymentElement.on('change', (event) => {
+        this.lastStripeMethod = event.value.type;
+      });
     }
+
+    this.compChangeHandler();
   }
 
   compCalculatorClickHandler(): void {
@@ -1331,9 +1005,9 @@ export class Signup extends LitElement {
 
   private recalculateTotalComp(): void {
     this.totalCompensation.value = String(
-      this.hourlyRate * this.hoursPerWeek * this.weeksPerYear
+      this.hourlyRate * this.hoursPerWeek * this.weeksPerYear,
     );
-    this.requestUpdate();
+    this.compChangeHandler();
   }
 
   hourlyRateChangeHandler(event: InputEvent): void {
@@ -1347,7 +1021,7 @@ export class Signup extends LitElement {
   }
 
   isPayingWithCard(): boolean {
-    return this.paymentMethod === 'card';
+    return this.lastStripeMethod === 'card';
   }
 
   duesTemplate(): TemplateResult {
@@ -1383,56 +1057,24 @@ export class Signup extends LitElement {
     }
   }
 
-  paymentMethodTemplate(): TemplateResult {
-    switch (this.paymentMethod) {
-      case 'bank':
-        return this.bankTemplate;
-      case 'card':
-        return this.cardTemplate();
-      case 'plaid':
-        return this.plaidTemplate;
-    }
-  }
-
   formattedCurrency(): string {
     return this.currency?.value.toUpperCase() ?? '';
   }
 
   setInvalid(field: string, message: string): void {
-    const input = this.form.elements.namedItem(field) as HTMLInputElement;
-    input.setCustomValidity(message);
-    input.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-    });
-  }
-
-  async openPlaid(): Promise<void> {
-    // TODO re-use client token when possible.
-    const { link_token } = await (
-      await fetch(window.PLAID_TOKEN_API, { method: 'post' })
-    ).json();
-    const handler = (await this.plaid).create({
-      token: link_token,
-      onSuccess: (public_token: string, metadata: PlaidMetadata) => {
-        this.plaidToken = {
-          public_token,
-          account_name: `${metadata.institution.name} ${metadata.accounts[0].name}`,
-          account_id: metadata.accounts[0].id,
-        };
-      },
-      onExit: () => {
-        // TODO if exit, user probably could not find their financial institution.  Show the account number fields instead.
-        // TODO re-use this iframe when possible, instead of re-creating every time.  Must silently recover if the token expires.
-        handler.destroy();
-      },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any);
-    handler.open();
-  }
-
-  clearPlaid(): void {
-    this.plaidToken = undefined;
+    const input = this.form.elements.namedItem(
+      field,
+    ) as HTMLInputElement | null;
+    if (input) {
+      input.setCustomValidity(message);
+      input.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    } else {
+      console.error(message);
+      alert(message);
+    }
   }
 
   isFte(): boolean {
@@ -1454,38 +1096,11 @@ export class Signup extends LitElement {
   }
 }
 
-/**
- * URLSearchParams wrapper that can remove any accessed field.  Useful for
- * pulling out fields that need to be tokenized and not uploaded directly.
- */
-class SpliceableUrlSearchParams {
-  private readonly original: URLSearchParams;
-  private readonly remainder: URLSearchParams;
-  constructor(original: URLSearchParams | FormData) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- https://github.com/microsoft/TypeScript/issues/30584
-    this.original = new URLSearchParams(original as any);
-    this.remainder = new URLSearchParams(this.original);
-  }
-
-  get(field: string): string | null {
-    return this.original.get(field);
-  }
-
-  splice(field: string): string | null {
-    this.remainder.delete(field);
-    return this.get(field);
-  }
-
-  getRemainder(): URLSearchParams {
-    return new URLSearchParams(this.remainder);
-  }
-}
-
 declare global {
   interface Window {
     SIGNUP_API: string;
-    PLAID_TOKEN_API: string;
     STRIPE_KEY: string;
+    PAYMENT_INTENT_API: string;
     fillTestValues: () => void;
   }
 }

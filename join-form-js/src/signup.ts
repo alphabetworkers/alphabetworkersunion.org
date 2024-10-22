@@ -865,16 +865,26 @@ export class Signup extends LitElement {
     this.requestUpdate();
   }
 
+  personalEmailValidator(): boolean {
+    if (this.isWorkEmail(this.personalEmail.value)) {
+      this.personalEmail.setCustomValidity('Please enter a non-work email.');
+      return false;
+    } else {
+      this.personalEmail.setCustomValidity('');
+      return true;
+    }
+
+    this.personalEmail.reportValidity();
+  }
+
   enableInvalidStyles(): void {
     this.form.classList.add('invalidatable');
   }
 
-  validatePersonalEmail(email: string): void {
+  isWorkEmail(email: string): boolean {
     const domain = email.split('@')[1];
 
-    if (WORK_EMAIL_SUFFIXES.some((suffix) => suffix == domain)) {
-      this.setInvalid('personal-email', 'Please enter a non-work email.');
-    }
+    return WORK_EMAIL_SUFFIXES.some((suffix) => suffix == domain);
   }
 
   async submit(event: Event): Promise<void> {
@@ -886,13 +896,19 @@ export class Signup extends LitElement {
     body.set('payment-method', this.lastStripeMethod);
     const email = this.personalEmail.value;
 
+    // Create a wrapper function once more custom validations are run on this form.
+    const customValidationsPassed = this.personalEmailValidator();
+
+    if (!customValidationsPassed) {
+      this.isLoading = false;
+      return;
+    }
+
     try {
       const stripeElementResult = await (await this.stripeElements).submit();
       if (stripeElementResult.error) {
         throw new Error(stripeElementResult.error.message);
       }
-
-      this.validatePersonalEmail(fields.splice('personal-email') as string);
 
       const result = await fetch(window.SIGNUP_API, { method: 'POST', body });
 

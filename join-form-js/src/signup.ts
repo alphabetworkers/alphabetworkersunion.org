@@ -882,9 +882,7 @@ export class Signup extends LitElement {
   }
 
   isWorkEmail(email: string): boolean {
-    const domain = email.split('@')[1];
-
-    return WORK_EMAIL_SUFFIXES.some((suffix) => suffix == domain);
+    return WORK_EMAIL_SUFFIXES.some((domain) => email.endsWith(`@${domain}`));
   }
 
   async submit(event: Event): Promise<void> {

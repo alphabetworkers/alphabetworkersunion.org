@@ -64,7 +64,7 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
               color: 'var(--white)',
             }}
           >
-            Delete existing payment method
+            Disconnect Existing Payment Method
           </button>
           <p
             style={{
@@ -87,7 +87,7 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
               textDecoration: 'none',
             }}
           >
-            Open Stripe billing portal
+            Open Stripe Billing Portal
           </a>
           <p
             style={{
@@ -95,7 +95,7 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
               padding: '0 var(--text-padding)',
             }}
           >
-            If there are other membership changes you would like to make, such as cancelling your membership (which includes cancelling dues
+            If there are other membership changes you would like to make, such as canceling your membership (which includes canceling dues
             charges), or updating your office location or job information, please fill out the change form:
             <a href="https://go.awu.fyi/change">go.awu.fyi/change</a>
           </p>
@@ -117,7 +117,7 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
         >
           {cwaAwuLogo()}
           <p style={{ margin: 0 }}>
-            To update your payment method on file, view and update your mailing/ billing address or retrieve receipts of previous dues
+            To update your payment method on file, view and update your mailing/billing address or retrieve receipts of previous dues
             charges, navigate to the Stripe Billing Portal:
           </p>
           <a
@@ -132,7 +132,7 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
               textDecoration: 'none',
             }}
           >
-            Open Stripe billing portal
+            Open Stripe Billing Portal
           </a>
           <p
             style={{
@@ -140,7 +140,7 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
               padding: '0 var(--text-padding)',
             }}
           >
-            If there are other membership changes you would like to make, such as cancelling your membership (which includes cancelling dues
+            If there are other membership changes you would like to make, such as canceling your membership (which includes canceling dues
             charges), or updating your office location or job information, please fill out the change form:
             <a href="https://go.awu.fyi/change">go.awu.fyi/change</a>
           </p>

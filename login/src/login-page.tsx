@@ -20,9 +20,17 @@ export function loginPage(params: URLSearchParams): Response {
           }}
         >
           {cwaAwuLogo()}
+          <h1
+            style={{
+              textAlign: 'center',
+              margin: 0,
+            }}
+          >
+            Login Link Sent to Email
+          </h1>
           <p style={{ margin: '0' }}>
-            If your email was associated with an AWU-CWA membership, a login link has been sent to thaat email address. Please check your
-            email for next steps.
+            If the email address you entered is associated with an AWU-CWA membership, a login link has been sent to that email address.
+            Please check your email for next steps.
             <br />
             <br />
             This tab may be closed.
@@ -55,9 +63,7 @@ export function loginPage(params: URLSearchParams): Response {
               margin: 0,
             }}
           >
-            Login to your <br />
-            AWU-CWA
-            <br /> dues profile
+            Log in to your AWU-CWA dues profile
           </h1>
           <p
             style={{
@@ -74,7 +80,7 @@ export function loginPage(params: URLSearchParams): Response {
               margin: 0,
             }}
           >
-            Enter the <em>personal</em> email associated with your account. We'll send you a link to log in.
+            Enter the <em>personal</em> email address associated with your AWU-CWA membership. We'll send you a link to log in.
           </p>
           <input
             type="email"

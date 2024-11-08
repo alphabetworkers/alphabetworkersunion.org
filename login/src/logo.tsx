@@ -7,7 +7,7 @@ export function cwaAwuLogo() {
       x="0px"
       y="0px"
       viewBox="0 0 289.1 286.9"
-      style="enable-background:new 0 0 289.1 286.9;"
+      style="enable-background:new 0 0 289.1 286.9; max-width: 10em; align-self: center;"
       xml:space="preserve"
     >
       <path

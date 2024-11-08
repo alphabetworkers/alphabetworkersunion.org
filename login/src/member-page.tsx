@@ -19,25 +19,17 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
             margin: '0 auto',
             gap: 'var(--container-padding)',
             padding: 'var(--container-padding)',
-            maxWidth: 'min(400px, 90vw)',
+            maxWidth: 'min(600px, 90vw)',
             background: 'var(--white)',
             borderRadius: 'var(--border-radius)',
           }}
         >
           {cwaAwuLogo()}
-          <h1
-            style={{
-              textAlign: 'center',
-              margin: 0,
-            }}
-          >
-            AWU-CWA Dues Profile
-          </h1>
+          <h1>AWU-CWA Dues Profile</h1>
           <p
             style={{
               background: 'var(--yellow-faded)',
               border: 'solid 2px var(--yellow)',
-              margin: 0,
               padding: 'var(--text-padding)',
               borderRadius: 'var(--border-radius)',
               maxWidth: 'min(700px, 90vw)',
@@ -66,12 +58,7 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
           >
             Disconnect Existing Payment Method
           </button>
-          <p
-            style={{
-              margin: 0,
-              padding: '0 var(--text-padding)',
-            }}
-          >
+          <p>
             To view and update your mailing/billing address or retrieve receipts of previous dues charges, navigate to the Stripe Billing
             Portal:
           </p>
@@ -89,12 +76,7 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
           >
             Open Stripe Billing Portal
           </a>
-          <p
-            style={{
-              margin: 0,
-              padding: '0 var(--text-padding)',
-            }}
-          >
+          <p>
             If there are other membership changes you would like to make, such as canceling your membership (which includes canceling dues
             charges), or updating your office location or job information, please fill out the change form:
             <a href="https://go.awu.fyi/change">go.awu.fyi/change</a>
@@ -110,13 +92,13 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
             margin: '0 auto',
             gap: 'var(--container-padding)',
             padding: 'var(--container-padding)',
-            maxWidth: 'min(400px, 90vw)',
+            maxWidth: 'min(600px, 90vw)',
             background: 'var(--white)',
             borderRadius: 'var(--border-radius)',
           }}
         >
           {cwaAwuLogo()}
-          <p style={{ margin: 0 }}>
+          <p>
             To update your payment method on file, view and update your mailing/billing address or retrieve receipts of previous dues
             charges, navigate to the Stripe Billing Portal:
           </p>
@@ -134,12 +116,7 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
           >
             Open Stripe Billing Portal
           </a>
-          <p
-            style={{
-              margin: 0,
-              padding: '0 var(--text-padding)',
-            }}
-          >
+          <p>
             If there are other membership changes you would like to make, such as canceling your membership (which includes canceling dues
             charges), or updating your office location or job information, please fill out the change form:
             <a href="https://go.awu.fyi/change">go.awu.fyi/change</a>

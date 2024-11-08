@@ -14,21 +14,15 @@ export function loginPage(params: URLSearchParams): Response {
             padding: 'var(--container-padding)',
             display: 'flex',
             flexDirection: 'column',
+            gap: 'var(--container-padding)',
             alignItems: 'stretch',
-            maxWidth: 'min(400px, 90vw)',
+            maxWidth: 'min(600px, 90vw)',
             margin: '0 auto',
           }}
         >
           {cwaAwuLogo()}
-          <h1
-            style={{
-              textAlign: 'center',
-              margin: 0,
-            }}
-          >
-            Login Link Sent to Email
-          </h1>
-          <p style={{ margin: '0' }}>
+          <h1>Login Link Sent to Email</h1>
+          <p>
             If the email address you entered is associated with an AWU-CWA membership, a login link has been sent to that email address.
             Please check your email for next steps.
             <br />
@@ -52,34 +46,17 @@ export function loginPage(params: URLSearchParams): Response {
             flexDirection: 'column',
             gap: 'var(--container-padding)',
             alignItems: 'stretch',
-            maxWidth: 'min(400px, 90vw)',
+            maxWidth: 'min(600px, 90vw)',
             margin: '0 auto',
           }}
         >
           {cwaAwuLogo()}
-          <h1
-            style={{
-              textAlign: 'center',
-              margin: 0,
-            }}
-          >
-            Log in to your AWU-CWA dues profile
-          </h1>
-          <p
-            style={{
-              padding: '0 var(--text-padding)',
-              margin: 0,
-            }}
-          >
+          <h1>Log in to your AWU-CWA dues profile</h1>
+          <p>
             This page allows you to update your payment method and mailing/billing address, as well as retrieve receipts of your previous
             dues charges. This page is available to both current and former AWU-CWA members.
           </p>
-          <p
-            style={{
-              padding: '0 var(--text-padding)',
-              margin: 0,
-            }}
-          >
+          <p>
             Enter the <em>personal</em> email address associated with your AWU-CWA membership. We'll send you a link to log in.
           </p>
           <input

@@ -98,6 +98,7 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
           }}
         >
           {cwaAwuLogo()}
+          <h1>AWU-CWA Dues Profile</h1>
           <p>
             To update your payment method on file, view and update your mailing/billing address or retrieve receipts of previous dues
             charges, navigate to the Stripe Billing Portal:

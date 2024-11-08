@@ -1,3 +1,4 @@
+import { footer } from './footer';
 import { makeHtmlResponse, renderDocument } from './html';
 import { cwaAwuLogo } from './logo';
 
@@ -29,17 +30,7 @@ export function loginPage(params: URLSearchParams): Response {
             <br />
             <a href=".">Start over</a>
           </p>
-          <p
-            style={{
-              fontSize: '0.6em',
-              opacity: 0.7,
-              padding: 'var(--text-padding)',
-            }}
-          >
-            Have questions, or are you running into issues? Contact the AWU-CWA Membership Committee:
-            <br />
-            <a href="mailto:committee-membership@union.groups.io">committee-membership@union.groups.io</a>.
-          </p>
+          {footer()}
         </div>
       ) : (
         <form
@@ -108,17 +99,7 @@ export function loginPage(params: URLSearchParams): Response {
           >
             Send Login Link
           </button>
-          <p
-            style={{
-              fontSize: '0.6em',
-              opacity: 0.7,
-              padding: 'var(--text-padding)',
-            }}
-          >
-            Have questions, or are you running into issues? Contact the AWU-CWA Membership Committee:
-            <br />
-            <a href="mailto:committee-membership@union.groups.io">committee-membership@union.groups.io</a>.
-          </p>
+          {footer()}
         </form>
       ),
     ),

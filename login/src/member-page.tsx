@@ -1,4 +1,6 @@
 import Stripe from 'stripe';
+
+import { footer } from './footer';
 import { makeHtmlResponse, renderDocument } from './html';
 import { cwaAwuLogo } from './logo';
 
@@ -97,17 +99,7 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
             charges), or updating your office location or job information, please fill out the change form:
             <a href="https://go.awu.fyi/change">go.awu.fyi/change</a>
           </p>
-          <p
-            style={{
-              fontSize: '0.6em',
-              opacity: 0.7,
-              padding: 'var(--text-padding)',
-            }}
-          >
-            Have questions, or are you running into issues? Contact the AWU-CWA Membership Committee:
-            <br />
-            <a href="mailto:committee-membership@union.groups.io">committee-membership@union.groups.io</a>.
-          </p>
+          {footer()}
         </form>
       ) : (
         <div
@@ -152,17 +144,7 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
             charges), or updating your office location or job information, please fill out the change form:
             <a href="https://go.awu.fyi/change">go.awu.fyi/change</a>
           </p>
-          <p
-            style={{
-              fontSize: '0.6em',
-              opacity: 0.7,
-              padding: 'var(--text-padding)',
-            }}
-          >
-            Have questions, or are you running into issues? Contact the AWU-CWA Membership Committee:
-            <br />
-            <a href="mailto:committee-membership@union.groups.io">committee-membership@union.groups.io</a>.
-          </p>
+          {footer()}
         </div>
       ),
     ),

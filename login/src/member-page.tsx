@@ -78,7 +78,7 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
           </a>
           <p>
             If there are other membership changes you would like to make, such as canceling your membership (which includes canceling dues
-            charges), or updating your office location or job information, please fill out the change form:
+            charges), or updating your office location or job information, please fill out the change form:&#32;
             <a href="https://go.awu.fyi/change">go.awu.fyi/change</a>
           </p>
           {footer()}
@@ -118,7 +118,7 @@ export async function memberPage(customerId: string, env: Env): Promise<Response
           </a>
           <p>
             If there are other membership changes you would like to make, such as canceling your membership (which includes canceling dues
-            charges), or updating your office location or job information, please fill out the change form:
+            charges), or updating your office location or job information, please fill out the change form:&#32;
             <a href="https://go.awu.fyi/change">go.awu.fyi/change</a>
           </p>
           {footer()}

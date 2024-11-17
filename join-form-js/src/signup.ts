@@ -867,14 +867,12 @@ export class Signup extends LitElement {
 
   personalEmailValidator(): boolean {
     if (this.isWorkEmail(this.personalEmail.value)) {
-      this.personalEmail.setCustomValidity('Please enter a non-work email.');
+      this.setInvalid('personal-email', 'Please enter a non-work email.');
+      this.personalEmail.reportValidity();
       return false;
-    } else {
-      this.personalEmail.setCustomValidity('');
-      return true;
     }
 
-    this.personalEmail.reportValidity();
+    return true;
   }
 
   enableInvalidStyles(): void {
@@ -882,7 +880,7 @@ export class Signup extends LitElement {
   }
 
   isWorkEmail(email: string): boolean {
-    return WORK_EMAIL_SUFFIXES.some((domain) => email.endsWith(`@${domain}`));
+    return WORK_EMAIL_SUFFIXES.some((domain) => email.endsWith(domain));
   }
 
   async submit(event: Event): Promise<void> {

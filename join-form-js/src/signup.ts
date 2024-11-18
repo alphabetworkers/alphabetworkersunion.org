@@ -867,7 +867,10 @@ export class Signup extends LitElement {
 
   personalEmailValidator(): boolean {
     if (this.isWorkEmail(this.personalEmail.value)) {
-      this.setInvalid('personal-email', 'Please enter a non-work email.');
+      this.setInvalid(
+        'personal-email',
+        'Please enter a non-work email address.',
+      );
       this.personalEmail.reportValidity();
       return false;
     }
@@ -880,7 +883,7 @@ export class Signup extends LitElement {
   }
 
   isWorkEmail(email: string): boolean {
-    return WORK_EMAIL_SUFFIXES.some((domain) => email.endsWith(domain));
+    return WORK_EMAIL_SUFFIXES.some((suffix) => email.endsWith(suffix));
   }
 
   async submit(event: Event): Promise<void> {

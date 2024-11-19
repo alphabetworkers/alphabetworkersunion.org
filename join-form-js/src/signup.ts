@@ -84,6 +84,31 @@ const ALPHABET_SUBSIDIARIES = [
   'Google New Zealand',
 ];
 
+const WORK_EMAIL_SUFFIXES = [
+  '.google',
+  'calicolabs.com',
+  'capitalg.com',
+  'chronicle.security',
+  'deepmind.com',
+  'fiber.google.com',
+  'google.com',
+  'googlers.com',
+  'gv.com',
+  'jigsaw.google.com',
+  'loon.com',
+  'makanipower.com',
+  'nest.com',
+  'owlchemylabs.com',
+  'rewsprojects.com',
+  'sidewalklabs.com',
+  'verily.com',
+  'waymo.com',
+  'waze.com',
+  'wing.com',
+  'x.company',
+  'youtube.com',
+];
+
 /**
  * Signup element.
  *
@@ -170,7 +195,7 @@ export class Signup extends LitElement {
   private paymentElement: StripePaymentElement;
 
   @state()
-  lastStripeMethod: string = '';
+  lastStripeMethod = '';
 
   @state()
   isFirstPartyEmployer = true;
@@ -199,7 +224,10 @@ export class Signup extends LitElement {
   constructor() {
     super();
 
-    if (new URLSearchParams(window.location.search).get('redirect_status') === 'succeeded') {
+    if (
+      new URLSearchParams(window.location.search).get('redirect_status') ===
+      'succeeded'
+    ) {
       this.isComplete = true;
     }
 
@@ -830,16 +858,32 @@ export class Signup extends LitElement {
   async updateCurrencyPaymentMethod(): Promise<void> {
     (await this.stripeElements).update({
       currency: this.currency.value,
-      paymentMethodTypes:
-        this.isBankSupported() ?
-          ['us_bank_account', 'card'] :
-          ['card'],
+      paymentMethodTypes: this.isBankSupported()
+        ? ['us_bank_account', 'card']
+        : ['card'],
     });
     this.requestUpdate();
   }
 
+  personalEmailValidator(): boolean {
+    if (this.isWorkEmail(this.personalEmail.value)) {
+      this.setInvalid(
+        'personal-email',
+        'Please enter a non-work email address.',
+      );
+      this.personalEmail.reportValidity();
+      return false;
+    }
+
+    return true;
+  }
+
   enableInvalidStyles(): void {
     this.form.classList.add('invalidatable');
+  }
+
+  isWorkEmail(email: string): boolean {
+    return WORK_EMAIL_SUFFIXES.some((suffix) => email.endsWith(suffix));
   }
 
   async submit(event: Event): Promise<void> {
@@ -850,6 +894,15 @@ export class Signup extends LitElement {
     const body = new FormData(this.form);
     body.set('payment-method', this.lastStripeMethod);
     const email = this.personalEmail.value;
+
+    // Create a wrapper function once more custom validations are run on this form.
+    const customValidationsPassed = this.personalEmailValidator();
+
+    if (!customValidationsPassed) {
+      this.isLoading = false;
+      return;
+    }
+
     try {
       const stripeElementResult = await (await this.stripeElements).submit();
       if (stripeElementResult.error) {
@@ -860,13 +913,15 @@ export class Signup extends LitElement {
 
       if (result.ok) {
         const responseBody = await result.json();
-        await (await this.stripe).confirmSetup({
+        await (
+          await this.stripe
+        ).confirmSetup({
           elements: await this.stripeElements,
           clientSecret: responseBody['subscription_client_secret'],
           confirmParams: {
             return_url: window.location.toString(),
             payment_method_data: {
-              billing_details: {email},
+              billing_details: { email },
             },
           },
           redirect: 'if_required',
@@ -911,7 +966,11 @@ export class Signup extends LitElement {
 
   // TODO(#208): Temporary until bank accounts are supported for Canada.
   private isBankSupported(): boolean {
-    return !this.mailingCountry || (this.mailingCountry?.value === 'United States' && this.currency.value === 'usd');
+    return (
+      !this.mailingCountry ||
+      (this.mailingCountry?.value === 'United States' &&
+        this.currency.value === 'usd')
+    );
   }
 
   compChangeHandler(): void {
@@ -947,7 +1006,7 @@ export class Signup extends LitElement {
       this.paymentElement.mount(this.stripePaymentContainer);
 
       // Keep track of payment method for re-calculating dues.
-      this.paymentElement.on('change', event => {
+      this.paymentElement.on('change', (event) => {
         this.lastStripeMethod = event.value.type;
       });
     }
@@ -1018,7 +1077,9 @@ export class Signup extends LitElement {
   }
 
   setInvalid(field: string, message: string): void {
-    const input = this.form.elements.namedItem(field) as HTMLInputElement|null;
+    const input = this.form.elements.namedItem(
+      field,
+    ) as HTMLInputElement | null;
     if (input) {
       input.setCustomValidity(message);
       input.scrollIntoView({

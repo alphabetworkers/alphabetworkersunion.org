@@ -29,6 +29,8 @@ import {
   FTE_REQUIRED_FIELDS,
 } from '../../signup-worker/src/fields';
 
+import sitecodes from './site_code.json';
+
 const ALPHABET_SUBSIDIARIES = [
   'Google',
   'Alphabet',
@@ -83,6 +85,8 @@ const ALPHABET_SUBSIDIARIES = [
   'Google Austria',
   'Google New Zealand',
 ];
+
+const SITE_CODES = sitecodes.codes.map((val) => val.id);
 
 /**
  * Signup element.
@@ -139,6 +143,8 @@ export class Signup extends LitElement {
   employer!: HTMLInputElement;
   @query('[name="site-code"]')
   siteCode!: HTMLInputElement;
+  @query('[name="site-code-data')
+  siteCodeData!: HTMLDataListElement;
   @query('[name="building-code"]')
   buildingCode!: HTMLInputElement;
   @query('[name="product-area"]')
@@ -170,7 +176,7 @@ export class Signup extends LitElement {
   private paymentElement: StripePaymentElement;
 
   @state()
-  lastStripeMethod: string = '';
+  lastStripeMethod = '';
 
   @state()
   isFirstPartyEmployer = true;
@@ -199,7 +205,10 @@ export class Signup extends LitElement {
   constructor() {
     super();
 
-    if (new URLSearchParams(window.location.search).get('redirect_status') === 'succeeded') {
+    if (
+      new URLSearchParams(window.location.search).get('redirect_status') ===
+      'succeeded'
+    ) {
       this.isComplete = true;
     }
 
@@ -614,18 +623,20 @@ export class Signup extends LitElement {
         </label>
         <label>
           <span class="title">Site code${this.optionalLabel('site-code')}</span>
-          <span class="hint"
-            >So we can connect you with your local chapters. Site code is a
+          <span class="hint">
+            So we can connect you with your local chapters. Site code is a
             country code followed by a location code (for example, "US-MTV"). If
-            you do not work in an office, please enter "REMOTE". If you don't
-            know your office location, please enter "OTHER".</span
-          >
+            you don't know your office location, please enter "OTHER".
+          </span>
           <input
+            id="site-code-input"
             name="site-code"
             aria-label="Site code"
             ?required=${this.isFieldRequired('site-code')}
-            autocomplete="off"
+            @input=${this.populateSiteCodeSuggestions}
+            list="site-codes"
           />
+          <datalist id="site-codes" name="site-code-data"></datalist>
         </label>
         <label>
           <span class="title"
@@ -830,10 +841,9 @@ export class Signup extends LitElement {
   async updateCurrencyPaymentMethod(): Promise<void> {
     (await this.stripeElements).update({
       currency: this.currency.value,
-      paymentMethodTypes:
-        this.isBankSupported() ?
-          ['us_bank_account', 'card'] :
-          ['card'],
+      paymentMethodTypes: this.isBankSupported()
+        ? ['us_bank_account', 'card']
+        : ['card'],
     });
     this.requestUpdate();
   }
@@ -860,13 +870,15 @@ export class Signup extends LitElement {
 
       if (result.ok) {
         const responseBody = await result.json();
-        await (await this.stripe).confirmSetup({
+        await (
+          await this.stripe
+        ).confirmSetup({
           elements: await this.stripeElements,
           clientSecret: responseBody['subscription_client_secret'],
           confirmParams: {
             return_url: window.location.toString(),
             payment_method_data: {
-              billing_details: {email},
+              billing_details: { email },
             },
           },
           redirect: 'if_required',
@@ -911,11 +923,34 @@ export class Signup extends LitElement {
 
   // TODO(#208): Temporary until bank accounts are supported for Canada.
   private isBankSupported(): boolean {
-    return !this.mailingCountry || (this.mailingCountry?.value === 'United States' && this.currency.value === 'usd');
+    return (
+      !this.mailingCountry ||
+      (this.mailingCountry?.value === 'United States' &&
+        this.currency.value === 'usd')
+    );
   }
 
   compChangeHandler(): void {
     this.requestUpdate();
+  }
+
+  populateSiteCodeSuggestions(event: InputEvent): void {
+    const input = (event.target as HTMLInputElement).value.toLowerCase();
+
+    if (input == null || input.length == 0) {
+      while (this.siteCodeData.firstChild != null) {
+        this.siteCodeData.removeChild(this.siteCodeData.firstChild!);
+      }
+    }
+
+    /// Only show the data code when the input is populated with at least one charater.
+    if (input.length > 0 && this.siteCodeData.firstChild == null) {
+      SITE_CODES.forEach((site) => {
+        const option = document.createElement('option');
+        option.value = site;
+        this.siteCodeData.appendChild(option);
+      });
+    }
   }
 
   private stripePaymentContainer: HTMLElement;
@@ -947,7 +982,7 @@ export class Signup extends LitElement {
       this.paymentElement.mount(this.stripePaymentContainer);
 
       // Keep track of payment method for re-calculating dues.
-      this.paymentElement.on('change', event => {
+      this.paymentElement.on('change', (event) => {
         this.lastStripeMethod = event.value.type;
       });
     }
@@ -1018,7 +1053,9 @@ export class Signup extends LitElement {
   }
 
   setInvalid(field: string, message: string): void {
-    const input = this.form.elements.namedItem(field) as HTMLInputElement|null;
+    const input = this.form.elements.namedItem(
+      field,
+    ) as HTMLInputElement | null;
     if (input) {
       input.setCustomValidity(message);
       input.scrollIntoView({

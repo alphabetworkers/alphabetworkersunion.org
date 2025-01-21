@@ -1,0 +1,616 @@
+{
+  "codes": [
+    {
+      "id": "CA-CAL"
+    },
+    {
+      "id": "CA-MON"
+    },
+    {
+      "id": "CA-OTT"
+    },
+    {
+      "id": "CA-REMOTE"
+    },
+    {
+      "id": "CA-REMOTE-AB"
+    },
+    {
+      "id": "CA-REMOTE-BC"
+    },
+    {
+      "id": "CA-REMOTE-MB"
+    },
+    {
+      "id": "CA-REMOTE-NB"
+    },
+    {
+      "id": "CA-REMOTE-NL"
+    },
+    {
+      "id": "CA-REMOTE-NS"
+    },
+    {
+      "id": "CA-REMOTE-ON"
+    },
+    {
+      "id": "CA-REMOTE-PE"
+    },
+    {
+      "id": "CA-REMOTE-QC"
+    },
+    {
+      "id": "CA-REMOTE-SK"
+    },
+    {
+      "id": "CA-TOR"
+    },
+    {
+      "id": "CA-VAN"
+    },
+    {
+      "id": "CA-WAT"
+    },
+    {
+      "id": "CA-YEG"
+    },
+    {
+      "id": "CA-YUL"
+    },
+    {
+      "id": "CA-YYZ"
+    },
+    {
+      "id": "US-ALM"
+    },
+    {
+      "id": "US-ARB"
+    },
+    {
+      "id": "US-AST"
+    },
+    {
+      "id": "US-ATL"
+    },
+    {
+      "id": "US-ATW"
+    },
+    {
+      "id": "US-AUS"
+    },
+    {
+      "id": "US-AXR"
+    },
+    {
+      "id": "US-BEV"
+    },
+    {
+      "id": "US-BLD"
+    },
+    {
+      "id": "US-BNA"
+    },
+    {
+      "id": "US-BOS"
+    },
+    {
+      "id": "US-BOT"
+    },
+    {
+      "id": "US-BVE"
+    },
+    {
+      "id": "US-CAM"
+    },
+    {
+      "id": "US-CBA"
+    },
+    {
+      "id": "US-CBF"
+    },
+    {
+      "id": "US-CHAP"
+    },
+    {
+      "id": "US-CHD"
+    },
+    {
+      "id": "US-CHI"
+    },
+    {
+      "id": "US-CKV"
+    },
+    {
+      "id": "US-CLT"
+    },
+    {
+      "id": "US-CMH"
+    },
+    {
+      "id": "US-CVG"
+    },
+    {
+      "id": "US-DAL"
+    },
+    {
+      "id": "US-DEN"
+    },
+    {
+      "id": "US-DFW"
+    },
+    {
+      "id": "US-DLS"
+    },
+    {
+      "id": "US-DSM"
+    },
+    {
+      "id": "US-DTW"
+    },
+    {
+      "id": "US-ETY"
+    },
+    {
+      "id": "US-FRE"
+    },
+    {
+      "id": "US-HLI"
+    },
+    {
+      "id": "US-HNZ"
+    },
+    {
+      "id": "US-HOU"
+    },
+    {
+      "id": "US-HSV"
+    },
+    {
+      "id": "US-IAD"
+    },
+    {
+      "id": "US-IRV"
+    },
+    {
+      "id": "US-KCI"
+    },
+    {
+      "id": "US-KIR"
+    },
+    {
+      "id": "US-LAS"
+    },
+    {
+      "id": "US-LAX"
+    },
+    {
+      "id": "US-LER"
+    },
+    {
+      "id": "US-LNR"
+    },
+    {
+      "id": "US-LTX"
+    },
+    {
+      "id": "US-LVK"
+    },
+    {
+      "id": "US-MEN"
+    },
+    {
+      "id": "US-MEV"
+    },
+    {
+      "id": "US-MFA"
+    },
+    {
+      "id": "US-MIA"
+    },
+    {
+      "id": "US-MIN"
+    },
+    {
+      "id": "US-MLP"
+    },
+    {
+      "id": "US-MNK"
+    },
+    {
+      "id": "US-MSC"
+    },
+    {
+      "id": "US-MSN"
+    },
+    {
+      "id": "US-MTV"
+    },
+    {
+      "id": "US-NYC"
+    },
+    {
+      "id": "US-OAK"
+    },
+    {
+      "id": "US-OTHER"
+    },
+    {
+      "id": "US-PAO"
+    },
+    {
+      "id": "US-PCT"
+    },
+    {
+      "id": "US-PDX"
+    },
+    {
+      "id": "US-PHX"
+    },
+    {
+      "id": "US-PIT"
+    },
+    {
+      "id": "US-PLV"
+    },
+    {
+      "id": "US-PRY"
+    },
+    {
+      "id": "US-PVU"
+    },
+    {
+      "id": "US-RAG"
+    },
+    {
+      "id": "US-RDU"
+    },
+    {
+      "id": "US-REMOTE"
+    },
+    {
+      "id": "US-REMOTE-AK"
+    },
+    {
+      "id": "US-REMOTE-AL"
+    },
+    {
+      "id": "US-REMOTE-AR"
+    },
+    {
+      "id": "US-REMOTE-ARB"
+    },
+    {
+      "id": "US-REMOTE-ATL"
+    },
+    {
+      "id": "US-REMOTE-AZ"
+    },
+    {
+      "id": "US-REMOTE-CA"
+    },
+    {
+      "id": "US-REMOTE-CAM"
+    },
+    {
+      "id": "US-REMOTE-CHD"
+    },
+    {
+      "id": "US-REMOTE-CHI"
+    },
+    {
+      "id": "US-REMOTE-CO"
+    },
+    {
+      "id": "US-REMOTE-CO1"
+    },
+    {
+      "id": "US-REMOTE-CO2"
+    },
+    {
+      "id": "US-REMOTE-CT"
+    },
+    {
+      "id": "US-REMOTE-DC"
+    },
+    {
+      "id": "US-REMOTE-DE"
+    },
+    {
+      "id": "US-REMOTE-DE1"
+    },
+    {
+      "id": "US-REMOTE-DSM"
+    },
+    {
+      "id": "US-REMOTE-DTW"
+    },
+    {
+      "id": "US-REMOTE-FL"
+    },
+    {
+      "id": "US-REMOTE-GA"
+    },
+    {
+      "id": "US-REMOTE-HI"
+    },
+    {
+      "id": "US-REMOTE-HOU"
+    },
+    {
+      "id": "US-REMOTE-HSV"
+    },
+    {
+      "id": "US-REMOTE-IA"
+    },
+    {
+      "id": "US-REMOTE-ID"
+    },
+    {
+      "id": "US-REMOTE-IL"
+    },
+    {
+      "id": "US-REMOTE-IN"
+    },
+    {
+      "id": "US-REMOTE-IN1"
+    },
+    {
+      "id": "US-REMOTE-INM"
+    },
+    {
+      "id": "US-REMOTE-KS"
+    },
+    {
+      "id": "US-REMOTE-KY"
+    },
+    {
+      "id": "US-REMOTE-KY1"
+    },
+    {
+      "id": "US-REMOTE-KY2"
+    },
+    {
+      "id": "US-REMOTE-LA"
+    },
+    {
+      "id": "US-REMOTE-MA"
+    },
+    {
+      "id": "US-REMOTE-MD"
+    },
+    {
+      "id": "US-REMOTE-MDM"
+    },
+    {
+      "id": "US-REMOTE-ME"
+    },
+    {
+      "id": "US-REMOTE-MI"
+    },
+    {
+      "id": "US-REMOTE-MI1"
+    },
+    {
+      "id": "US-REMOTE-MI2"
+    },
+    {
+      "id": "US-REMOTE-MN"
+    },
+    {
+      "id": "US-REMOTE-MO"
+    },
+    {
+      "id": "US-REMOTE-MO1"
+    },
+    {
+      "id": "US-REMOTE-MO2"
+    },
+    {
+      "id": "US-REMOTE-MS"
+    },
+    {
+      "id": "US-REMOTE-MT"
+    },
+    {
+      "id": "US-REMOTE-MTV"
+    },
+    {
+      "id": "US-REMOTE-NC"
+    },
+    {
+      "id": "US-REMOTE-ND"
+    },
+    {
+      "id": "US-REMOTE-NE"
+    },
+    {
+      "id": "US-REMOTE-NH"
+    },
+    {
+      "id": "US-REMOTE-NHM"
+    },
+    {
+      "id": "US-REMOTE-NJ"
+    },
+    {
+      "id": "US-REMOTE-NJM"
+    },
+    {
+      "id": "US-REMOTE-NM"
+    },
+    {
+      "id": "US-REMOTE-NV"
+    },
+    {
+      "id": "US-REMOTE-NY"
+    },
+    {
+      "id": "US-REMOTE-NY1"
+    },
+    {
+      "id": "US-REMOTE-NYC"
+    },
+    {
+      "id": "US-REMOTE-OH"
+    },
+    {
+      "id": "US-REMOTE-OH1"
+    },
+    {
+      "id": "US-REMOTE-OK"
+    },
+    {
+      "id": "US-REMOTE-OR"
+    },
+    {
+      "id": "US-REMOTE-OR1"
+    },
+    {
+      "id": "US-REMOTE-OR2"
+    },
+    {
+      "id": "US-REMOTE-PA"
+    },
+    {
+      "id": "US-REMOTE-PA1"
+    },
+    {
+      "id": "US-REMOTE-PAM"
+    },
+    {
+      "id": "US-REMOTE-PDX"
+    },
+    {
+      "id": "US-REMOTE-RDU"
+    },
+    {
+      "id": "US-REMOTE-RES"
+    },
+    {
+      "id": "US-REMOTE-RI"
+    },
+    {
+      "id": "US-REMOTE-SC"
+    },
+    {
+      "id": "US-REMOTE-SD"
+    },
+    {
+      "id": "US-REMOTE-SEA"
+    },
+    {
+      "id": "US-REMOTE-SFO"
+    },
+    {
+      "id": "US-REMOTE-TN"
+    },
+    {
+      "id": "US-REMOTE-TX"
+    },
+    {
+      "id": "US-REMOTE-UT"
+    },
+    {
+      "id": "US-REMOTE-VA"
+    },
+    {
+      "id": "US-REMOTE-VT"
+    },
+    {
+      "id": "US-REMOTE-WA"
+    },
+    {
+      "id": "US-REMOTE-WA1"
+    },
+    {
+      "id": "US-REMOTE-WAM"
+    },
+    {
+      "id": "US-REMOTE-WI"
+    },
+    {
+      "id": "US-REMOTE-WIM"
+    },
+    {
+      "id": "US-REMOTE-WV"
+    },
+    {
+      "id": "US-REMOTE-WVM"
+    },
+    {
+      "id": "US-REMOTE-WY"
+    },
+    {
+      "id": "US-RES"
+    },
+    {
+      "id": "US-RMD"
+    },
+    {
+      "id": "US-RNO"
+    },
+    {
+      "id": "US-RST"
+    },
+    {
+      "id": "US-RWC"
+    },
+    {
+      "id": "US-SAN"
+    },
+    {
+      "id": "US-SAT"
+    },
+    {
+      "id": "US-SBA"
+    },
+    {
+      "id": "US-SBO"
+    },
+    {
+      "id": "US-SCZ"
+    },
+    {
+      "id": "US-SEA"
+    },
+    {
+      "id": "US-SFO"
+    },
+    {
+      "id": "US-SJC"
+    },
+    {
+      "id": "US-SLC"
+    },
+    {
+      "id": "US-SRU"
+    },
+    {
+      "id": "US-SSF"
+    },
+    {
+      "id": "US-SVL"
+    },
+    {
+      "id": "US-SVQ"
+    },
+    {
+      "id": "US-TEM"
+    },
+    {
+      "id": "US-THN"
+    },
+    {
+      "id": "US-UOS"
+    },
+    {
+      "id": "US-WAS"
+    },
+    {
+      "id": "US-WMC"
+    },
+    {
+      "id": "OTHER"
+    }
+  ]
+}

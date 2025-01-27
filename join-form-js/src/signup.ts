@@ -88,6 +88,31 @@ const ALPHABET_SUBSIDIARIES = [
 
 const SITE_CODES = sitecodes.codes.map((val) => val.id);
 
+const WORK_EMAIL_SUFFIXES = [
+  '.google',
+  'calicolabs.com',
+  'capitalg.com',
+  'chronicle.security',
+  'deepmind.com',
+  'fiber.google.com',
+  'google.com',
+  'googlers.com',
+  'gv.com',
+  'jigsaw.google.com',
+  'loon.com',
+  'makanipower.com',
+  'nest.com',
+  'owlchemylabs.com',
+  'rewsprojects.com',
+  'sidewalklabs.com',
+  'verily.com',
+  'waymo.com',
+  'waze.com',
+  'wing.com',
+  'x.company',
+  'youtube.com',
+];
+
 /**
  * Signup element.
  *
@@ -848,8 +873,25 @@ export class Signup extends LitElement {
     this.requestUpdate();
   }
 
+  personalEmailValidator(): boolean {
+    if (this.isWorkEmail(this.personalEmail.value)) {
+      this.setInvalid(
+        'personal-email',
+        'Please enter a non-work email address.',
+      );
+      this.personalEmail.reportValidity();
+      return false;
+    }
+
+    return true;
+  }
+
   enableInvalidStyles(): void {
     this.form.classList.add('invalidatable');
+  }
+
+  isWorkEmail(email: string): boolean {
+    return WORK_EMAIL_SUFFIXES.some((suffix) => email.endsWith(suffix));
   }
 
   async submit(event: Event): Promise<void> {
@@ -860,6 +902,15 @@ export class Signup extends LitElement {
     const body = new FormData(this.form);
     body.set('payment-method', this.lastStripeMethod);
     const email = this.personalEmail.value;
+
+    // Create a wrapper function once more custom validations are run on this form.
+    const customValidationsPassed = this.personalEmailValidator();
+
+    if (!customValidationsPassed) {
+      this.isLoading = false;
+      return;
+    }
+
     try {
       const stripeElementResult = await (await this.stripeElements).submit();
       if (stripeElementResult.error) {

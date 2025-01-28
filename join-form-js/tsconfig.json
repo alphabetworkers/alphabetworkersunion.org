@@ -5,7 +5,8 @@
     "module": "es6",
     "target": "es6",
     "moduleResolution": "node",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "resolveJsonModule": true
   },
   "include": [
     "src/global.d.ts",

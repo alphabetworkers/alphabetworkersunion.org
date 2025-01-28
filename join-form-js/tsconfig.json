@@ -6,7 +6,8 @@
     "target": "es6",
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "src/global.d.ts",

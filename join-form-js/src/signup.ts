@@ -29,7 +29,7 @@ import {
   FTE_REQUIRED_FIELDS,
 } from '../../signup-worker/src/fields';
 
-import sitecodes from './site_code.json';
+import sitecodes from './site-codes.json';
 
 const ALPHABET_SUBSIDIARIES = [
   'Google',
@@ -86,7 +86,7 @@ const ALPHABET_SUBSIDIARIES = [
   'Google New Zealand',
 ];
 
-const SITE_CODES = sitecodes.codes.map((val) => val.id);
+const SITE_CODES = sitecodes;
 
 const WORK_EMAIL_SUFFIXES = [
   '.google',
@@ -168,7 +168,7 @@ export class Signup extends LitElement {
   employer!: HTMLInputElement;
   @query('[name="site-code"]')
   siteCode!: HTMLInputElement;
-  @query('[name="site-code-data')
+  @query('[id="site-codes"]')
   siteCodeData!: HTMLDataListElement;
   @query('[name="building-code"]')
   buildingCode!: HTMLInputElement;
@@ -661,7 +661,12 @@ export class Signup extends LitElement {
             @input=${this.populateSiteCodeSuggestions}
             list="site-codes"
           />
-          <datalist id="site-codes" name="site-code-data"></datalist>
+          <datalist id="site-codes">
+            ${SITE_CODES.map(
+              (site) =>
+                html`<option value=${site} disabled="true">${site}</option>`,
+            )}
+          </datalist>
         </label>
         <label>
           <span class="title"
@@ -986,21 +991,24 @@ export class Signup extends LitElement {
   }
 
   populateSiteCodeSuggestions(event: InputEvent): void {
-    const input = (event.target as HTMLInputElement).value.toLowerCase();
+    const dataInputElement = event.target as HTMLInputElement;
+    const input = dataInputElement.value.toUpperCase();
 
     if (input == null || input.length == 0) {
-      while (this.siteCodeData.firstChild != null) {
-        this.siteCodeData.removeChild(this.siteCodeData.firstChild!);
+      for (let i = 0; i < this.siteCodeData.children.length; i++) {
+        this.siteCodeData.children[i].setAttribute('disabled', 'true');
       }
     }
 
     /// Only show the data code when the input is populated with at least one charater.
-    if (input.length > 0 && this.siteCodeData.firstChild == null) {
-      SITE_CODES.forEach((site) => {
-        const option = document.createElement('option');
-        option.value = site;
-        this.siteCodeData.appendChild(option);
-      });
+    if (input.length == event.data?.length) {
+      for (let i = 0; i < this.siteCodeData.children.length; i++) {
+        if (
+          this.siteCodeData.children[i].getAttribute('value')?.includes(input)
+        ) {
+          this.siteCodeData.children[i].removeAttribute('disabled');
+        }
+      }
     }
   }
 

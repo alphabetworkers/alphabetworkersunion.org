@@ -991,8 +991,7 @@ export class Signup extends LitElement {
   }
 
   populateSiteCodeSuggestions(event: InputEvent): void {
-    const dataInputElement = event.target as HTMLInputElement;
-    const input = dataInputElement.value.toUpperCase();
+    const input = (event.target as HTMLInputElement).value.toUpperCase();
 
     if (input == null || input.length == 0) {
       for (let i = 0; i < this.siteCodeData.children.length; i++) {

@@ -29,6 +29,8 @@ import {
   FTE_REQUIRED_FIELDS,
 } from '../../signup-worker/src/fields';
 
+import sitecodes from './site-codes.json';
+
 const ALPHABET_SUBSIDIARIES = [
   'Google',
   'Wing',
@@ -45,6 +47,8 @@ const ALPHABET_SUBSIDIARIES = [
   'Tapestry',
   'Other X projects'
 ];
+
+const SITE_CODES = sitecodes;
 
 const WORK_EMAIL_SUFFIXES = [
   '.google',
@@ -126,6 +130,8 @@ export class Signup extends LitElement {
   employer!: HTMLInputElement;
   @query('[name="site-code"]')
   siteCode!: HTMLInputElement;
+  @query('[id="site-codes"]')
+  siteCodeData!: HTMLDataListElement;
   @query('[name="building-code"]')
   buildingCode!: HTMLInputElement;
   @query('[name="product-area"]')
@@ -604,18 +610,25 @@ export class Signup extends LitElement {
         </label>
         <label>
           <span class="title">Site code${this.optionalLabel('site-code')}</span>
-          <span class="hint"
-            >So we can connect you with your local chapters. Site code is a
+          <span class="hint">
+            So we can connect you with your local chapters. Site code is a
             country code followed by a location code (for example, "US-MTV"). If
-            you do not work in an office, please enter "REMOTE". If you don't
-            know your office location, please enter "OTHER".</span
-          >
+            you don't know your office location, please enter "OTHER".
+          </span>
           <input
+            id="site-code-input"
             name="site-code"
             aria-label="Site code"
             ?required=${this.isFieldRequired('site-code')}
-            autocomplete="off"
+            @input=${this.populateSiteCodeSuggestions}
+            list="site-codes"
           />
+          <datalist id="site-codes">
+            ${SITE_CODES.map(
+              (site) =>
+                html`<option value=${site} disabled="true">${site}</option>`,
+            )}
+          </datalist>
         </label>
         <label>
           <span class="title"
@@ -937,6 +950,27 @@ export class Signup extends LitElement {
 
   compChangeHandler(): void {
     this.requestUpdate();
+  }
+
+  populateSiteCodeSuggestions(event: InputEvent): void {
+    const input = (event.target as HTMLInputElement).value.toUpperCase();
+
+    if (input == null || input.length == 0) {
+      for (let i = 0; i < this.siteCodeData.children.length; i++) {
+        this.siteCodeData.children[i].setAttribute('disabled', 'true');
+      }
+    }
+
+    /// Only show the data code when the input is populated with at least one charater.
+    if (input.length == event.data?.length) {
+      for (let i = 0; i < this.siteCodeData.children.length; i++) {
+        if (
+          this.siteCodeData.children[i].getAttribute('value')?.includes(input)
+        ) {
+          this.siteCodeData.children[i].removeAttribute('disabled');
+        }
+      }
+    }
   }
 
   private stripePaymentContainer: HTMLElement;

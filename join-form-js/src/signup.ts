@@ -12,13 +12,11 @@ import {
   loadStripe,
   StripeCardElement,
   StripePaymentElement,
-  Token,
 } from '@stripe/stripe-js';
 import { allCountries } from 'country-region-data';
 import { repeat } from 'lit/directives/repeat.js';
 import {
   CARD_PROCESSING_FEE,
-  FRIENDLY_CARD_PROCESSING_FEE,
   FRIENDLY_INITIATION_FEE,
 } from '../../common/constants';
 

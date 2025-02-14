@@ -12,13 +12,11 @@ import {
   loadStripe,
   StripeCardElement,
   StripePaymentElement,
-  Token,
 } from '@stripe/stripe-js';
 import { allCountries } from 'country-region-data';
 import { repeat } from 'lit/directives/repeat.js';
 import {
   CARD_PROCESSING_FEE,
-  FRIENDLY_CARD_PROCESSING_FEE,
   FRIENDLY_INITIATION_FEE,
 } from '../../common/constants';
 
@@ -38,12 +36,12 @@ const ALPHABET_SUBSIDIARIES = [
   'GV',
   'Google Fiber',
   'CapitalG',
-  'Intrinsic'
+  'Intrinsic',
   'Isomorphic Labs',
-  'Bellwether'
+  'Bellwether',
   'Malta',
   'Tapestry',
-  'Other X projects'
+  'Other X projects',
 ];
 
 const WORK_EMAIL_SUFFIXES = [

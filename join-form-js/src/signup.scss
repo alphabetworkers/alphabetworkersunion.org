@@ -329,6 +329,10 @@ input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
+input[id='site-code-input']::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
 .spacer {
   flex: 1;
 }

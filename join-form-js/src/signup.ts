@@ -29,7 +29,7 @@ import {
   FTE_REQUIRED_FIELDS,
 } from '../../signup-worker/src/fields';
 
-import sitecodes from './site-codes.json';
+import SITE_CODES from './site-codes.json';
 
 const ALPHABET_SUBSIDIARIES = [
   'Google',
@@ -85,8 +85,6 @@ const ALPHABET_SUBSIDIARIES = [
   'Google Austria',
   'Google New Zealand',
 ];
-
-const SITE_CODES = sitecodes;
 
 const WORK_EMAIL_SUFFIXES = [
   '.google',
@@ -994,19 +992,16 @@ export class Signup extends LitElement {
     const input = (event.target as HTMLInputElement).value.toUpperCase();
 
     if (input == null || input.length == 0) {
-      for (let i = 0; i < this.siteCodeData.children.length; i++) {
-        this.siteCodeData.children[i].setAttribute('disabled', 'true');
+      for (const option of this.siteCodeData.children) {
+        option.setAttribute('disabled', 'true');
       }
     }
 
-    /// Only show the data code when the input is populated with at least one charater.
+    /// Only toggle the data available when the input is first populated with at least one character.
+    /// Uses the event data on the chance that the first event is somehow simultaneous.
     if (input.length == event.data?.length) {
-      for (let i = 0; i < this.siteCodeData.children.length; i++) {
-        if (
-          this.siteCodeData.children[i].getAttribute('value')?.includes(input)
-        ) {
-          this.siteCodeData.children[i].removeAttribute('disabled');
-        }
+      for (const option of this.siteCodeData.children) {
+        option.removeAttribute('disabled');
       }
     }
   }

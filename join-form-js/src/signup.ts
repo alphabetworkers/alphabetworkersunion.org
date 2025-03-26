@@ -989,7 +989,7 @@ export class Signup extends LitElement {
   }
 
   populateSiteCodeSuggestions(event: InputEvent): void {
-    const input = (event.target as HTMLInputElement).value.toUpperCase();
+    const input = (event.target as HTMLInputElement).value;
 
     if (input == null || input.length == 0) {
       for (const option of this.siteCodeData.children) {

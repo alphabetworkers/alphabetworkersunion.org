@@ -29,7 +29,7 @@ import {
   FTE_REQUIRED_FIELDS,
 } from '../../signup-worker/src/fields';
 
-import SITE_CODES from './site-codes.json';
+import BUILDING_CODES from './building-codes.json';
 
 const ALPHABET_SUBSIDIARIES = [
   'Google',
@@ -164,12 +164,10 @@ export class Signup extends LitElement {
   employmentType!: HTMLInputElement;
   @query('[name="employer"]')
   employer!: HTMLInputElement;
-  @query('[name="site-code"]')
-  siteCode!: HTMLInputElement;
-  @query('[id="site-codes"]')
-  siteCodeData!: HTMLDataListElement;
   @query('[name="building-code"]')
   buildingCode!: HTMLInputElement;
+  @query('[id="building-codes"]')
+  buildingCodeData!: HTMLDataListElement;
   @query('[name="product-area"]')
   productArea!: HTMLInputElement;
   @query('[name="org"]')
@@ -249,7 +247,7 @@ export class Signup extends LitElement {
       this.mailingPostalCode.value = 'foo';
       this.mailingCountry.value = 'United States';
       this.employer.value = 'Google';
-      this.siteCode.value = 'foo';
+      this.buildingCode.value = 'US-FOO-BAR';
       this.org.value = 'foo';
       this.team.value = 'foo';
       this.jobTitle.value = 'foo';
@@ -645,40 +643,31 @@ export class Signup extends LitElement {
           />
         </label>
         <label>
-          <span class="title">Site code${this.optionalLabel('site-code')}</span>
+          <span class="title"
+            >Building/Site code${this.optionalLabel('building-code')}</span
+          >
           <span class="hint">
             So we can connect you with your local chapters. Site code is a
-            country code followed by a location code (for example, "US-MTV"). If
-            you don't know your office location, please enter "OTHER".
+            country code followed by a location code (ie "US-MTV"). Building
+            code is the site code followed by the building code (ie
+            "US-MTV-40").Please enter the building code if possible. If you
+            don't know your office location, please enter "OTHER".
           </span>
           <input
-            id="site-code-input"
-            name="site-code"
-            aria-label="Site code"
-            ?required=${this.isFieldRequired('site-code')}
-            @input=${this.populateSiteCodeSuggestions}
-            list="site-codes"
+            name="building-code"
+            aria-label="Building/Site code"
+            ?required=${this.isFieldRequired('building-code')}
+            @input=${this.populateBuildingCodeSuggestions}
+            list="building-codes"
           />
-          <datalist id="site-codes">
-            ${SITE_CODES.map(
-              (site) =>
-                html`<option value=${site} disabled="true">${site}</option>`,
+          <datalist id="building-codes">
+            ${BUILDING_CODES.map(
+              (building) =>
+                html`<option value=${building} disabled="true">
+                  ${building}
+                </option>`,
             )}
           </datalist>
-        </label>
-        <label>
-          <span class="title"
-            >Building code${this.optionalLabel('building-code')}</span
-          >
-          <span class="hint"
-            >So we can connect you with your local coworkers.</span
-          >
-          <input
-            name="building-code"
-            aria-label="Building code"
-            ?required=${this.isFieldRequired('building-code')}
-            autocomplete="off"
-          />
         </label>
         <label>
           <span class="title"
@@ -904,6 +893,10 @@ export class Signup extends LitElement {
     this.isLoading = true;
     const body = new FormData(this.form);
     body.set('payment-method', this.lastStripeMethod);
+    body.set(
+      'site-code',
+      this.extractSiteCodeFromBuildingCode(this.buildingCode.value),
+    );
     const email = this.personalEmail.value;
 
     // Create a wrapper function once more custom validations are run on this form.
@@ -988,11 +981,11 @@ export class Signup extends LitElement {
     this.requestUpdate();
   }
 
-  populateSiteCodeSuggestions(event: InputEvent): void {
+  populateBuildingCodeSuggestions(event: InputEvent): void {
     const input = (event.target as HTMLInputElement).value;
 
     if (input == null || input.length == 0) {
-      for (const option of this.siteCodeData.children) {
+      for (const option of this.buildingCodeData.children) {
         option.setAttribute('disabled', 'true');
       }
     }
@@ -1000,7 +993,7 @@ export class Signup extends LitElement {
     /// Only toggle the data available when the input is first populated with at least one character.
     /// Uses the event data on the chance that the first event is somehow simultaneous.
     if (input.length == event.data?.length) {
-      for (const option of this.siteCodeData.children) {
+      for (const option of this.buildingCodeData.children) {
         option.removeAttribute('disabled');
       }
     }
@@ -1103,6 +1096,16 @@ export class Signup extends LitElement {
 
   formattedCurrency(): string {
     return this.currency?.value.toUpperCase() ?? '';
+  }
+
+  extractSiteCodeFromBuildingCode(buildingCode: string): string {
+    const buildingCodeSections = buildingCode.split('-');
+
+    if (buildingCodeSections.length < 3) {
+      return buildingCode;
+    }
+
+    return buildingCodeSections.slice(0, 2).join('-');
   }
 
   setInvalid(field: string, message: string): void {

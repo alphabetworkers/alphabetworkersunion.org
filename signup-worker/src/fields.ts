@@ -24,7 +24,7 @@ export const REQUIRED_FIELDS = REQUIRED_METADATA.concat([
 ]);
 
 export const FTE_REQUIRED_FIELDS = REQUIRED_FIELDS.concat([
-  'site-code',
+  'building-code',
   'org',
   'team',
 ]);
@@ -38,7 +38,6 @@ const OPTIONAL_METADATA = [
   'work-email',
   'birthday',
   'tshirt-size',
-  'site-code',
   'org',
   'team',
 ];

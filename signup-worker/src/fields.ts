@@ -38,6 +38,7 @@ const OPTIONAL_METADATA = [
   'work-email',
   'birthday',
   'tshirt-size',
+  'site-code',
   'org',
   'team',
 ];

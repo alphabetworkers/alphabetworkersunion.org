@@ -648,9 +648,9 @@ export class Signup extends LitElement {
           >
           <span class="hint">
             So we can connect you with your local chapters. Site code is a
-            country code followed by a location code (ie "US-MTV"). Building
-            code is the site code followed by the building code (ie
-            "US-MTV-40").Please enter the building code if possible. If you
+            country code followed by a location code (e.g., "US-MTV"). Building
+            code is the site code followed by the building code (e.g.,
+            "US-MTV-40"). Please enter the building code if possible. If you
             don't know your office location, please enter "OTHER".
           </span>
           <input

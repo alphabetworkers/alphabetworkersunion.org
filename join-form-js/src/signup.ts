@@ -506,8 +506,8 @@ export class Signup extends LitElement {
             >Discord username${this.optionalLabel('discord-username')}</span
           >
           <span class="hint"
-            >If you include Discord username, you will get access to our union
-            server.</span
+            >If you provide your username, you will receive an invitation to
+            our union's Discord server.</span
           >
           <input
             name="discord-username"

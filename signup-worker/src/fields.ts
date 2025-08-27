@@ -16,6 +16,7 @@ const REQUIRED_METADATA = [
   'have-reports',
   'total-compensation',
   'sms-consent',
+  'tshirt-size',
 ];
 
 export const REQUIRED_FIELDS = REQUIRED_METADATA.concat([
@@ -37,7 +38,6 @@ const OPTIONAL_METADATA = [
   'product-area',
   'work-email',
   'birthday',
-  'tshirt-size',
   'discord-username',
   'site-code',
   'org',

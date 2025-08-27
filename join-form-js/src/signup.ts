@@ -323,7 +323,8 @@ export class Signup extends LitElement {
             >T-shirt size${this.optionalLabel('tshirt-size')}</span
           >
           <span class="hint"
-            ><a
+            >So we can send you an AWU t-shirt!
+            <a
               href="https://worxprinting.coop/wp-content/uploads/2023/08/20230821_Size_Charts.pdf"
               target="_blank"
               >Unisex sizing</a
@@ -346,6 +347,7 @@ export class Signup extends LitElement {
               <option value="3xl">3XL</option>
               <option value="4xl">4XL</option>
               <option value="other">Other (none of the above)</option>
+              <option value="no-tshirt">I don't want an AWU t-shirt</option>
             </select>
           </div>
         </label>

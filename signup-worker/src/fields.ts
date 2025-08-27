@@ -38,6 +38,7 @@ const OPTIONAL_METADATA = [
   'product-area',
   'work-email',
   'birthday',
+  'discord-username',
   'site-code',
   'org',
   'team',

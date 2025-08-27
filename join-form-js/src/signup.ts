@@ -146,6 +146,8 @@ export class Signup extends LitElement {
   tshirtSize!: HTMLSelectElement;
   @query('[name="sms-consent"]')
   smsConsent!: HTMLSelectElement;
+  @query('[name="discord-username"]')
+  discordUsername!: HTMLInputElement;
 
   // Payment info input elements.
   @query('[name="currency"]')
@@ -216,6 +218,7 @@ export class Signup extends LitElement {
       this.birthday.value = '01/01/1950';
       this.tshirtSize.value = 'other';
       this.smsConsent.value = 'n';
+      this.discordUsername.value = 'testuser';
       this.currency.value = 'usd';
       this.signature.value = 'foo';
       this.requestUpdate();
@@ -499,6 +502,21 @@ export class Signup extends LitElement {
               <option value="y" selected>Yes</option>
             </select>
           </div>
+        </label>
+        <label>
+          <span class="title"
+            >Discord username${this.optionalLabel('discord-username')}</span
+          >
+          <span class="hint"
+            >If you provide your username, you will receive an invitation to
+            our union's Discord server.</span
+          >
+          <input
+            name="discord-username"
+            aria-label="Discord username"
+            ?required=${this.isFieldRequired('discord-username')}
+            autocomplete="off"
+          />
         </label>
         <h2>Where do you work?</h2>
         <label>

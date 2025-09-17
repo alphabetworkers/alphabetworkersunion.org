@@ -8,8 +8,8 @@
     "start": "wrangler dev",
     "test": "vitest",
     "cf-typegen": "wrangler types",
-    "check": "tsc && eslint src && prettier -c src *.ts tsconfig.json",
-    "fix": "eslint --fix src; prettier -w src *.ts tsconfig.json"
+    "check": "tsc && eslint src && prettier -c .",
+    "fix": "eslint --fix src; prettier -w ."
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.1.0",

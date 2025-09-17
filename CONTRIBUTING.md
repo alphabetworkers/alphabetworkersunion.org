@@ -7,11 +7,11 @@ If you don't know how to submit a pull request, you can [learn how here](https:/
 
 Here are some ways you might want to contribute:
 
-* Submit a pull request with any changes, additions, or deletions.
-* Submit an issue asking for improvements or to flag bugs that need fixing.
-* Participate in the website working group meetings.
-* Share anything you noticed that could be improved.
-* Share any resources we should reference.
+- Submit a pull request with any changes, additions, or deletions.
+- Submit an issue asking for improvements or to flag bugs that need fixing.
+- Participate in the website working group meetings.
+- Share anything you noticed that could be improved.
+- Share any resources we should reference.
 
 For all but minor typos, it is a good idea to discuss your proposed changes with the working group before submitting a pull request.
 
@@ -33,9 +33,9 @@ Please use GitHub issues to report bugs or submit feature requests.
 
 When reporting a bug please include the following key pieces of information:
 
-* The exact URL of the page with the bug.
-* The browser version you were using: browser name and version number.
-* Your operating system.
+- The exact URL of the page with the bug.
+- The browser version you were using: browser name and version number.
+- Your operating system.
 
 The exact, minimal, steps needed to reproduce the issue. Submitting a 5 line script will get a much faster response from the team than one that's hundreds of lines long.
 

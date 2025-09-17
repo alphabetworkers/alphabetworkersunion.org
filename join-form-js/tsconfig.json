@@ -9,8 +9,5 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "src/global.d.ts",
-    "node_modules/lit-scss-loader/types.d.ts"
-  ]
+  "include": ["src/global.d.ts", "node_modules/lit-scss-loader/types.d.ts"]
 }

@@ -1,14 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>Join Form Sandbox</title>
   </head>
   <script>
-    window.STRIPE_KEY = "pk_live_NiJCywVuqdC5fhiMyKOkIOm300CFPvWQjL";
-    window.SIGNUP_API = "https:\/\/signup-worker.alphabetworkersunion.workers.dev\/";
-    window.LOGIN_LINK_TOKEN_API = "";
-    window.PAYMENT_INTENT_API = "http://localhost:8787/";
+    window.STRIPE_KEY = 'pk_live_NiJCywVuqdC5fhiMyKOkIOm300CFPvWQjL';
+    window.SIGNUP_API =
+      'https:\/\/signup-worker.alphabetworkersunion.workers.dev\/';
+    window.LOGIN_LINK_TOKEN_API = '';
+    window.PAYMENT_INTENT_API = 'http://localhost:8787/';
   </script>
   <script src="https://js.stripe.com/v3"></script>
   <body>
@@ -17,7 +18,12 @@
         <div slot="stripe-card-container"></div>
         <div slot="stripe-payment-container"></div>
       </awu-signup>
-      <button style="position: fixed;top:0;right:0;" onclick="fillTestValues()">Fill test values</button>
+      <button
+        style="position: fixed; top: 0; right: 0"
+        onclick="fillTestValues()"
+      >
+        Fill test values
+      </button>
     </div>
   </body>
 </html>

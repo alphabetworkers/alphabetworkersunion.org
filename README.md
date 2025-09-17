@@ -5,9 +5,7 @@ of the Alphabet Workers Union CWA.
 
 # Contributing
 
-Only union members may contribute to the site.  See [CONTRIBUTING.md][1] for
+Only union members may contribute to the site. See [CONTRIBUTING.md][1] for
 instructions.
-
-
 
 [1]: ./CONTRIBUTING.md

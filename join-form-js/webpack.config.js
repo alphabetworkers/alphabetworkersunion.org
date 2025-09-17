@@ -1,6 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 const ASSETS_DIR = path.join('..', '.assets');
 
@@ -36,8 +36,8 @@ module.exports = {
     historyApiFallback: true,
   },
   entry: {
-    'script': './signup.ts',
-    'style': './signup.scss',
+    script: './signup.ts',
+    style: './signup.scss',
   },
   mode: 'production',
   resolve: {
@@ -51,12 +51,12 @@ module.exports = {
       filename: path.join(ASSETS_DIR, 'main.css'),
     }),
     new HtmlWebPackPlugin({
-      template: "./index.html",
-      filename: "./index.html",
+      template: './index.html',
+      filename: './index.html',
     }),
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
 };

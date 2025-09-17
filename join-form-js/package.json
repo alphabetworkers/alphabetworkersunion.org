@@ -46,7 +46,9 @@
     "deploy:wrangler": "wrangler pages deploy dist --project-name join-form"
   },
   "author": "Jonah Bron <hi@jonah.id>",
-  "contributors": ["Stephen McMurtry <stephenmcmurtry>"],
+  "contributors": [
+    "Stephen McMurtry <stephenmcmurtry>"
+  ],
   "license": "Apache-2.0",
   "husky": {
     "hooks": {
